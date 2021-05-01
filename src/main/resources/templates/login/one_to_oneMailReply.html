@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+<meta charset="UTF-8">
+
+<!-- Bootstrap（デザイン性の高い画面を簡単に作成可能※タグのclass属性にある値をセットするだけ）の設定 jQuery Bootstrapの読み込み必要がある-->
+<link th:href="@{/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css}"
+	rel="stylesheet"></link>
+<!--　↑cssファイル タイムリーフでファイル読み込み　 -->
+<script th:src="@{/webjars/jquery/1.11.1/jquery.min.js}"></script>
+<!--　↑jQueryのjsファイル タイムリーフでファイル読み込み　 -->
+<script th:src="@{/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js}"></script>
+<!--　↑Bootstrap のjsファイル（jQueryの後に読み込む） タイムリーフでファイル読み込み　 -->
+
+
+<title>one_to_oneMailReply</title>
+</head>
+<body>
+
+	<!-- コンテンツ部分 -->
+	<div th:fragment="workspaceLayout_contents">
+		<div class="page-header">
+
+			<table>
+				<tr>
+					<td class="col-sm-1">
+						<h1 class="text-center" style="background-color: #ffeafc;">返信画面</h1>
+					</td>
+				</tr>
+				<tr>
+					<td class="col-sm-11"></td>
+				</tr>
+			</table>
+		</div>
+
+		<table
+			class="table table-bordered table-hover table-striped sticky_table ">
+			<tr th:each="one_to_onemaildto:one_to_oneMailList">
+				<th class="danger text-center col-sm-1">返信先</th>
+				<td th:text="*{getUser_name}"></td>
+			</tr>
+			<tr th:each="one_to_onemaildto:one_to_oneMailList">
+				<th class="danger text-center">返信する<br>メール内容
+				</th>
+				<td th:text="${getMail}"></td>
+			</tr>
+			<tr th:each="one_to_onemaildto:one_to_oneMailList">
+				<th class="danger text-center">受信日時</th>
+				<td
+					th:text="${#dates.format(getRegistration_date, 'yyyy/MM/dd HH:mm:ss')}"></td>
+			</tr>
+
+		</table>
+
+		<form method="post"
+			th:action="@{'/one_to_oneMailReply/' + ${one_to_oneMailReplyForm.id}}"
+			th:object="${one_to_oneMailReplyForm}">
+			<input type="hidden" id="hiddenSender" value="${hiddenSender}">
+			<table class="table table-borderd table-hover">
+
+				<input type="hidden" class="form-control" th:field="*{sender}"
+					value="${hiddenSender}">
+				<th
+					class="active col-sm-1 text-center one_to_oneMailReplyTableThColor"
+					style="padding: 15px;">返信内容</th>
+				<td style="background-color: #ddfbca;">
+					<div class="form-group"
+						th:classappend="${#fields.hasErrors('mail')}?' has-error'">
+						<input type="text" class="form-control" th:field="*{mail}"
+							placeholder="320文字以下で入力してください。"> <span
+							class="text-danger" th:if="${#fields.hasErrors('mail')}"
+							th:errors="*{mail}">mail error</span>
+					</div>
+				</td>
+				</tr>
+			</table>
+			<button class="btn btn-primary btn-lg center-block inquiryButton"
+				type="submit" style="font-size: 22px;">返信内容送信</button>
+			<label
+				style="font-size: 23px; color: #f9295d; margin: 20px 0px 0px 502px;"
+				th:text="${result}"></label>
+		</form>
+
+		<script>
+			$('.inquiryButton').click(function() {
+				if (confirm('入力内容を本当に送信しますか？')) {
+					/* キャンセルの時の処理 */
+					return true;
+				}
+				return false;
+			});
+		</script>
+
+	</div>
+</body>
+</html>

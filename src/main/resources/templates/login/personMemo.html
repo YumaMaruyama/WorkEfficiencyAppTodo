@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+<meta charset="UTF-8">
+
+<!-- Bootstrap（デザイン性の高い画面を簡単に作成可能※タグのclass属性にある値をセットするだけ）の設定 jQuery Bootstrapの読み込み必要がある-->
+<link th:href="@{/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css}"
+	rel="stylesheet"></link>
+<!--　↑cssファイル タイムリーフでファイル読み込み　 -->
+<script th:src="@{/webjars/jquery/1.11.1/jquery.min.js}"></script>
+<!--　↑jQueryのjsファイル タイムリーフでファイル読み込み　 -->
+<script th:src="@{/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js}"></script>
+<!--　↑Bootstrap のjsファイル（jQueryの後に読み込む） タイムリーフでファイル読み込み　 -->
+
+<title>personMemo</title>
+</head>
+<body>
+	<div th:fragment="workspaceLayout_contents">
+	<!-- jQuery フォームリセット -->
+		<script>
+			$(function() {
+				// 入力値をリセット
+				$("#resetButton").click(function() {
+					$('#textField1,#dateField1,#dateField2,#dateField3,#dateField4').val("");
+				});
+			});
+		</script>
+		<div class="page-header">
+			<!-- h1タグと同じ列にボタンを付けるため、テーブルを作ってその中にtrをつけている -->
+			<table>
+				<tr>
+					<td class="col-sm-3"><h1 class="text-center" style="background-color: #b0e0e659;">個人用メモ</h1></td>
+
+					<td class="col-sm-9"><h3
+							th:text="'合計' + ${personmemoCount} + '件'"></h3></td>
+
+					<td class="col-sm-2 btnPadding"><a class="cp_btn3 pull-right"
+						type="submit" style="width: 150px" th:href="@{'/personMemoAddto'}">メモ登録</a></td>
+					<!--
+					<td class="col-sm-2"><a class="cp_btn4 pull-right"
+						th:href="@{'/personMemo/csv'}">CSV出力</a></td>
+						-->
+				</tr>
+			</table>
+		</div>
+
+		<form method="post" th:object="${personMemoSearchForm}"
+			th:action="@{/personMemoDetail}">
+			<table class="table table-borderd table-hover bg-success" style="background-color: #e0ffff;width:1120px">
+				<tr class="workspaceTrThSearch">
+					<th class="info text-center">メモ</th>
+					<th class="info text-center">作成日～</th>
+					<th class="info text-center">～作成日</th>
+					<th class="info text-center">完了日～</th>
+					<th class="info text-center">～完了日</th>
+				</tr>
+
+				<tr>
+					<td><input id="textField1" type="text" class="form-control text-center" name="memo"
+						th:field="*{memo}" placeholder="300文字以下で検索可"><span class="text-danger" th:if="${#fields.hasErrors('memo')}" th:errors="*{memo}"></span></td>
+					<td><input id="dateField1" type="date" class="form-control"
+						name="registration_dateA" th:field="*{registration_dateA}"></td>
+					<td><input id="dateField2" type="date" class="form-control"
+						name="registration_daetZ" th:field="*{registration_dateZ}"></td>
+					<td><input id="dateField3" type="date" class="form-control"
+						name="finished_dateA" th:field="*{finished_dateA}"></td>
+					<td><input id="dateField4" type="date" class="form-control"
+						name="finished_dateZ" th:field="*{finished_dateZ}"></td>
+
+				</tr>
+
+				<tr class="workspaceTrThSearch">
+					<th class="info text-center">未完了チェックBOX</th>
+					<th class="info text-center">検索ボタン</th>
+					<th class="info text-center">フォームリセット</th>
+				</tr>
+
+				<tr>
+					<td class="PersonMemoMikannryou" style="text-align: center;"><input
+						type="checkbox" name="finished_dateT"
+						value="true">完了日を未完了に絞る</td>
+					<td><button class="btn btn-info btnPadding2" type="submit" name="search">入力したキーワードで検索</button></td>
+					<td style="text-align:center;"><button class="btn btn-success reset btnPadding2"  id="resetButton" type="button">フォーム内初期化</button></td>
+				</tr>
+			</table>
+		</form>
+
+
+		<table class="table table-condensed table-bordered table-hover table-striped sticky_table personMemo fontSize"  style="max-height:380px; width:1120px;">
+			<thead>
+			<tr>
+				<th class="warning text-center persomMemoTh1 personMemoTableThColor">メモ</th>
+				<th class="warning text-center persomMemoTh2 personMemoTableThColor">作成日</th>
+				<th class="warning text-center persomMemoTh3 personMemoTableThColor">完了日</th>
+				<th class="warning text-center persomMemoTh4 personMemoTableThColor">管理</th>
+			</tr>
+			</thead>
+			<tr th:each="personmemodto:${personMemoList}">
+				<td class="text-center persomMemoTd1" th:text="${personmemodto.memo}"></td>
+				<td class="text-center persomMemoTd2"
+					th:text="${#dates.format(personmemodto.registration_date,'yyyy/MM/dd HH:mm')}" ></td>
+				<td class="text-center persomMemoTd3" th:if="${personmemodto.finished_date != null}" th:text="${#dates.format(personmemodto.finished_date,'yyyy/MM/dd HH:mm')}" ></td>
+				<td class="text-center persomMemoTd3" th:if="${personmemodto.finished_date == null}" th:text="未完了">
+				<td class="text-center persomMemoTd4 btnSizePersonMemo2"> <a class="btn btn-primary text-center btnSizePersonMemo"
+					th:href="@{'personMemoDetail/' + ${personmemodto.id}}">編集</a></td>
+			</tr>
+		</table>
+
+	</div>
+</body>
+</html>

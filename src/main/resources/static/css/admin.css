@@ -1,0 +1,254 @@
+@charset "UTF-8";
+
+a.cp_btn4 {
+	position: relative;
+	display: block;
+	width: 140px;
+	padding: 0.8em;
+	text-align: center;
+	text-decoration: none;
+	color: #fff;
+	background: #b3a554;
+	border:1px solid #000;
+	overflow: hidden;
+}
+a.cp_btn4:before {
+	content:"";
+	position: absolute;
+	top: 0px;
+	left: -150px;
+	height: 100%;
+	width: 160px;
+	background : #fff;
+	opacity: 0.3;
+	transition: .4s;
+}
+a.cp_btn4:hover:before {
+	left:0;
+}
+
+a.cp_btn7 {
+	position: relative;
+	display: block;
+	width: 140px;
+	padding: 0.8em;
+	text-align: center;
+	text-decoration: none;
+	color: #fff;
+	background: #c58989;
+	border:1px solid #000;
+	overflow: hidden;
+}
+a.cp_btn7:before {
+	content:"";
+	position: absolute;
+	top: 0px;
+	left: -150px;
+	height: 100%;
+	width: 160px;
+	background : #fff;
+	opacity: 0.3;
+	transition: .4s;
+}
+a.cp_btn7:hover:before {
+	left:0;
+}
+
+a.cp_btn9 {
+	position: relative;
+	display: block;
+	width: 140px;
+	padding: 0.8em;
+	text-align: center;
+	text-decoration: none;
+	color: #fff;
+	background: #afcae4;
+	border:1px solid #000;
+	overflow: hidden;
+}
+a.cp_btn9:before {
+	content:"";
+	position: absolute;
+	top: 0px;
+	left: -150px;
+	height: 100%;
+	width: 160px;
+	background : #fff;
+	opacity: 0.3;
+	transition: .4s;
+}
+a.cp_btn9:hover:before {
+	left:0;
+}
+
+a.cp_btn10 {
+	position: relative;
+	display: block;
+	width: 140px;
+	padding: 0.8em;
+	text-align: center;
+	text-decoration: none;
+	color: #fff;
+	background: #c7da8a;
+	border:1px solid #000;
+	overflow: hidden;
+}
+a.cp_btn10:before {
+	content:"";
+	position: absolute;
+	top: 0px;
+	left: -150px;
+	height: 100%;
+	width: 160px;
+	background : #fff;
+	opacity: 0.3;
+	transition: .4s;
+}
+a.cp_btn10:hover:before {
+	left:0;
+}
+
+
+a.cp_btn8 {
+	position: relative;
+	display: block;
+	width: 140px;
+	padding: 0.8em;
+	text-align: center;
+	text-decoration: none;
+	color: #fff;
+	background: #c58989;
+	border:1px solid #000;
+	overflow: hidden;
+}
+a.cp_btn8:before {
+	content:"";
+	position: absolute;
+	top: 0px;
+	left: -150px;
+	height: 100%;
+	width: 160px;
+	background : #fff;
+	opacity: 0.3;
+	transition: .4s;
+}
+a.cp_btn8:hover:before {
+	left:0;
+}
+
+a.cp_btn11 {
+	position: relative;
+	display: block;
+	width: 140px;
+	padding: 0.8em;
+	text-align: center;
+	text-decoration: none;
+	color: #fff;
+	background: #d8d35d;
+	border:1px solid #000;
+	overflow: hidden;
+}
+a.cp_btn11:before {
+	content:"";
+	position: absolute;
+	top: 0px;
+	left: -150px;
+	height: 100%;
+	width: 160px;
+	background : #fff;
+	opacity: 0.3;
+	transition: .4s;
+}
+a.cp_btn11:hover:before {
+	left:0;
+}
+
+a.cp_btn12 {
+	position: relative;
+	display: block;
+	width: 140px;
+	padding: 0.8em;
+	text-align: center;
+	text-decoration: none;
+	color: #fff;
+	background: #e24aca;
+	border:1px solid #000;
+	overflow: hidden;
+}
+a.cp_btn12:before {
+	content:"";
+	position: absolute;
+	top: 0px;
+	left: -150px;
+	height: 100%;
+	width: 160px;
+	background : #fff;
+	opacity: 0.3;
+	transition: .4s;
+}
+a.cp_btn12:hover:before {
+	left:0;
+}
+/*.adminHeader thead {
+	display:block;
+}*/
+.theadAdmin tbody {
+	display:block;
+	overflow-y:scroll;
+	/*heightがスクロールしなくても見える範囲の幅*/
+	height: 379px;
+}
+.adminHeader1 {
+	width:260px;
+}
+.adminHeader2 {
+	width:360px;
+}
+.adminHeader3 {
+	width:200px;
+}
+.adminHeader4 {
+	width:95px;
+}
+.adminHeader5 {
+	width:95px;
+}
+.adminHeader6 {
+	width:90px;
+}
+
+.admin1 {
+	width:260px;
+}
+.admin2 {
+	width:360px;
+}
+.admin3 {
+	width:200px;
+}
+.admin4 {
+	width:95px;
+}
+.admin5 {
+	width:95px;
+}
+.admin6 {
+	width:90px;
+}
+
+.adminTableThColor {
+	background-color: #fdffc3 !important;
+}
+
+.usersNoticeTableThColor {
+	background-color: #8be281 !important;
+}
+
+.btnSizeAdmin {
+	padding: 0px 19px !important;
+	display: inherit !important;
+}
+
+.btnSizeAdmin2 {
+	padding: 0px 10px !important;
+}

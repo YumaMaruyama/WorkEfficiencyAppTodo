@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+<meta charset="UTF-8">
+
+<!-- Bootstrap（デザイン性の高い画面を簡単に作成可能※タグのclass属性にある値をセットするだけ）の設定 jQuery Bootstrapの読み込み必要がある-->
+<link th:href="@{/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css}"
+	rel="stylesheet"></link>
+<!--　↑cssファイル タイムリーフでファイル読み込み　 -->
+<script th:src="@{/webjars/jquery/1.11.1/jquery.min.js}"></script>
+<!--　↑jQueryのjsファイル タイムリーフでファイル読み込み　 -->
+<script th:src="@{/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js}"></script>
+<!--　↑Bootstrap のjsファイル（jQueryの後に読み込む） タイムリーフでファイル読み込み　 -->
+
+<title>one_to_oneMailNotice</title>
+</head>
+<body>
+	<div th:fragment="workspaceLayout_contents">
+	<!-- jQuery フォームリセット -->
+		<script>
+			$(function() {
+				// 入力値をリセット
+				$("#resetButton").click(function() {
+					$('#textField1,#textField2').val("");
+				});
+			});
+		</script>
+		<div class="page-header">
+			<table>
+				<tr>
+					<td class="col-sm-4"><h1 class="text-center" style="background-color: #b0e0e659;">Mail送信先一覧画面</h1></td>
+					<td><h3 th:text="'合計' + ${one_to_oneMailSearchCount} + '件'"></h3></td>
+				</tr>
+			</table>
+		</div>
+
+		<form method="post" th:action="@{/one_to_oneMailNotice}"
+			th:object="${one_to_oneMailSearchForm}">
+			<table class="table table-borderd table-hover bg-success usersTable"
+				style="background-color: #e0ffff;width:1120px;">
+				<tr class="workspaceTrThSearch">
+					<th class="info text-center">メールアドレス</th>
+					<th class="info text-center">ユーザー名</th>
+					<th class="info text-center">検索ボタン</th>
+					<th class="info text-center">フォームクリア</th>
+				</tr>
+
+				<tr>
+					<td><input id="textField1" type="text" class="form-control text-center" name="user_id"
+						th:field="*{user_id}" placeholder="35文字以下で検索可"><span class="text-danger"
+						th:if="${#fields.hasErrors('user_id')}" th:errors="*{user_id}">user_id
+							error</span></td>
+					<td><input id="textField2" type="text" class="form-control text-center" name="user_name"
+						th:field="*{user_name}" placeholder="20文字以下で検索可"><span class="text-danger"
+						th:if="${#fields.hasErrors('user_name')}" th:errors="*{user_name}">user_name
+							error</span></td>
+					<td align=center><button class="btn btn-primary btnPadding2" type="submit" name="search">キーワードで検索</button></td>
+					<td style="text-align: center;"><button
+							class="btn btn-success usersSearchTd9 reset btnPadding2" id="resetButton" type="button">フォーム内初期化</button></td>
+
+
+				</tr>
+			</table>
+		</form>
+
+		<br>
+
+		<table
+			class="table table-condensed table-bordered table-hover table-striped sticky_table personUsersNotice fontSize" style="width:1120px;">
+			<thead>
+			<tr >
+				<th
+					class="warning col-sm-2 text-center sticky-top personUsersNoticeTh1 one_to_oneMailNoticeTableThColor"
+					align="center">ユーザーID</th>
+				<th
+					class="warning col-sm-2 text-center sticky-top personUsersNoticeTh2 one_to_oneMailNoticeTableThColor">ユーザー名</th>
+				<th
+					class="warning col-sm-2 text-center sticky-tip personUsersNoticeTh3 one_to_oneMailNoticeTableThColor">管理</th>
+			</tr>
+			</thead>
+
+			<tr class="text-center" th:each="usersdto:${usersList}">
+				<td class="text-center personUsersNoticeTd1" th:text="${usersdto.user_id}"></td>
+				<td class="text-center personUsersNoticeTd2" th:text="${usersdto.user_name}"></td>
+				<td class="text-center personUsersNoticeTd3 btnSizeOne_to_oneMailNotice2"><a
+					class="btn btn-primary btn-sm text-center btnSizeOne_to_oneMailNotice"
+					th:href="@{'/one_to_oneMailNoticeDetail/' + ${usersdto.user_id}}">Mailする</a></td>
+			</tr>
+		</table>
+	</div>
+</body>
+</html>

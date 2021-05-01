@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTO Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- クラス指定 このxmlファイルと対応するクラスを、パッケージ名付きで指定-->
+<mapper
+	namespace="com.example.demo.login.domain.repository.mybatis.UsersMapper2">
+	<!-- マッピング定義  独自の作成したクラスとselect結果をマッピングする際にマッピング定義しておく-->
+	<!-- まずどのクラスのマッピング定義をするか指定　typeにパッケージ名、クラス名を指定し、idにはselect文などでマッピング定義を使う場面の名前を設定しておきます -->
+	<!-- columnがデータベースのカラム名で、propertyにクラスのフィールド（プロパティ）を指定　これでデータベースのuser_idの値がUserDTOクラスのuser_idフィールドに入れられる -->
+	<resultMap
+		type="com.example.demo.login.domain.model.UsersDTO" id="usersdto">
+		<id column="user_id" property="user_id" />
+		<result column="password" property="password" />
+		<result column="user_name" property="user_name" />
+		<result column="birthday" property="birthday" />
+		<result column="age" property="age" />
+		<result column="MaleFemale" property="MaleFemale" />
+		<result column="role" property="role" />
+	</resultMap>
+
+	<!-- insertする際タグ内にSQL文を書く id属性にメソッド名　parameterType属性にメソッドの引数の型を入れる（UsersDTO型の引数となるためパッケージ名とクラス名を指定しているがint,booleanなどの基本型の場合はパッケージ名はつけない）-->
+	<!-- 一件登録 -->
+	<insert id="insert"
+		parameterType="com.example.demo.login.domain.model.UsersDTO">
+		insert into users (
+		user_id,
+		password,
+		user_name,
+		birthday,
+		age,
+		MaleFemale,
+		role)
+		values(
+		#{user_id},
+		#{password},
+		#{user_name},
+		#{birthday},
+		#{age},
+		#{MaleFemale},
+		#{role})
+	</insert>
+
+	<!-- selectOne selectタグはid,parametrTypeはinsertと同じだが、resultMapがある-->
+	<!-- resultMapはselect結果を何にマッピングするかという属性　これによりUsersDTOのフィールドにいれられる -->
+	<!-- 一件検索 -->
+	<select id="selectOne" parameterType="string"
+		resultMap="usersdto">
+		select
+		user_id,
+		password,
+		user_name,
+		birthday,
+		age,
+		MaleFemale,
+		role
+		from
+		users
+		where
+		user_id = #{user_id}
+	</select>
+
+	<!-- 全体検索 -->
+	<select id="selectMany" resultMap="usersdto">
+		select
+		user_id,
+		password,
+		user_name,
+		birthday,
+		age,
+		MaleFemale,
+		role
+		from
+		users
+	</select>
+
+	<!-- 一件更新 -->
+	<update id="updateOne"
+		parameterType="com.example.demo.login.domain.model.UsersDTO">
+		update users
+		set
+		password = #{password},
+		user_name = #{user_name},
+		birthday = #{birthday},
+		age = #{age},
+		MaleFemale = #{MaleFemale}
+		where user_id = #{user_id}
+	</update>
+
+	<!-- 一件削除 -->
+	<delete id="deleteOne" parameterType="string">
+		delete from users where user_id = #{user_id}
+	</delete>
+</mapper>

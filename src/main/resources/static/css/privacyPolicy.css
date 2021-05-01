@@ -1,0 +1,20 @@
+@charset "UTF-8";
+
+.privacyPolicy thead {
+	display:block;
+	overflow-y:scroll;
+	/*tdがスクロールしなくても見える範囲の幅*/
+	height: 458px;
+}
+
+.privacyPolicyLogin thead {
+	display:block;
+	overflow-y:scroll;
+	/*tdがスクロールしなくても見える範囲の幅*/
+	height: 469px;
+}
+
+
+.privacyPolicyTableThColor {
+	background-color: #ffdedb !important;
+}

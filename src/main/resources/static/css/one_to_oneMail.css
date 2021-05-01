@@ -1,0 +1,74 @@
+@charset "UTF-8";
+
+.one_to_oneMailTh1 {
+	width:147px;
+}
+
+.one_to_oneMailTh2 {
+	width:667px;
+}
+
+.one_to_oneMailTh3 {
+	width:131px;
+}
+
+.one_to_oneMailTh4 {
+	width:155px;
+}
+
+.one_to_oneMailTd1 {
+	width:147px;
+}
+
+.one_to_oneMailTd2 {
+	width:667px;
+}
+
+.one_to_oneMailTd3 {
+	width:131px;
+}
+
+.one_to_oneMailTd4 {
+	width:150px;
+}
+
+.one_to_oneMail tbody {
+	display:block;
+	overflow-y:scroll;
+	/*heightがスクロールしなくても見える範囲の幅*/
+	height: 377px;
+}
+
+.one_to_oneMailTableThColor {
+	background-color: #fdffc3 !important;
+}
+
+.one_to_oneMailNoticeDetailTableThColor {
+	background-color: #afffb9 !important;
+}
+
+.one_to_oneMailReplyTableThColor {
+	    background-color: #afffb9 !important;
+}
+
+.btnSizeOne_to_oneMail {
+	padding: 0px 18px !important;
+	display: inherit !important;
+}
+
+.btnSizeOne_to_oneMail2 {
+	padding: 0px 10px !important;
+}
+
+.fontSizeOne_to_oneMail {
+	font-size: 13px !important;
+}
+
+.btnSizeOne_to_oneMailNotice {
+	padding: 0px 15px !important;
+	display: inherit !important;
+}
+
+.btnSizeOne_to_oneMailNotice2 {
+	padding: 0px 10px !important;
+}

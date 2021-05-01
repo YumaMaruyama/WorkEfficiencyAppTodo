@@ -1,0 +1,25 @@
+@charset "UTF-8";
+
+.fa-color:before
+{
+	color:#ffffff!important;
+}
+
+.fa-colorInquiry:before {
+	color:#a3de92 !important;
+}
+
+.fa-colorSnsShare:before {
+	color:#ff8787 !important;
+}
+
+.fa-colorClient:before {
+	color:#e8eab1 !important;
+}
+
+.fa-colorLogin:before {
+	color:#a4f7cb !important;
+}
+.fa-size {
+	font-size:20px;
+}

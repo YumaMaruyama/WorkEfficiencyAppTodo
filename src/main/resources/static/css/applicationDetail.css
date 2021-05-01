@@ -1,0 +1,28 @@
+@charset "UTF-8";
+
+.applicatonDetailTh1a {
+	width: 208px;
+}
+
+.applicatonDetailTd1a {
+	width: 930px;
+}
+
+.applicationTableThColor {
+	background-color:  #6cf577 !important;
+}
+
+.applicationTh1 {
+	width:205px;
+}
+
+.applicationTh2 {
+	width:911px;
+}
+
+.applicationTable tbody {
+	display:block;
+	/*overflow-y:scroll;
+	/*heightがスクロールしなくても見える範囲の幅
+	height: 475px;*/
+}

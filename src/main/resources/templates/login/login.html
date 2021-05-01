@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html xmlns:th="http:www.thymeleaf.org">
+<head>
+<meta charset="UTF-8"></meta>
+<!-- アイコン -->
+<link rel="stylesheet"
+	href="http://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+<!-- Bootstrap（デザイン性の高い画面を簡単に作成可能※タグのclass属性にある値をセットするだけ）の設定 jQuery Bootstrapの読み込み必要がある-->
+<link th:href="@{/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css}"
+	rel="stylesheet"></link>
+<!--　↑cssファイル タイムリーフでファイル読み込み　 -->
+<script th:src="@{/webjars/jquery/1.11.1/jquery.min.js}"></script>
+<!--　↑jQueryのjsファイル タイムリーフでファイル読み込み　 -->
+<script th:src="@{/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js}"></script>
+<!--　↑Bootstrap のjsファイル（jQueryの後に読み込む） タイムリーフでファイル読み込み　 -->
+<!-- CSSの読み込み -->
+<link th:href="@{/css/login.css}" rel="stylesheet"></link>
+
+<title>Login</title>
+</head>
+<body background="/css/white_00040.jpg"
+	class="text-center col-sm-12 bg-info">
+
+<!-- th:fragment -->
+	<div th:fragment="loginLayout_contents">
+	<!-- ヘッダー -->
+	<nav class="navbar navbar-light navbar-fixed-top">
+		<div class="container-fluid" style="background-color:black;">
+			<div class="navbar-light">
+				<a style="color:#0089ff !important;" class="navbar-brand"><i class="fa fa-android fa-spin"></i>
+					WorkEfficiencyApp-YMJOJO</a>
+			</div>
+			<h5 style="font-size:20px;color:#fff;padding: 4px 0px;">このアプリを使用してワークの効率をUPさせよう！</h5>
+		</div>
+	</nav>
+
+	<!--
+	<h4 class="loginChar">GoogleChrome推奨のワーク効率化アプリです。</h4>
+	-->
+
+
+
+	<br>
+	<br>
+
+
+	<div class="text-center  text-white">
+		<h1>Login</h1>
+		<br>
+		<form method="post" action="/login">
+			<!-- ログインエラーメッセージの表示 -->
+			<p th:if="${session['SPRING_SECURITY_LAST_EXCEPTION']} !=null"
+				th:text="${session['SPRING_SECURITY_LAST_EXCEPTION'].message}"
+				class="text-danger">ログインエラーメッセージ</p>
+
+			<!-- ユーザーID
+			<label>ユーザーID</label> <input type="text" name="user_id" /><br /> <br />-->
+
+			<div class="cp_iptxt">
+				<label class="ef"> <input type="text" name="user_id"
+					placeholder="UserId">
+				</label>
+			</div>
+			<!-- パスワード -->
+			<div class="cp_iptxt">
+				<label class="ef"> <input type="text" name="password"
+					placeholder="Password">
+				</label>
+			</div>
+			<!-- CSRF対策用トークン  hiddenでCSRF対策用のトークンをサーバーに送る CSRF多作をしている場合下記のコードを書かないとSpringが応答しなくなる-->
+			<input type="hidden" th:name="${_csrf.parameterName}"
+				th:value="${_csrf.token}" />
+			<!-- ログインボタン -->
+			<button class="btn-gradient-flat" type="submit">ログイン</button>
+		</form>
+		<br />
+		<!-- ポイント2：th：href タイムリーフを使ってアンカータグを使う　コントローラークラスの＠GetMappingアノテーションの値を指定するだけ-->
+		<!-- ユーザー登録画面へのリンク
+		<a th:href="@{'/signup'}" class="text-warning" type="submit">ユーザー新規登録を行うにはこちら</a>
+		<br> <br> <br> <a th:href="@{/termsOfServiceLogin}"
+			class="text-warning" type="submit">利用規約はこちら</a> <br> <br> <a
+			th:href="@{/privacyPolicyLogin}" class="text-warning" type="submit">プライバシーポリシーはこちら</a>
+		<br> <br> <a th:href="@{/inquiryLogin}" class="text-warning"
+			type="submit">お問い合わせはこちら</a>
+	</div>-->
+
+<!-- ログイン画面にtable追加して何か表示させるかも
+<div align="right">
+	<table  class="table table-bordered table-hover blog" style="width:400px;">
+	<tr>
+	<th>管理人ブログ</th>
+	</tr>
+	<tr>
+	<td></td>
+	</tr>
+	</table>
+
+</div>
+-->
+</div>
+</body>
+</html>

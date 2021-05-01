@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+<meta charset="UTF-8">
+<title>管理者専用画面</title>
+
+
+<!-- Bootstrap（デザイン性の高い画面を簡単に作成可能※タグのclass属性にある値をセットするだけ）の設定 jQuery Bootstrapの読み込み必要がある-->
+<link th:href="@{/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css}"
+	rel="stylesheet"></link>
+<!--　↑cssファイル タイムリーフでファイル読み込み　 -->
+<script th:src="@{/webjars/jquery/1.11.1/jquery.min.js}"></script>
+<!--　↑jQueryのjsファイル タイムリーフでファイル読み込み　 -->
+<script th:src="@{/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js}"></script>
+<!--　↑Bootstrap のjsファイル（jQueryの後に読み込む） タイムリーフでファイル読み込み　 -->
+
+<!-- CSSの読み込み -->
+<link th:href="@{/css/admin.css}" rel="stylesheet"></link>
+
+</head>
+<body>
+	<!-- コンテンツ部分 -->
+	<div th:fragment="workspaceLayout_contents">
+		<!-- jQuery フォームリセット -->
+		<script>
+			$(function() {
+				// 入力値をリセット
+				$("#resetButton")
+						.click(
+								function() {
+									$(
+											'#textField1,#textField2,#dateField1,#dateField2,#dateField3,#dateField4')
+											.val("");
+								});
+			});
+		</script>
+		<div class="page-header">
+			<table>
+				<tr>
+					<td class="col-sm-7"><h1>管理者専用画面</h1></td>
+					<!-- admin一覧の件数 -->
+					<td class="col-sm-12"><h3
+							th:text="'合計' + ${inquiryListCount} + '件'"></h3></td>
+					<!-- 完了　削除の結果表示
+					<td><label class="text-info" th:text="${result}">結果表示</label></td>-->
+					<td class="col-sm-2 btnPadding"><a class="cp_btn11 pull-right"
+						type="submit" style="width: 160px"
+						th:href="@{'/personUsersNotice'}">個人ユーザーへ連絡</a></td>
+
+					<td class="col-sm-2 btnPadding"><a class="cp_btn12 pull-right"
+						type="submit" style="width: 175px" th:href="@{'/usersNotice'}">全ユーザーへおしらせ</a></td>
+					<!-- CSV出力用のリンク -->
+					<td class="col-sm-2 btnPadding"><a class="cp_btn4"
+						th:href="@{'/inquiry/csv'}">CSV出力</a></td>
+				</tr>
+			</table>
+		</div>
+		<!-- th:objectの中のFormはPostだけではなくgetの引数にも持たせておく（getでは勝手にnullで入って処理をしてくれている）　そうしないとまずページが出てこない　 -->
+		<form method="post" th:action="@{/admin}"
+			th:object="${inquirySearchForm}">
+			<table class="table table-borderd table-hover bg-success"
+				style="background-color: #e0ffff; width: 1120px;">
+				<tr class="workspaceTrThSearch">
+					<th class="info text-center">問い合わせタイトル</th>
+					<th class="info text-center">問い合わせ内容</th>
+					<th class="info text-center">問い合わせ日～</th>
+					<th class="info text-center">～問い合わせ日</th>
+				</tr>
+				<tr>
+					<td><input id="textField1" type="text"
+						class="form-control text-center" name="title" th:field="*{title}"
+						placeholder="80文字以下で検索可"><span class="text-danger"
+						th:if="${#fields.hasErrors('title')}" th:errors="*{title}"></span></td>
+					<td><input id="textField2" type="text"
+						class="form-control text-center" name="content"
+						th:field="*{content}" placeholder="110文字以下で検索可"><span
+						class="text-danger" th:if="${#fields.hasErrors('content')}"
+						th:errors="*{content}"></span></td>
+					<td><input id="dateField1" type="date" class="form-control"
+						name="registration_dateA" th:field="*{registration_dateA}"></td>
+					<td><input id="dateField2" type="date" class="form-control"
+						name="registration_dateZ" th:field="*{registration_dateZ}"></td>
+				</tr>
+
+				<tr class="workspaceTrThSearch">
+					<th class="info text-center">完了日～</th>
+					<th class="info text-center">～完了日</th>
+					<th class="info text-center">未完了チェック</th>
+					<th class="info text-center">検索ボタン</th>
+					<th class="info text-center">フォームリセット</th>
+				</tr>
+
+				<tr>
+					<td><input id="dateField3" type="date" class="form-control"
+						name="finished_dateA" th:field="*{finished_dateA}"></td>
+					<td><input id="dateField4" type="date" class="form-control"
+						name="finished_dateZ" th:field="*{finished_dateZ}"></td>
+					<td style="text-align: center;"><input type="checkbox"
+						value="true" style="text-align: center;" name="finished_dateT">完了日を未完了に絞る</td>
+					<td style="text-align: center;"><button type="submit"
+							class="btn btn-primary btnPadding2" name="search">キーワードで検索</button></td>
+					<td style="text-align: center;"><button
+							class="btn btn-success reset btnPadding2" id="resetButton"
+							type="button">フォーム内初期化</button></td>
+				</tr>
+
+			</table>
+		</form>
+
+		<div style="height: 100vh; width: 1120px;">
+
+			<table
+				class="table table-condensed table-bordered table-hover table-striped theadAdmin fontSize"
+				style="max-height: 275px;">
+				<thead>
+					<tr>
+						<th
+							class="text-center warning col-sm-4 sticky-top adminHeader1 adminTableThColor">問い合わせタイトル</th>
+						<th
+							class="text-center warning col-sm-4 sticky-top adminHeader2 adminTableThColor">問い合わせ内容</th>
+						<th
+							class="text-center warning col-sm-4 sticky-top adminHeader3 adminTableThColor">返信用mail</th>
+						<th
+							class="text-center warning col-sm-2 sticky-top adminHeader4 adminTableThColor">日時</th>
+						<th
+							class="text-center warning col-sm-2 sticky-top adminHeader5 adminTableThColor">完了日</th>
+						<th
+							class="text-center warning col-sm-1 sticky-top adminHeader6 adminTableThColor">管理</th>
+					</tr>
+				</thead>
+
+				<tr class="text-center" th:each="inquirydto:${inquiryList}">
+					<td class="text-center admin1" th:text="${inquirydto.title}"></td>
+					<td class="text-center admin2" th:text="${inquirydto.content}"></td>
+					<td class="text-center admin3"
+						th:if="${inquirydto.user_id != null}"
+						th:text="${inquirydto.user_id}"></td>
+					<td class="text-center admin3"
+						th:if="${inquirydto.user_id == null}" th:text="返信不要です"></td>
+					<td class="text-center admin4"
+						th:text="${#dates.format(inquirydto.registration_date,'yyyy/MM/dd HH:mm')}"></td>
+					<td class="text-center admin5"
+						th:if="${inquirydto.finished_date != null}"
+						th:text="${#dates.format(inquirydto.finished_date,'yyyy/MM/dd HH:mm')}"></td>
+					<td class="text-center admin5"
+						th:if="${inquirydto.finished_date == null}" th:text="未完了"></td>
+					<td class="text-center admin6 btnSizeAdmin2">
+						<!-- 動的URL --> <a class="btn btn-primary text-center btnSizeAdmin"
+						th:href="@{'adminDetail/' + ${inquirydto.id}}">編集</a>
+					</td>
+				</tr>
+			</table>
+
+		</div>
+	</div>
+</body>
+</html>

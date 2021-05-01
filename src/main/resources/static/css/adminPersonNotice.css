@@ -1,0 +1,43 @@
+@charset "UTF-8";
+
+.adminPersonNoticeTh1 {
+	width:847px;
+}
+.adminPersonNoticeTh2 {
+	width:170px;
+}
+.adminPersonNoticeTh3 {
+	width:84px;
+}
+.adminPersonNoticeTd1 {
+	width:847px;
+}
+.adminPersonNoticeTd2 {
+	width:170px;
+}
+.adminPersonNoticeTd3 {
+	width:83px;
+}
+
+.adminPersonNotice tbody {
+	display:block;
+	overflow-y:scroll;
+	/*tdがスクロールしなくても見える範囲の幅*/
+	height: 378px;
+}
+
+.adminPersonNoticeTableThColor {
+	background-color: #fdffc3 !important;
+}
+
+.fontSizeAdminPersonNotice {
+	font-size:13px;
+}
+.btnSizeAdminPersonNotice {
+	padding: 0px 16px !important;
+	display: inherit !important;
+}
+
+.btnSizeAdminPersonNotice2 {
+	padding: 0px 10px !important;
+}

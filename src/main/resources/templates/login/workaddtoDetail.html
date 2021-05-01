@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+<meta charset="UTF-8">
+<!-- Bootstrap（デザイン性の高い画面を簡単に作成可能※タグのclass属性にある値をセットするだけ）の設定 jQuery Bootstrapの読み込み必要がある-->
+<link th:href="@{/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css}"
+	rel="stylesheet"></link>
+<!--　↑cssファイル タイムリーフでファイル読み込み　 -->
+<script th:src="@{/webjars/jquery/1.11.1/jquery.min.js}"></script>
+<!--　↑jQueryのjsファイル タイムリーフでファイル読み込み　 -->
+<script th:src="@{/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js}"></script>
+<!--　↑Bootstrap のjsファイル（jQueryの後に読み込む） タイムリーフでファイル読み込み　 -->
+
+<title>Work詳細</title>
+</head>
+<body>
+
+
+	<div th:fragment="workspaceLayout_contents">
+		<div class="col-sm-12">
+			<div class="page-header col-sm-3">
+				<h1 class="text-center" style="background-color: #ffeafc;">Work詳細</h1>
+			</div>
+
+
+
+			<form method="post" th:action="@{/workaddtoDetail}"
+				th:object="${workaddtoDetailForm}">
+				<input type="hidden" name="id" value="${todo_itemsDTO.id}"
+					th:field="*{id}">
+				<table class="table table-bordered table-hover">
+
+					<tr>
+						<th class="danger active col-sm-1 text-center">Work詳細欄1</th>
+						<td class="col-sm-10" style="background-color:#f9efef">
+							<div class="form-group">
+								<input type="text" class="form-control" th:field="*{details}"
+									placeholder="65文字以内で入力お願いします。現在は詳細欄1はなにも記載されていません。" /> <span class="text-danger"
+									th:if="${#fields.hasErrors('details')}" th:errors="*{details}">details
+									error</span>
+							</div>
+						</td>
+					</tr>
+					<tr>
+
+
+
+					<tr>
+						<th class="danger active col-sm-1 text-center">Work詳細欄2</th>
+						<td class="col-sm-3" style="background-color:#f9efef">
+							<div class="form-group">
+								<input type="text" class="form-control" th:field="*{details2}"
+									placeholder="65文字以内で入力お願いします。現在は詳細欄2はなにも記載されていません。" /> <span class="text-danger"
+									th:if="${#fields.hasErrors('details2')}"
+									th:errors="*{details2}">details error</span>
+							</div>
+						</td>
+					</tr>
+					<tr>
+					<tr>
+						<th class="danger active col-sm-1 text-center">Work詳細欄3</th>
+						<td class="col-sm-3" style="background-color:#f9efef">
+							<div class="form-group">
+								<input type="text" class="form-control" th:field="*{details3}"
+									placeholder="65文字以内で入力お願いします。現在は詳細欄3はなにも記載されていません。" /> <span class="text-danger"
+									th:if="${#fields.hasErrors('details3')}"
+									th:errors="*{details3}">details error</span>
+							</div>
+						</td>
+					</tr>
+					<tr>
+				</table>
+
+				<!-- 更新ボタン -->
+				<button class="btn btn-primary btn-lg center-block" type="submit"
+					name="update" style="font-size:20px;">Work詳細内容更新</button>
+			</form>
+		</div>
+	</div>
+</body>
+</html>

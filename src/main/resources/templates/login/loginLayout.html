@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+<meta charset="UTF-8">
+
+<!-- アイコン -->
+<link rel="stylesheet"
+	href="http://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+<!-- Bootstrap（デザイン性の高い画面を簡単に作成可能※タグのclass属性にある値をセットするだけ）の設定 jQuery Bootstrapの読み込み必要がある-->
+<link th:href="@{/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css}"
+	rel="stylesheet"></link>
+<!--　↑cssファイル タイムリーフでファイル読み込み　 -->
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<!--　↑jQueryのjsファイル タイムリーフでファイル読み込み　 -->
+<script th:src="@{/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js}"></script>
+<!--　↑Bootstrap のjsファイル（jQueryの後に読み込む） タイムリーフでファイル読み込み　 -->
+<script src="js/SocialShare.min.js"></script>
+
+<!-- CSSの読み込み コンテンツに埋め込むadminやworkspaceはlayoutに読み込みを書く-->
+<link th:href="@{/css/workspace.css}" rel="stylesheet"></link>
+<link th:href="@{/css/workspaceLayout.css}" rel="stylesheet"></link>
+<link th:href="@{/css/admin.css}" rel="stylesheet"></link>
+<link th:href="@{/css/UsersList.css}" rel="stylesheet"></link>
+<link th:href="@{/css/tweet.css}" rel="stylesheet"></link>
+<link th:href="@{/css/adminNotice.css}" rel="stylesheet"></link>
+<link th:href="@{/css/termsOfService.css}" rel="stylesheet"></link>
+<link th:href="@{/css/icon.css}" rel="stylesheet"></link>
+<link th:href="@{/css/personMemo.css}" rel="stylesheet"></link>
+<link th:href="@{/css/privacyPolicy.css}" rel="stylesheet"></link>
+<link th:href="@{/css/center.css}" rel="stylesheet"></link>
+<link th:href="@{/css/sideBarButton.css}" rel="stylesheet"></link>
+<link th:href="@{/css/guide.css}" rel="stylesheet"></link>
+<link th:href="@{/css/personUsersNotice.css}" rel="stylesheet"></link>
+<link th:href="@{/css/adminPersonNotice.css}" rel="stylesheet"></link>
+<link th:href="@{/css/share-btn.css}" rel="stylesheet"></link>
+<link th:href="@{/css/one_to_oneMail.css}" rel="stylesheet"></link>
+<link th:href="@{/css/notification.css}" rel="stylesheet"></link>
+<link th:href="@{/css/one_to_oneMailSending.css}" rel="stylesheet"></link>
+<link th:href="@{/css/inquiry.css}" rel="stylesheet"></link>
+<link th:href="@{/css/hoverAnnotation.css}" rel="stylesheet"></link>
+<link th:href="@{/css/personUsersNoticeSending.css}" rel="stylesheet"></link>
+<link th:href="@{/css/client.css}" rel="stylesheet"></link>
+<link th:href="@{/css/login.css}" rel="stylesheet"></link>
+<link th:href="@{/css/applicationDetail.css}" rel="stylesheet"></link>
+<link th:href="@{/css/loginSideBarButton.css}" rel="stylesheet"></link>
+<link th:href="@{/css/jpegLogin.css}" rel="stylesheet"></link>
+
+
+<title>loginLayout</title>
+</head>
+<body class="jpeg" background="/css/925ca13e264f720ee8725fed06ca53a2_t.jpeg">
+	<div style="background: url(https://www.ac-illust.com/main/search_result.php?word=%E9%81%A0%E8%BF%91);">
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container-fluid">
+			<div class="navbar-header col-sm-4">
+				<a class="navbar-brand" th:href="@{/workspace}"
+					title="アプリ名をクリックするとLogin画面に推移します"><i
+					class="fa fa-android fa-spin fa-colorLogin fa-size"></i><span
+					style="color: #a4f7cb !important;">WorkEfficiencyApp-YMJOJO</span></a>
+
+
+			</div>
+			<div class="col-sm-6">
+			<h3
+				style="color: #fff; padding: 0px 0px !important; margin: 14px 0px;font-size:20px;">このアプリを使用してワーク効率をUPさせよう！</h3>
+			</div>
+
+			<div class="col-sm-2">
+				<h4 style="margin:15px 0px !important;"><a th:href="@{'/loginLayout'}"><span style="color:#ecff96 !important; font-size: 20px;">Login画面に推移する</span></a></h4>
+			</div>
+		</div>
+	</nav>
+	<!--  AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAa  -->
+	<br>
+	<br>
+
+	<div style="backgroung-color: black;">
+		<div class="row">
+			<div class="col-sm-2 sidebar">
+				<ul class="nav nav-pills van-stacked">
+					<div sec:authorize="!hasRole('ADMIN')">
+						<br>
+
+						<div class="LoginSideBarButton1">
+							<li role="presentation"><a th:href="@{'/signup'}"
+								class="cp_btn" title="ユーザー新規登録を行えます"><i
+									class="fa fa-address-book SideBarButton1"></i><span style="font-size:14px;">ユーザー新規登録</span></a></li>
+						</div>
+
+						<br>
+						<br>
+
+						<div class="LoginSideBarButton2">
+							<li role="presentation"><a th:href="@{'/termsOfServiceLogin'}"
+								class="cp_btn" title="利用規約が確認できます"><i
+									class="fa fa-eye SideBarButton1"></i><span style="font-size:14px;">利用規約</span></a></li>
+						</div>
+
+						<br>
+						<br>
+
+						<div class="LoginSideBarButton3">
+							<li role="presentation"><a th:href="@{'/privacyPolicyLogin'}"
+								class="cp_btn" title="プライバシーポリシーが確認できます"><i
+									class="fa fa-eye SideBarButton1"></i><span style="font-size:14px;">プライバシーポリシー</span></a></li>
+						</div>
+
+						<br>
+						<br>
+
+						<div class="LoginSideBarButton4">
+							<li role="presentation"><a th:href="@{'/guideLogin'}"
+								class="cp_btn" title="ログイン画面のガイドが確認できます"><i
+									class="fa fa-book SideBarButton1"></i><span style="font-size:14px;">ガイド</span></a></li>
+						</div>
+
+						<br>
+						<br>
+
+						<div class="LoginSideBarButton5">
+							<li role="presentation"><a th:href="@{'/inquiryLogin'}"
+								class="cp_btn" title="管理者に問い合わせができます"><i
+									class="fa fa-android SideBarButton1"></i><span style="font-size:14px;">お問い合わせ</span></a></li>
+						</div>
+
+						<br>
+						<br>
+
+						<div class="LoginSideBarButton6">
+							<li role="presentation"><a th:href="@{'/snsShareLogin'}"
+								class="cp_btn" title="SNSに共有できます"><i
+									class="fa fa-share-alt SideBarButton1"></i><span style="font-size:14px;">SNS共有</span></a></li>
+						</div>
+
+						<br>
+						<br>
+
+						<div class="LoginSideBarButton7">
+							<li role="presentation"><a th:href="@{'/applicationDetail'}"
+								class="cp_btn" title="アプリの詳細が確認できます"><i
+									class="fa fa-info-circle SideBarButton1"></i><span style="font-size:14px;">アプリ詳細</span></a></li>
+						</div>
+					</div>
+				</ul>
+			</div>
+		</div>
+	</div>
+
+	<!-- ===== コンテンツ ===== -->
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-sm-10 col-sm-offset-2 main">
+				<!-- th:include テンプレート画面で必要　これがついてるタグ内に別のHTMLが追加　プリプロセッシング使用-->
+				<div th:include="__${contents}__"></div>
+			</div>
+		</div>
+	</div>
+	</div>
+</body>
+</html>

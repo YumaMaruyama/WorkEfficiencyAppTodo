@@ -1,0 +1,79 @@
+@charset "UTF-8";
+
+
+
+a.cp_btn {
+	display: block;
+	position: relative;
+	width: 200px;
+	padding: 0.8em;
+	text-align: center;
+	text-decoration: none;
+	color: #545252;
+	border:1px solid #1631ff59;
+	background: #72eeff;
+	overflow: hidden;
+	z-index: 1 !important;
+	/*!important 優先順位が最上位になる（bootstrapにも勝つ）*/
+	border-radius: 23px !important;
+}
+
+a.cp_btn:after {
+	content:"";
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	height: 0;
+	width: 100%;
+	background : #defcfe;
+	opacity: 0;
+	transform: translateX(-50%) translateY(-50%) rotate(40deg);
+	transition: 0.3s;
+	z-index: -1;
+}
+a.cp_btn:hover {
+	color: #27d2b7;
+}
+a.cp_btn:hover:after {
+	height: 250%;
+	opacity: 1;
+}
+a.cp_btn:active:after {
+	height: 350%;
+	opacity: 1;
+}
+
+.sidebar {
+    position: fixed;
+    display: block;
+    top: 50px;
+    bottom: 0;
+      background-color: #577aff61;
+}
+h6 {
+    margin-top: 17px !important;
+}
+.aa1 {
+	font-size:14px;
+	text-center;
+	/*padding: 8px 0px 0px 88px;*/
+	    color: darkgrey;
+}
+.aa2 {
+	font-size:15px;
+}
+
+
+.btn-inquiry {
+	margin:0px 30px;
+	 margin-left: 25px !important;
+
+}
+
+.snsShare {
+	margin: 0px -9px 0px 30px;
+}
+
+.client {
+margin: 0px 40px 0px -10px;
+}

@@ -1,0 +1,42 @@
+@charset "UTF-8";
+
+.personUsersNoticeSendingTh1 {
+	width: 200px;
+}
+
+.personUsersNoticeSendingTh2 {
+	width: 580px;
+}
+
+.personUsersNoticeSendingTh3 {
+	width: 200px;
+}
+
+.personUsersNoticeSendingTh4 {
+	width: 120px;
+}
+
+.personUsersNoticeSendingTd1 {
+	width: 200px;
+}
+
+.personUsersNoticeSendingTd2 {
+	width: 580px;
+}
+
+.personUsersNoticeSendingTd3 {
+	width: 200px;
+}
+
+.personUsersNoticeSendingTd4 {
+	width: 120px;
+}
+
+.btnSizePersonUsersNoticeSending {
+	padding: 0px 33px !important;
+	display: inherit !important;
+}
+
+.btnSizePersonUsersNoticeSending2 {
+	padding: 0px 12px !important;
+}

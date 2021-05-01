@@ -1,0 +1,195 @@
+@charset "UTF-8";
+
+body {
+	padding-top:50ps;
+}
+
+.sidebar {
+	position:fixed;
+	display:block;
+	top:50px;
+	bottom:0;
+	background-color:#F4F5F7;
+}
+
+.main {
+	padding-top:50px;
+	padding-left:20px;
+	position:fixed;
+	display:block;
+	top:0px;
+	bottom:0;
+}
+
+.page-header {
+	margin-top:0px;
+
+}
+
+.css{
+	padding-top:35;
+}
+
+.pull-right{
+	padding-rigft:20;
+}
+a.cp_btn3 {
+	position: relative;
+	display: block;
+	width: 140px!important;
+	height: 44px;
+	padding: 0.8em;
+	text-align: center;
+	text-decoration: none;
+	color: #fff;
+	background: #e697e8;
+	border:1px solid #000;
+	overflow: hidden;
+}
+a.cp_btn3:before {
+	content:"";
+	position: absolute;
+	top: 0px;
+	left: -150px;
+	height: 100%;
+	width: 160px;
+	background : #fff;
+	opacity: 0.3;
+	transition: .4s;
+}
+a.cp_btn3:hover:before {
+	left:0;
+}
+
+}
+a.cp_btn4 {
+	position: relative;
+	display: block;
+	width: 140px!important;
+	height: 46px;
+	padding: 0.8em;
+	text-align: center;
+	text-decoration: none;
+	color: #fff;
+	background: #e697e8;
+	border:1px solid #000;
+	overflow: hidden;
+}
+a.cp_btn4:before {
+	content:"";
+	position: absolute;
+	top: 0px;
+	left: -150px;
+	height: 100%;
+	width: 160px;
+	background : #fff;
+	opacity: 0.3;
+	transition: .4s;
+}
+a.cp_btn4:hover:before {
+	left:0;
+}
+/*
+thead,tbody {
+  display: block;
+}
+tbody {
+	style:height:300px; width:1120px; overflow-y:scroll;
+}
+*/
+
+/*
+.sticky_table tbody th {
+  /* 縦スクロール時に固定する
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  height:40px;
+  /* tbody内のセルより手前に表示する
+  z-index: 1;
+}
+*/
+
+thead {
+	display:block;
+
+}
+.workTeble1 tbody {
+	display:block;
+	overflow-y:scroll;
+	height: 294px;
+}
+
+.workspaceTableThColor {
+	background-color: #fdffc3 !important;
+}
+.name1 {
+	width:365px;
+}
+.name2 {
+	width:220px;
+}
+.name3 {
+	width:110px;
+}
+.name4 {
+	width:110px;
+}
+.name5 {
+	width:110px;
+}
+.name6 {
+	width:185px;
+}
+.mikannryou td {
+	padding-left:30px;
+
+}
+
+.aaa1 td{
+	width:200px;
+}
+.aaa2 td{
+	width:200px;
+}
+
+.workaddtoTableThColor {
+	background-color:#f1ee90 !important;
+}
+
+.workspaceTrThSearch {
+	font-size:12px;
+}
+
+.text-centerworkspaceTrTdSearch {
+
+}
+
+.page-header{
+    margin: -6px 0px -10px 0px;
+}
+
+.btnPadding {
+	padding: 8px 6px 1px 0px;
+}
+
+.btnPadding2 {
+	    padding: 4px 14px !important;
+}
+.page-header {
+border-bottom: 0px solid #eee !important;
+}
+
+.fontSize {
+	font-size:12px
+
+}
+
+.btnSize {
+	padding: 0px 12px !important;
+	display: inherit !important;
+}
+
+.btnSize2 {
+	padding: 0px 10px !important;
+}

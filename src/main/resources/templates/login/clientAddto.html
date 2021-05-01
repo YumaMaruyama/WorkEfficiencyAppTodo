@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+<meta charset="UTF-8">
+
+<!-- Bootstrap（デザイン性の高い画面を簡単に作成可能※タグのclass属性にある値をセットするだけ）の設定 jQuery Bootstrapの読み込み必要がある-->
+<link th:href="@{/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css}"
+	rel="stylesheet"></link>
+<!--　↑cssファイル タイムリーフでファイル読み込み　 -->
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<!--　↑jQueryのjsファイル タイムリーフでファイル読み込み　 -->
+<script th:src="@{/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js}"></script>
+<!--　↑Bootstrap のjsファイル（jQueryの後に読み込む） タイムリーフでファイル読み込み　 -->
+
+<title>clientAddto</title>
+</head>
+<body>
+
+	<div th:fragment="workspaceLayout_contents">
+
+		<div class="page-header">
+			<table>
+				<tr>
+					<td class="col-sm-11"><h1 class="text-center" style="background-color: #fcff6473;">取引先情報登録</h1></td>
+
+				</tr>
+			</table>
+		</div>
+
+		<form method="post" th:action="@{/clientAddto}"
+			th:object="${clientAddtoForm}">
+			<table class="table table-bordered table-hover ">
+
+				<tr>
+					<th class="active text-center col-sm-1 clientAddtoTableThColor"
+						style="padding: 14px;">会社名</th>
+					<td class="col-sm-11 " style="background-color: #f1efb1"><div
+							class="form-group"
+							th:classappend="${#fields.hasErrors('company')}? 'has-error'">
+							<input type="text" class="form-control" th:field="*{company}" placeholder="25文字以下で入力してください"><span
+								class="text-danger" th:if="${#fields.hasErrors('company')}"
+								th:errors="*{company}"></span>
+						</div></td>
+				</tr>
+
+				<tr>
+					<th class="active text-center col-sm-1 clientAddtoTableThColor"
+						style="padding: 14px;">住所</th>
+					<td class="col-sm-11 " style="background-color: #f1efb1"><div
+							class="form-group"
+							th:classappend="${#fields.hasErrors('address')}? 'has-error'">
+							<input type="text" class="form-control" th:field="*{address}" placeholder="35文字以下で入力してください"><span
+								class="text-danger" th:if="${#fields.hasErrors('address')}"
+								th:errors="*{address}"></span>
+						</div></td>
+				</tr>
+
+				<tr>
+					<th class="active text-center col-sm-1 clientAddtoTableThColor"
+						style="padding: 14px;">担当者</th>
+					<td class="col-sm-11 " style="background-color: #f1efb1"><div
+							class="form-group"
+							th:classappend="${#fields.hasErrors('user_name')}? 'has-error'">
+							<input type="text" class="form-control" th:field="*{user_name}" placeholder="20文字以下で入力してください"><span
+								class="text-danger" th:if="${#fields.hasErrors('user_name')}"
+								th:errors="*{user_name}"></span>
+						</div></td>
+				</tr>
+
+				<tr>
+					<th class="active text-center col-sm-1 clientAddtoTableThColor"
+						style="padding: 14px;">担当者<br>電話番号</th>
+					<td class="col-sm-11 " style="background-color: #f1efb1"><div
+							class="form-group"
+							th:classappend="${#fields.hasErrors('telephone')}? 'has-error'">
+							<input type="text" class="form-control" th:field="*{telephone}" placeholder="15文字以下で入力してください"><span
+								class="text-danger" th:if="${#fields.hasErrors('telephone')}"
+								th:errors="*{telephone}"></span>
+						</div></td>
+				</tr>
+
+				<tr>
+					<th class="active text-center col-sm-1 clientAddtoTableThColor"
+						style="padding: 14px;">担当者<br>メール<br>アドレス</th>
+					<td class="col-sm-11 " style="background-color: #f1efb1"><div
+							class="form-group"
+							th:classappend="${#fields.hasErrors('mailaddress')}? 'has-error'">
+							<input type="text" class="form-control" th:field="*{mailaddress}" placeholder="35文字以下で入力してください"><span
+								class="text-danger" th:if="${#fields.hasErrors('mailaddress')}"
+								th:errors="*{mailaddress}"></span>
+						</div></td>
+				</tr>
+			</table>
+
+				<button class="btn btn-primary btn-lg center-block"
+					style="width: 170px; padding: 13px; font-size: 20px;" type="submit">取引先情報登録</button>
+		</form>
+	</div>
+</body>
+</html>

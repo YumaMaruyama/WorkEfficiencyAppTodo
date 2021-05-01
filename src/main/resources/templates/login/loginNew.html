@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5>
+<head>
+<meta charset="UTF-8"></meta>
+
+<!-- アイコン -->
+<link rel="stylesheet"
+	href="http://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+<!-- Bootstrap（デザイン性の高い画面を簡単に作成可能※タグのclass属性にある値をセットするだけ）の設定 jQuery Bootstrapの読み込み必要がある-->
+<link th:href="@{/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css}"
+	rel="stylesheet"></link>
+<!--　↑cssファイル タイムリーフでファイル読み込み　 -->
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<!--　↑jQueryのjsファイル タイムリーフでファイル読み込み　 -->
+<script th:src="@{/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js}"></script>
+<!--　↑Bootstrap のjsファイル（jQueryの後に読み込む） タイムリーフでファイル読み込み　 -->
+<script src="js/SocialShare.min.js"></script>
+
+
+<title>Insert title here</title>
+</head>
+<body>
+
+	<!-- ===== ヘッダー（ナビゲーションバー） ===== -->
+
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a class="navbar-brand" th:href="@{/workspace}" title="アプリ名をクリックするとWorkリストに推移します"><i
+					class="fa fa-android fa-spin fa-color fa-size"></i><span
+					style="color: #e0ffe9 !important;"> WorkEfficiencyApp-YMJOJO</span></a>
+
+
+			</div>
+
+			<!--
+				<div th:text="${todo_itemsdto.item_name}"></div>
+-->
+			<!--  sec:authentication="principal.username-->
+			<h6 class="col-sm-4" align=center>
+				<span class="text-primary aa1 " style="color: #efefef;"
+					th:text="${session.sessionGetUser_name} + さん、こんにちは"></span>
+			</h6>
+
+			<form method="post" th:action="@{/logout}">
+				<button class="btn btn-link pull-right navbar-brand" type="submit"
+					style="color: #fff" title="ログアウトし、ログイン画面に推移します">
+					<i class="fa fa-sign-out-alt fa-color"></i> ログアウト
+				</button>
+			</form>
+			<form method="get" th:action="@{/inquiry}">
+				<button class=" btn btn-link pull-right navbar-brand btn-inquiry"
+					type="submit" style="color: #02ff13" title="管理人に問い合わせができます"><i class="fa fa-android fa-spin fa-colorInquiry fa-size"></i>お問い合わせ</button>
+			</form>
+			<form method="get" th:action="@{/snsShare}">
+				<button class=" btn btn-link pull-right navbar-brand snsShare "
+					type="submit" style="color: #ff0078" title="SNSに共有できます"><i class="fa fa-android fa-spin fa-colorSnsShare fa-size"></i>SNS共有</button>
+			</form>
+			<form method="get" th:action="@{/client}">
+				<button class=" btn btn-link pull-right navbar-brand client "
+					type="submit" style="color: #f4ff02" title="取引先の情報を確認できます"><i class="fa fa-android fa-spin fa-colorClient fa-size"></i>取引先情報</button>
+			</form>
+
+
+		</div>
+	</nav>
+
+
+	<!-- ===== サイドバー　===== -->
+
+	<div background="/css/todo.jpeg" class="container-fluid css">
+		<div class="row">
+			<div class="col-sm-2 sidebar">
+				<ul class="nav nav-pills van-stacked">
+					<div sec:authorize="!hasRole('ADMIN')">
+						<br>
+						<div class="SideBarButton1">
+							<li role="presentation"><a th:href="@{'/workspace'}"
+								class="cp_btn" title="さまざまなタスク管理が行えます"><i id="icon"
+									th:attr="data-num=${workspaceCount}"><i
+										class="fa fa-tasks SideBarButton1" ></i></i> Workリスト</a></li>
+						</div>
+
+						<br> <br> <br>
+						<div class="SideBarButton2">
+							<li role="presentation"><a th:href="@{'/usersList'}"
+								class="cp_btn" title="全ユーザーを確認できます"><i class="fa fa-address-card "></i> Usersリスト</a></li>
+						</div>
+						<br> <br> <br>
+						<div class="SideBarButton3">
+							<li role="presentation"><a th:href="@{'/personMemo'}"
+								class="cp_btn" title="自分専用のメモ管理機能です"><i class="fa fa-file "></i> 個人メモ</a></li>
+						</div>
+						<br> <br> <br>
+						<div class="SideBarButton4">
+							<li role="presentation" sec:authorize="!hasRole('ADMIN')"><a
+								th:href="@{'/one_to_oneMail'}" class="cp_btn" title="各ユーザーとMailができます"><i
+									id="iconOne_to_oneMail"
+									th:attr="data-num=${one_to_oneMailCount}"><i
+										class="fa fa-inbox "></i></i> 個人連絡用Mail</a></li>
+						</div>
+						<br> <br> <br>
+						<div class="SideBarButton5">
+							<li role="presentation"><a th:href="@{'/tweet'}"
+								class="cp_btn" title="全ユーザーとチャットで話せます"><i id="iconTweet"
+									th:attr="data-num=${tweetcount}"><i class="fa fa-comments "></i></i>
+									Tweetで情報共有</a></li>
+						</div>
+						<br> <br> <br>
+						<div class="SideBarButton6">
+							<li role="presentation"><a th:href="@{'/adminPersonNotice'}"
+								class="cp_btn" title="管理人からあなただけへのお知らせが確認できます"><i
+									id="iconAdminPersonNotice"
+									th:attr="data-num=${adminPersonNoticeCount}"><i
+										class="fa fa-envelope "></i></i>管理者からあなたへ</a></li>
+						</div>
+						<br> <br> <br>
+						<div class="SideBarButton7">
+							<li role="presentation"><a th:href="@{'/adminNotice'}"
+								class="cp_btn" title="管理人から全ユーザーへのお知らせが確認できます"><i
+									id="iconAdminNotice" th:attr="data-num=${adminListCount}"><i
+										class="fa fa-envelope "></i></i> 管理者から全ユーザ</a></li>
+						</div>
+						<br> <br> <br>
+						<div class="SideBarButton8">
+							<li role="presentation"><a th:href="@{'/guide'}"
+								class="cp_btn" title="操作ガイドが確認できます"><i class="fa fa-book "></i>
+									YMJOJO操作ガイド</a></li>
+						</div>
+						<br> <br> <br>
+						<div class="SideBarButton9">
+							<li role="presentation"><a th:href="@{'/termsOfService'}"
+								class="cp_btn" title="アプリ利用規約が確認できます"><i class="fa fa-eye "></i>
+									アプリ利用規約</a></li>
+						</div>
+						<br> <br> <br>
+						<div class="SideBarButton10">
+							<li role="presentation"><a th:href="@{'/privacyPolicy'}"
+								class="cp_btn" title="プライバシーポリシーが確認できます"><i
+									class="fa fa-eye "></i> プライバシーポリシー</a></li>
+						</div>
+						<br>
+
+
+
+					</div>
+					</ul>
+					</div>
+					</div>
+					</div>
+
+</body>
+</html>

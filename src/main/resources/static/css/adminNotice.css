@@ -1,0 +1,77 @@
+@charset "UTF-8";
+
+.adminNoticeTdWidthA {
+	width:400px;
+}
+.adminNoticeTdWidtB {
+width:150px;
+}
+.adminNoticeTdWidthC {
+width:150px;
+}
+.adminNoticeTdWidthD {
+width:150px;
+}
+.adminNoticeTdWidthE {
+width:167px;
+}
+
+.adminNoticeThWidthAA {
+	width: 850px;
+}
+.adminNoticeThWidthBB {
+	width: 180px;
+}
+.adminNoticeThWidthCC {
+	width: 70px;
+}
+
+.adminNoticeTdWidthAA {
+	width:850px;
+}
+.adminNoticeTdWidthBB {
+	width:180px;
+}
+.adminNoticeTdWidthCC {
+	width:70px;
+}
+
+.adminNoticeThWidthAANoAdmin {
+	width:980px;
+}
+.adminNoticeThWidthBBNoAdmin {
+	width:120px;
+}
+.adminNoticeTdWidthAANoAdmin {
+	width:980px;
+}
+.adminNoticeTdWidthBBNoAdmin {
+	width:120px;
+}
+
+
+
+
+/*.adminNotice thead {
+	display:block;
+}*/
+
+.adminNotice tbody {
+	display:block;
+	overflow-y:scroll;
+	/*heightがスクロールしなくても見える範囲の幅*/
+	height: 379px;
+}
+
+.adminNoticeTabelThColor {
+	background-color: #fdffc3 !important;
+}
+
+.btnSizeAdminNotice {
+	padding: 0px 9px !important;
+	display: inherit !important;
+}
+
+.btnSizeAdminNotice2 {
+	padding: 0px 10px !important;
+}

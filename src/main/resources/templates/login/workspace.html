@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+<meta charset="UTF-8">
+
+<!-- Bootstrap（デザイン性の高い画面を簡単に作成可能※タグのclass属性にある値をセットするだけ）の設定 jQuery Bootstrapの読み込み必要がある-->
+<link th:href="@{/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css}"
+	rel="stylesheet"></link>
+<!--　↑cssファイル タイムリーフでファイル読み込み　
+<script th:src="@{/webjars/jquery/3.5.1/jquery.min.js}"></script>-->
+
+<!--　↑jQueryのjsファイル タイムリーフでファイル読み込み　 -->
+<script th:src="@{/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js}"></script>
+<!--　↑Bootstrap のjsファイル（jQueryの後に読み込む） タイムリーフでファイル読み込み　 -->
+
+
+
+
+<!-- CSSの読み込み -->
+<link th:href="@{/css/workspace.css}" rel="stylesheet"></link>
+<title>workspace</title>
+</head>
+<body>
+	<!-- th:fragment -->
+	<div th:fragment="workspaceLayout_contents">
+
+		<!-- jQuery フォームリセット -->
+		<script>
+			$(function() {
+				// 入力値をリセット
+				$("#resetButton").click(function() {
+					$('#textField1,#textField2,#dateField1,#dateField2,#dateField3,#dateField4,#dateField5,#dateField6').val("");
+				});
+			});
+		</script>
+		<div class="page-header">
+			<!-- h1タグと同じ列にボタンを付けるため、テーブルを作ってその中にtrをつけている -->
+			<table>
+				<tr>
+					<td class="col-sm-4"><h1 class="text-center" style="background-color: #b0e0e659;">Workリスト</h1></td>
+
+					<td class="col-sm-12"><h3
+							th:text="'合計' + ${workspaceHomeCount} + '件'"></h3></td>
+
+					<td class="col-sm-2 btnPadding"><a class="cp_btn3 pull-right"
+						type="submit" style="width: 150px" th:href="@{'/workaddto'}">Work登録</a></td>
+
+					<td class="col-sm-2 btnPadding"><a class="cp_btn4 pull-right"
+						th:href="@{'/workspace/csv'}">CSV出力</a></td>
+				</tr>
+			</table>
+		</div>
+
+		<form method="post" th:action="@{/workspace}"
+			th:object="${workspaceSearchForm}">
+			<table class="table table-borderd table-hover bg-success"
+				style="background-color: #e0ffff; height:20px !important;">
+				<tr class="workspaceTrThSearch">
+					<th class="info text-center" height="10">タイトル用</th>
+					<th class="info text-center">担当者用</th>
+					<th class="info text-center">登録日用範囲(始まり)</th>
+					<th class="info text-center">登録日範囲(終わり)</th>
+					<th class="info col-sm-2 text-center">期限日用範囲(始まり)</th>
+					<th class="info col-sm-2 text-center">期限日用範囲(終わり)</th>
+				</tr>
+				<tr>
+					<td><input id="textField1" type="text" class="form-control text-center "
+						name="item_name" th:field="*{item_name}" placeholder="50字以下で検索可"> <span
+						class="text-danger" th:if="${#fields.hasErrors('item_name')}"
+						th:errors="*{item_name}">item_name error</span></td>
+
+
+
+					<td><input id="textField2" type="text" class="form-control text-center" name="user_name"
+						th:field="*{user_name}" placeholder="20字以下で検索可"> <span class="text-danger"
+						th:if="${#fields.hasErrors('user_name')}" th:errors="*{user_name}">user_name
+							error</span></td>
+
+
+
+
+					<td><input id="dateField1" type="date" class="form-control"
+						placeholder="登録日用範囲(始まり)" name="registration_dateA"
+						th:field="*{registration_dateA}"></td>
+					<td><input id="dateField2" type="date" class="form-control"
+						placeholder="登録日用範囲(終わり)" name="registration_dateZ"
+						th:field="*{registration_dateZ}"></td>
+
+					<td><input id="dateField3" type="date" class="form-control"
+						placeholder="期限日用範囲(始まり)" name="expire_dateA"
+						th:field="*{expire_dateA}"></td>
+					<td><input id="dateField4" type="date" class="form-control"
+						placeholder="期限日用範囲(終わり)" name="expire_dateZ"
+						th:field="*{expire_dateZ}"></td>
+				</tr>
+				<tr class="workspaceTrThSearch">
+
+					<th class="info col-sm-2 text-center">完了用範囲(始まり)</th>
+					<th class="info col-sm-2 text-center">完了日範囲(終わり)</th>
+					<th class="info col-sm-2 text-center">未完了チェックBOX</th>
+					<th class="info col-sm-2 text-center aaa1">検索ボタン</th>
+					<th class="info col-sm-2 text-center aaa2">フォームリセット</th>
+				</tr>
+				<tr>
+
+					<td class="aaa"><input id="dateField5" type="date" class="form-control"
+						placeholder="完了日用範囲(終わり)" name="finished_dateA"
+						th:field="*{finished_dateA}"></td>
+					<td><input id="dateField6" type="date" class="form-control"
+						placeholder="完了日用範囲(終わり)" name="finished_dateZ"
+						th:field="*{finished_dateZ}"></td>
+					<td class="mikannryou" style="text-align: center;">
+						<!--  input type="hidden" name="finished_dateM" value="false"--> <input
+						type="checkbox" name="finished_dateM" value="true">完了日を未完了に絞る
+					</td>
+
+					<td><button class="btn btn-info btnPadding2" type="submit" name="search">入力したキーワードで検索</button></td>
+					<!-- ボタンをかこっているtdタグにtext-align:center;をつける -->
+					<td style="text-align: center;"><button
+							class="btn btn-success reset btnPadding2" type="button" id="resetButton">フォーム内初期化</button></td>
+				</tr>
+			</table>
+		</form>
+
+		<div style="height: 100vh; width: 1120px;">
+
+
+			<table
+				class="table table-condensed table-bordered table-hover table-striped sticky_table workTeble1 fontSize"
+				style="max-height: 380px;">
+				<thead>
+					<tr>
+						<th class="warning col-sm-2 text-center sticky-top name1 workspaceTableThColor"
+							align="center">タイトル</th>
+						<th class="warning col-sm-2 text-center sticky-top name2 workspaceTableThColor">担当者</th>
+						<th class="warning col-sm-2 text-center sticky-top name3 workspaceTableThColor">登録日</th>
+						<th class="warning col-sm-2 text-center sticky-top name4 workspaceTableThColor">期限日</th>
+						<th class="warning col-sm-2 text-center sticky-top name5 workspaceTableThColor">完了日</th>
+						<th class="warning col-sm-2 text-center sticky-top name6 workspaceTableThColor">管理</th>
+					</tr>
+				</thead>
+				<tr th:each="todo_itemsdto:${todo_itemsList}">
+
+					<td class="text-center name1 center1"
+						th:text="${todo_itemsdto.item_name}"></td>
+					<td class="text-center name2 center2"
+						th:text="${todo_itemsdto.user_name}"></td>
+					<!-- 日付型フォーマット -->
+					<td class="text-center name3 center3"
+						th:text="${#dates.format(todo_itemsdto.registration_date, 'yyyy/MM/dd HH:mm')}"></td>
+					<td class="text-center name4 center4"
+						th:text="${#dates.format(todo_itemsdto.expire_date, 'yyyy/MM/dd HH:mm')}"></td>
+					<!-- 完了日がNullだったら「未完了」の文字列をだす -->
+					<td class="text-center name5 center5"
+						th:if="${todo_itemsdto.finished_date != null}"
+						th:text="${#dates.format(todo_itemsdto.finished_date, 'yyyy/MM/dd HH:mm')}"></td>
+					<td class="text-center name5 center5"
+						th:if="${todo_itemsdto.finished_date == null}" th:text="未完了"></td>
+					<td class="name6 center6 btnSize2">
+						<!-- 動的URL --> <a class="btn btn-primary text-center btnSize"
+						style="width: 80px"
+						th:href="@{'/todo_itemsDetail/' + ${todo_itemsdto.id}}">編集</a> <a
+						class="btn btn-danger text-center btnSize" style="width: 80px"
+						th:href="@{'/workaddtoDetail/' + ${todo_itemsdto.id}}">詳細</a>
+					</td>
+				</tr>
+			</table>
+		</div>
+		<!-- 更新・削除処理の結果表示用 -->
+		<!--<label class="text-info" th:text="${result}">結果表示</label>-->
+	</div>
+</html>

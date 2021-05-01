@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+<meta charset="UTF-8"></meta>
+<title>お問い合わせ編集</title>
+</head>
+<body>
+	<div th:fragment="adminDetail_contents">
+		<div class="row">
+			<div class="col-sm-12">
+				<div class="page-header col-sm-4">
+					<h1 class="text-center" style="background-color: #ffeafc;">お問い合わせ編集</h1>
+				</div>
+
+				<form method="post" th:action="@{/adminDetail}"
+					th:object="${inquiryForm}">
+
+					<input type="hidden" name="id" value="${inquirydto.id}"
+						th:field="*{id}">
+
+					<table class="table table-bordered table-hover">
+						<tr>
+							<!-- タイトル  readonly="readonly"をつければ入力変更できなくなる-->
+							<th class="danger active col-sm-2 text-center">タイトル</th>
+							<td  th:text="${adminTitle}"></td>
+						</tr>
+
+						<tr>
+							<th class="danger active text-center">担当者</th>
+
+
+
+							<td  th:text="${adminContent}"></td>
+						</tr>
+						<tr>
+							<!-- お問い合わせ日 -->
+							<th class="danger active text-center">お問い合わせ日</th>
+
+
+							<td  th:text="${#dates.format(adminRegistration_date, 'yyyy/MM/dd HH:mm:ss')}">
+							</td>
+						</tr>
+
+						<tr>
+						<tr>
+						<tr>
+					</table>
+					<!-- 完了ボタン データの中身によってhtmlの出力を変えている-->
+					<div th:if="${inquiryForm.finished_date == null}">
+						<button class="btn btn-success btn-lg pull-right" type="submit"
+							name="completed" style="font-size:19px;">お問い合わせ処理完了</button>
+					</div>
+					<div th:if="${inquiryForm.finished_date != null}">
+						<button class="btn btn-success btn-lg pull-right" type="submit"
+							name="completed" style="font-size:19px;">完了日を未完了に変更</button>
+					</div>
+
+					<!-- 削除ボタン -->
+					<button class="btn btn-danger btn-lg pull-left deleteButton" type="submit"
+						name="delete" style="font-size:19px;">お問い合わせ内容削除</button>
+				</form>
+			</div>
+		</div>
+		<script>
+			$('.deleteButton').click(function() {
+				if (confirm('本当に削除しますか？')) {
+					/* キャンセルの時の処理 */
+					return true;
+				}
+				return false;
+			});
+		</script>
+	</div>
+</body>
+</html>

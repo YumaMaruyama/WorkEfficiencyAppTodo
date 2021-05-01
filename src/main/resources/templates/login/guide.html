@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+<meta charset="UTF-8">
+
+<!-- Bootstrap（デザイン性の高い画面を簡単に作成可能※タグのclass属性にある値をセットするだけ）の設定 jQuery Bootstrapの読み込み必要がある-->
+<link th:href="@{/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css}"
+	rel="stylesheet"></link>
+<!--　↑cssファイル タイムリーフでファイル読み込み　 -->
+<script th:src="@{/webjars/jquery/1.11.1/jquery.min.js}"></script>
+<!--　↑jQueryのjsファイル タイムリーフでファイル読み込み　 -->
+<script th:src="@{/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js}"></script>
+<!--　↑Bootstrap のjsファイル（jQueryの後に読み込む） タイムリーフでファイル読み込み　 -->
+
+<title>YMJOJO仕様ガイド</title>
+</head>
+<body>
+	<!-- コンテンツ部分 -->
+	<div th:fragment="workspaceLayout_contents">
+		<div class="page-header">
+			<table>
+				<tr>
+					<td class="col-sm-2"><h1 class="text-center" style="background-color: #fd9c9cb5;">YMJOJO仕様ガイド</h1></td>
+				</tr>
+				<tr>
+					<td class="col-sm-10"></td>
+				</tr>
+			</table>
+		</div>
+
+
+
+		<div style="height: 120vh; width: 1120px;">
+		<table
+			class="table table-bordered table-hover table-striped guideTable">
+			<thead>
+			<tr>
+				<th class="warning text-center col-sm-2 guideTh1 guideTableThColor">内容</th>
+				<th class="warning text-center guideTh2 guideTableThColor">ガイド</th>
+
+			</tr>
+			</thead>
+
+			<tr>
+				<th class="guideTh1a">Workリスト</th>
+				<td  class="guideTh2a">workの登録から、管理まで行えます。Work毎にある編集ボタン(削除、更新、Work完了)と詳細ボタンで細かく管理できます。</td>
+			</tr>
+
+			<tr>
+				<th class="guideTh1a">Usersリスト</th>
+				<td  class="guideTh2a">このアプリにユーザー登録をしているユーザーの情報を確認できます。(自身の情報のみ編集が可能です)</td>
+			</tr>
+
+			<tr>
+				<th class="guideTh1a">個人メモ</th>
+				<td  class="guideTh2a">本人だけしか見れないメモを登録し、管理できます。</td>
+			</tr>
+
+			<tr>
+				<th class="guideTh1a">個人連絡用メール</th>
+				<td  class="guideTh2a">このアプリに登録しているユーザーにMailすることができます。</td>
+			</tr>
+
+			<tr>
+				<th class="guideTh1a">Tweetで情報共有</th>
+				<td  class="guideTh2a">ユーザーと連絡などを取りあえるオープンチャットスペースです。(最新のツイートが上に来ます)</td>
+			</tr>
+
+			<tr>
+				<th class="guideTh1a">管理者からあなた個人へ</th>
+				<td  class="guideTh2a">このアプリを運営する管理者からのあなた自身へのお知らせが不定期で届きます。</td>
+			</tr>
+
+			<tr>
+				<th class="guideTh1a">管理者から全ユーザーへ</th>
+				<td  class="guideTh2a">このアプリを運営する管理者からのお知らせが不定期で届きます。</td>
+			</tr>
+
+			<tr>
+				<th class="guideTh1a">アプリ利用規約</th>
+				<td class="guideTh2a">このアプリの利用規約が確認できます。</td>
+			</tr>
+
+			<tr>
+				<th class="guideTh1a">プライバシーポリシー</th>
+				<td  class="guideTh2a">このアプリのプライバシーポリシーが確認できます。</td>
+			</tr>
+
+			<tr>
+				<th class="guideTh1a">取引先情報</th>
+				<td  class="guideTh2">取引先の情報を登録し、管理できます。</td>
+			</tr>
+
+			<tr>
+				<th class="guideTh1a">SNS共有</th>
+				<td  class="guideTh2">このアプリを様々なSNSの場で共有できます。デフォルトで固定文とこのアプリのURLが出るようになっています。</td>
+			</tr>
+
+			<tr>
+				<th class="guideTh1a">お問い合わせ</th>
+				<td  class="guideTh2">アプリを運営する管理者に問い合わせすることができます。</td>
+			</tr>
+
+			<tr>
+				<th class="guideTh1a">ログアウト</th>
+				<td  class="guideTh2a">ログアウトするとログイン画面に推移します。</td>
+			</tr>
+
+			<tr>
+				<th class="guideTh1a">ヘッダーのアプリ名</th>
+				<td  class="guideTh2">クリックすると、Workリストに推移します。</td>
+			</tr>
+
+			<tr>
+				<th class="guideTh1a">検索機能</th>
+				<td  class="guideTh2">各項目ごとに、ユーザーが検索フォームに入力した文字が、一文字以上一致した行が検索できます。</td>
+			</tr>
+
+			<tr>
+				<th class="guideTh1a">各削除ボタン</th>
+				<td  class="guideTh2">各機能の削除ボタンに関しては、誤操作防止のため削除確認ダイアログがクリック時に表示されます。</td>
+			</tr>
+
+			<tr>
+				<th class="guideTh1a">退会</th>
+				<td class="guideTh2a">Usersリストで自身のユーザー情報を削除し、ログアウトで完了です。退会後に再度アプリを利用する際は新規ユーザー登録をお願いします。</td>
+			</tr>
+
+		</table>
+		</div>
+	</div>
+</body>
+</html>

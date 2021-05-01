@@ -1,0 +1,53 @@
+@charset "UTF-8";
+
+.one_to_oneMailSending {
+	display:block;
+	overflow-y:scroll;
+	/*heightがスクロールしなくても見える範囲の幅*/
+	height: 406px;
+}
+
+.one_to_oneMailSendingTh1 {
+	width:170px;
+}
+
+.one_to_oneMailSendingTh2 {
+	width:660px;
+}
+
+.one_to_oneMailSendingTh3 {
+	width:160px;
+}
+
+.one_to_oneMailSendingTh4 {
+	width:110px;
+}
+
+.one_to_oneMailSendingTd1 {
+	width:170px;
+}
+
+.one_to_oneMailSendingTd2 {
+	width:660px;
+}
+
+.one_to_oneMailSendingTd3 {
+	width:160px;
+}
+
+.one_to_oneMailSendingTd4 {
+	width:110px;
+}
+
+.one_to_oneMailSendingTableThColor {
+	background-color: #fdffc3 !important;
+}
+
+.btnSizeOne_to_oneMailSending {
+	padding: 0px 29px !important;
+	display: inherit !important;
+}
+
+.btnSizeOne_to_oneMailSending2 {
+	padding: 0px 10px !important;
+}

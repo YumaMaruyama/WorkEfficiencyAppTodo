@@ -1,0 +1,189 @@
+@charset "UTF-8";
+
+
+
+a.cp_btn5 {
+	position: relative;
+	display: block;
+	width: 140px;
+	padding: 0.8em;
+	text-align: center;
+	text-decoration: none;
+	color: #fff;
+	background: #b3a554;
+	border: 1px solid #000;
+	overflow: hidden;
+}
+
+a.cp_btn5:before {
+	content: "";
+	position: absolute;
+	top: 0px;
+	left: -150px;
+	height: 100%;
+	width: 160px;
+	background: #fff;
+	opacity: 0.3;
+	transition: .4s;
+}
+
+a.cp_btn5:hover:before {
+	left: 0;
+}
+/*.UsersTheadName thead {
+	display:block;
+}*/
+.usersList tbody {
+	display: block;
+	overflow-y: scroll;
+	/*tdがスクロールしなくても見える範囲の幅*/
+	height: 293px;
+}
+
+.usersListName1 {
+	/*table-layout: fixed;
+	  word-wrap: break-word;*/
+	width: 440px;
+}
+
+.usersListName2 {
+	width: 240px;
+}
+
+.usersListName3 {
+	width: 110px;
+}
+
+.usersListName4 {
+	width: 110px;
+}
+
+.usersListName5 {
+	width: 100px;
+}
+
+.usersListName6 {
+	width: 100px;
+}
+
+.usersListTdName1 {
+	width: 440px;
+}
+
+.usersListTdName2 {
+	width: 240px;
+}
+
+.usersListTdName3 {
+	width: 110px;
+}
+
+.usersListTdName4 {
+	width: 110px;
+}
+
+.usersListTdName5 {
+	width: 100px;
+}
+
+.usersListTdName6 {
+	width: 100px;
+}
+
+.usersTable {
+	margin: 0px 0px 0px 0px !important;
+}
+
+.usersListTabelThColor {
+	background-color: #fdffc3 !important;
+}
+
+.usersSearchTh1 {
+	width: 190px;
+}
+
+.usersSearchTd1 {
+	width: 100%;
+	margin: 0px 0px !important;
+}
+
+.usersSearchTh2 {
+	width: 190px;
+}
+
+.usersSearchTd2 {
+	width: 100%;
+}
+
+.usersSearchTh3 {
+	width: 180px;
+}
+
+.usersSearchTd3 {
+	width: 100%;
+}
+
+.usersSearchTh4 {
+	width: 180px;
+}
+
+.usersSearchTd4 {
+	width: 100%;
+}
+
+.usersSearchTh5 {
+	width: 75px;
+}
+
+.usersSearchTd5 {
+	width: 85%;
+}
+
+.usersSearchTh6 {
+	width: 190px;
+}
+
+.usersSearchTd6 {
+	width: 100%;
+}
+
+.usersSearchTh7 {
+	width: 190px;
+}
+
+.usersSearchTd7 {
+	width: 100%;
+}
+
+.usersSearchTh8 {
+	width: 180px;
+}
+
+.usersSearchTd8 {
+	width: 160px;
+}
+
+.usersSearchTh9 {
+	width: 180px;
+}
+
+.usersSearchTd9 {
+	width: 138px;
+}
+
+.usersTable td {
+	margin: 0px 0px 0px 0px !important;
+}
+
+.fontSizeUsersList {
+	font-size:13px !important;
+}
+
+.btnSizeUsersList {
+	padding: 0px 24px !important;
+	display: inherit !important;
+}
+
+.btnSizeUsersList2 {
+	padding: 0px 10px !important;
+}

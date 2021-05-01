@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+<meta charset="UTF-8"></meta>
+</head>
+<body>
+	<div th:fragment="usersdto_contents">
+		<div class="row">
+			<div class="col-sm-12">
+				<div class="page-header col-sm-3">
+					<h1 class="text-center" style="background-color: #ffeafc;">User編集</h1>
+				</div>
+				<form method="post" th:action="@{/usersListDetail}"
+					th:object="${signupUpdateForm}">
+					<table class="table table-bordered table-hover">
+						<tr>
+							<!-- ユーザーID -->
+							<th class="danger active col-sm-1 text-center" style="padding:14px;">ユーザーID</th>
+							<td class="col-sm-7" style="background-color:#f9efef">
+								<div class="form-group">
+									<input type="text" class="form-control" th:field="*{user_id}"
+										readonly="readonly" />
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<!-- パスワード
+							<th class="active text-center">パスワード</th>
+							<td>
+								<div class="form-group"
+									th:classappend="${#fields.hasErrors('password')}? 'has-error'">
+									<input type="text" class="form-control" th:field="*{password}"
+										readonly="readonly"> <span class="text-danger"
+										th:if="${#fields.hasErrors('password')}"
+										th:error="*{password}">password error</span>
+								</div>
+							</td>
+						</tr>
+						<tr>
+						-->
+							<!-- ユーザー名 -->
+							<th class="danger active text-center" style="padding:14px;">ユーザー名</th>
+							<td style="background-color:#f9efef">
+								<div class="form-group"
+									th:classappend="${#fields.hasErrors('userName')}? 'has-error'">
+									<input type="text" class="form-control" th:field="*{userName}" placeholder="20文字以下で入力してください。">
+									<span class="text-danger"
+										th:if="${#fields.hasErrors('userName')}"
+										th:errors="*{userName}">userName error</span>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<!-- 誕生日 -->
+							<th class="danger active text-center" style="padding:14px;">誕生日</th>
+							<td style="background-color:#f9efef">
+								<div class="form-group"
+									th:classappend="${#fields.hasErrors('birthday')}?'has-erroe'">
+									<input type="text" class="form-control" th:field="*{birthday}" readonly="readonly"/>
+									<span class="text-danger"
+										th:if="${#fields.hasErrors('birthday')}"
+										th:error="*{birthday}">birthday error</span>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<!-- 年齢 -->
+							<th class="danger active text-center" style="padding:14px;">入社日</th>
+							<td style="background-color:#f9efef">
+								<div class="form-group"
+									th:classappen="${#fields.hasErrors('hireDate')} ?'has-error'">
+									<input type="text" class="form-control" th:field="*{hireDate}" readonly="readonly">
+									<span class="text-danger" th:if="${#fields.hasErrors('hireDate')}"
+										th:error="*{hireDate}">hireDate error</span>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<!-- 性別 -->
+							<th class="danger active text-center" style="padding:20px;">性別</th>
+							<td style="background-color:#f9efef">
+								<div class="form-group">
+									<div th:each="item:${radioMaleFemale}">
+										<input type="radio" name="radioMaleFemale"
+											th:value="${item.value}" th:text="${item.key}"
+											th:field="*{MaleFemale}"></input>
+									</div>
+									<span class="text-danger"
+										th:if="${#fields.hasErrors('MaleFemale')}"
+										th:errors="*{MaleFemale}">MaleFemale error</span>
+								</div>
+							</td>
+						</tr>
+					</table>
+					<!-- 更新ボタン -->
+					<button class="btn btn-primary w-25 btn-lg pull-right"
+						type="submit" name="update" style="font-size:24px;">user更新</button>
+					<!-- 削除ボタン -->
+					<button class="btn btn-danger btn-lg deleteButton" type="submit" name="delete" style="font-size:24px;">user削除</button>
+				</form>
+			</div>
+		</div>
+		<script>
+			$('.deleteButton').click(function() {
+				if (confirm('本当に削除しますか？')) {
+					/* キャンセルの時の処理 */
+					return true;
+				}
+				return false;
+			});
+		</script>
+	</div>
+</body>
+</html>

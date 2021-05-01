@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+<meta charset="UTF-8">
+<title>お知らせ編集</title>
+</head>
+<body>
+	<div th:fragment="workspaceLayout_contents">
+		<div class="row">
+			<div class="col-sm-12">
+				<div class="page-header col-sm-9">
+					<h1 class="text-center" style="background-color: #ffeafc;">管理者から全ユーザーへのおしらせ内容編集</h1>
+				</div>
+				<form method="post" th:action="@{/adminNoticeDetail}"
+					th:object="${adminForm}">
+					<input type="hidden" name="id" value="${admin.id}"
+						th:field="*{id}">
+					<table class="table table-bordered table-hover">
+						<tr>
+						<th class="danger active col-sm-1 text-center" style="padding:14px;">お知らせ内容</th>
+							<td class="col-sm-8" style="background-color:#f9efef">
+								<div class="form-group" th:classappend="${#fields.hasErrors('contents')}?'has-error'">
+
+									<input type="text" class="form-control" th:field="*{contents}" placeholder="190字以下で入力してください。" />
+									<span class="text-danger"
+										th:if="${#fields.hasErrors('contents')}"
+										th:errors="*{contents}">contents error</span>
+								</div>
+							</td>
+
+						</tr>
+					</table>
+
+
+
+
+					<!-- 更新ボタン -->
+					<button class="btn btn-primary btn-lg pull-right" type="submit"
+						name="update" style="font-size:20px;">Work内容更新</button>
+					<!-- 削除ボタン -->
+					<button class="btn btn-danger btn-lg pull-left deleteButton" type="submit"
+						name="delete" style="font-size:20px;">Work内容削除</button>
+
+				</form>
+			</div>
+		</div>
+		<script>
+			$('.deleteButton').click(function() {
+				if (confirm('本当に削除しますか？')) {
+					/* キャンセルの時の処理 */
+					return true;
+				}
+				return false;
+			});
+		</script>
+	</div>
+</body>
+</html>

@@ -1,0 +1,86 @@
+@charset "UTF-8";
+
+.clientTableThWidth1 {
+	width: 232px;
+}
+
+.clientTableThWidth2 {
+	width: 291px;
+}
+
+.clientTableThWidth3 {
+	width: 98px;
+}
+
+.clientTableThWidth4 {
+	width: 129px;
+}
+
+.clientTableThWidth5 {
+	width: 180px;
+}
+
+.clientTableThWidth6 {
+	width: 90px;
+}
+
+.clientTableThWidth7 {
+	width: 80px;
+}
+
+
+.clientTableTdWidth1 {
+	width: 240px;
+}
+
+.clientTableTdWidth2 {
+	width: 300px;
+}
+
+.clientTableTdWidth3 {
+	width: 100px;
+}
+
+.clientTableTdWidth4 {
+	width: 130px;
+}
+
+.clientTableTdWidth5 {
+	width: 180px;
+}
+
+.clientTableTdWidth6 {
+	width: 90px;
+}
+
+.clientTableTdWidth7 {
+	width: 80px;
+}
+
+.theadClient tbody {
+	display:block;
+	overflow-y:scroll;
+	/*heightがスクロールしなくても見える範囲の幅*/
+	height: 291px;
+}
+
+.clientTableThColor {
+	background-color:#f1ee90 !important;
+}
+
+.clientAddtoTableThColor {
+	background-color:#f1ee90 !important;
+}
+
+.btnSizeClient {
+	padding: 0px 16px !important;
+	display: inherit !important;
+}
+
+.btnSizeClient2 {
+	padding: 5px 10px !important;
+}
+
+.fontSizeClient {
+	font-size:12px !important;
+}

@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+<meta charset="UTF-8">
+<!-- Bootstrap（デザイン性の高い画面を簡単に作成可能※タグのclass属性にある値をセットするだけ）の設定 jQuery Bootstrapの読み込み必要がある-->
+<link th:href="@{/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css}"
+	rel="stylesheet"></link>
+<!--　↑cssファイル タイムリーフでファイル読み込み　 -->
+<script th:src="@{/webjars/jquery/1.11.1/jquery.min.js}"></script>
+<!--　↑jQueryのjsファイル タイムリーフでファイル読み込み　 -->
+<script th:src="@{/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js}"></script>
+<!--　↑Bootstrap のjsファイル（jQueryの後に読み込む） タイムリーフでファイル読み込み　 -->
+<title>Tweetで情報共有</title>
+</head>
+<body>
+	<div th:fragment="workspaceLayout_contents">
+		<!-- jQuery フォームリセット -->
+		<script>
+			$(function() {
+				// 入力値をリセット
+				$("#resetButton")
+						.click(
+								function() {
+									$(
+											'#textField1,#textField2,#dateField1,#dateField2')
+											.val("");
+								});
+			});
+		</script>
+		<script>
+			$(function() {
+				// 入力値をリセット
+				$("#resetButton2").click(function() {
+					$('#textField3').val("");
+				});
+			});
+		</script>
+		<div class="page-header">
+			<!-- h1タグと同じ列にボタンを付けるため、テーブルを作ってその中にtrをつけている -->
+			<table>
+				<tr>
+					<td class="col-sm-4"><h1 class="text-center" style="background-color: #b0e0e659;">Tweetで情報共有</h1></td>
+
+					<td class="col-sm-12"><h3 th:text="'合計' + ${tweetHomecount} + '件'"></h3></td>
+
+
+					<td class="col-sm-2 btnPadding"><a class="cp_btn4 pull-right"
+						th:href="@{'/tweet/csv'}">CSV出力</a></td>
+				</tr>
+			</table>
+		</div>
+
+
+
+
+		<form method="post" th:action="@{/tweet}"
+			th:object="${tweetSearchForm}">
+			<table class="table table-borderd table-hover bg-success"
+				style="background-color: #e0ffff;width:1120px">
+
+				<tr class="workspaceTrThSearch">
+					<th class="info text-center">ユーザー名</th>
+					<th class="info text-center">内容</th>
+					<th class="info text-center">ツイート日～</th>
+					<th class="info text-center">～ツイート日</th>
+					<th class="info text-center">検索ボタン</th>
+					<th class="info text-center">フォームリセット</th>
+				</tr>
+
+				<tr>
+					<td><input id="textField1" type="text"
+						class="info form-control text-center" name="user_id" th:field="*{user_id}" placeholder="20文字以下で検索可"><span
+						class="text-danger" th:if="${#fields.hasErrors('user_id')}"
+						th:errors="*{user_id}"></span></td>
+					<td><input id="textField2" type="text"
+						class="info form-control text-center" name="contents" th:field="*{contents}" placeholder="100文字以下で検索可"><span
+						class="text-danger" th:if="${#fields.hasErrors('contents')}"
+						th:errors="*{contents}"></span></td>
+					<td><input id="dateField1" type="date"
+						class="info form-control" name="registration_dateA"
+						th:field="*{registration_dateA}"></td>
+					<td><input id="dateField2" type="date"
+						class="info form-control" name="registration_dateZ"
+						th:field="*{registration_dateZ}"></td>
+					<td ><button class="btn btn-info btnPadding2" type="submit" name="search">キーワードで検索</button></td>
+					<td class="text-center"><button class="btn btn-success reset btnPadding2" id="resetButton"
+							type="button">フォーム内初期化</button></td>
+				</tr>
+			</table>
+		</form>
+
+
+		<form method="post" th:action="@{/tweet}" th:object="${tweetForm}"
+			class="form-inline">
+			<input type="hidden" name="id" value="${tweetdto.id}"
+				th:field="*{id}">
+			<table class="table table-bordered table-hover" style="width:1120px">
+				<tr class="workspaceTrThSearch">
+					<th class="danger active col-sm-2 text-center tweetTh1">ツイート内容</th>
+					<th class="danger active col-sm-2 text-center tweetTh2">ツイートボタン</th>
+					<th class="danger active col-sm-2 text-center tweetTh3">フォームリセット</th>
+				</tr>
+				<!-- 内容  readonly="readonly"をつければ入力変更できなくなる-->
+				<tr>
+					<td><input id="textField3" type="text"
+						class="form-control text-center tweetInputa col-sm-5 tweetTd1"
+						th:field="*{contents}" placeholder="100文字以下で入力してください。"/><span class="text-danger"
+						th:if="${#fields.hasErrors('contents')}" th:errors="*{contents}"></span></td>
+					<td><button class="btn btn-danger tweetTd2 btnPadding2" type="submit"
+							name="PostTweet2">ツイート</button></td>
+					<td><button class="btn btn-success tweetTd3 reset btnPadding2"
+							id="resetButton2" type="button">フォーム内初期化</button></td>
+				</tr>
+
+			</table>
+		</form>
+
+		<div style="height: 100vh; width: 1120px;">
+			<table
+				class="table table-condensed table-bordered table-hover table-striped sticky_table tweet fontSize"
+				style="max-height: 275px;">
+				<thead>
+					<tr class="fontSize">
+						<th class="warning col-sm-2 text-center sticky-top tweetThA tweetTableThColor"
+							align="center">ユーザー名</th>
+						<th class="warning col-sm-2 text-center sticky-top tweetThB tweetTableThColor">内容</th>
+						<th class="warning col-sm-2 text-center sticky-top tweetThC tweetTableThColor">ツイート日時</th>
+						<th class="warning col-sm-2 text-center sticky-top tweetThD tweetTableThColor">管理</th>
+					</tr>
+				</thead>
+				<tr th:each="tweetdto:${tweetList}" class="fontSize">
+
+					<td class="text-center tweetTdA" th:text="${tweetdto.user_id}"></td>
+					<td class="text-center tweetTdB" th:text="${tweetdto.contents}"></td>
+					<!-- 日付型フォーマット -->
+					<td class="text-center tweetTdC"
+						th:text="${#dates.format(tweetdto.registration_date, 'yyyy/MM/dd HH:mm:ss')}"></td>
+					<td class="text-center tweetTdD btnSizeTweet2" sec:authorize="hasRole('ADMIN')">
+						<!-- 動的URL --> <a class="btn btn-primary text-center btnSizeTweet"
+						style="width: 80px" th:href="@{'/tweetDetail/' + ${tweetdto.id}}">編集</a>
+					</td>
+					<!-- user_idではjoinを使っていて、ほかのデータベースのカラムが入ってるため、データベースのuser_idをとってこれない。なのでuser_id2を作ってデータベースのuser_idを渡した -->
+					<td class="text-center tweetTdD btnSizeTweet2"
+						th:if="${#authorization.expression('!hasRole(''ADMIN'')')} and ${tweetdto.user_id2} == ${#authentication.principal.username}">
+						<a class="btn btn-primary text-center btnSizeTweet" style="width: 80px"
+						th:href="@{'/tweetDetail/' + ${tweetdto.id}}">編集</a>
+					</td>
+				</tr>
+			</table>
+
+		</div>
+	</div>
+</body>
+</html>

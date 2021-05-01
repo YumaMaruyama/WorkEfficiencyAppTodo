@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+<meta charset="UTF-8"></meta>
+
+<!-- Bootstrap（デザイン性の高い画面を簡単に作成可能※タグのclass属性にある値をセットするだけ）の設定 jQuery Bootstrapの読み込み必要がある-->
+<link th:href="@{/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css}"
+	rel="stylesheet"></link>
+<!--　↑cssファイル タイムリーフでファイル読み込み　 -->
+<script th:src="@{/webjars/jquery/1.11.1/jquery.min.js}"></script>
+<!--　↑jQueryのjsファイル タイムリーフでファイル読み込み　 -->
+<script th:src="@{/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js}"></script>
+<!--　↑Bootstrap のjsファイル（jQueryの後に読み込む） タイムリーフでファイル読み込み　 -->
+<link th:href="@{/css/center.css}" rel="stylesheet"></link>
+
+<title>SiguUp</title>
+</head>
+<body>
+
+	<!-- th:fragment -->
+	<div th:fragment="loginLayout_contents">
+
+	<div class="text-center col-sm-3 page-header text-white" style="background-color: #ffe5bc59;">
+		<!--  <div class="breadcrumb"><!-- ぱんクズ -->
+		<!--  <div class="breadcrumb"><!-- プログレスバーアニメーション -->
+
+		<h1 style="background-color:#fff1e2 !important; font-size: 30px !important; color:black !important; font-family:serif !important; margin-top: 24px;" >ユーザー登録画面</h1>
+	</div>
+
+
+	<form method="post" th:action="@{/signup}" th:object="${signupForm}">
+		<!-- th:action Springセキュリティを使うためこの書き方 -->
+		<!-- th:object Modelに登録されているオブジェクトと受け取れる  -->
+		<!-- sugnupコントローラーPOST -->
+		<br>
+		<br>
+		<table class="table table-bordered table-hover " style="width:1080px;">
+			<!-- ユーザーIDの入力エリア -->
+			<br>
+			<br>
+			<tr >
+				<th class="active col-sm-2 text-center" style="padding: 21px;background-color:#ffdfaf;">ユーザーID(メールアドレス)</th>
+				<td class="col-sm-5" style="background-color:#ffe3bf">
+					<!-- 下記のdivタグ内で、CSSを追加している　error時にclass属性にhas-errorを追加し、
+				has-errorはBootstrap のclassでテキストボックスを赤くしてくれる -->
+					<div class="form-group" style="margin-bottom:0px;"
+						th:classappend="${#fields.hasErrors('user_id')}?'has-error'">
+						<!-- th:classappend="${#fields.hasErrors('user_id')}?'has-error'"はifであり、
+						fields.hasErrors('user_id')がtrueなら、has-errorというクラスを追加している -->
+						<!-- th:classappend CSSのclassを追加する -->
+						<input type="text" class="form-control" th:field="*{user_id}" placeholder="ログイン時に使用します。35文字以下で入力してください。"/>
+						<!-- th:fieldとはth:objectを書かなかった時の使い方で、フィールドを一つしか使わないならth:objectを書かなくて良い -->
+						<!-- error用CSS -->
+						<span class="text-danger" th:if="${#fields.hasErrors('user_id')}"
+							th:errors="*{user_id}">user_id error</span>
+						<div style="color:red"><span th:text="${result}"></span></div>
+					</div>
+				</td>
+			</tr>
+			<!-- パスワードの入力エリア -->
+			<tr>
+				<th class="active text-center" style="padding: 21px;background-color:#ffdfaf;">パスワード</th>
+				<td style="background-color:#ffe3bf">
+					<div class="form-group" style="margin-bottom:0px;"
+						th:classappend="${#fields.hasErrors('password')}?'has-error'">
+						<input type="text" class="form-control" th:field="*{password}" placeholder="ログイン時に使用します。8文字以上、100文字以下で入力してください。" />
+						<!-- 個人エラーメッセージの表示 -->
+						<span class="text-danger" th:if="${#fields.hasErrors('password')}"
+							th:errors="*{password}">password error</span>
+					</div>
+				</td>
+			</tr>
+			<!-- ユーザー名の入力エリア-->
+			<tr>
+				<th class="active text-center" style="padding: 29px;background-color:#ffdfaf;">ユーザー名(フルネーム)</th>
+				<td style="background-color:#ffe3bf">
+					<div class="form-group" style="margin-bottom:0px;"
+						th:classappend="${#fields.hasErrors('user_id')}?'has-error'">
+						<input type="text" class="form-control" th:field="*{userName}" placeholder="20文字以下で入力してください。"/>
+						<!-- 個人エラーメッセージの表示 -->
+						<span class="text-danger" th:if="${#fields.hasErrors('userName')}"
+							th:errors="*{userName}">userName error</span>
+					</div>
+				</td>
+			</tr>
+			<!-- 誕生日の入力エリア -->
+			<tr>
+				<th class="active text-center" style="padding: 21px;background-color:#ffdfaf;">誕生日</th>
+				<td style="background-color:#ffe3bf">
+					<div class="form-group" style="margin-bottom:0px;"
+						th:classappend="${#fields.hasErrors('birthday')}?'has-error'">
+						<input type="date" class="form-control" placeholder="yyyy/MM/dd形式でお願いします"
+							th:field="*{birthday}" />
+						<!-- 個人エラーメッセージの表示 -->
+						<span class="text-danger" th:if="${#fields.hasErrors('birthday')}"
+							th:errors="*{birthday}">birthday error</span>
+					</div>
+				</td>
+			</tr>
+			<!-- 年齢の入力エリア -->
+			<tr>
+				<th class="active text-center" style="padding: 21px;background-color:#ffdfaf;">会社入社日</th>
+				<td style="background-color:#ffe3bf">
+					<div class="form-group" style="margin-bottom:0px;"
+						th:classappend="${#fields.hasErrors('hireDate')}?'has-error'">
+						<input type="date" class="form-control" placeholder="yyyy/MM/dd形式でお願いします" th:field="*{hireDate}" />
+						<!-- 個人エラーメッセージの表示 -->
+						<span class="text-danger" th:if="${#fields.hasErrors('hireDate')}"
+							th:errors="*{hireDate}">hireDate error</span>
+					</div>
+				</td>
+			</tr>
+			<!-- 性別選択のラジオボタン選択エリア -->
+			<tr>
+				<th class="active text-center" style="padding: 21px;background-color:#ffdfaf;">性別</th>
+				<td style="background-color:#ffe3bf">
+					<div class="form-group" style="margin-bottom:0px;">
+						<!--  th:classappend="${#fields.hasErrors('MaleFemale')}?'has-error'">-->
+						<!-- ラジオボタンの実装 th:eachを使う　拡張forみたいに-->
+						<div th:each="item:${radioMaleFemale}">
+							<!-- th:each＜変数名＞:$<ModelAttributeのキー名> -->
+							<input type="radio" name="radioMaleFemale" th:text="${item.key}"
+								th:value="${item.value}" th:field="*{MaleFemale}"></input>
+							<!-- 個人エラーメッセージの表示 -->
+						</div>
+						<span class="text-danger"
+							th:if="${#fields.hasErrors('MaleFemale')}"
+							th:errors="*{MaleFemale}">MaleFemale error</span>
+						<!--  th:text Mapクラスのkeyの値（今回の場合は男・女）を画面に表示-->
+						<!-- th:value　画面から送る値を指定　Mapクラスのvalue(今回の場合はtrue,false)を送る -->
+
+					</div>
+				</td>
+			</tr>
+		</table>
+		<!-- エラーメッセージの一覧表示 -->
+		<!-- <ul>
+			<li th:each="error:${#fields.detailedErrors()}"><span
+				th:text="${error.message}">Error message</span></li>
+		</ul>
+ -->
+
+
+		<!-- 登録ボタン -->
+		<button class="btn btn-primary btn-lg center-block" type="submit">ユーザー登録</button>
+	</form>
+	</div>
+</body>
+</html>

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+<meta charset="UTF-8">
+
+<!-- Bootstrap（デザイン性の高い画面を簡単に作成可能※タグのclass属性にある値をセットするだけ）の設定 jQuery Bootstrapの読み込み必要がある-->
+<link th:href="@{/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css}"
+	rel="stylesheet"></link>
+<!--　↑cssファイル タイムリーフでファイル読み込み　 -->
+<script th:src="@{/webjars/jquery/1.11.1/jquery.min.js}"></script>
+<!--　↑jQueryのjsファイル タイムリーフでファイル読み込み　 -->
+<script th:src="@{/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js}"></script>
+<!--　↑Bootstrap のjsファイル（jQueryの後に読み込む） タイムリーフでファイル読み込み　 -->
+
+<title>one_to_oneMailSending</title>
+</head>
+<body>
+
+	<div th:fragment="workspaceLayout_contents">
+	<script>
+			$(function() {
+				// 入力値をリセット
+				$("#resetButton").click(function() {
+					$('#textField1,#textField2,#dateField1,#dateField2').val("");
+				});
+			});
+		</script>
+		<div class="page-header">
+			<table>
+				<tr>
+					<td class="col-sm-7"><h1 class="text-center" style="background-color: #b0e0e659;">送信メール確認画面</h1></td>
+					<!-- admin一覧の件数 -->
+					<td class="col-sm-5"><h3
+							th:text="'合計' + ${one_to_oneMailHomeCount} + '件'"></h3></td>
+
+			<!--
+					<!-- CSV出力用のリンク
+					<td class="col-sm-2"><a class="cp_btn4"
+						th:href="@{'/one_to_oneMail/csv'}">CSV出力</a></td>
+					-->
+				</tr>
+			</table>
+		</div>
+
+		<form method="post" th:action="@{/one_to_oneMailSending}"
+			th:object="${one_to_oneMailSendingForm}">
+			<table class="table table-hover table-bordered bg-success"
+				style="background-color: #e0ffff;width:1120px;">
+				<tr>
+					<th class="info text-center">送信先</th>
+					<th class="info text-center">内容</th>
+					<th class="info text-center">送信日時～</th>
+					<th class="info text-center">～送信日時</th>
+					<th class="info text-center">検索ボタン</th>
+					<th class="info text-center">フォームリセット</th>
+				</tr>
+
+				<tr>
+					<td><input id="textField1" type="text" class="form-control text-center"
+						name="user_name" th:field="*{user_name}" placeholder="20文字以下で検索可"><span class="text-danger"
+						th:if="${#fields.hasErrors('user_name')}" th:errors="*{user_name}">user_name
+							error</span></td>
+					<td><input id="textField2" type="text" class="form-control text-center"
+						name="mail" th:field="*{mail}" placeholder="320文字以下で検索可"><span class="text-danger"
+						th:if="${#fields.hasErrors('mail')}" th:errors="*{mail}">mail
+							error</span></td>
+					<td><input id="dateField1" type="date" class="form-control"
+						name="registration_dateFrom" th:field="*{registration_dateFrom}">
+					</td>
+					<td><input id="dateField2" type="date" class="form-control"
+						name="registration_dateTo" th:field="*{registration_dateTo}"></td>
+					<td align="center"><button class="btn btn-primary"
+							type="submit" name="search">キーワード検索</button></td>
+					<td align="center"><button class="btn btn-success reset"
+							id="resetButton" type="button">フォーム内初期化</button></td>
+				</tr>
+			</table>
+		</form>
+
+	<div style="heigth:100vh;width:1120px;">
+		<table
+			class="table table-condensed table-bordered table-hover table-striped sticky_table one_to_oneMailSending fontSize"
+			style="max-height: 425px;">
+			<thead>
+				<tr>
+					<th class="warning text-center sticky-top one_to_oneMailSendingTh1 one_to_oneMailSendingTableThColor">送信先</th>
+					<th class="warning text-center sticky-top one_to_oneMailSendingTh2 one_to_oneMailSendingTableThColor">内容</th>
+					<th class="warning text-center sticky-top one_to_oneMailSendingTh3 one_to_oneMailSendingTableThColor">送信日</th>
+					<th class="warning text-center sticky-top one_to_oneMailSendingTh4 one_to_oneMailSendingTableThColor">管理</th>
+				</tr>
+			<thead>
+
+				<tr th:each="one_to_onemaildto:${one_to_oneMailList}">
+					<td class="text-center one_to_oneMailSendingTd1" th:text="${one_to_onemaildto.user_name}"></td>
+					<td class="text-center one_to_oneMailSendingTd2" th:text="${one_to_onemaildto.mail}"></td>
+					<td class="text-center one_to_oneMailSendingTd3"
+						th:text="${#dates.format(one_to_onemaildto.registration_date, 'yyyy/MM/dd HH:mm:ss')}"></td>
+					<td class="text-center one_to_oneMailSendingTd4 btnSizeOne_to_oneMailSending2"><a class="btn btn-primary text-center btnSizeOne_to_oneMailSending"
+						th:href="@{/one_to_oneMailSendingDetail/} + ${one_to_onemaildto.id}">編集</a>
+					</td>
+				</tr>
+		</table>
+		</div>
+
+
+	</div>
+</body>
+</html>

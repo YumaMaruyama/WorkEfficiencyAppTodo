@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+<meta charset="UTF-8"></meta>
+<!-- Bootstrap（デザイン性の高い画面を簡単に作成可能※タグのclass属性にある値をセットするだけ）の設定 jQuery Bootstrapの読み込み必要がある-->
+<link th:href="@{/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css}"
+	rel="stylesheet"></link>
+<!--　↑cssファイル タイムリーフでファイル読み込み　 -->
+<script th:src="@{/webjars/jquery/1.11.1/jquery.min.js}"></script>
+<!--　↑jQueryのjsファイル タイムリーフでファイル読み込み　 -->
+<script th:src="@{/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js}"></script>
+<!--　↑Bootstrap のjsファイル（jQueryの後に読み込む） タイムリーフでファイル読み込み　 -->
+
+<!-- CSSの読み込み -->
+<link th:href="@{/css/UsersList.css}" rel="stylesheet"></link>
+<title>UsersList</title>
+</head>
+<body>
+	<!-- コンテンツ部分 -->
+	<div th:fragment="usersList_contents">
+	<!-- jQuery フォームリセット -->
+		<script>
+			$(function() {
+				// 入力値をリセット
+				$("#resetButton").click(function() {
+					$('#textField1,#textField2,#dateField1,#dateField2,#optionField,#dateField3,#dateField4').val("");
+				});
+			});
+		</script>
+		<div class="page-header">
+
+			<table>
+				<tr>
+					<td class="col-sm-3"><h1 class="text-center" style="background-color: #b0e0e659;">Usersリスト</h1></td>
+					<!-- ユーザー一覧の件数 -->
+					<td class="col-sm-12"><h3
+							th:text="'合計' + ${usersListCount} + '人'"></h3></td>
+					<!-- 更新・削除処理の結果表示用
+					<td><label class="text-info pull-right" th:text="${result}">結果表示</label></td>-->
+					<!-- CSV出力用のリンク aタグですること-->
+					<td class="col-sm-2 btnPadding"><a class="cp_btn5 pull-right"
+						th:href="@{'/usersList/csv'}">CSV出力</a></td>
+				</tr>
+			</table>
+
+		</div>
+		<!-- th:objectでForm指定するときは先頭小文字 -->
+		<form method="post" th:action="@{/UsersList}"
+			th:object="${usersSearchForm}">
+			<table class="table table-borderd table-hover bg-success usersTable"
+				style="background-color: #e0ffff; width: 1120px;">
+				<tr class="workspaceTrThSearch">
+					<th class="info text-center usersSearchTh1">ユーザーID</th>
+					<th class="info text-center usersSearchTh2">ユーザー名</th>
+					<th class="info text-center usersSearchTh3">誕生日～</th>
+					<th class="info text-center usersSearchTh4">～誕生日</th>
+					<th class="info col-sm-2 text-center usersSearchTh5">性別</th>
+
+
+
+
+
+				</tr>
+				<tr>
+					<td align=center><input id="textField1" type="text"
+						class="form-control text-center usersSearchTd1" name="userId"
+						th:field="*{user_id}" placeholder="35字以下で検索可"><span class="text-danger" th:if="${#fields.hasErrors('user_id')}" th:errors="*{user_id}">user_id error</span></td>
+
+					<td align=center><input id="textField2" type="text"
+						class="form-control text-center usersSearchTd2" name="userName"
+						th:field="*{userName}" placeholder="20字以下で検索可"><span class="text-danger" th:if="${#fields.hasErrors('userName')}" th:errors="*{userName}">userName error</span></td>
+
+
+
+					<td align=center><input id="dateField1" type="date"
+						class="form-control usersSearchTd3" name="birthdayA"
+						th:field="*{birthdayA}"></td>
+					<td align=center><input id="dateField2" type="date"
+						class="form-control usersSearchTd4" name="birthdayZ"
+						th:field="*{birthdayZ}"></td>
+						<td><select id="optionField" class="form-control usersSearchTd5"
+						name="maleFemaleSearch" th:field="*{maleFemale}">
+							<option value=" "></option>
+							<option value="1">男</option>
+							<option value="0">女</option>
+					</select></td>
+
+
+
+
+				</tr>
+
+				<tr class="workspaceTrThSearch">
+
+					<th class="info col-sm-2 text-center usersSearchTh6">入社日～</th>
+					<th class="info col-sm-2 text-center usersSearchTh7">～入社日</th>
+					<th class="info col-sm-2 text-center usersSearchTh8">検索ボタン</th>
+					<th class="info col-sm-2 text-center usersSearchTh9">フォームリセット</th>
+
+				</tr>
+
+				<tr>
+
+					<!-- ボタンをかこっているtdタグにtext-align:center;をつける -->
+						<td align=center><input id="dateField3" type="date"
+						class="form-control usersSearchTd6" name="hireDateAA" th:field="*{hireDateAA}"></td>
+					<td align=center><input id="dateField4" type="date"
+						class="form-control usersSearchTd7" name="hireDateZZ" th:field="*{hireDateZZ}"></td>
+					<td align=center><button class="btn btn-info usersSearchTd8 btnPadding2"
+							type="submit" name="search">キーワードで検索</button></td>
+					<td style="text-align: center;"><button
+							class="btn btn-success usersSearchTd9 reset btnPadding2" type="button" id="resetButton">フォーム内初期化</button></td>
+
+				<tr>
+			</table>
+		</form>
+
+		<br>
+
+
+
+			<table
+				class="table table-condensed table-bordered table-hover table-striped sticky_table usersList tb-fix fontSizeUsersList"
+				style="max-height: 295px; width:1120px">
+				<!-- ↑max-height テーブルの外線 -->
+				<thead>
+					<tr>
+						<th class="warning col-sm-2 text-center sticky-top usersListName1 usersListTabelThColor"
+							align="center">ユーザーID</th>
+						<th class="warning col-sm-2 text-center sticky-top usersListName2 usersListTabelThColor">ユーザー名</th>
+						<th class="warning col-sm-2 text-center sticky-top usersListName3 usersListTabelThColor">誕生日</th>
+						<th class="warning col-sm-2 text-center sticky-top usersListName4 usersListTabelThColor">入社日</th>
+						<th class="warning col-sm-2 text-center sticky-top usersListName5 usersListTabelThColor">性別</th>
+						<th class="warning col-sm-2 text-center sticky-top usersListName6 usersListTabelThColor">管理</th>
+					</tr>
+				</thead>
+				<tr class="text-center" th:each="usersdto:${usersList}">
+					<td class="text-center usersListTdName1"
+						th:text="${usersdto.user_id}"></td>
+					<td class="text-center usersListTdName2"
+						th:text="${usersdto.user_name}"></td>
+					<!-- 日付型フォーマット 画面上の日付フォーマット １引数にフォーマットする値　２引数にフォーマット指定-->
+					<td class="text-center usersListTdName3"
+						th:text="${#dates.format(usersdto.birthday,'YYYY/MM/dd')}"></td>
+					<td class="text-center usersListTdName4" th:text="${usersdto.hireDate}"></td>
+					<td class="text-center usersListTdName5"
+						th:text="${usersdto.maleFemale} ?'男':'女'"></td>
+
+
+					<!-- 権限者は全ユーザー編集できる　一般は自分のデータだけ編集できる　 -->
+					<!-- 権限者以外は見えないボタン -->
+					<td sec:authorize="hasRole('ADMIN')"
+						class="text-center usersListTdName6 btnSizeUsersList2">
+						<!-- 動的URL --> <a class="btn btn-primary btn-sm text-center btnSizeUsersList"
+						th:href="@{'/usersListDetail/' + ${usersdto.user_id}}">編集</a>
+					</td>
+					<!-- 権限者以外が自分のUserIDと同じ行だけ見えるボタン -->
+					<td
+						class="text-center usersListName6 btnSizeUsersList2" th:if="${#authorization.expression('!hasRole(''ADMIN'')')} and ${usersdto.user_id} == ${#authentication.principal.username}">
+						<a class="btn btn-primary btn-sm text-center btnSizeUsersList"
+						th:href="@{'/usersListDetail/' + ${usersdto.user_id}}">編集</a>
+					</td>
+				</tr>
+			</table>
+		</div>
+</body>
+</html>

@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+<meta charset="UTF-8">
+
+<!-- Bootstrap（デザイン性の高い画面を簡単に作成可能※タグのclass属性にある値をセットするだけ）の設定 jQuery Bootstrapの読み込み必要がある-->
+<link th:href="@{/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css}"
+	rel="stylesheet"></link>
+<!--　↑cssファイル タイムリーフでファイル読み込み　 -->
+<script th:src="@{/webjars/jquery/1.11.1/jquery.min.js}"></script>
+<!--　↑jQueryのjsファイル タイムリーフでファイル読み込み　 -->
+<script th:src="@{/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js}"></script>
+<!--　↑Bootstrap のjsファイル（jQueryの後に読み込む） タイムリーフでファイル読み込み　 -->
+
+<title>snsShareLogin</title>
+</head>
+<body>
+	<div th:fragment="loginLayout_contents">
+
+		<div class="page-header">
+			<table>
+				<tr>
+					<td class="col-sm-1" style="background-color: #76d8ff59;"><h1 class="col-sm-12" style="background-color:#fff1e2 !important; font-size: 30px !important; color:black !important; font-family:serif !important; margin-top: 24px;">SNS共有</h1></td>
+				</tr>
+				<tr>
+					<td class="col-sm-11"></td>
+				</tr>
+			</table>
+		</div>
+
+		<table>
+
+		<br>
+		<br>
+			<tr>
+				<th class="text-center">Twitterに共有する</th>
+				<th class="text-center">facebookに共有する</th>
+				<th class="text-center">Googleに共有する</th>
+				<th class="text-center">WordPressに共有する</th>
+				<th class="text-center">はてなブックマークに共有する</th>
+
+			</tr>
+
+			<tr>
+				<td><button class="btn  share-btn s_twitter mr-3 shareButton1"
+						style="width: 170px">
+						<i class="fa fa-twitter fa-5x"></i> Twitter
+					</button></td>
+				<td><button class="btn  share-btn s_facebook shareButton2 "
+						style="width: 170px">
+						<i class="fa fa-facebook fa-5x"></i> Facebook
+					</button></td>
+				<td><button class="btn  share-btn s_google  shareButton3"
+						style="width: 170px">
+						<i class="fa fa-google fa-5x"></i> Google
+					</button></td>
+				<td><button class="btn share-btn s_wordpress shareButton4 "
+						style="width: 170px">
+						<i class="fa fa-wordpress fa-5x"></i> WordPress
+					</button></td>
+
+				<td><button class="btn share-btn s_hatena shareButton5 "
+						style="width: 200px">
+						<i class="fa fa-question fa-5x"></i> はてなブックマーク
+					</button></td>
+			</tr>
+		</table>
+
+		<br> <br> <br>
+
+		<table>
+
+			<tr>
+				<th class="text-center">YahooMailに共有する</th>
+				<th class="text-center">Mixiに共有する</th>
+				<th class="text-center">Sonicoに共有する</th>
+				<th class="text-center">Gmailに共有する</th>
+				<th class="text-center">Outloocに共有する</th>
+
+			</tr>
+			<tr>
+				<td><button class="btn share-btn s_yahoomail shareButton6 "
+						style="width: 170px">
+						<i class="fa fa-share-square fa-5x"></i> YahooMail
+					</button></td>
+				<td><button class="btn  share-btn s_mixi shareButton7 "
+						style="width: 170px">
+						<i class="fa fa-share-square fa-5x"></i> Mixi
+					</button></td>
+				<td><button class="btn share-btn s_sonico shareButton8 "
+						style="width: 170px">
+						<i class="fa fa-share-square fa-5x"></i> Sonico
+					</button></td>
+				<td><button class="btn share-btn s_gmail shareButton9 "
+						style="width: 170px">
+						<i class="fa fa-share-square fa-5x"></i> Gmail
+					</button></td>
+				<td><button class="btn share-btn s_hotmail shareButton10 "
+						style="width: 200px">
+						<i class="fa fa-share-square fa-5x"></i> Outlooc
+					</button></td>
+			</tr>
+			<!-- fa fa-share-square -->
+		</table>
+		<br>
+		<br>
+
+		<div>
+			<span style="font-size: 20px;"  ><font  face="Arial"><p class="text-center fadeIn">たくさん共有して「YMJOJO」を広めよう！！（クリックで消えます）</p></font></span>
+		</div>
+
+
+		<script>
+			$(function() {
+				// 一旦hide()で隠してフェードインさせる
+				$('.fadeIn').hide().fadeIn(3500);
+
+			});
+		</script>
+
+		<script>
+		$(function() {
+
+
+			  $('.fadeIn').click(function() {
+
+			    // 素早くフェードアウトさせる
+			    $('.fadeIn').fadeOut('fast');
+
+			  });
+			});
+
+		</script>
+
+		<script>
+			window.addEventListener('load', function() {
+				$('.share-btn').ShareLink({
+					title : 'YMJOJO',
+					text : '便利なタスク管理アプリ 『WorkEfficiencyApp-YMJOJO』を使ってみよう',
+					url : 'http://localhost:8080',
+					class_prefix : 's_'
+				});
+			});
+		</script>
+	</div>
+</body>
+</html>

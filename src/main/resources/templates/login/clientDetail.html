@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+<meta charset="UTF-8">
+
+
+<title>clientAddtoDetail</title>
+</head>
+<body>
+	<div th:fragment="workspaceLayout_contents">
+
+
+		<div class="row">
+			<div class="col-sm-12">
+				<div class="page-header col-sm-4">
+					<h1 class="text-center" style="background-color: #ffeafc;">取引先情報編集</h1>
+				</div>
+
+			<form method="post" th:action="@{/clientDetail}" th:object="${clientDetailForm}">
+				<table  class="table table-hovor table-bordered table-striped">
+
+				<tr>
+					<th class="danger text-center col-sm-2" style="padding:14px">会社名</th>
+					<td class="text-left" th:text="${clientCompany}"></td>
+				</tr>
+				<tr>
+					<th class="danger text-center col-sm-2" style="padding:14px">住所</th>
+					<td class="text-left" th:text="${clientAddress}"></td>
+				</tr>
+				<tr>
+					<th class="danger text-center col-sm-2" style="padding:14px">担当者</th>
+					<td ><div class="form-group"><input type="text" class="form-control" th:field="*{user_name}" placeholder="20文字以下で入力してください"></div><span
+								class="text-danger" th:if="${#fields.hasErrors('user_name')}"
+								th:errors="*{user_name}"></span></td>
+				</tr>
+				<tr>
+					<th class="danger text-center col-sm-2" style="padding:14px">担当者電話番号</th>
+					<td ><div class="form-group"><input type="text" class="form-control" th:field="*{telephone}" placeholder="15文字以下で入力してください"></div><span
+								class="text-danger" th:if="${#fields.hasErrors('telephone')}"
+								th:errors="*{telephone}"></span></td>
+				</tr>
+				<tr>
+					<th class="danger text-center col-sm-2" style="padding:14px">担当者メールアドレス</th>
+					<td ><div class="form-group"><input type="text" class="form-control" th:field="*{mailaddress}" placeholder="35文字以下で入力してください"></div><span
+								style="text-align: inherit !important; "class="text-danger" th:if="${#fields.hasErrors('mailaddress')}"
+								th:errors="*{mailaddress}"></span></td>
+				</tr>
+				<tr>
+					<th class="danger text-center col-sm-2" style="padding:14px">登録日</th>
+					<td class="text-left" th:text="${#dates.format(clientRegistration_date, 'yyyy/MM/dd')}"></td>
+				</tr>
+				</table>
+			<input type="hidden" value="${clientdto.id}" th:field=*{id}>
+			<button class="btn btn-primary btn-lg pull-right" type="submit" name="update" style="font-size:22px">取引先情報更新</button>
+			<button class="btn btn-danger btn-lg pull-left clientButton" type="submit" name="delete" style="font-size:22px">取引先情報削除</button>
+			</form>
+
+		</div>
+		</div>
+
+			<script>
+			$('.clientButton').click(function() {
+				if (confirm('本当に送信しますか？')) {
+					/* キャンセルの時の処理 */
+					return true;
+				}
+				return false;
+			});
+		</script>
+
+</div>
+</body>
+</html>
