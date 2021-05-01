@@ -11,7 +11,7 @@ import com.example.demo.login.domain.repository.jdbc.UsersDaoJdbcImpl;
 @Controller
 public class LoginController {
 
-	//ログイン画面のGET
+	//ログイン画面のGET]
 	@GetMapping("/login")
 	public String getLogin(Model model) {
 		model.addAttribute("contents", "login/login::loginLayout_contents");
