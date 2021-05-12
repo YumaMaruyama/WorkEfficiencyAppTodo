@@ -1,0 +1,25 @@
+@charset "UTF-8";
+
+.adminGuideTableThColor {
+	background-color: rgb(202 185 50 / 83%) !important;
+}
+
+.adminGuideThOne {
+	width:280px !important;
+}
+
+.adminGuideThTwo {
+	width:840px !important;
+}
+
+.adminGuideThTh {
+	width:280px !important;
+}
+
+.adminGuideThTd {
+	width:840px !important;
+}
+
+.display {
+	display: table-caption;
+}
