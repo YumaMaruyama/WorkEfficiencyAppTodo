@@ -138,7 +138,6 @@ public class WorkspaceController {
 		model.addAttribute("inquiryListCount", countAdmin);
 
 		Authentication auth2 = SecurityContextHolder.getContext().getAuthentication();
-		//System.out.println("auth" + auth.getName());
 		System.out.println("auth" + auth2);
 		System.out.println("auth.getName" + auth2.getName());
 
@@ -176,7 +175,6 @@ public class WorkspaceController {
 		model.addAttribute("inquiryListCount", countAdmin);
 
 		Authentication auth2 = SecurityContextHolder.getContext().getAuthentication();
-		//System.out.println("auth" + auth.getName());
 		System.out.println("auth" + auth2);
 		System.out.println("auth.getName" + auth2.getName());
 
@@ -213,12 +211,6 @@ public class WorkspaceController {
 		UsersDTO headerName = usersService.selectTwo(auth.getName());
 		System.out.println("headerName" + headerName);
 
-		//@Dateをつけていると、変数名．get フィールド名で呼び出せて、modelにそのまま書ける
-		//String user_name = headerName.getUser_name();
-		//model.addAttribute("headerName", headerName.getUser_name());
-
-		//HttpSession session = request.getSession(true);
-		//getでDTOクラスからuser_nameをとって来る
 		session.setAttribute("sessionGetUser_name", headerName.getUser_name());
 		System.out.println("sessionGetUser_name" + headerName.getUser_name());
 		List<Todo_itemsDTO> todo_itemsList = todo_itemsService.selectMany();
@@ -241,7 +233,6 @@ public class WorkspaceController {
 		model.addAttribute("inquiryListCount", countAdmin);
 
 		Authentication auth2 = SecurityContextHolder.getContext().getAuthentication();
-		//System.out.println("auth" + auth.getName());
 		System.out.println("auth" + auth2);
 		System.out.println("auth.getName" + auth2.getName());
 
@@ -281,8 +272,6 @@ public class WorkspaceController {
 	@PostMapping("/workspace")
 	public String postWorkspace(@ModelAttribute WorkaddtoForm form, Model model) {
 
-		//model.addAttribute("contents","login/workspace::workspace_contents");
-
 		//ユーザー一覧の生成
 		List<Todo_itemsDTO> todo_itemsList = todo_itemsService.selectMany();
 
@@ -295,21 +284,12 @@ public class WorkspaceController {
 
 	@PostMapping(value = "/workspace", params = "search")
 	public String postWorkspace(@ModelAttribute @Validated WorkspaceSearchForm form, BindingResult bindingResult,
-			//			@RequestParam("todo_itemsListX") String todo_itemsListX,
-			//			@RequestParam("todo_itemsListY") String todo_itemsListY,
-			//			@RequestParam("todo_itemsListC") String todo_itemsListC,
-			//			@RequestParam("todo_itemsListCA") String todo_itemsListCA,
-			//			@RequestParam(value = "todo_itemsListV") String todo_itemsListV,
-			//			@RequestParam(value = "todo_itemsListVA") String todo_itemsListVA,
-			//			@RequestParam(value = "todo_itemsListB") String todo_itemsListB,
-			//			@RequestParam(value = "todo_itemsListBA") String todo_itemsListBA,
-			//			@RequestParam(value = "todo_itemsListBM") boolean todo_itemsListBM,
 			@RequestParam("search") String todo_itemsdto, Model model) throws ParseException {
 
-		//データバインドに失敗（入力チェックに引っかかる）の場合はworkaddtoに戻る
+		//データバインドに失敗（入力チェックに引っかかる）の場合はworkspaceに戻る
 		if (bindingResult.hasErrors()) {
 			System.out.println("workspaceSearchエラーチェック");
-			//GETリクエスト用のメソッドを呼び出して、workaddtoに戻る
+			//GETリクエスト用のメソッドを呼び出して、workspaceに戻る
 			return getWorkspace(model, form);
 		}
 
@@ -317,79 +297,17 @@ public class WorkspaceController {
 
 		System.out.println("getExpire_dateA" + form.getExpire_dateA()); //登録日(始まり)
 		System.out.println("getExpire_dateZ" + form.getExpire_dateZ());//登録日(終わり)
-		System.out.println("getRegistration_dateA" + form.getRegistration_dateA());//期限日(始まり)
-		System.out.println("getRegistration_dateZ" + form.getRegistration_dateZ());//期限日(終わり)
-		System.out.println("getFinished_dateA" + form.getFinished_dateA());//完了日(始まり)
-		System.out.println("getFinished_dateZ" + form.getFinished_dateZ());//完了日(終わり)
-		System.out.println("getFinished_dateM" + form.getFinished_dateM());//未完了に絞る
+		System.out.println("getRegistration_dateFrom" + form.getRegistration_dateA());//期限日(始まり)
+		System.out.println("getRegistration_dateTO" + form.getRegistration_dateZ());//期限日(終わり)
+		System.out.println("getFinished_dateFrom" + form.getFinished_dateA());//完了日(始まり)
+		System.out.println("getFinished_dateTo" + form.getFinished_dateZ());//完了日(終わり)
+		System.out.println("getFinished_dateCheck" + form.getFinished_dateM());//未完了に絞る
 
-		//		Date Expire_dateA = null;
-		//		Date Expire_dateZ = null;
-		//		Date Registration_dateA = null;
-		//		Date Registration_dateZ = null;
-		//		Date Finished_dateA = null;
-		//		Date Finished_dateZ = null;
 		String Finished_dateM = null;
-		//		if((todo_itemsListBM != null) && (todo_itemsListBM.equals("true"))) {
-		//			todo_itemsListBMQ = true;
-		//		}
-
-		//		if ((form.getExpire_dateA() != null) && (!form.getExpire_dateA().isEmpty())) {
-		//
-		//			String dateStr = form.getExpire_dateA();
-		//			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-		//
-		//			//Date型変更
-		//			Expire_dateA = sdf.parse(dateStr);
-		//		}
-		//
-		//		if ((form.getExpire_dateZ() != null) && (!form.getExpire_dateZ().isEmpty())) {
-		//			String dateStr = form.getExpire_dateZ();
-		//
-		//			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-		//
-		//			// Date型変換
-		//			Expire_dateZ = sdf.parse(dateStr);
-		//
-		//		}
-		//		if ((form.getRegistration_dateA() != null) && (!form.getRegistration_dateA().isEmpty())) {
-		//			String dateStr = form.getRegistration_dateA();
-		//
-		//			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-		//
-		//			// Date型変換
-		//			Registration_dateA = sdf.parse(dateStr);
-		//		}
-		//		if ((form.getRegistration_dateZ() != null) && (!form.getRegistration_dateZ().isEmpty())) {
-		//			String dateStr = form.getRegistration_dateZ();
-		//
-		//			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-		//
-		//			// Date型変換
-		//			Registration_dateZ = sdf.parse(dateStr);
-		//		}
-		//		if ((form.getFinished_dateA() != null) && (!form.getFinished_dateA().isEmpty())) {
-		//			String dateStr = form.getFinished_dateA();
-		//
-		//			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-		//
-		//			// Date型変換
-		//			Finished_dateA = sdf.parse(dateStr);
-		//		}
-		//		if ((form.getFinished_dateZ() != null) && (!form.getFinished_dateZ().isEmpty())) {
-		//			String dateStr = form.getFinished_dateZ();
-		//
-		//			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-		//
-		//			// Date型変換
-		//			Finished_dateZ = sdf.parse(dateStr);
-		//		}
 
 		if ("true".equals(form.getFinished_dateM())) {
 
 			String dateStr = form.getFinished_dateM();
-
-			//SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
 			// Date型変換
 			Finished_dateM = dateStr;
@@ -422,7 +340,6 @@ public class WorkspaceController {
 		model.addAttribute("inquiryListCount", countAdmin);
 
 		Authentication auth2 = SecurityContextHolder.getContext().getAuthentication();
-		//System.out.println("auth" + auth.getName());
 		System.out.println("auth" + auth2);
 		System.out.println("auth.getName" + auth2.getName());
 
@@ -442,7 +359,6 @@ public class WorkspaceController {
 		model.addAttribute("contents", "login/one_to_oneMail::workspaceLayout_contents");
 		System.out.println("getOne_to_oneMail到達");
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		//System.out.println("auth" + auth.getName());
 		System.out.println("auth" + auth);
 		System.out.println("auth.getName" + auth.getName());
 
@@ -480,11 +396,6 @@ public class WorkspaceController {
 		return "/login/workspaceLayout";
 
 	}
-	//
-	//	@PostMapping(value ="one_to_oneMail" ,params= "search")
-	//	public String postOne_to_oneMail(@ModelAttribute Form form,Model model) {
-	//		model.addAttribute("contents", "login/one_to_oneMail::workspaceLayout_contents");
-	//	}
 
 	@GetMapping("/one_to_oneMailDetail/{id}")
 	public String getOne_to_oneMailDetail(@ModelAttribute One_to_oneMailDetailForm form, Model model,
@@ -508,7 +419,6 @@ public class WorkspaceController {
 		model.addAttribute("adminListCount", countAdminNotice);
 
 		Authentication auth2 = SecurityContextHolder.getContext().getAuthentication();
-		//System.out.println("auth" + auth.getName());
 		System.out.println("auth" + auth2);
 		System.out.println("auth.getName" + auth2.getName());
 
@@ -527,7 +437,6 @@ public class WorkspaceController {
 	public String postOne_to_oneMailDetailDelete(@ModelAttribute One_to_oneMailDetailForm form, Model model) {
 		model.addAttribute("contents", "login/one_to_oneMail::workspaceLayout_contents");
 		System.out.println("one_tooneMailDetaiDelete到達");
-		//int getId = form.getId();
 
 		int rowNumber = one_to_oneMailService.deleteOne(form.getId());
 
@@ -574,15 +483,11 @@ public class WorkspaceController {
 		}
 
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		//System.out.println("auth" + auth.getName());
 		System.out.println("auth" + auth);
 		System.out.println("auth.getName" + auth.getName());
 
 		String loginUser_id = auth.getName();
 		String loginUser_id2 = auth.getName();
-
-		//		One_to_oneMailDTO one_to_onemaildto = new One_to_oneMailDTO();
-		//		one_to_onemaildto.setSender(form.getSender());
 
 		List<One_to_oneMailDTO> searchList = one_to_oneMailService.search(form.getUser_name(), form.getMail(),
 				form.getRegistration_dateFrom(), form.getRegistration_dateTo(), loginUser_id, loginUser_id2);
@@ -606,7 +511,6 @@ public class WorkspaceController {
 		model.addAttribute("adminListCount", countAdminNotice);
 
 		Authentication auth2 = SecurityContextHolder.getContext().getAuthentication();
-		//System.out.println("auth" + auth.getName());
 		System.out.println("auth" + auth2);
 		System.out.println("auth.getName" + auth2.getName());
 
@@ -644,7 +548,6 @@ public class WorkspaceController {
 		model.addAttribute("adminListCount", countAdminNotice);
 
 		Authentication auth2 = SecurityContextHolder.getContext().getAuthentication();
-		//System.out.println("auth" + auth.getName());
 		System.out.println("auth" + auth2);
 		System.out.println("auth.getName" + auth2.getName());
 
@@ -677,7 +580,6 @@ public class WorkspaceController {
 		one_to_onemaildto.setMail(form.getMail());
 
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		//System.out.println("auth" + auth.getName());
 		System.out.println("auth" + auth);
 		System.out.println("auth.getName" + auth.getName());
 
@@ -695,7 +597,6 @@ public class WorkspaceController {
 		int Id = id;
 		System.out.println("id    " + Id);
 		return getOne_to_oneMailReply(form, model, getSender, Id);
-		//返信後（insert）またGETのページに戻すところから
 
 	}
 
@@ -703,7 +604,6 @@ public class WorkspaceController {
 	public String getOne_to_oneMailNotice(@ModelAttribute One_to_oneMailSearchForm form, Model model) {
 		model.addAttribute("contents", "login/one_to_oneMailNotice::workspaceLayout_contents");
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		//System.out.println("auth" + auth.getName());
 		System.out.println("auth" + auth);
 		System.out.println("auth.getName" + auth.getName());
 
@@ -761,7 +661,6 @@ public class WorkspaceController {
 
 		String admin = "ROLE_ADMIN";
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		//System.out.println("auth" + auth.getName());
 		System.out.println("auth" + auth);
 		System.out.println("auth.getName" + auth.getName());
 
@@ -808,7 +707,6 @@ public class WorkspaceController {
 		model.addAttribute("adminListCount", countAdminNotice);
 
 		Authentication auth2 = SecurityContextHolder.getContext().getAuthentication();
-		//System.out.println("auth" + auth.getName());
 		System.out.println("auth" + auth2);
 		System.out.println("auth.getName" + auth2.getName());
 
@@ -843,7 +741,6 @@ public class WorkspaceController {
 		one_to_onemaildto.setMail(form.getMail());
 
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		//System.out.println("auth" + auth.getName());
 		System.out.println("auth" + auth);
 		System.out.println("auth.getName" + auth.getName());
 
@@ -866,7 +763,6 @@ public class WorkspaceController {
 		model.addAttribute("contents", "login/one_to_oneMailSending::workspaceLayout_contents");
 
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		//System.out.println("auth" + auth.getName());
 		System.out.println("auth" + auth);
 		System.out.println("auth.getName" + auth.getName());
 
@@ -914,7 +810,6 @@ public class WorkspaceController {
 		}
 
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		//System.out.println("auth" + auth.getName());
 		System.out.println("auth" + auth);
 		System.out.println("auth.getName" + auth.getName());
 
@@ -947,14 +842,6 @@ public class WorkspaceController {
 
 	}
 
-	//	@PostMapping("/one_to_oneMailSending")
-	//	public String postOne_to_oneMailSending(@ModelAttribute One_to_oneMailSendingForm form,Model model) {
-	//		model.addAttribute("contents", "login/one_to_oneMailSending::workspaceLayout_contents");
-	//
-	//
-	//		return "login/workspaceLayout";
-	//	}
-
 	@GetMapping("/one_to_oneMailSendingDetail/{id}")
 	public String getOne_to_oneMailSendingDetail(@ModelAttribute One_to_oneMailSendingDetailForm form, Model model,
 			@PathVariable("id") int id) {
@@ -971,7 +858,6 @@ public class WorkspaceController {
 		model.addAttribute("id", id);
 
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		//System.out.println("auth" + auth.getName());
 		System.out.println("auth" + auth);
 		System.out.println("auth.getName" + auth.getName());
 
@@ -1002,9 +888,7 @@ public class WorkspaceController {
 		System.out.println("one_to_oneMailSendingDetailDelete到達");
 		int rowNumber = one_to_oneMailService.deleteOneSending(form.getId());
 		System.out.println("rowNumber  " + rowNumber);
-		//One_to_oneMailSendingForm one_to_onemailsendingform = new One_to_oneMailSendingForm();
-		//model.addAttribute("one_to_onemailsendingform",one_to_onemailsendingform);
-
+		
 		return getOne_to_oneMailSending(form2, form, model);
 	}
 
@@ -1038,7 +922,6 @@ public class WorkspaceController {
 		model.addAttribute("tweetcount", countTweet);
 
 		Authentication auth2 = SecurityContextHolder.getContext().getAuthentication();
-		//System.out.println("auth" + auth.getName());
 		System.out.println("auth" + auth2);
 		System.out.println("auth.getName" + auth2.getName());
 
@@ -1108,8 +991,6 @@ public class WorkspaceController {
 		} else {
 			System.out.println("select失敗");
 		}
-		//model.addAttributeは毎回保存しなおしているので変更が必要な画面などにはgetやPostでおいておくとページが切り替わって時に最新のデータをもって表示される
-		//Sessionのほうは、保存されたらそれっきり変わらないので、画面の内容が切り替わるところでは使わずにmodel.addAttributeを使う
 		model.addAttribute("tweetList", tweetList);
 
 		int count = tweetService.count();
@@ -1128,7 +1009,6 @@ public class WorkspaceController {
 		model.addAttribute("inquiryListCount", countAdmin);
 
 		Authentication auth2 = SecurityContextHolder.getContext().getAuthentication();
-		//System.out.println("auth" + auth.getName());
 		System.out.println("auth" + auth2);
 		System.out.println("auth.getName" + auth2.getName());
 
@@ -1184,7 +1064,6 @@ public class WorkspaceController {
 		model.addAttribute("tweetcount", countTweet);
 
 		Authentication auth2 = SecurityContextHolder.getContext().getAuthentication();
-		//System.out.println("auth" + auth.getName());
 		System.out.println("auth" + auth2);
 		System.out.println("auth.getName" + auth2.getName());
 
@@ -1209,11 +1088,6 @@ public class WorkspaceController {
 
 		form.setContents(tweetList.getContents());
 
-		//		if(tweetList > 0) {
-		//			System.out.println("セレクト成功");
-		//		}else {
-		//			System.out.println("セレクト失敗");
-		//		}
 		model.addAttribute("tweetUser_id", tweetList.getUser_id());
 		model.addAttribute("tweetContents", tweetList.getContents());
 		model.addAttribute("tweetRegistration_date", tweetList.getRegistration_date());
@@ -1233,7 +1107,6 @@ public class WorkspaceController {
 		model.addAttribute("inquiryListCount", countAdmin);
 
 		Authentication auth2 = SecurityContextHolder.getContext().getAuthentication();
-		//System.out.println("auth" + auth.getName());
 		System.out.println("auth" + auth2);
 		System.out.println("auth.getName" + auth2.getName());
 
@@ -1289,8 +1162,7 @@ public class WorkspaceController {
 
 	}
 
-	//Postでバリデーションするので＠をつける
-	//htmlのほうではformクラスの最初の文字は大文字から小文字に変えておく
+	//Postでバリデーションするので@Validatedをつける
 	@PostMapping("/usersNotice")
 	public String postAdminNotice(@ModelAttribute @Validated(GroupOrder.class) AdminForm form,
 			BindingResult bindingResult, RedirectAttributes redirectattributes, Model model) {
@@ -1299,7 +1171,7 @@ public class WorkspaceController {
 		//データバインドに失敗（入力チェックに引っかかる）の場合はworkaddtoに戻る
 		if (bindingResult.hasErrors()) {
 
-			//GETリクエスト用のメソッドを呼び出して、workaddtoに戻る
+			//GETリクエスト用のメソッドを呼び出して、getUsersNoticeに戻る
 			return getUsersNotice(form, model);
 		}
 		AdminDTO admindto = new AdminDTO();
@@ -1328,7 +1200,7 @@ public class WorkspaceController {
 
 		List<AdminDTO> adminList = adminService.selectMany();
 		System.out.println("adminList" + adminList);
-		//modelにinquiryListを登録
+		//modelにadminListを登録
 		model.addAttribute("adminList", adminList);
 
 		//データ件数を取得
@@ -1346,7 +1218,6 @@ public class WorkspaceController {
 		model.addAttribute("inquiryListCount", countAdmin);
 
 		Authentication auth2 = SecurityContextHolder.getContext().getAuthentication();
-		//System.out.println("auth" + auth.getName());
 		System.out.println("auth" + auth2);
 		System.out.println("auth.getName" + auth2.getName());
 
@@ -1374,9 +1245,6 @@ public class WorkspaceController {
 		form.setContents(admindto.getContents());
 		form.setRegistration_date(admindto.getRegistration_date());
 
-		//model.addAttribute("admindto",admindto);
-		//List<AdminDTO> adminList = adminService.deleteOne(id);
-
 		int count = todo_itemsService.count();
 		model.addAttribute("workspaceCount", count);
 
@@ -1390,7 +1258,6 @@ public class WorkspaceController {
 		model.addAttribute("inquiryListCount", countAdmin);
 
 		Authentication auth2 = SecurityContextHolder.getContext().getAuthentication();
-		//System.out.println("auth" + auth.getName());
 		System.out.println("auth" + auth2);
 		System.out.println("auth.getName" + auth2.getName());
 
@@ -1444,7 +1311,6 @@ public class WorkspaceController {
 		model.addAttribute("inquiryListCount", countAdmin);
 
 		Authentication auth2 = SecurityContextHolder.getContext().getAuthentication();
-		//System.out.println("auth" + auth.getName());
 		System.out.println("auth" + auth2);
 		System.out.println("auth.getName" + auth2.getName());
 
@@ -1473,8 +1339,6 @@ public class WorkspaceController {
 			System.out.println("削除失敗");
 		}
 		//postメソッドに@ModelAttribute AdminNoticeSearchForm searchformを入れなくても、自分でnewすればできる
-		//model.addAttribute("adminForm",new AdminNoticeSearchForm());
-
 		AdminNoticeSearchForm adminNoticeSearchForm = new AdminNoticeSearchForm();
 		model.addAttribute("adminNoticeSearchForm", adminNoticeSearchForm);
 		return getAdminNotice(null, adminNoticeSearchForm, model);
@@ -1514,7 +1378,6 @@ public class WorkspaceController {
 		return getAdminNotice(null, adminNoticeSearchForm, model);
 	}
 
-	//Worklistからworkaddtoへ推移する
 	@GetMapping("/workaddto")
 	public String getWorkaddto(@ModelAttribute WorkaddtoForm form, Model model) {
 
@@ -1533,7 +1396,6 @@ public class WorkspaceController {
 		model.addAttribute("inquiryListCount", countAdmin);
 
 		Authentication auth2 = SecurityContextHolder.getContext().getAuthentication();
-		//System.out.println("auth" + auth.getName());
 		System.out.println("auth" + auth2);
 		System.out.println("auth.getName" + auth2.getName());
 
@@ -1546,7 +1408,6 @@ public class WorkspaceController {
 		return "login/workspaceLayout";
 	}
 
-	//データバインドの結果の受け取り
 	@PostMapping("/workaddto")
 	public String postWorkaddto(@ModelAttribute @Validated(GroupOrder.class) WorkaddtoForm form,
 			BindingResult bindingResult, Model model) {
@@ -1606,11 +1467,9 @@ public class WorkspaceController {
 	//仕様ガイド画面GET
 	@GetMapping("/guide")
 	public String getGuide(@ModelAttribute GuideForm form, Model model) {
-		//コンテンツ部分にユーザー一覧を表示させるための文字列を登録
 		model.addAttribute("contents", "login/guide::workspaceLayout_contents");
 
 		Authentication auth2 = SecurityContextHolder.getContext().getAuthentication();
-		//System.out.println("auth" + auth.getName());
 		System.out.println("auth" + auth2);
 		System.out.println("auth.getName" + auth2.getName());
 
@@ -1656,7 +1515,6 @@ public class WorkspaceController {
 	public String getUsersList(@ModelAttribute UsersSearchForm form, @ModelAttribute SignupUpdateForm form1,
 			@ModelAttribute SignupForm form2, Model model) {
 
-		//コンテンツ部分にユーザー一覧を表示させるための文字列を登録
 		model.addAttribute("contents", "login/UsersList::usersList_contents");
 
 		String admin = "ROLE_ADMIN";
@@ -1684,7 +1542,6 @@ public class WorkspaceController {
 		model.addAttribute("inquiryListCount", countAdmin);
 
 		Authentication auth2 = SecurityContextHolder.getContext().getAuthentication();
-		//System.out.println("auth" + auth.getName());
 		System.out.println("auth" + auth2);
 		System.out.println("auth.getName" + auth2.getName());
 
@@ -1712,7 +1569,6 @@ public class WorkspaceController {
 		return "login/workspaceLayout";
 	}
 
-	//日付をstringで受け取り、正しければ SimpleDateFormatでDateへ変換する
 	@PostMapping(value = "/UsersList", params = "search")
 	public String postWorkspace(@ModelAttribute @Validated UsersSearchForm form, BindingResult bindingResult,
 			@RequestParam("search") String usersdto,
@@ -1731,10 +1587,10 @@ public class WorkspaceController {
 
 		System.out.println("userId" + form.getUser_id()); //ユーザーID
 		System.out.println("userName" + form.getUserName());//ユーザー名
-		System.out.println("birthdayA" + form.getBirthdayA());//誕生日(始まり)
-		System.out.println("birthdayZ" + form.getBirthdayZ());//誕生日(終わり)
-		System.out.println("hireDateAA" + form.getHireDateAA());//年齢～
-		System.out.println("hireDateZZ" + form.getHireDateZZ());//～年齢
+		System.out.println("birthdayFrom" + form.getBirthdayA());//誕生日(始まり)
+		System.out.println("birthdayTo" + form.getBirthdayZ());//誕生日(終わり)
+		System.out.println("hireDateFrom" + form.getHireDateAA());//年齢～
+		System.out.println("hireDateTo" + form.getHireDateZZ());//～年齢
 		System.out.println("maleFemale" + form.getMaleFemale());//性別
 
 		int maleFemale = 2;
@@ -1760,7 +1616,6 @@ public class WorkspaceController {
 		List<UsersDTO> usersList = usersService.search(form.getUser_id(), form.getUserName(),
 				form.getBirthdayA(), form.getBirthdayZ(), form.getHireDateAA(), form.getHireDateZZ(), maleFemale,
 				admin);
-		//,todo_itemsListBM
 		System.out.println("usersList" + usersList);
 
 		//検索後のレコードのカウントは、データベース全部ではなくて、検索時に持ってきたusersListのsizeを図ってものをmodelに登録するだけでいい。
@@ -1787,7 +1642,6 @@ public class WorkspaceController {
 		model.addAttribute("inquiryListCount", countAdmin);
 
 		Authentication auth2 = SecurityContextHolder.getContext().getAuthentication();
-		//System.out.println("auth" + auth.getName());
 		System.out.println("auth" + auth2);
 		System.out.println("auth.getName" + auth2.getName());
 
@@ -1803,7 +1657,7 @@ public class WorkspaceController {
 
 	//動的URL　
 	//ユーザー詳細画面のGET用メソッド
-	//動的URLに対応したメソッドはGetMappingなどに/{変数名}とする　ユーザーIDなら @GetMapping(/{usersdtoDetail/{id})
+	//動的URLに対応したメソッドはGetMappingなどに/{変数名}とする　idなら @GetMapping(/{usersdtoDetail/{id})
 	//通常ならこれでいいがメアド表記の場合は上記の書き方だとうまくいかない　maruyama@yuuma.co.jpならmaruyama@yuuma.coまでしかとれない
 	//それに対応するのが（"/usersdtoDetail/{id:.+}"）
 	@GetMapping("/usersListDetail/{id:.+}")
