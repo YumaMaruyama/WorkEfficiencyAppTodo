@@ -35,7 +35,9 @@ public interface One_to_oneMailDao {
 
 	public List<One_to_oneMailDTO> searchSending(String user_name,String mail,Date registration_dateFrom,Date registration_dateTo,String getName) throws DataAccessException;
 
-	public void one_to_oneMailCsvOut();
+	public void one_to_oneMailCsvOut(String getName);
+
+	public void one_to_oneMailSendingCsvOut(String getName);
 
 }
 

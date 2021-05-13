@@ -167,6 +167,7 @@ public class PersonUsersNoticeDaoJdbcImpl implements PersonUsersNoticeDao {
 		for (Map<String, Object> map : getSearchSql) {
 			PersonUsersNoticeDTO personusersnoticedto = new PersonUsersNoticeDTO();
 
+			personusersnoticedto.setId((int)map.get("id"));
 			personusersnoticedto.setContent((String) map.get("content"));
 			personusersnoticedto.setRegistration_date((Date) map.get("registration_Date"));
 
@@ -250,5 +251,21 @@ public class PersonUsersNoticeDaoJdbcImpl implements PersonUsersNoticeDao {
 		//SQL実行＆CSV出力
 		jdbc.query(sql, handler);
 	}
+
+	@Override
+	public void personUsersNoticeSendingCsvOut(String getName) throws DataAccessException {
+
+		System.out.println("personUsersNoticeSendingCsvOutImpl到達");
+		//inquiryテーブルのデータを全件取得するSQL
+		String sql = "select * from personUsersNotice where is_deleted = 0";
+		System.out.println("sql" + sql);
+		//ResultSetExceptionの生成
+		PersonUsersNoticeRowCallbackHandler handler = new PersonUsersNoticeRowCallbackHandler();
+
+		//SQL実行＆CSV出力
+		jdbc.query(sql, handler);
+	}
+
+
 
 }

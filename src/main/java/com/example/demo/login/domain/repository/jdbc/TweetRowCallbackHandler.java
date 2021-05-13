@@ -19,8 +19,9 @@ public class TweetRowCallbackHandler implements RowCallbackHandler{
 				BufferedWriter bw = new BufferedWriter(fw);
 
 				do {
-					String str = rs.getString("contents") + ","
-							+ rs.getString("registration_date");
+					String str =  "『ユーザー名』" + rs.getString("user_name") + ","
+							+  "『Tweet内容』" + rs.getString("contents") + ","
+							+  "『Tweet日』" + rs.getString("registration_date");
 
 					bw.write(str);
 					bw.newLine();

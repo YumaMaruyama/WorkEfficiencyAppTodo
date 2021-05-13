@@ -271,7 +271,7 @@ public class WorkspaceController {
 		}
 
 		HttpHeaders header = new HttpHeaders();
-		header.setContentDispositionFormData("filename", "work.csv");
+		header.setContentDispositionFormData("filename", "WorkList.csv");
 
 		return new ResponseEntity<>(bytes, header, HttpStatus.OK);
 
@@ -1582,6 +1582,25 @@ public class WorkspaceController {
 
 		return "redirect:/workspace";
 
+	}
+
+	@GetMapping("/adminGuide")
+	public String getAdminGuide(Model model) {
+		model.addAttribute("contents", "login/adminGuide::workspaceLayout_contents");
+
+		int countTweet = tweetService.count();
+		model.addAttribute("tweetcount", countTweet);
+
+		int count = todo_itemsService.count();
+		model.addAttribute("workspaceCount", count);
+
+		int countAdminNotice = adminService.count();
+		model.addAttribute("adminListCount", countAdminNotice);
+
+		int countAdmin = inquiryService.count();
+		model.addAttribute("inquiryListCount", countAdmin);
+
+		return "login/workspaceLayout";
 	}
 
 	//仕様ガイド画面GET
@@ -3098,7 +3117,7 @@ public class WorkspaceController {
 		model.addAttribute("id", Id);
 
 		form.setMemo(personmemoList.getMemo());
-
+		form.setFinished_date(personmemoList.getFinished_date());
 		model.addAttribute("memo", form);
 
 		int count = todo_itemsService.count();
@@ -3647,8 +3666,9 @@ public class WorkspaceController {
 	@GetMapping("usersList/csv")
 	public ResponseEntity<byte[]> getUsersListCsv(Model model) {
 
-		//ユーザーを全件通して、CSVをサーバー保存する
-		usersService.usersCsvOut();
+		//ユーザーを管理者以外全件通して、CSVをサーバー保存する
+		String user_id = "administratorMaruyama@yuuma";
+		usersService.usersCsvOut(user_id);
 
 		byte[] bytes = null;
 
@@ -3664,7 +3684,7 @@ public class WorkspaceController {
 		//HTTPヘッダーの設定
 		HttpHeaders header = new HttpHeaders();
 		header.add("Content-Type", "text/csv; charset=UTF-8");
-		header.setContentDispositionFormData("filename", "users.csv");
+		header.setContentDispositionFormData("filename", "usersList.csv");
 
 
 		return new ResponseEntity<>(bytes, header, HttpStatus.OK);
@@ -3699,7 +3719,13 @@ public class WorkspaceController {
 	@GetMapping("personMemo/csv")
 	public ResponseEntity<byte[]> getPersonMemoCsv(Model model) {
 
-		personMemoService.personMemoCsvOut();
+		Authentication auth2 = SecurityContextHolder.getContext().getAuthentication();
+		//System.out.println("auth" + auth.getName());
+		System.out.println("auth" + auth2);
+		System.out.println("auth.getName" + auth2.getName());
+
+		String getName = auth2.getName();
+		personMemoService.personMemoCsvOut(getName);
 
 		byte[] bytes = null;
 
@@ -3741,6 +3767,62 @@ public class WorkspaceController {
 		return new ResponseEntity<>(bytes, header, HttpStatus.OK);
 	}
 
+	@GetMapping("/personUsersNoticeSending/csv")
+	public ResponseEntity<byte[]> getPersonUsersNoticeSendingCsv(Model model) {
+
+		System.out.println("personUsersNoticeCsv到達");
+
+		Authentication auth2 = SecurityContextHolder.getContext().getAuthentication();
+		//System.out.println("auth" + auth.getName());
+		System.out.println("auth" + auth2);
+		System.out.println("auth.getName" + auth2.getName());
+
+		String getName = auth2.getName();
+
+		personUsersNoticeService.personUsersNoticeSendingCsvOut(getName);
+
+		byte[] bytes = null;
+
+		try {
+
+			bytes = personUsersNoticeService.getFile("personUsersNoticeSending.csv");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		//HTTPヘッダーの設定
+		HttpHeaders header = new HttpHeaders();
+		header.add("Content-Type", "text/csv; charset=UTF-8");
+		header.setContentDispositionFormData("filename", "personUsersNoticeSending.csv");
+
+
+		return new ResponseEntity<>(bytes, header, HttpStatus.OK);
+	}
+
+//	@GetMapping("/adminPersonNotice/csv")
+//	public ResponseEntity<byte[]> getPersonUsersNoticeCsv(Model model) {
+//
+//		System.out.println("adminPersonNoticeCsv到達");
+//		personUsersNoticeService.adminPersonNoticeCsvOut();
+//
+//		byte[] bytes = null;
+//
+//		try {
+//
+//			bytes = personUsersNoticeService.getFile("personUsersNotice.csv");
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//		//HTTPヘッダーの設定
+//		HttpHeaders header = new HttpHeaders();
+//		header.add("Content-Type", "text/csv; charset=UTF-8");
+//		header.setContentDispositionFormData("filename", "personUsersNotice.csv");
+//
+//
+//		return new ResponseEntity<>(bytes, header, HttpStatus.OK);
+//	}
+
+
+
 	@GetMapping("/one_to_oneMail/csv")
 	public ResponseEntity<byte[]> getOne_to_oneMailCsv(@ModelAttribute One_to_oneMailForm form,Model model) {
 
@@ -3752,7 +3834,7 @@ public class WorkspaceController {
 		String getName = auth2.getName();
 
 		System.out.println("one_to_oneMailCsv到達");
-		one_to_oneMailService.one_to_oneMailCsvOut();
+		one_to_oneMailService.one_to_oneMailCsvOut(getName);
 
 		byte[] bytes = null;
 
@@ -3766,6 +3848,36 @@ public class WorkspaceController {
 		HttpHeaders header = new HttpHeaders();
 		header.add("Content-Type", "text/csv; charset=UTF-8");
 		header.setContentDispositionFormData("filename", "one_to_oneMail.csv");
+
+
+		return new ResponseEntity<>(bytes, header, HttpStatus.OK);
+	}
+
+	@GetMapping("/one_to_oneMailSending/csv")
+	public ResponseEntity<byte[]> getOne_to_oneMailSendingCsv(@ModelAttribute One_to_oneMailForm form,Model model) {
+
+		Authentication auth2 = SecurityContextHolder.getContext().getAuthentication();
+		//System.out.println("auth" + auth.getName());
+		System.out.println("auth" + auth2);
+		System.out.println("auth.getName" + auth2.getName());
+
+		String getName = auth2.getName();
+
+		System.out.println("one_to_oneMailSendingCsv到達");
+		one_to_oneMailService.one_to_oneMailSendingCsvOut(getName);
+
+		byte[] bytes = null;
+
+		try {
+
+			bytes = one_to_oneMailService.file("one_to_oneMailSending.csv");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		//HTTPヘッダーの設定
+		HttpHeaders header = new HttpHeaders();
+		header.add("Content-Type", "text/csv; charset=UTF-8");
+		header.setContentDispositionFormData("filename", "one_to_oneMailSending.csv");
 
 
 		return new ResponseEntity<>(bytes, header, HttpStatus.OK);
@@ -3788,7 +3900,7 @@ public class WorkspaceController {
 		HttpHeaders header = new HttpHeaders();
 
 		header.add("Content-Type", "text/csv; charset=UTF-8");
-		header.setContentDispositionFormData("filename", "client.csv");
+		header.setContentDispositionFormData("filename", "clientInformation.csv");
 
 		//sample.csv
 		return new ResponseEntity<>(bytes, header, HttpStatus.OK);

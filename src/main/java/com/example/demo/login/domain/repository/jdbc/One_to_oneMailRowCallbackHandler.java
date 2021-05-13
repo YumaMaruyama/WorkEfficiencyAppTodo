@@ -19,9 +19,9 @@ public class One_to_oneMailRowCallbackHandler implements RowCallbackHandler {
 			BufferedWriter bw = new BufferedWriter(fw);
 
 			do {
-				String str = rs.getString("user_id") + ","
-						+ rs.getString("mail") + ","
-						+ rs.getDate("registration_date");
+				String str = "『送信者』 " + rs.getString("user_name") + ","
+						+ "『メール内容』 " + rs.getString("mail") + ","
+						+ "『受信日』 " + rs.getDate("registration_date");
 
 
 				bw.write(str);

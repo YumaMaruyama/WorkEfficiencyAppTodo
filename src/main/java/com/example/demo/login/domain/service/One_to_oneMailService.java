@@ -87,8 +87,12 @@ public class One_to_oneMailService {
 	public List<One_to_oneMailDTO> searchSending(String user_name,String mail,Date registration_dateFrom,Date registration_dateTo,String getName) {
 		return dao.searchSending(user_name,mail,registration_dateFrom,registration_dateTo,getName);
 	}
-	public void one_to_oneMailCsvOut() {
-		dao.one_to_oneMailCsvOut();
+	public void one_to_oneMailCsvOut(String getName) {
+		dao.one_to_oneMailCsvOut(getName);
+	}
+
+	public void one_to_oneMailSendingCsvOut(String getName) {
+		dao.one_to_oneMailSendingCsvOut(getName);
 	}
 
 	public byte[] file(String fileName) throws IOException {
@@ -104,6 +108,8 @@ public class One_to_oneMailService {
 
 		return bytes;
 	}
+
+
 
 
 }

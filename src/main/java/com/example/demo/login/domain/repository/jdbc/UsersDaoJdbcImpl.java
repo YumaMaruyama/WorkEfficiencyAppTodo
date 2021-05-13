@@ -112,6 +112,8 @@ public class UsersDaoJdbcImpl implements UsersDao {
 		 		sql.append(" and maleFemale like ?");
 		 		list.add(maleFemaleSearch);
 		 	}
+
+		 	sql.append(" ORDER BY hireDate asc");
 		 	System.out.println("sql" + sql);
 			System.out.println("list" + list);
 			Object[] addList = list.toArray(new Object[list.size()]);
@@ -301,7 +303,7 @@ public class UsersDaoJdbcImpl implements UsersDao {
 
 		//複数件のselect
 		//Usersテーブルのデータを全件取得
-		List<Map<String,Object>> getList = jdbc.queryForList("SELECT * FROM Users where role != ?",admin);
+		List<Map<String,Object>> getList = jdbc.queryForList("SELECT * FROM Users where role != ? ORDER BY hireDate ASC",admin);
 		//複数件のselectをする場合はqueryForListメソッドを使う　戻り値の方にはList<Map<String,Object>>を指定　
 		//Listが行　Mapが列　を表している　Mapのgetメソッドを使って、テーブルのカラム名を指定できる
 
@@ -417,16 +419,16 @@ public class UsersDaoJdbcImpl implements UsersDao {
 	//Usersテーブルの全データをCSVに出力する×←　正解↓
 	//SQL取得結果をサーバーにCSVで保存する
 		@Override
-	public void usersCsvOut() throws DataAccessException {
+	public void usersCsvOut(String user_id) throws DataAccessException {
 
 			//Usersテーブルのデータを全件取得するSQL文
-			String sql = "select * from Users";
+			String sql = "select * from Users where user_id != ?";
 
 			//ResultSetExtractorの生成
 			UsersRowCallbackHandler handler = new UsersRowCallbackHandler();
 
 			//SQL文出力＆CSV出力
-			jdbc.query(sql, handler);
+			jdbc.query(sql, handler,user_id);
 	}
 
 

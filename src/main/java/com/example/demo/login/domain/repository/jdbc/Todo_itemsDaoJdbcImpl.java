@@ -103,7 +103,7 @@ public class Todo_itemsDaoJdbcImpl implements Todo_itemsDao {
 
 		//複数行のselect
 		//Todo_itemsテーブルのデータを全件取得
-		List<Map<String, Object>> getList = jdbc.queryForList("select * from Todo_items");
+		List<Map<String, Object>> getList = jdbc.queryForList("select * from Todo_items ORDER BY expire_date ASC");
 		//複数件のselectをする場合はqueryForListメソッドを使う　戻り値の方にはList<Map<String,Object>>を指定　
 		//Listが行　Mapが列　を表している　Mapのgetメソッドを使って、テーブルのカラム名を指定できる
 
@@ -292,6 +292,8 @@ public class Todo_itemsDaoJdbcImpl implements Todo_itemsDao {
 			sql.append(" and todo_items.finished_date is null");
 		}
 
+		sql.append(" ORDER BY expire_date ASC");
+
 		System.out.println("sql" + sql);
 		System.out.println("list" + list);
 		//queryForListに入れるには、配列にしないとだめで、取ってきたリストをtoArrayを使用し配列に変えている
@@ -319,6 +321,7 @@ public class Todo_itemsDaoJdbcImpl implements Todo_itemsDao {
 			Todo_itemsDTO todo_itemsdto = new Todo_itemsDTO();
 
 			//Todo_itemsDTOインスタンスに取得したデータをセット
+			todo_itemsdto.setId((int)map.get("id"));
 			todo_itemsdto.setItem_name((String) map.get("item_name"));
 			todo_itemsdto.setUser_name((String)map.get("user_name"));
 			todo_itemsdto.setRegistration_date((Date)map.get("registration_date"));

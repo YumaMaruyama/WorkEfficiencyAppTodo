@@ -34,6 +34,9 @@
 							style="background-color: #b0e0e659;">送信メール一覧</h1></td>
 					<td class="col-sm-5"><h3
 							th:text="'合計' + ${personusersnoticesendingCount} + '件'"></h3></td>
+					<!-- CSV出力用のリンク -->
+					<td class="col-sm-2 btnPadding"><a class="cp_btn4"
+						th:href="@{'/personUsersNoticeSending/csv'}">CSV出力</a></td>
 				</tr>
 			</table>
 		</div>

@@ -63,7 +63,7 @@ public class PersonMemoDaoJdbcImpl implements PersonMemoDao{
 
 		System.out.println("PersonMemoDaoJdbcImpl到達");
 
-		List<Map<String,Object>> getList = jdbc.queryForList("select * from personmemo where user_id = ?",getName);
+		List<Map<String,Object>> getList = jdbc.queryForList("select * from personmemo where user_id = ? ORDER BY registration_date ASC",getName);
 
 		System.out.println("getList" + getList);
 		List<PersonMemoDTO> personMemoList = new ArrayList<>();
@@ -163,6 +163,8 @@ public class PersonMemoDaoJdbcImpl implements PersonMemoDao{
 
 		}
 
+		sql.append(" ORDER BY registration_date ASC");
+
 		System.out.println("sql" + sql);
 		System.out.println("list" + list);
 		Object[] addList = list.toArray(new Object[list.size()]);
@@ -178,6 +180,7 @@ public class PersonMemoDaoJdbcImpl implements PersonMemoDao{
 		for(Map<String,Object>map : rowNumber) {
 			PersonMemoDTO personmemodto = new PersonMemoDTO();
 
+			personmemodto.setId((int)map.get("id"));
 			personmemodto.setMemo((String)map.get("memo"));
 			personmemodto.setRegistration_date((Date)map.get("registration_date"));
 			personmemodto.setFinished_date((Date)map.get("finished_date"));
@@ -200,13 +203,13 @@ public class PersonMemoDaoJdbcImpl implements PersonMemoDao{
 		return rowNumber;
 	}
 
-	public void personMemoCsvOut() throws DataAccessException {
+	public void personMemoCsvOut(String getName) throws DataAccessException {
 
-		String sql = "select * from personmemo";
+		String sql = "select * from personmemo where user_id = ?";
 
 		PersonMemoRowCallbackHandler handler = new PersonMemoRowCallbackHandler();
 
-		jdbc.query(sql, handler);
+		jdbc.query(sql, handler,getName);
 
 	}
 //	@Override

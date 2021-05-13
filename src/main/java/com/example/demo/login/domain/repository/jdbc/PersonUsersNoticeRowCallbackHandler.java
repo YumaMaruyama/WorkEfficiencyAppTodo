@@ -19,8 +19,8 @@ public class PersonUsersNoticeRowCallbackHandler implements RowCallbackHandler{
 			BufferedWriter bw = new BufferedWriter(fw);
 
 			do {
-				String str =  rs.getString("content") + ","
-							  + rs.getString("registration_date");
+				String str =   "『お知らせ内容』 " + rs.getString("content") + ","
+							 +  "『投稿日』 " + rs.getString("registration_date");
 
 
 				bw.write(str);

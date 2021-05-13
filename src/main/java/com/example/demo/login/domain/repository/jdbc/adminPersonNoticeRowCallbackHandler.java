@@ -14,7 +14,7 @@ public class adminPersonNoticeRowCallbackHandler implements RowCallbackHandler{
 	public void processRow(ResultSet rs) throws SQLException {
 
 		try {
-			File file = new File("adminPersonNotice.csv");
+			File file = new File("adminNotice.csv");
 			FileWriter fw = new FileWriter(file.getAbsoluteFile());
 			BufferedWriter bw = new BufferedWriter(fw);
 

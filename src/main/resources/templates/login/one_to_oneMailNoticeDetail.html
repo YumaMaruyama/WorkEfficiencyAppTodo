@@ -38,7 +38,7 @@
 			<table class="table table-borderd table-hover">
 
 			<input type="hidden" class="form-control" th:field="*{user_id}" value="${hiddenUser_id}">
-					<th class="active col-sm-1 text-center one_to_oneMailNoticeDetailTableThColor" style="padding:14px">連絡内容</th>
+					<th class="active col-sm-1 text-center one_to_oneMailNoticeDetailTableThColor" style="padding:14px">送信内容</th>
 					<td style="background-color: #ddfbca;">
 					<div class="form-group" th:classappend="${#fields.hasErrors('mail')}?' has-error'">
 						<input type="text" class="form-control" th:field="*{mail}" placeholder="320文字以下で入力してください。">

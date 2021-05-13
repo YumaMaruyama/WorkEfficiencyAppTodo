@@ -25,9 +25,9 @@ public class InquiryRowCallbackHandler implements RowCallbackHandler {
 			do {
 
 				//ResultSetから値を取得してStringにセット
-				String str = rs.getString("title") + ","
-						+ rs.getString("content") + ","
-						+ rs.getDate("registration_date");
+				String str = "『お問い合わせタイトル』 " + rs.getString("title") + ","
+						+ "『お問い合わせ内容』 " + rs.getString("content") + ","
+						+ "『お問い合わせ日』"  + rs.getDate("registration_date");
 
 
 				//ファイルに書き込み＆改行

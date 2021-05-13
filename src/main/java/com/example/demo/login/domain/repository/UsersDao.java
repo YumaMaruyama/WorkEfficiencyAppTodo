@@ -48,6 +48,6 @@ public interface UsersDao {
 	public List<UsersDTO> searchOne_to_oneMailNotice(String user_id,String user_name,String admin,String getName);
 
 	//SQL取得結果をサーバーにCSVで保存する
-	public void usersCsvOut() throws DataAccessException;
+	public void usersCsvOut(String user_id) throws DataAccessException;
 
 }

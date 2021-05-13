@@ -20,19 +20,25 @@
 
 		<!-- コンテンツ部分 -->
 	<div th:fragment="loginLayout_contents">
-		<div class="col-sm-12">
-			<div class="page-header">
+		<div class="page-header col-sm-7" >
 			<table>
-			<tr>
-				<td style="background-color: #9ec0ff59;"><h1 class="col-sm-12" style="background-color:#fff1e2 !important; font-size: 30px !important; color:black !important; font-family:serif !important; margin-top: 24px;">お問い合わせ</h1></td>
-			</tr>
+				<tr >
+				<br>
+					<td class="col-sm-11" style="font-size: 30px;
+    background-color: #cfdae8;
+    font-family: serif;
+    padding: 10px 0px 5px 11px;">お問い合わせ</td>
+				</tr>
 			</table>
-			</div>
+		</div>
+
+			<br><br>
 			<form method="post" th:action="@{/inquiryLogin}" th:object="${inquiryForm}">
 				<table class="table table-borderd table-hover">
 					<!-- title -->
-					<br>
+					<br><br><br>
 					<tr>
+
 						<th class="active col-sm-3 text-center" style="background-color: #b5c7ce !important;padding:15px 0px;">タイトル</th>
 						<td style="background-color: aliceblue;">
 							<div class="form-group"
@@ -75,11 +81,23 @@
 					</tr>
 
 				</table>
-				<button class="btn btn-primary btn-lg center-block" type="submit">お問い合わせ内容送信</button>
+				<button class="btn btn-primary btn-lg center-block inquiryButton" type="submit">お問い合わせ内容送信</button>
 				<!-- お問い合わせ完了メッセージ -->
-				<label class="text-info" th:text="${result}">問い合わせ結果表示</label>
+				<label class="text-info" th:text="${result}" style="font-size: 21px;
+    padding: 0px 0px 0px 43px;">問い合わせ結果表示</label>
 			</form>
-		</div>
-		</div>
+
+
+		<script>
+			$('.inquiryButton').click(function() {
+				if (confirm('本当に送信しますか？')) {
+					/* キャンセルの時の処理 */
+					return true;
+				}
+				return false;
+			});
+		</script>
+
+</div>
 </body>
 </html>

@@ -19,10 +19,10 @@ public class Todo_itemsRowCallbackHandler implements RowCallbackHandler{
 			BufferedWriter bw = new BufferedWriter(fw);
 
 			do {
-				String str = rs.getString("item_name") + ","
-						+ rs.getString("user_name") + ","
-						+ rs.getDate("registration_date") + ","
-						+ rs.getDate("expire_date");
+				String str =  "『タイトル』 " +  rs.getString("item_name") + ","
+						+ "『担当者』 " + rs.getString("user_name") + ","
+						+ "『登録日』 "+ rs.getDate("registration_date") + ","
+						+ "『期限日』 "+ rs.getDate("expire_date");
 
 				bw.write(str);
 				bw.newLine();

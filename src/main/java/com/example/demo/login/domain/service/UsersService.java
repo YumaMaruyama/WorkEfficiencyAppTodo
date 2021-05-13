@@ -154,9 +154,9 @@ public class UsersService {
 	//のCSV出力メソッドを呼び出している
 	//ファイルを呼び出すメソッドについては引数で指定されたファイル名をサーバーから取り出して
 	//ファイルの中身をbyte型の配列にしてreturnしている
-	public void usersCsvOut() throws DataAccessException {
+	public void usersCsvOut(String user_id) throws DataAccessException {
 		//CSV出力
-		dao.usersCsvOut();
+		dao.usersCsvOut(user_id);
 	}
 
 	//サーバーに保存されているファイルを取得して、byte配列に変換する

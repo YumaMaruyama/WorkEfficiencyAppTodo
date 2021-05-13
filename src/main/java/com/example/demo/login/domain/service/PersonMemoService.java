@@ -90,8 +90,8 @@ public class PersonMemoService {
 		return dao.selectOneCompleted(id);
 	}
 
-	public void personMemoCsvOut() {
-		dao.personMemoCsvOut();
+	public void personMemoCsvOut(String getName) {
+		dao.personMemoCsvOut(getName);
 	}
 
 	public byte[] file(String fileName) throws IOException {

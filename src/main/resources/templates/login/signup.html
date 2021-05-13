@@ -21,12 +21,17 @@
 	<!-- th:fragment -->
 	<div th:fragment="loginLayout_contents">
 
-	<div class="text-center col-sm-3 page-header text-white" style="background-color: #ffe5bc59;">
-		<!--  <div class="breadcrumb"><!-- ぱんクズ -->
-		<!--  <div class="breadcrumb"><!-- プログレスバーアニメーション -->
-
-		<h1 style="background-color:#fff1e2 !important; font-size: 30px !important; color:black !important; font-family:serif !important; margin-top: 24px;" >ユーザー登録画面</h1>
-	</div>
+	<div class="page-header col-sm-7" >
+			<table>
+				<tr >
+				<br>
+					<td class="col-sm-11" style="font-size: 30px;
+    background-color: #ffebd5;
+    font-family: serif;
+    padding: 10px 0px 5px 11px;">新規ユーザー登録</td>
+				</tr>
+			</table>
+		</div>
 
 
 	<form method="post" th:action="@{/signup}" th:object="${signupForm}">

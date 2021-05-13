@@ -201,7 +201,7 @@ public class InquiryDaoJdbcImpl implements InquiryDao {
 		for(Map<String,Object>map : rowNumber) {
 
 			InquiryDTO inquirydto = new InquiryDTO();
-
+			inquirydto.setId((int)map.get("id"));
 			inquirydto.setTitle((String)map.get("title"));
 			inquirydto.setContent((String)map.get("content"));
 			inquirydto.setRegistration_date((Date)map.get("registration_date"));

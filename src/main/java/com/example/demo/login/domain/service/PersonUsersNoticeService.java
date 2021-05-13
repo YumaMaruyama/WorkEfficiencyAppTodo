@@ -85,6 +85,17 @@ public class PersonUsersNoticeService {
 			dao.personUsersNoticeCsvOut();
 		}
 
+		public void personUsersNoticeSendingCsvOut(String getName) {
+			System.out.println("personUsersNoticeSendingCsvOut到達");
+			//CSV出力
+			dao.personUsersNoticeSendingCsvOut(getName);
+		}
+//		public void adminPersonNoticeCsvOut() {
+//			System.out.println("adminPersonNoticeCsvOut到達");
+//			//CSV出力
+//			dao.adminPersonNoticeCsvOut();
+//		}
+
 		//サーバーに保存されているファイルを取得して、byte配列に変換する
 		public byte[] getFile(String fileName) throws IOException {
 

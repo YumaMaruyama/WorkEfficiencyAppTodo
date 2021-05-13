@@ -32,4 +32,7 @@ public interface PersonUsersNoticeDao {
 	public List<PersonUsersNoticeDTO> searchSending(String user_id,String content,Date registration_dateFrom,Date registration_dateTo) throws DataAccessException;
 
 	public void personUsersNoticeCsvOut() throws DataAccessException;
+
+	public void personUsersNoticeSendingCsvOut(String getName) throws DataAccessException;
+	//public void adminPersonNoticeCsvOut() throws DataAccessException;
 }

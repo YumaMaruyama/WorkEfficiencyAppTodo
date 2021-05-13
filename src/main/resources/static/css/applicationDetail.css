@@ -1,11 +1,11 @@
 @charset "UTF-8";
 
 .applicatonDetailTh1a {
-	width: 208px;
+	width: 200px;
 }
 
 .applicatonDetailTd1a {
-	width: 930px;
+	width: 880px;
 }
 
 .applicationTableThColor {
@@ -13,11 +13,11 @@
 }
 
 .applicationTh1 {
-	width:205px;
+	width:200px;
 }
 
 .applicationTh2 {
-	width:911px;
+	width:880px;
 }
 
 .applicationTable tbody {

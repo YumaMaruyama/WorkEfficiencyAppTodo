@@ -46,7 +46,7 @@
 				<td th:text="${getMail}"></td>
 			</tr>
 			<tr th:each="one_to_onemaildto:one_to_oneMailList">
-				<th class="danger text-center">受信日時</th>
+				<th class="danger text-center">受信日</th>
 				<td
 					th:text="${#dates.format(getRegistration_date, 'yyyy/MM/dd HH:mm:ss')}"></td>
 			</tr>

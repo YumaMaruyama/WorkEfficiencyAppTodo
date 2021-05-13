@@ -24,8 +24,8 @@ public class AdminRowCallbackHandler implements RowCallbackHandler {
 
 			do {
 				//ResultSetから値を取得してStringにセット
-				String str = rs.getString("contents") + ","
-						+ rs.getDate("registration_date");
+				String str = "『お知らせ内容』" + rs.getString("contents") + ","
+						+ "『投稿日』" + rs.getDate("registration_date");
 				//ファイルに書き込み＆改行
 				bw.write(str);
 				bw.newLine();

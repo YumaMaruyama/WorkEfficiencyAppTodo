@@ -19,8 +19,8 @@ public class PersonMemoRowCallbackHandler implements RowCallbackHandler {
 			BufferedWriter bw = new BufferedWriter(fw);
 
 			do {
-				String str = rs.getString("memo") + ","
-						+ rs.getDate("registration_date");
+				String str = "『メモ』 " +  rs.getString("memo") + ","
+						+ "『作成日』 " + rs.getDate("registration_date");
 
 
 				bw.write(str);

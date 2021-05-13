@@ -147,7 +147,7 @@ public class TweetDaoJdbcImpl implements TweetDao {
 		for(Map<String,Object>map : rowNumber) {
 
 			TweetDTO tweetdto = new TweetDTO();
-
+			tweetdto.setId((int)map.get("id"));
 			tweetdto.setUser_id((String)map.get("user_name"));
 			tweetdto.setContents((String)map.get("contents"));
 			tweetdto.setRegistration_date((Date)map.get("registration_date"));
@@ -163,7 +163,7 @@ public class TweetDaoJdbcImpl implements TweetDao {
 
 	public void tweetCsvOut() {
 		//全部データベースからselectしてくる
-		String sql = "select * from tweet";
+		String sql = "select tweet.id,tweet.user_id,tweet.contents,tweet.registration_date,users.user_name from tweet JOIN users ON tweet.user_id = users.user_id order by registration_date desc";
 		//TweetRowCallbackHandlerインスタンス生成
 		TweetRowCallbackHandler handler = new TweetRowCallbackHandler();
 		//RowMapperインターフェースを実装した結果をListで受け取るにはquery

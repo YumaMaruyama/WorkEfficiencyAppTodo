@@ -29,16 +29,16 @@
 		<div class="page-header">
 			<table>
 				<tr>
-					<td class="col-sm-7"><h1 class="text-center" style="background-color: #b0e0e659;">送信メール確認画面</h1></td>
+					<td class="col-sm-5"><h1 class="text-center" style="background-color: #b0e0e659;">送信メール確認画面</h1></td>
 					<!-- admin一覧の件数 -->
-					<td class="col-sm-5"><h3
+					<td class="col-sm-7"><h3
 							th:text="'合計' + ${one_to_oneMailHomeCount} + '件'"></h3></td>
 
-			<!--
-					<!-- CSV出力用のリンク
-					<td class="col-sm-2"><a class="cp_btn4"
-						th:href="@{'/one_to_oneMail/csv'}">CSV出力</a></td>
-					-->
+
+					<!-- CSV出力用のリンク-->
+					<td class="col-sm-2 btnPadding"><a class="cp_btn4"
+						th:href="@{'/one_to_oneMailSending/csv'}">CSV出力</a></td>
+
 				</tr>
 			</table>
 		</div>
@@ -49,9 +49,9 @@
 				style="background-color: #e0ffff;width:1120px;">
 				<tr>
 					<th class="info text-center">送信先</th>
-					<th class="info text-center">内容</th>
-					<th class="info text-center">送信日時～</th>
-					<th class="info text-center">～送信日時</th>
+					<th class="info text-center">メール内容</th>
+					<th class="info text-center">送信日～</th>
+					<th class="info text-center">～送信日</th>
 					<th class="info text-center">検索ボタン</th>
 					<th class="info text-center">フォームリセット</th>
 				</tr>
@@ -85,7 +85,7 @@
 			<thead>
 				<tr>
 					<th class="warning text-center sticky-top one_to_oneMailSendingTh1 one_to_oneMailSendingTableThColor">送信先</th>
-					<th class="warning text-center sticky-top one_to_oneMailSendingTh2 one_to_oneMailSendingTableThColor">内容</th>
+					<th class="warning text-center sticky-top one_to_oneMailSendingTh2 one_to_oneMailSendingTableThColor">メール内容</th>
 					<th class="warning text-center sticky-top one_to_oneMailSendingTh3 one_to_oneMailSendingTableThColor">送信日</th>
 					<th class="warning text-center sticky-top one_to_oneMailSendingTh4 one_to_oneMailSendingTableThColor">管理</th>
 				</tr>

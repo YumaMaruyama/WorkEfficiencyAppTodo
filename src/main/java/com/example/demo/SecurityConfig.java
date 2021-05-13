@@ -72,6 +72,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		//上記使用すると直リンク禁止先の条件を追加してくれる　メソッドチェーンとは.()で
 		//メソッドを連続で呼び出すこと
 		.antMatchers("/wevjars/**").permitAll()//webjarsへアクセス可能
+		.antMatchers("/js/**").permitAll()
 		.antMatchers("/css/**").permitAll()//cssへアクセス可能
 		.antMatchers("/login").permitAll()//ログインページは直リンクOK
 		.antMatchers("/signup").permitAll()//ユーザー登録画面は直リンクOK

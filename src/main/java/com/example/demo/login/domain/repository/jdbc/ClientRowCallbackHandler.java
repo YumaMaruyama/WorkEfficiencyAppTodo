@@ -24,12 +24,12 @@ public class ClientRowCallbackHandler implements RowCallbackHandler {
 
 			do {
 				//ResultSetから値を取得してStringにセット
-				String str = rs.getString("user_name") + ","
-						+ rs.getString("company") + ","
-						+ rs.getString("address") + ","
-						+ rs.getString("mailaddress") + ","
-						+ rs.getString("telephone") + ","
-						+ rs.getDate("registration_date");
+				String str =  "『会社名』 " +  rs.getString("company") + ","
+						+  "『住所』 "  + rs.getString("address") + ","
+						+  "『担当者』 " + rs.getString("user_name") + ","
+						+  "『担当者メールアドレス』 " + rs.getString("mailaddress") + ","
+						+  "『担当者電話番号』 " + rs.getString("telephone") + ","
+						+  "『登録日』 " + rs.getDate("registration_date");
 				//ファイルに書き込み＆改行
 				bw.write(str);
 				bw.newLine();
