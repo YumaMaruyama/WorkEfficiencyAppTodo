@@ -38,12 +38,12 @@
 				<td  th:text="${getUser_id}"></td>
 			</tr>
 			<tr>
-				<th class="danger col-sm-2 text-center sticky-top" align="center">内容</th>
+				<th class="danger col-sm-2 text-center sticky-top" align="center">メール内容</th>
 
 				<td  th:text="${getContent}"></td>
 			</tr>
 			<tr>
-				<th class="danger col-sm-2 text-center sticky-top" align="center">送信日時</th>
+				<th class="danger col-sm-2 text-center sticky-top" align="center">送信日</th>
 
 				<td  th:text="${#dates.format(getRegistration_date, 'yyyy/MM/dd HH:mm:ss')}"></td>
 			</tr>

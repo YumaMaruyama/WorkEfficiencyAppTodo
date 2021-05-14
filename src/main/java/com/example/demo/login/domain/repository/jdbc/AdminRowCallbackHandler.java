@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 
 import org.springframework.jdbc.core.RowCallbackHandler;
 
@@ -23,9 +24,10 @@ public class AdminRowCallbackHandler implements RowCallbackHandler {
 			BufferedWriter bw = new BufferedWriter(fw);
 
 			do {
+				SimpleDateFormat sdf = new SimpleDateFormat("yyyy年MM月dd日 ah時mm分");
 				//ResultSetから値を取得してStringにセット
 				String str = "『お知らせ内容』" + rs.getString("contents") + ","
-						+ "『投稿日』" + rs.getDate("registration_date");
+						+ "『投稿日』" + sdf.format(rs.getTimestamp("registration_date"));
 				//ファイルに書き込み＆改行
 				bw.write(str);
 				bw.newLine();

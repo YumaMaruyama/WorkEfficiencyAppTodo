@@ -25,7 +25,6 @@ public class One_to_oneMailSendingRowCallbackHandler implements RowCallbackHandl
 			do {
 				String str = "『送信先』 " + rs.getString("user_name") + ","
 						+ "『メール内容』 " + rs.getString("mail") + ","
-						//
 						+ "『送信日』 " + sdf.format(rs.getTimestamp("registration_date"));
 
 

@@ -20,10 +20,11 @@ public class One_to_oneMailRowCallbackHandler implements RowCallbackHandler {
 			BufferedWriter bw = new BufferedWriter(fw);
 
 			do {
+				//registration_dateを秒数まで表示するフォーマットを生成(3つ目のgetTimestampが正常に変換可能)
 				SimpleDateFormat sdf = new SimpleDateFormat("yyyy年MM月dd日 hh時mm分ss秒");
 				String str = "『送信者』 " + rs.getString("user_name") + ","
 						+ "『メール内容』 " + rs.getString("mail") + ","
-						+ "『受信日』 " + sdf.format(rs.getDate("registration_date"));
+						+ "『受信日』 " + sdf.format(rs.getTimestamp("registration_date"));
 
 
 				bw.write(str);

@@ -285,7 +285,7 @@ public class One_to_oneMailDaoImpl implements One_to_oneMailDao {
 
 	public void one_to_oneMailSendingCsvOut(String getName) throws DataAccessException {
 
-		String sql = "select one_to_oneMail.id,one_to_oneMail.mail,one_to_oneMail.user_id,one_to_oneMail.registration_date,users.user_name from one_to_oneMail JOIN users ON one_to_oneMail.user_id = users.user_id where one_to_oneMail.user_id != ? and sender = ? order by registration_date asc";
+		String sql = "select one_to_oneMail.id,one_to_oneMail.mail,one_to_oneMail.user_id,one_to_oneMail.registration_date,users.user_name from one_to_oneMail JOIN users ON one_to_oneMail.user_id = users.user_id where one_to_oneMail.user_id != ? and sender = ? and one_to_oneMail.is_deleted = 0 order by registration_date asc";
 
 		One_to_oneMailSendingRowCallbackHandler handler = new One_to_oneMailSendingRowCallbackHandler();
 

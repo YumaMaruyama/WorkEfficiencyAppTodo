@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 
 import org.springframework.jdbc.core.RowCallbackHandler;
 
@@ -19,8 +20,9 @@ public class adminPersonNoticeRowCallbackHandler implements RowCallbackHandler{
 			BufferedWriter bw = new BufferedWriter(fw);
 
 			do {
+				SimpleDateFormat sdf = new SimpleDateFormat("yyyy年MM月dd日 hh時mm分");
 				String str =  "『お知らせ内容』 " + rs.getString("content") + ","
-							  + "『受信日』 "  + rs.getString("registration_date");
+							  + "『受信日』 "  + sdf.format(rs.getTimestamp("registration_date"));
 
 
 				bw.write(str);

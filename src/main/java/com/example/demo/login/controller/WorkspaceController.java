@@ -1526,8 +1526,8 @@ public class WorkspaceController {
 		model.addAttribute("usersList", usersList);
 
 		//データの件数を取得
-		int count = usersService.count();
-		model.addAttribute("usersListCount", count);
+		//int count = usersService.count();
+		model.addAttribute("usersListCount", usersList.size());
 
 		int count2 = todo_itemsService.count();
 		model.addAttribute("workspaceCount", count2);
