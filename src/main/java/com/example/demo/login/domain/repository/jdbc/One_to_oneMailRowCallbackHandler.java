@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 
 import org.springframework.jdbc.core.RowCallbackHandler;
 
@@ -19,9 +20,10 @@ public class One_to_oneMailRowCallbackHandler implements RowCallbackHandler {
 			BufferedWriter bw = new BufferedWriter(fw);
 
 			do {
+				SimpleDateFormat sdf = new SimpleDateFormat("yyyy年MM月dd日 hh時mm分ss秒");
 				String str = "『送信者』 " + rs.getString("user_name") + ","
 						+ "『メール内容』 " + rs.getString("mail") + ","
-						+ "『受信日』 " + rs.getDate("registration_date");
+						+ "『受信日』 " + sdf.format(rs.getDate("registration_date"));
 
 
 				bw.write(str);

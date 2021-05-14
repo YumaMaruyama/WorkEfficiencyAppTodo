@@ -888,7 +888,7 @@ public class WorkspaceController {
 		System.out.println("one_to_oneMailSendingDetailDelete到達");
 		int rowNumber = one_to_oneMailService.deleteOneSending(form.getId());
 		System.out.println("rowNumber  " + rowNumber);
-		
+
 		return getOne_to_oneMailSending(form2, form, model);
 	}
 
@@ -1669,7 +1669,6 @@ public class WorkspaceController {
 		//ユーザーID確認（デバック）
 		System.out.println("user_id = " + user_id);
 
-		//コンテンツ部分にユーザー詳細を表示するための文字列を登録
 		model.addAttribute("contents", "login/usersListDetail::usersdto_contents");
 
 		//性別ステータス用ラジオボタンの初期化
@@ -1709,7 +1708,6 @@ public class WorkspaceController {
 			model.addAttribute("inquiryListCount", countAdmin);
 
 			Authentication auth2 = SecurityContextHolder.getContext().getAuthentication();
-			//System.out.println("auth" + auth.getName());
 			System.out.println("auth" + auth2);
 			System.out.println("auth.getName" + auth2.getName());
 
@@ -1746,7 +1744,6 @@ public class WorkspaceController {
 
 		//フォームクラスをUsersDTOクラスに変更
 		usersdto.setUser_id(form1.getUser_id());
-		//usersdto.setPassword(form.getPassword());
 		usersdto.setUser_name(form1.getUserName());
 		usersdto.setBirthday(form1.getBirthday());
 		usersdto.setHireDate(form1.getHireDate());
@@ -1757,16 +1754,13 @@ public class WorkspaceController {
 			boolean result = usersService.updateOne(usersdto);
 
 			if (result == true) {
-				//model.addAttribute("result", "更新成功");
 				System.out.println("更新成功");
 			} else {
-				//model.addAttribute("result", "更新失敗");
 				System.out.println("更新失敗");
 			}
 
 		} catch (DataAccessException e) {
 			System.out.println("更新失敗（catchに入った）");
-			//model.addAttribute("result", "更新失敗（トランザクションテスト)");
 		}
 
 		UsersSearchForm usersSearchForm = new UsersSearchForm();
@@ -1853,7 +1847,6 @@ public class WorkspaceController {
 		model.addAttribute("inquiryListCount", countAdmin);
 
 		Authentication auth2 = SecurityContextHolder.getContext().getAuthentication();
-		//System.out.println("auth" + auth.getName());
 		System.out.println("auth" + auth2);
 		System.out.println("auth.getName" + auth2.getName());
 
@@ -1869,13 +1862,13 @@ public class WorkspaceController {
 
 	@PostMapping(value = "/workaddtoDetail", params = "update")
 	public String postWorkaddtoDetailUpdate(@ModelAttribute @Validated(GroupOrder.class) WorkaddtoDetailForm form,
-			BindingResult bindingResult, Model model) {//alidated(GroupOrder.class) BindingResult bindingResult
+			BindingResult bindingResult, Model model) {
 
-		//データバインドに失敗（入力チェックに引っかかる）の場合はworkaddtoに戻る
+		//データバインドに失敗（入力チェックに引っかかる）の場合はworkaddtoDetailに戻る
 		if (bindingResult.hasErrors()) {
 			System.out.println("データバインドのif文");
 			int getId = Integer.valueOf(form.getId());
-			//GETリクエスト用のメソッドを呼び出して、workaddtoに戻る
+			//GETリクエスト用のメソッドを呼び出して、workaddtoDetailに戻る
 			return getWorkaddtoDetail(form, model, getId);
 		}
 
@@ -1908,7 +1901,6 @@ public class WorkspaceController {
 	}
 
 	//動的URL
-	//
 	//Work登録画面の詳細画面GET用メソッド
 	@GetMapping("/todo_itemsDetail/{id}")
 	public String getTodo_itemsDetail(@ModelAttribute WorkaddtoForm form, Model model, @PathVariable("id") String id) {
@@ -1951,7 +1943,6 @@ public class WorkspaceController {
 		model.addAttribute("inquiryListCount", countAdmin);
 
 		Authentication auth2 = SecurityContextHolder.getContext().getAuthentication();
-		//System.out.println("auth" + auth.getName());
 		System.out.println("auth" + auth2);
 		System.out.println("auth.getName" + auth2.getName());
 
@@ -1985,7 +1976,6 @@ public class WorkspaceController {
 		todo_itemsdto.setItem_name(form.getItem_name());
 		todo_itemsdto.setRegistration_date(form.getRegistration_date());
 		todo_itemsdto.setExpire_date(form.getExpire_date());
-		//todo_itemsdto.setFinished_date(form.getFinished_date());
 
 		System.out.println("todo_itemsdtoxxx" + todo_itemsdto);
 
@@ -3652,39 +3642,12 @@ public class WorkspaceController {
 		return new ResponseEntity<>(bytes, header, HttpStatus.OK);
 	}
 
-//	@GetMapping("/adminPersonNotice/csv")
-//	public ResponseEntity<byte[]> getPersonUsersNoticeCsv(Model model) {
-//
-//		System.out.println("adminPersonNoticeCsv到達");
-//		personUsersNoticeService.adminPersonNoticeCsvOut();
-//
-//		byte[] bytes = null;
-//
-//		try {
-//
-//			bytes = personUsersNoticeService.getFile("personUsersNotice.csv");
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
-//		//HTTPヘッダーの設定
-//		HttpHeaders header = new HttpHeaders();
-//		header.add("Content-Type", "text/csv; charset=UTF-8");
-//		header.setContentDispositionFormData("filename", "personUsersNotice.csv");
-//
-//
-//		return new ResponseEntity<>(bytes, header, HttpStatus.OK);
-//	}
-
-
-
 	@GetMapping("/one_to_oneMail/csv")
 	public ResponseEntity<byte[]> getOne_to_oneMailCsv(@ModelAttribute One_to_oneMailForm form,Model model) {
 
 		Authentication auth2 = SecurityContextHolder.getContext().getAuthentication();
-		//System.out.println("auth" + auth.getName());
 		System.out.println("auth" + auth2);
 		System.out.println("auth.getName" + auth2.getName());
-
 		String getName = auth2.getName();
 
 		System.out.println("one_to_oneMailCsv到達");

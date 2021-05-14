@@ -45,9 +45,9 @@
 
 		<form method="post" th:action="@{/one_to_oneMailSending}"
 			th:object="${one_to_oneMailSendingForm}">
-			<table class="table table-hover table-bordered bg-success"
+			<table class="table table-hover table-bordered bg-success usersTable"
 				style="background-color: #e0ffff;width:1120px;">
-				<tr>
+				<tr class="workspaceTrThSearch">
 					<th class="info text-center">送信先</th>
 					<th class="info text-center">メール内容</th>
 					<th class="info text-center">送信日～</th>
@@ -70,9 +70,9 @@
 					</td>
 					<td><input id="dateField2" type="date" class="form-control"
 						name="registration_dateTo" th:field="*{registration_dateTo}"></td>
-					<td align="center"><button class="btn btn-primary"
+					<td align="center"><button class="btn btn-primary btnPadding2"
 							type="submit" name="search">キーワード検索</button></td>
-					<td align="center"><button class="btn btn-success reset"
+					<td align="center"><button class="btn btn-success reset btnPadding2"
 							id="resetButton" type="button">フォーム内初期化</button></td>
 				</tr>
 			</table>
@@ -82,6 +82,7 @@
 		<table
 			class="table table-condensed table-bordered table-hover table-striped sticky_table one_to_oneMailSending fontSize"
 			style="max-height: 425px;">
+			<br>
 			<thead>
 				<tr>
 					<th class="warning text-center sticky-top one_to_oneMailSendingTh1 one_to_oneMailSendingTableThColor">送信先</th>
