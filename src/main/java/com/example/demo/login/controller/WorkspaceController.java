@@ -1026,6 +1026,8 @@ public class WorkspaceController {
 	public String postTweetSearch(@ModelAttribute @Validated TweetSearchForm form1, BindingResult bindingResult,
 			Model model) {
 
+		model.addAttribute("contents", "login/tweet::workspaceLayout_contents");
+		
 		if (bindingResult.hasErrors()) {
 			TweetForm form = new TweetForm();
 			model.addAttribute("form", form);
@@ -1037,7 +1039,7 @@ public class WorkspaceController {
 		System.out.println(form1.getRegistration_dateA());
 		System.out.println(form1.getRegistration_dateZ());
 
-		model.addAttribute("contents", "login/tweet::workspaceLayout_contents");
+		
 
 		List<TweetDTO> tweetList = tweetService.search(form1.getUser_id(), form1.getContents(),
 				form1.getRegistration_dateA(), form1.getRegistration_dateZ());
