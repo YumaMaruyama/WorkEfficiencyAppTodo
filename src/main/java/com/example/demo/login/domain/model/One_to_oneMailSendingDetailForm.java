@@ -15,5 +15,4 @@ public class One_to_oneMailSendingDetailForm {
 
 	private String user_name;
 
-
 }

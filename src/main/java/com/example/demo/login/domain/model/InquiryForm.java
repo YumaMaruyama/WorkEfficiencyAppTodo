@@ -24,12 +24,7 @@ public class InquiryForm {
 	private String content;
 @DateTimeFormat(pattern = "yyyy-MM-dd")//ユーザーが入力したデータと同じformatにする。type="date"ではhh:mmなどは追加できない
 	private Date registration_date;
-//@DateTimeFormat(pattern = "yyyy-MM-dd")
-//private Date registration_dateA;//search用
-//@DateTimeFormat(pattern = "yyyy-MM-dd")
-//private Date registration_dateZ;//search用
-//@DateTimeFormat(pattern = "yyyy-MM-dd")
-//private Date registration_dateM;//search用
+
 @DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date finished_date;
 @Email
@@ -39,10 +34,5 @@ public class InquiryForm {
 	private String user_id;
 
 	private String user_idT;
-//@DateTimeFormat(pattern = "yyyy-MM-dd")
-//private Date finished_dateA;//search用
-//@DateTimeFormat(pattern = "yyyy-MM-dd")
-//private Date finished_dateZ;//search用
-//@DateTimeFormat(pattern = "yyyy-MM-dd")
-//private String finished_dateT;//search用
+
 }

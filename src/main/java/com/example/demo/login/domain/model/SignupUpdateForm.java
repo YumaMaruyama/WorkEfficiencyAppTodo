@@ -18,9 +18,8 @@ public class SignupUpdateForm {
 	@Email(groups = ValidGroup2.class)
 	private String user_id;
 
-
 	@NotBlank(groups = ValidGroup1.class)
-	@Length(max = 20,groups = ValidGroup2.class)
+	@Length(max = 20, groups = ValidGroup2.class)
 	private String userName;
 
 	//@NumberFormatは指定されたフォーマットの文字列を数値型に変換できる
@@ -33,7 +32,5 @@ public class SignupUpdateForm {
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date hireDate;
 
-
 	private boolean MaleFemale;
 }
-

@@ -9,7 +9,6 @@ import org.springframework.stereotype.Component;
 @Component //上記のアノテーションと同時にDIコンテナへBean定義するためこれもつける
 public class LogAspect {
 
-
 	//指定方法はexecution(<戻り値><パッケージ名>.<クラス名>.<メソッド名>(引数))"
 	//Aroundを使うとアノテーションをつけた中でAOP対象クラスのメソッドを直接実行するので、メソッド実行の前後で任意の処理をすることができる
 	//戻り値を直接実行しているためreturnを忘れないこと
@@ -27,7 +26,6 @@ public class LogAspect {
 		//クラス名：*Controller（こう書くと末尾にControllerがつくクラスが対象になる）
 		//メソッド名：*を指定　引数：..(ドット2つですべての引数が対象になる)
 
-
 		try {
 
 			Object result = jp.proceed();
@@ -41,6 +39,7 @@ public class LogAspect {
 			throw e;
 		}
 	}
+
 	//UsersDaoクラスのログ出力
 	@Around("execution(* *..*.*UsersDao*.*(..))")
 	public Object daoLog(ProceedingJoinPoint jp) throws Throwable {
@@ -55,7 +54,7 @@ public class LogAspect {
 
 			return result;
 
-		}catch (Exception e) {
+		} catch (Exception e) {
 			System.out.println("メソッド異常終了：" + jp.getSignature());
 			e.printStackTrace();
 			throw e;
@@ -64,8 +63,8 @@ public class LogAspect {
 
 }
 //AOPを実装するメソッドには、Before.After等のアノテーションをつける　
-	//Beforeはメソッドが実行される前にAOPの処理（Advisce）を実行する
-	//Afterはメソッドが実行された後にAOPの処理（Advisce）を実行する
+//Beforeはメソッドが実行される前にAOPの処理（Advisce）を実行する
+//Afterはメソッドが実行された後にAOPの処理（Advisce）を実行する
 //ログインのみ⇒@Before("execution(* com.example.demo.login.controller.LoginController.getLogin(..))")
 //ログインのみ⇒@After("execution(* com.example.demo.login.controller.LoginController.getLogin(..))")
 //@After("execution(* *..*.*Controller.*(..))")

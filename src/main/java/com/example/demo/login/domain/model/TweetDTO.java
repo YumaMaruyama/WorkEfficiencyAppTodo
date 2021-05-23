@@ -15,5 +15,5 @@ public class TweetDTO {
 
 	private String user_id;
 
-	private String user_id2;//ツイートを削除するとき自身のツイートしか削除できないようにするためのカラム
+	private String user_id2;
 }

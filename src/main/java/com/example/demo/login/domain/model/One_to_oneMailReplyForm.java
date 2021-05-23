@@ -17,7 +17,7 @@ public class One_to_oneMailReplyForm {
 
 	private String user_name;
 	@NotBlank
-	@Length(max=320)
+	@Length(max = 320)
 	private String mail;
 
 	private Date registration_date;

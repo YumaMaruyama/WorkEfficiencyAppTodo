@@ -17,6 +17,4 @@ public class PersonMemoDTO {
 
 	private String user_id;
 
-
-
 }

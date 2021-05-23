@@ -18,8 +18,7 @@ public class One_to_oneMailHomeSearchForm {
 	private String mail;
 
 	private String sender;
-//	@DateTimeFormat(pattern="yyyy-MM-dd")
-//	private Date registration_date;
+
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date registration_dateFrom;
 	@DateTimeFormat(pattern="yyyy-MM-dd")

@@ -1027,7 +1027,7 @@ public class WorkspaceController {
 			Model model) {
 
 		model.addAttribute("contents", "login/tweet::workspaceLayout_contents");
-		
+
 		if (bindingResult.hasErrors()) {
 			TweetForm form = new TweetForm();
 			model.addAttribute("form", form);
@@ -1038,8 +1038,6 @@ public class WorkspaceController {
 		System.out.println(form1.getContents());
 		System.out.println(form1.getRegistration_dateA());
 		System.out.println(form1.getRegistration_dateZ());
-
-		
 
 		List<TweetDTO> tweetList = tweetService.search(form1.getUser_id(), form1.getContents(),
 				form1.getRegistration_dateA(), form1.getRegistration_dateZ());
@@ -1688,7 +1686,6 @@ public class WorkspaceController {
 
 			//UsersDTOクラスをフォームクラスに変換
 			form1.setUser_id(usersdto.getUser_id());
-			//パスワードは表示しちゃダメ　form.setPassword(usersdto.getPassword());
 			form1.setUserName(usersdto.getUser_name());
 			form1.setBirthday(usersdto.getBirthday());
 			form1.setHireDate(usersdto.getHireDate());
@@ -1732,7 +1729,7 @@ public class WorkspaceController {
 			@ModelAttribute UsersSearchForm form, @ModelAttribute SignupForm form2, Model model) {
 
 		System.out.println("postUsersListDetailUpdate到達");
-		//Postに行くときにバリデーションが行われるので下記のif文でエラーが出るともう一度このページに飛ぶようにする
+		//Postに行くときにバリデーションが行われるので下記のif文でエラーが出るともう一度getUsersListDetailに飛ぶようにする
 		//Strign型のIDを使っているため、ここでもStringに型を変えて行う
 		if (bindingResult.hasErrors()) {
 			System.out.println("入力エラー");
@@ -1786,9 +1783,9 @@ public class WorkspaceController {
 		boolean result = usersService.deleteOne(form1.getUser_id());
 
 		if (result == true) {
-			model.addAttribute("result", "削除成功");
+			System.out.println("削除成功");
 		} else {
-			model.addAttribute("result", "削除失敗");
+			System.out.println("削除失敗");
 		}
 
 		UsersSearchForm usersSearchForm = new UsersSearchForm();
@@ -1799,7 +1796,6 @@ public class WorkspaceController {
 
 		model.addAttribute("signupForm", signupForm);
 
-		//ユーザー一覧画面を表示
 		return getUsersList(usersSearchForm, form1, signupForm, model);
 	}
 
@@ -1902,7 +1898,6 @@ public class WorkspaceController {
 		return getWorkspace(model, form1);
 	}
 
-	//動的URL
 	//Work登録画面の詳細画面GET用メソッド
 	@GetMapping("/todo_itemsDetail/{id}")
 	public String getTodo_itemsDetail(@ModelAttribute WorkaddtoForm form, Model model, @PathVariable("id") String id) {
@@ -1961,8 +1956,7 @@ public class WorkspaceController {
 	@PostMapping(value = "/todo_itemsDetail", params = "update")
 	public String postTodo_itemsUpdate(@ModelAttribute @Validated(GroupOrder.class) WorkaddtoForm form,
 			BindingResult bindingResult, Model model) {
-		//Postに行くときにバリデーションが行われるので下記のif文でエラーが出るともう一度このページに飛ぶようにする
-		//Strign型のIDを使っているため、ここでもStringに型を変えて行う
+
 		if (bindingResult.hasErrors()) {
 			String s = String.valueOf(form.getId());
 			return getTodo_itemsDetail(form, model, s);
@@ -1985,12 +1979,14 @@ public class WorkspaceController {
 		boolean result = todo_itemsService.updateOne(todo_itemsdto);
 
 		if (result == true) {
-			model.addAttribute("result", "更新成功");
+			System.out.println("更新成功");
+
 		} else {
-			model.addAttribute("result", "更新失敗");
+			System.out.println("更新失敗");
+
 		}
 
-		//formを使いまわさ内容になったのでgetWorkspaceの引数のformのインスタンスを作る
+		//formを使いまわす内容になったのでgetWorkspaceの引数のformのインスタンスを作る
 		WorkspaceSearchForm form1 = new WorkspaceSearchForm();
 		//インスタンスしたformをセット
 		model.addAttribute("workspaceSearchForm", form1);
@@ -2006,9 +2002,9 @@ public class WorkspaceController {
 		boolean result = todo_itemsService.deleteOne(form.getId());
 
 		if (result == true) {
-			model.addAttribute("result", "削除成功");
+			System.out.println("削除成功");
 		} else {
-			model.addAttribute("result", "削除失敗");
+			System.out.println("削除失敗");
 		}
 
 		WorkspaceSearchForm form1 = new WorkspaceSearchForm();
@@ -2035,26 +2031,23 @@ public class WorkspaceController {
 			//完了日がセットされていなかったらnullにする
 			System.out.println("if到達");
 
-			//データベースの完了切替更新メソッド ServiceのほうでdaoにアクセスしてSQL文を実行してから変わったレコード数でtrueかfalseかを決めている
-			//idと未完了にしたいのでnullを渡している
+			//idと、未完了にしたいのでnullを渡している
 			boolean isCompletedTodo_items = todo_itemsService.completedOne(form.getId(), null);
 			//処理が失敗したらelseに入って失敗メッセージが出る
 			if (isCompletedTodo_items == true) {
-				model.addAttribute("finished_date", "未完了に変更");
+				System.out.println("未完了に変更完了");
 			} else {
-				model.addAttribute("finished_date", "処理が失敗しました");
+				System.out.println("処理失敗");
 			}
 		} else {
 			System.out.println("else到着");
 
 			Date dateObj = new Date();
-			//idとdateObjを渡している
+			//idと、dateObjを渡している
 			boolean isCompletedTodo_items2 = todo_itemsService.completedOne(form.getId(), dateObj);
 			//処理が失敗したら失敗メッセージが出る
 			if (isCompletedTodo_items2 == true) {
-				model.addAttribute("finished_date", "完了日設定完了");
-			} else {
-				model.addAttribute("finished_date", "処理が失敗しました");
+				System.out.println("完了日設定完了");
 			}
 		}
 		WorkspaceSearchForm form1 = new WorkspaceSearchForm();
@@ -2072,7 +2065,7 @@ public class WorkspaceController {
 		model.addAttribute("contents", "login/inquiry::workspaceLayout_contents");
 
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		//System.out.println("auth" + auth.getName());
+
 		System.out.println("auth" + auth);
 		System.out.println("auth.getName" + auth.getName());
 
@@ -2092,7 +2085,7 @@ public class WorkspaceController {
 		model.addAttribute("inquiryListCount", countAdmin);
 
 		Authentication auth2 = SecurityContextHolder.getContext().getAuthentication();
-		//System.out.println("auth" + auth.getName());
+
 		System.out.println("auth" + auth2);
 		System.out.println("auth.getName" + auth2.getName());
 
@@ -2133,10 +2126,6 @@ public class WorkspaceController {
 		inquirydto.setRegistration_date(form.getRegistration_date());
 		inquirydto.setMail(form.getMail());
 
-		//			if ("true".equals(form.getUser_idT())) {
-		//			inquirydto.setUser_id(form.getUser_id());
-		//			}
-
 		boolean result = inquiryService.insert(inquirydto, user_idT);
 
 		//ユーザー登録処理
@@ -2157,7 +2146,6 @@ public class WorkspaceController {
 		return "login/loginLayout";
 	}
 
-	//ModelAttributeはhtmlに渡すために必要　すぐ後ろについた引数に適応　Modelはhtmlになにか出すときにつける　コントローラーの中によって片方だけつけたり、両方つけたりする。
 	@PostMapping("/inquiryLogin")
 	public String postInquryLogin(Model model, @ModelAttribute @Validated(GroupOrder.class) InquiryForm form,
 			BindingResult bindingResult, RedirectAttributes redirectAttribute) {
@@ -2298,12 +2286,6 @@ public class WorkspaceController {
 		System.out.println(form1.getFinished_dateZ());
 		System.out.println(form1.getFinished_dateT());
 
-		//		Date finished_dateTT = null;
-		//
-		//		if((form.getFinished_dateT() != null) && (form.getFinished_dateT().isEmpty())) {
-		//			finished_dateTT
-		//
-		//		}
 		model.addAttribute("contents", "login/admin::workspaceLayout_contents");
 
 		List<InquiryDTO> inquiryList = inquiryService.search(form1.getTitle(), form1.getContent(),
@@ -2351,13 +2333,13 @@ public class WorkspaceController {
 			System.out.println("if文到達");
 
 			//データベースの完了切替更新メソッド ServiceのほうでdaoにアクセスしてSQL文を実行してから変わったレコード数でtrueかfalseかを決めている
-			//idと未完了にしたいのでnullを渡している
+			//idと、未完了にしたいのでnullを渡している
 			boolean isCompletedInquiry = inquiryService.completedOne(form.getId(), null);
 			//処理が失敗したらelseに入って失敗メッセージが出る
 			if (isCompletedInquiry == true) {
-				model.addAttribute("finished_date", "未完了に変更完了");
+				System.out.println("未完了に設定変更");
 			} else {
-				model.addAttribute("finished_date", "処理が失敗しました");
+				System.out.println("処理失敗");
 			}
 
 		} else {
@@ -2365,13 +2347,13 @@ public class WorkspaceController {
 			System.out.println("else文到達");
 
 			Date dateObj = new Date();
-			//idとdateObjを渡している
+			//idと、dateObjを渡している
 			boolean isCompletedInquiry2 = inquiryService.completedOne(form.getId(), dateObj);
 			//処理が失敗したらelseに入って失敗メッセージが出る
 			if (isCompletedInquiry2 == true) {
-				model.addAttribute("finished_date", "完了日設定完了");
+				System.out.println("完了日設定完了");
 			} else {
-				model.addAttribute("finished_date", "処理が失敗しました");
+				System.out.println("処理失敗");
 			}
 		}
 
@@ -2389,9 +2371,9 @@ public class WorkspaceController {
 
 		System.out.println("controlresult  " + result);
 		if (result == true) {
-			model.addAttribute("result", "削除成功");
+			System.out.println("削除成功");
 		} else {
-			model.addAttribute("result", "削除失敗");
+			System.out.println("削除失敗");
 		}
 
 		InquirySearchForm inquirySearchForm = new InquirySearchForm();
@@ -2474,7 +2456,7 @@ public class WorkspaceController {
 		model.addAttribute("adminListCount", countAdminNotice);
 
 		Authentication auth2 = SecurityContextHolder.getContext().getAuthentication();
-		//System.out.println("auth" + auth.getName());
+
 		System.out.println("auth" + auth2);
 		System.out.println("auth.getName" + auth2.getName());
 
@@ -2571,7 +2553,7 @@ public class WorkspaceController {
 		model.addAttribute("usersList", usersList);
 
 		Authentication auth2 = SecurityContextHolder.getContext().getAuthentication();
-		//System.out.println("auth" + auth.getName());
+
 		System.out.println("auth" + auth2);
 		System.out.println("auth.getName" + auth2.getName());
 
@@ -2636,7 +2618,7 @@ public class WorkspaceController {
 		model.addAttribute("inquiryListCount", countAdmin);
 
 		Authentication auth2 = SecurityContextHolder.getContext().getAuthentication();
-		//System.out.println("auth" + auth.getName());
+
 		System.out.println("auth" + auth2);
 		System.out.println("auth.getName" + auth2.getName());
 
@@ -2754,8 +2736,6 @@ public class WorkspaceController {
 		}
 		PersonUsersNoticeSendingForm personusersnoticesendingform = new PersonUsersNoticeSendingForm();
 		model.addAttribute("personusersnoticesendingform", personusersnoticesendingform);
-		//		PersonUsersNoticeSendingSearchForm personusersnoticesendingSearchform = new PersonUsersNoticeSendingSearchForm();
-		//		model.addAttribute("personusersnoticesendingSearchform",personusersnoticesendingSearchform);
 		return getPersonUsersNoticeSending(personusersnoticesendingform, form2, model);
 
 	}
@@ -2813,7 +2793,6 @@ public class WorkspaceController {
 		model.addAttribute("result", "送信完了");
 
 		String s = String.valueOf(form.getUser_id());
-		//return postPersonUsersNoticeDetail(form,model,user_id);
 		return getPersonUsersnoticeDetail(form, model, s);
 
 	}
@@ -2830,13 +2809,13 @@ public class WorkspaceController {
 		model.addAttribute("personmemoCount", count);
 
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		//System.out.println("auth" + auth.getName());
+
 		System.out.println("auth" + auth);
 		System.out.println("auth.getName" + auth.getName());
 
 		String getName = auth.getName();
 
-		List<PersonMemoDTO> personMemoList = personMemoService.selectMany(getName);//auth
+		List<PersonMemoDTO> personMemoList = personMemoService.selectMany(getName);
 
 		System.out.println("personMemoList" + personMemoList);
 		if (personMemoList != null) {
@@ -2896,7 +2875,7 @@ public class WorkspaceController {
 		model.addAttribute("inquiryListCount", countAdmin);
 
 		Authentication auth2 = SecurityContextHolder.getContext().getAuthentication();
-		//System.out.println("auth" + auth.getName());
+
 		System.out.println("auth" + auth2);
 		System.out.println("auth.getName" + auth2.getName());
 
@@ -2930,7 +2909,6 @@ public class WorkspaceController {
 
 		personmemodto.setMemo(form.getMemo());
 		personmemodto.setUser_id(auth.getName());
-		//personmemodto.setFinished_date(form.getFinished_date());
 
 		boolean result = personMemoService.insert(personmemodto);
 
@@ -2940,11 +2918,6 @@ public class WorkspaceController {
 		} else {
 			System.out.println("insert失敗");
 		}
-
-		//model.addAttribute("personmemodto",personmemodto);
-		//		PersonMemoForm personmemoform = new PersonMemoForm();
-		//		model.addAttribute("personmemoform",personmemoform);
-		//
 		return "redirect:/personMemo";
 
 	}
@@ -2979,7 +2952,7 @@ public class WorkspaceController {
 		model.addAttribute("inquiryListCount", countAdmin);
 
 		Authentication auth2 = SecurityContextHolder.getContext().getAuthentication();
-		//System.out.println("auth" + auth.getName());
+
 		System.out.println("auth" + auth2);
 		System.out.println("auth.getName" + auth2.getName());
 
@@ -3008,7 +2981,7 @@ public class WorkspaceController {
 		}
 
 		PersonMemoSearchForm personmemosearchform = new PersonMemoSearchForm();
-		//model.addAttributeの第一引数の名前をhtmlが探す　この名前でgetPersonMemoをしていて、メソッド名で呼び出している、
+		//model.addAttributeの第一引数の名前をhtmlが探す
 		model.addAttribute("personMemoSearchForm", personmemosearchform);
 		return getPersonMemo(form, personmemosearchform, model);
 	}
@@ -3018,11 +2991,6 @@ public class WorkspaceController {
 		System.out.println("personMemoDetailCompleted");
 
 		model.addAttribute("contents", "login/personMemoDetail::workspaceLayout_contents");
-
-		//		PersonMemoDTO personmemodto = new PersonMemoDTO();
-		//
-		//		personmemodto.setId(form.getId());
-		//		personmemodto.setFinished_date(form.getFinished_date());
 
 		String getId = String.valueOf(form.getId());
 		PersonMemoDTO personmemoList = personMemoService.selectOneCompleted(getId);
@@ -3073,7 +3041,6 @@ public class WorkspaceController {
 		personmemodto.setId(form.getId());
 		personmemodto.setMemo(form.getMemo());
 		System.out.println("personmemodto" + personmemodto);
-		//updateOneやdeleteOneはbooleanで受け取って、サービスで真偽を決める引数にDTOのdtoを入れる
 		boolean result = personMemoService.updateOne(personmemodto);
 		System.out.println("result" + result);
 
@@ -3112,7 +3079,7 @@ public class WorkspaceController {
 		}
 
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		//System.out.println("auth" + auth.getName());
+
 		System.out.println("auth" + auth);
 		System.out.println("auth.getName" + auth.getName());
 
@@ -3168,7 +3135,7 @@ public class WorkspaceController {
 		model.addAttribute("inquiryListCount", countAdmin);
 
 		Authentication auth2 = SecurityContextHolder.getContext().getAuthentication();
-		//System.out.println("auth" + auth.getName());
+
 		System.out.println("auth" + auth2);
 		System.out.println("auth.getName" + auth2.getName());
 
@@ -3198,7 +3165,7 @@ public class WorkspaceController {
 		model.addAttribute("clientList", clientList);
 
 		Authentication auth2 = SecurityContextHolder.getContext().getAuthentication();
-		//System.out.println("auth" + auth.getName());
+
 		System.out.println("auth" + auth2);
 		System.out.println("auth.getName" + auth2.getName());
 
@@ -3234,7 +3201,7 @@ public class WorkspaceController {
 		model.addAttribute("contents", "login/clientAddto::workspaceLayout_contents");
 
 		Authentication auth2 = SecurityContextHolder.getContext().getAuthentication();
-		//System.out.println("auth" + auth.getName());
+
 		System.out.println("auth" + auth2);
 		System.out.println("auth.getName" + auth2.getName());
 
@@ -3296,7 +3263,7 @@ public class WorkspaceController {
 
 		ClientDeleteForm clientdeleteform = new ClientDeleteForm();
 		model.addAttribute("clientdeleteform", clientdeleteform);
-		//ClientSearchForm clientsearchform = new ClientSearchForm();
+
 		return getClient(form2, clientdetailform, clientdeleteform, model);
 
 	}
@@ -3316,16 +3283,13 @@ public class WorkspaceController {
 		model.addAttribute("telephone", form.getTelephone());
 		form.setMailaddress(clientList.getMailaddress());
 		model.addAttribute("mailaddress", form.getMailaddress());
-		//		model.addAttribute("clientUser_name",clientList.getUser_name());
-		//		model.addAttribute("cloentTelephone",clientList.getTelephone());
-		//		model.addAttribute("clientMailaddress",clientList.getMailaddress());
 		model.addAttribute("clientRegistration_date", clientList.getRegistration_date());
 		model.addAttribute("id", id);
 		ClientSearchForm clientsearchform = new ClientSearchForm();
 		model.addAttribute("clientsearchform", clientsearchform);
 
 		Authentication auth2 = SecurityContextHolder.getContext().getAuthentication();
-		//System.out.println("auth" + auth.getName());
+
 		System.out.println("auth" + auth2);
 		System.out.println("auth.getName" + auth2.getName());
 
@@ -3373,7 +3337,7 @@ public class WorkspaceController {
 		model.addAttribute("clientListCount", clientList.size());
 
 		Authentication auth2 = SecurityContextHolder.getContext().getAuthentication();
-		//System.out.println("auth" + auth.getName());
+
 		System.out.println("auth" + auth2);
 		System.out.println("auth.getName" + auth2.getName());
 
@@ -3462,7 +3426,7 @@ public class WorkspaceController {
 	public ResponseEntity<byte[]> getAdminCsv(Model model) {
 
 		System.out.println("adminCsv到達");
-		//CSVをサーバーに保存する
+
 		adminService.adminCsvOut();
 
 		byte[] bytes = null;
@@ -3486,7 +3450,7 @@ public class WorkspaceController {
 	public ResponseEntity<byte[]> getInquiryCsv(Model model) {
 
 		System.out.println("inquiryCsv到達");
-		//CSVをサーバーに保存する
+
 		inquiryService.inquiryCsvOut();
 
 		byte[] bytes = null;
@@ -3500,7 +3464,6 @@ public class WorkspaceController {
 			e.printStackTrace();
 		}
 
-		//HTTPヘッダーの設定
 		HttpHeaders header = new HttpHeaders();
 		header.add("Content-Type", "text/csv;charset=UTF-8");
 		header.setContentDispositionFormData("filename", "inquiry.csv");
@@ -3520,18 +3483,15 @@ public class WorkspaceController {
 
 		try {
 
-			//サーバーに保存されているsample.csvファイルをbyteで取得する
 			bytes = usersService.getFile("users.csv");
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
-		//HTTPヘッダーの設定
 		HttpHeaders header = new HttpHeaders();
 		header.add("Content-Type", "text/csv; charset=UTF-8");
 		header.setContentDispositionFormData("filename", "usersList.csv");
-
 
 		return new ResponseEntity<>(bytes, header, HttpStatus.OK);
 
@@ -3553,11 +3513,9 @@ public class WorkspaceController {
 			e.printStackTrace();
 		}
 
-		//HTTPヘッダーの設定
 		HttpHeaders header = new HttpHeaders();
 		header.add("Content-Type", "text/csv; charset=UTF-8");
 		header.setContentDispositionFormData("filename", "tweet.csv");
-
 
 		return new ResponseEntity<>(bytes, header, HttpStatus.OK);
 	}
@@ -3566,7 +3524,7 @@ public class WorkspaceController {
 	public ResponseEntity<byte[]> getPersonMemoCsv(Model model) {
 
 		Authentication auth2 = SecurityContextHolder.getContext().getAuthentication();
-		//System.out.println("auth" + auth.getName());
+
 		System.out.println("auth" + auth2);
 		System.out.println("auth.getName" + auth2.getName());
 
@@ -3581,11 +3539,10 @@ public class WorkspaceController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		//HTTPヘッダーの設定
+
 		HttpHeaders header = new HttpHeaders();
 		header.add("Content-Type", "text/csv; charset=UTF-8");
 		header.setContentDispositionFormData("filename", "personMemo.csv");
-
 
 		return new ResponseEntity<>(bytes, header, HttpStatus.OK);
 	}
@@ -3604,11 +3561,10 @@ public class WorkspaceController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		//HTTPヘッダーの設定
+
 		HttpHeaders header = new HttpHeaders();
 		header.add("Content-Type", "text/csv; charset=UTF-8");
 		header.setContentDispositionFormData("filename", "personUsersNotice.csv");
-
 
 		return new ResponseEntity<>(bytes, header, HttpStatus.OK);
 	}
@@ -3619,7 +3575,7 @@ public class WorkspaceController {
 		System.out.println("personUsersNoticeCsv到達");
 
 		Authentication auth2 = SecurityContextHolder.getContext().getAuthentication();
-		//System.out.println("auth" + auth.getName());
+
 		System.out.println("auth" + auth2);
 		System.out.println("auth.getName" + auth2.getName());
 
@@ -3635,17 +3591,16 @@ public class WorkspaceController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		//HTTPヘッダーの設定
+
 		HttpHeaders header = new HttpHeaders();
 		header.add("Content-Type", "text/csv; charset=UTF-8");
 		header.setContentDispositionFormData("filename", "personUsersNoticeSending.csv");
-
 
 		return new ResponseEntity<>(bytes, header, HttpStatus.OK);
 	}
 
 	@GetMapping("/one_to_oneMail/csv")
-	public ResponseEntity<byte[]> getOne_to_oneMailCsv(@ModelAttribute One_to_oneMailForm form,Model model) {
+	public ResponseEntity<byte[]> getOne_to_oneMailCsv(@ModelAttribute One_to_oneMailForm form, Model model) {
 
 		Authentication auth2 = SecurityContextHolder.getContext().getAuthentication();
 		System.out.println("auth" + auth2);
@@ -3663,20 +3618,19 @@ public class WorkspaceController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		//HTTPヘッダーの設定
+
 		HttpHeaders header = new HttpHeaders();
 		header.add("Content-Type", "text/csv; charset=UTF-8");
 		header.setContentDispositionFormData("filename", "one_to_oneMail.csv");
-
 
 		return new ResponseEntity<>(bytes, header, HttpStatus.OK);
 	}
 
 	@GetMapping("/one_to_oneMailSending/csv")
-	public ResponseEntity<byte[]> getOne_to_oneMailSendingCsv(@ModelAttribute One_to_oneMailForm form,Model model) {
+	public ResponseEntity<byte[]> getOne_to_oneMailSendingCsv(@ModelAttribute One_to_oneMailForm form, Model model) {
 
 		Authentication auth2 = SecurityContextHolder.getContext().getAuthentication();
-		//System.out.println("auth" + auth.getName());
+
 		System.out.println("auth" + auth2);
 		System.out.println("auth.getName" + auth2.getName());
 
@@ -3693,11 +3647,10 @@ public class WorkspaceController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		//HTTPヘッダーの設定
+
 		HttpHeaders header = new HttpHeaders();
 		header.add("Content-Type", "text/csv; charset=UTF-8");
 		header.setContentDispositionFormData("filename", "one_to_oneMailSending.csv");
-
 
 		return new ResponseEntity<>(bytes, header, HttpStatus.OK);
 	}
@@ -3712,7 +3665,7 @@ public class WorkspaceController {
 		try {
 
 			bytes = clientService.file("client.csv");
-		}catch(Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
@@ -3721,7 +3674,6 @@ public class WorkspaceController {
 		header.add("Content-Type", "text/csv; charset=UTF-8");
 		header.setContentDispositionFormData("filename", "clientInformation.csv");
 
-		//sample.csv
 		return new ResponseEntity<>(bytes, header, HttpStatus.OK);
 	}
 

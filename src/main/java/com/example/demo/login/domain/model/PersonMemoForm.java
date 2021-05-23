@@ -14,7 +14,7 @@ public class PersonMemoForm {
 
 	private int id;
 	@NotBlank(groups = ValidGroup1.class)
-	@Length(max=300,groups = ValidGroup2.class)
+	@Length(max = 300, groups = ValidGroup2.class)
 	private String memo;
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date registration_date;

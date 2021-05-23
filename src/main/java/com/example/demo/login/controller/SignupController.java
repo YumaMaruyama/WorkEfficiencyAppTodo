@@ -23,13 +23,11 @@ import com.example.demo.login.domain.service.UsersService;
 @Controller
 public class SignupController {
 
-
 	//ラジオボタン(男or女)の実装 Mapに入ったキーと値を画面表示できる
-		private Map<String, String> radioMaleFemale;
+	private Map<String, String> radioMaleFemale;
 
 	@Autowired
 	UsersService usersService;
-
 
 	//ユーザー登録画面のGETコントローラー
 	@GetMapping("/signup")
@@ -65,17 +63,13 @@ public class SignupController {
 		//formの中身をコンソールに出して確認します
 		System.out.println(form);
 
-//		String encodePassword = form.getPassword();
-//		String digest = new BCryptPasswordEncoder().encode(encodePassword);
-
 		int rowNumber = usersService.check(form.getUser_id());
 
-		if(rowNumber > 0) {
+		if (rowNumber > 0) {
 
-			model.addAttribute("result","入力されたuser_idがすでに使用されています。");
-			return getSignUp(form,model);
+			model.addAttribute("result", "入力されたuser_idがすでに使用されています。");
+			return getSignUp(form, model);
 		}
-
 
 		UsersDTO usersdto = new UsersDTO();
 
@@ -86,24 +80,6 @@ public class SignupController {
 		usersdto.setHireDate(form.getHireDate());
 		usersdto.setMaleFemale(form.isMaleFemale());
 		usersdto.setRole("ROLE_GENERAL");
-
-		//ユーザーの誕生日入力をもとに、年齢計算
-//		public int getAge(form.getBirthday()) {
-//
-//		    // ユーザーが入力した誕生日
-//		    LocalDate birthday = LocalDate.of(form.getBirthday());
-//
-//		    // 現在の年月日
-//		    LocalDate today = LocalDate.now();
-//		    //ChronoUnitは年（12ヶ月）　YEARSは一年の概要を表す　betweenで期間の計算
-//		    long period = ChronoUnit.YEARS.between(birthday, today);
-//
-//		    return (int)period;
-//		}
-
-
-
-
 
 		//新規ユーザー登録処理
 		boolean result = usersService.insert(usersdto);
@@ -135,25 +111,26 @@ public class SignupController {
 	@ExceptionHandler(DataAccessException.class)
 	public String dataAccessExceptionHandler(DataAccessException e, Model model) {
 		//例外クラスのメッセージをModelに登録
-		model.addAttribute("error","内部サーバーエラー（DB）：ExceptionHandler");
+		model.addAttribute("error", "内部サーバーエラー（DB）：ExceptionHandler");
 		//例外クラスのメッセージをModelに登録
 		model.addAttribute("message", "SignupControllerでDataAccessExceptionが発生しました");
 		//HTTPのエラーコード(500)をModelに登録
-		model.addAttribute("status",HttpStatus.INTERNAL_SERVER_ERROR);
+		model.addAttribute("status", HttpStatus.INTERNAL_SERVER_ERROR);
 
 		return "error";
 	}
-		//@ExceptionHandlerの使い方
+
+	//@ExceptionHandlerの使い方
 	@ExceptionHandler(Exception.class)
 	public String exceptionHandler(Exception e, Model model) {
 
 		//例外クラスのメッセージをModelに登録
-	    model.addAttribute("error","内部サーバーエラー：ExceptionHandler");
-	    //例外クラスのメッセージをModelに登録
-	    model.addAttribute("message","SignupControllerでExceptionが発生しました");
-	    //HTTPのエラーコード(500)をModelに登録
-	    model.addAttribute("status",HttpStatus.INTERNAL_SERVER_ERROR);
-	    return "error";
+		model.addAttribute("error", "内部サーバーエラー：ExceptionHandler");
+		//例外クラスのメッセージをModelに登録
+		model.addAttribute("message", "SignupControllerでExceptionが発生しました");
+		//HTTPのエラーコード(500)をModelに登録
+		model.addAttribute("status", HttpStatus.INTERNAL_SERVER_ERROR);
+		return "error";
 	}
 
 }

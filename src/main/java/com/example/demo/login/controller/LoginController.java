@@ -21,14 +21,8 @@ public class LoginController {
 
 	//ログイン画面のPOST
 	@PostMapping("/login")
-	public String postLogin(@AuthenticationPrincipal UsersDaoJdbcImpl usersdtoimpl ,Model model) {
+	public String postLogin(@AuthenticationPrincipal UsersDaoJdbcImpl usersdtoimpl, Model model) {
 		System.out.println("Postログイン到達");
-
-		//ログイン者のuser_id(メールアドレス)をもとに、user_name（丸山佑馬）を取得する
-		//springsecrityの機能でuser_idがuser_nameで持ってこれる
-
-
-		//Todo_itemsDTO headerName = todo_itemsService.selectTwo(principal.username);
 
 		//workspaceのhtmlに飛んでいく
 		return "redirect:/workspace";

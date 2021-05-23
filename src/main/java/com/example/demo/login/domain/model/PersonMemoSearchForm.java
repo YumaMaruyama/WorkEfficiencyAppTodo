@@ -11,8 +11,8 @@ import lombok.Data;
 public class PersonMemoSearchForm {
 
 	private int id;
-	//@NotBlank(groups = ValidGroup1.class)
-	@Length(max=300)
+
+	@Length(max = 300)
 	private String memo;
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date registration_dateA;
@@ -24,9 +24,5 @@ public class PersonMemoSearchForm {
 	private Date finished_dateZ;
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private String finished_dateT;
-
-
-
-
 
 }

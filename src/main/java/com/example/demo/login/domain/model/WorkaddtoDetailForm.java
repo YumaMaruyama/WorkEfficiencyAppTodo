@@ -9,10 +9,10 @@ public class WorkaddtoDetailForm {
 
 	private int id;
 
-	@Length(max=65,groups = ValidGroup2.class)
+	@Length(max = 65, groups = ValidGroup2.class)
 	private String details;
-	@Length(max=65,groups = ValidGroup2.class)
+	@Length(max = 65, groups = ValidGroup2.class)
 	private String details2;
-	@Length(max=65,groups = ValidGroup2.class)
+	@Length(max = 65, groups = ValidGroup2.class)
 	private String details3;
 }

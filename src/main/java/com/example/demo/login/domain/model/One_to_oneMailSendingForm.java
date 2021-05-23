@@ -11,18 +11,18 @@ import lombok.Data;
 public class One_to_oneMailSendingForm {
 
 	private int id;
-	@Length(max=20)
+	@Length(max = 20)
 	private String user_id;
-	@Length(max=320)
+	@Length(max = 320)
 	private String mail;
 
 	private String user_name;
 
 	private String sender;
-	@DateTimeFormat(pattern="yyyy-MM-dd")
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date registration_date;
-	@DateTimeFormat(pattern="yyyy-MM-dd")
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date registration_dateFrom;
-	@DateTimeFormat(pattern="yyyy-MM-dd")
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date registration_dateTo;
 }
