@@ -30,7 +30,7 @@ public class TweetService {
 
 		boolean result = false;
 
-		if(rowNumber > 0) {
+		if (rowNumber > 0) {
 			result = true;
 		}
 		return result;
@@ -40,10 +40,10 @@ public class TweetService {
 
 		return dao.selectOne(id);
 	}
+
 	public List<TweetDTO> selectMany() {
 
 		return dao.selectMany();
-
 
 	}
 
@@ -72,7 +72,7 @@ public class TweetService {
 		return dao.deleteOne(id);
 	}
 
-	public List<TweetDTO> search(String user_id,String contents,Date registration_dateA,Date registration_dateZ) {
+	public List<TweetDTO> search(String user_id, String contents, Date registration_dateA, Date registration_dateZ) {
 		return dao.search(user_id, contents, registration_dateA, registration_dateZ);
 	}
 }

@@ -64,9 +64,10 @@ public class PersonMemoService {
 	}
 
 	public List<PersonMemoDTO> search(String memo, Date registration_dateA, Date registration_dateZ,
-			Date finished_dateA, Date finished_dateZ, String finished_dateT,String getName) {
+			Date finished_dateA, Date finished_dateZ, String finished_dateT, String getName) {
 		System.out.println("personMemoSearchServise到達");
-		return dao.search(memo, registration_dateA, registration_dateZ, finished_dateA, finished_dateZ, finished_dateT,getName);
+		return dao.search(memo, registration_dateA, registration_dateZ, finished_dateA, finished_dateZ, finished_dateT,
+				getName);
 	}
 
 	public int deleteOne(int id) {

@@ -39,24 +39,27 @@ public class TweetDaoJdbcImpl implements TweetDao {
 				+ " user_id,"
 				+ " user_id2)"
 				+ " values(?,?,?,?,?)", tweetdto.getId(), tweetdto.getContents(), tweetdto.getRegistration_date(),
-				tweetdto.getUser_id(),tweetdto.getUser_id2());
+				tweetdto.getUser_id(), tweetdto.getUser_id2());
 
 		return rowNumber;
 	}
 
 	@Override
 	public TweetDTO selectOne(String id) throws DataAccessException {
-		Map<String,Object>map = jdbc.queryForMap("select tweet.id,tweet.user_id,tweet.contents,tweet.registration_date,users.user_name from tweet JOIN users ON tweet.user_id = users.user_id where tweet.id = ?",id);
+		Map<String, Object> map = jdbc.queryForMap(
+				"select tweet.id,tweet.user_id,tweet.contents,tweet.registration_date,users.user_name from tweet JOIN users ON tweet.user_id = users.user_id where tweet.id = ?",
+				id);
 
 		TweetDTO tweetdto = new TweetDTO();
 
-		tweetdto.setId((int)map.get("id"));
-		tweetdto.setUser_id((String)map.get("user_name"));
-		tweetdto.setContents((String)map.get("contents"));
-		tweetdto.setRegistration_date((Date)map.get("registration_date"));
+		tweetdto.setId((int) map.get("id"));
+		tweetdto.setUser_id((String) map.get("user_name"));
+		tweetdto.setContents((String) map.get("contents"));
+		tweetdto.setRegistration_date((Date) map.get("registration_date"));
 
 		return tweetdto;
 	}
+
 	//複数件のselect
 	//tweetテーブルのデータを全件取得
 	@Override
@@ -77,11 +80,11 @@ public class TweetDaoJdbcImpl implements TweetDao {
 			TweetDTO tweetdto = new TweetDTO();
 			//②	List<Map<String, Object>> getListの中身を変換する。TweenDTOのインスタンス生成し、その変数に入れていく。そのあとTweenDTOをまとめるList<TweenDTO>
 			//もインスタンスしているのでその変数にtweendtoの中身を入れてtweetListでまとめている。そうするとhtmlなどで表示させるときもとても楽になって全体的に管理で便利。
-			tweetdto.setId((int)map.get("id"));
+			tweetdto.setId((int) map.get("id"));
 			tweetdto.setContents((String) map.get("contents"));
 			tweetdto.setRegistration_date((Date) map.get("registration_date"));
 			tweetdto.setUser_id((String) map.get("user_name"));
-			tweetdto.setUser_id2((String)map.get("user_id2"));
+			tweetdto.setUser_id2((String) map.get("user_id2"));
 			//結果返却用のListに追加
 			tweetList.add(tweetdto);
 
@@ -93,13 +96,14 @@ public class TweetDaoJdbcImpl implements TweetDao {
 	public int deleteOne(int id) {
 
 		System.out.println("tweetDeleteDaoImpl到達");
-	int rowNumber = jdbc.update("delete from tweet where id = ?",id);
+		int rowNumber = jdbc.update("delete from tweet where id = ?", id);
 
-	return rowNumber;
+		return rowNumber;
 	}
 
 	@Override
-	public List<TweetDTO> search(String user_id, String contents, Date registration_dateA, Date registration_dateZ) throws DataAccessException {
+	public List<TweetDTO> search(String user_id, String contents, Date registration_dateA, Date registration_dateZ)
+			throws DataAccessException {
 
 		System.out.println("tweetSearchDaoImpl到達");
 
@@ -109,29 +113,30 @@ public class TweetDaoJdbcImpl implements TweetDao {
 		System.out.println("registration_dateZ" + registration_dateZ);
 
 		StringBuilder sql = new StringBuilder();
-		sql.append("select tweet.id,tweet.contents,tweet.registration_date,tweet.user_id2,users.user_name from tweet JOIN users ON tweet.user_id = users.user_id where tweet.is_deleted = 0");
-		List<Object>list = new ArrayList<>();
+		sql.append(
+				"select tweet.id,tweet.contents,tweet.registration_date,tweet.user_id2,users.user_name from tweet JOIN users ON tweet.user_id = users.user_id where tweet.is_deleted = 0");
+		List<Object> list = new ArrayList<>();
 
-		if((user_id != null) && (!user_id.isEmpty())) {
+		if ((user_id != null) && (!user_id.isEmpty())) {
 			sql.append(" and user_name like ?");
 			list.add("%" + user_id + "%");
 		}
-		if((contents != null) && (!contents.isEmpty())) {
+		if ((contents != null) && (!contents.isEmpty())) {
 			sql.append(" and contents like ?");
 			list.add("%" + contents + "%");
 		}
-		if((registration_dateA != null) && (registration_dateZ != null)) {
+		if ((registration_dateA != null) && (registration_dateZ != null)) {
 			sql.append(" and registration_date BETWEEN ? and ?");
 			list.add(registration_dateA);
 			list.add(registration_dateZ);
-		}else if((registration_dateA == null) && (registration_dateZ != null)) {
+		} else if ((registration_dateA == null) && (registration_dateZ != null)) {
 			sql.append(" and registration_date < ?");
 			list.add(registration_dateZ);
-		}else if((registration_dateA != null) && (registration_dateZ == null)) {
+		} else if ((registration_dateA != null) && (registration_dateZ == null)) {
 			sql.append(" and registration_date > ?");
 			list.add(registration_dateA);
 		}
-		if(true) {
+		if (true) {
 			sql.append(" order by registration_date desc");
 		}
 
@@ -141,17 +146,17 @@ public class TweetDaoJdbcImpl implements TweetDao {
 		System.out.println("addList" + addList);
 		String sqlTo = sql.toString();
 		System.out.println("sqlTo" + sqlTo);
-		List<Map<String,Object>>rowNumber = jdbc.queryForList(sqlTo,addList);
+		List<Map<String, Object>> rowNumber = jdbc.queryForList(sqlTo, addList);
 		System.out.println("rowNumber" + rowNumber);
-		List<TweetDTO>tweetList = new ArrayList<>();
-		for(Map<String,Object>map : rowNumber) {
+		List<TweetDTO> tweetList = new ArrayList<>();
+		for (Map<String, Object> map : rowNumber) {
 
 			TweetDTO tweetdto = new TweetDTO();
-			tweetdto.setId((int)map.get("id"));
-			tweetdto.setUser_id((String)map.get("user_name"));
-			tweetdto.setContents((String)map.get("contents"));
-			tweetdto.setRegistration_date((Date)map.get("registration_date"));
-			tweetdto.setUser_id2((String)map.get("user_id2"));
+			tweetdto.setId((int) map.get("id"));
+			tweetdto.setUser_id((String) map.get("user_name"));
+			tweetdto.setContents((String) map.get("contents"));
+			tweetdto.setRegistration_date((Date) map.get("registration_date"));
+			tweetdto.setUser_id2((String) map.get("user_id2"));
 
 			tweetList.add(tweetdto);
 

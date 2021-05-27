@@ -9,7 +9,7 @@ import java.text.SimpleDateFormat;
 
 import org.springframework.jdbc.core.RowCallbackHandler;
 
-public class adminPersonNoticeRowCallbackHandler implements RowCallbackHandler{
+public class adminPersonNoticeRowCallbackHandler implements RowCallbackHandler {
 
 	@Override
 	public void processRow(ResultSet rs) throws SQLException {
@@ -21,24 +21,21 @@ public class adminPersonNoticeRowCallbackHandler implements RowCallbackHandler{
 
 			do {
 				SimpleDateFormat sdf = new SimpleDateFormat("yyyy年MM月dd日 hh時mm分");
-				String str =  "『お知らせ内容』 " + rs.getString("content") + ","
-							  + "『受信日』 "  + sdf.format(rs.getTimestamp("registration_date"));
-
+				String str = "『お知らせ内容』 " + rs.getString("content") + ","
+						+ "『受信日』 " + sdf.format(rs.getTimestamp("registration_date"));
 
 				bw.write(str);
 				bw.newLine();
-			}while(rs.next());
+			} while (rs.next());
 
 			bw.flush();
 			bw.close();
 
-		}catch (Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 			throw new SQLException(e);
 		}
 
 	}
-
-
 
 }

@@ -37,23 +37,14 @@ public class Todo_itemsDaoJdbcImpl implements Todo_itemsDao {
 				+ " item_name,"
 				+ " details,"
 				+ " details2,"
-				+ " details3,"
-				//					+ " registration_date,"
+				+ " details3,"		
 				+ " expire_date)"
-				//					+ " finished_date,"
-				//					+ " is_deleted,"
-				//					+ " create_date_tiem"
-				//					+ " update_date_time)"
 				+ " values(?,?,?,?,?,?)"
 
-		//							todo_itemsdto.getId()
 				, todo_itemsdto.getUser_name(), todo_itemsdto.getItem_name(),todo_itemsdto.getDetails(),todo_itemsdto.getDetails2(),todo_itemsdto.getDetails3()
-				//							,todo_itemsdto.getRegistration_date()
+				
 				, todo_itemsdto.getExpire_date());
-		//							,todo_itemsdto.getFinished_date()
-		//							,todo_itemsdto.getIs_deleted()
-		//							,todo_itemsdto.getCreate_date_time()
-		//							,todo_itemsdto.getUpdate_date_time()
+	
 
 		return rowNumber;
 	}
@@ -76,9 +67,6 @@ public class Todo_itemsDaoJdbcImpl implements Todo_itemsDao {
 		todo_itemsdto.setRegistration_date((Date) map.get("registration_date"));
 		todo_itemsdto.setExpire_date((Date) map.get("expire_date"));
 		todo_itemsdto.setFinished_date((Date) map.get("finished_date"));
-		//			todo_itemsdto.setIs_deleted((int)map.get("is_deleted"));
-		//			todo_itemsdto.setCreate_date_time((Date)map.get("create_date_time"));
-		//			todo_itemsdto.setUpdate_date_time((Date)map.get("update_date_time"));
 
 		return todo_itemsdto;
 	}
@@ -123,17 +111,14 @@ public class Todo_itemsDaoJdbcImpl implements Todo_itemsDao {
 			todo_itemsdto.setRegistration_date((Date) map.get("registration_date"));
 			todo_itemsdto.setExpire_date((Date) map.get("expire_date"));
 			todo_itemsdto.setFinished_date((Date) map.get("finished_date"));
-			//				todo_itemsdto.setIs_deleted((int)map.get("is_deleted"));
-			//				todo_itemsdto.setCreate_date_time((Date)map.get("create_date_time"));
-			//				todo_itemsdto.setUpdate_date_time((Date)map.get("update_date_time"));
+			
 
 			//結果返却用のListに追加
 			todo_itemsList.add(todo_itemsdto);
 
-			//System.out.println(map.get("get" + "birthday"));
-
+		
 		}
-		//System.out.println(todo_itemsList);
+		
 		return todo_itemsList;
 	}
 
@@ -164,7 +149,6 @@ public class Todo_itemsDaoJdbcImpl implements Todo_itemsDao {
 				+ " item_name = ?,"
 				+ " registration_date = ?,"
 				+ " expire_date = ?"
-				//+ " finished_date = ?"
 				+ " where id = ?", todo_itemsdto.getUser_name(), todo_itemsdto.getItem_name(),
 				todo_itemsdto.getRegistration_date(), todo_itemsdto.getExpire_date(),
 				todo_itemsdto.getId());
@@ -183,7 +167,7 @@ public class Todo_itemsDaoJdbcImpl implements Todo_itemsDao {
 
 	//Todo_itemsテーブルの完了日を出す
 	public int completedOne(int id, Date finished_date) throws DataAccessException {
-		//一件設定
+	
 		int rowNumber = jdbc.update("update todo_items"
 				+ " set"
 				+ " finished_date = ?"
@@ -206,9 +190,9 @@ public class Todo_itemsDaoJdbcImpl implements Todo_itemsDao {
 	public List<Todo_itemsDTO> search(String item_name, String user_name, Date registration_date,
 			Date registration_dateA, Date expire_date, Date expire_dateA, Date finished_date, Date finished_dateA,
 			String finished_dateM) throws DataAccessException {
-		//,String todo_itemsDTOBM
+
 		System.out.println("searchDaoImpl到達");
-		//searchに入ってきたものを出す
+	
 		System.out.println("item_name" + item_name);
 		System.out.println("user_name" + user_name);
 		System.out.println("registration_date" + registration_date);
@@ -221,15 +205,7 @@ public class Todo_itemsDaoJdbcImpl implements Todo_itemsDao {
 
 
 
-		//Date型のフォーマットがユーザーが入力した形と一致してないのでフォーマット指定して変換
-		//Date date = new Date();
-//		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
-//		System.out.println(df.format(todo_itemsDTOC));
-//		System.out.println(df.format(todo_itemsDTOCA));
-//		System.out.println(df.format(todo_itemsDTOV));
-//		System.out.println(df.format(todo_itemsDTOVA));
-//		System.out.println(df.format(todo_itemsDTOB));
-//		System.out.println(df.format(todo_itemsDTOBA));
+	
 
 		 StringBuilder sql = new StringBuilder();
 		 	sql.append("select * from todo_items where is_deleted = 0");
@@ -245,12 +221,8 @@ public class Todo_itemsDaoJdbcImpl implements Todo_itemsDao {
 			list.add("%" + user_name + "%");
 
 		}
-		//未完了チェック
-//		if(todo_itemsDTOBM == true) {
-//			sql.append(" and todo_items.finished_date is null");
-//		}
-
-		//registration_date
+		
+	
 		if((registration_date != null) && (registration_dateA != null)) {
 			sql.append(" and todo_items.registration_date BETWEEN ? AND ?");
 			list.add(registration_date);
@@ -263,7 +235,6 @@ public class Todo_itemsDaoJdbcImpl implements Todo_itemsDao {
 			list.add(registration_dateA);
 		}
 
-		//expire_date
 		if((expire_date != null) && (expire_dateA != null)) {
 			sql.append(" and todo_items.expire_date BETWEEN ? AND ?");
 			list.add(expire_date);
@@ -275,7 +246,7 @@ public class Todo_itemsDaoJdbcImpl implements Todo_itemsDao {
 			sql.append(" and todo_items.expire_date <= ?");
 			list.add(expire_dateA);
 		}
-		//finished_date
+		
 		if((finished_date != null) && (finished_dateA != null)) {
 			sql.append(" and todo_items.finished_date BETWEEN ? AND ?");
 			list.add(finished_date);
@@ -306,9 +277,6 @@ public class Todo_itemsDaoJdbcImpl implements Todo_itemsDao {
 
 
 
-//		List<Map<String, Object>> rowNumber = jdbc.queryForList(
-//				"select todo_items.item_name,todo_items.user_name,todo_items.registration_date,todo_items.expire_date,todo_items.finished_date from todo_items where (todo_items.item_name like ? and user_name like ? and registration_date BETWEEN  ? AND ? and expire_date BETWEEN  ? AND ? and finished_date BETWEEN ? AND ?) and todo_items.is_deleted = 0",
-//				"%" + todo_itemsDTOX + "%","%" + todo_itemsDTOY + "%", df.format(todo_itemsDTOC) , df.format(todo_itemsDTOCA),df.format(todo_itemsDTOV) ,df.format(todo_itemsDTOVA),df.format(todo_itemsDTOB),df.format(todo_itemsDTOBA));
 
 		System.out.println("rowNumberの中身" + rowNumber);
 		//結果返却用(return)のList

@@ -28,22 +28,22 @@ public class One_to_oneMailService {
 		return dao.countSending(getName);
 	}
 
-	public boolean insertOne(One_to_oneMailDTO one_to_onemaildto,String getName) {
+	public boolean insertOne(One_to_oneMailDTO one_to_onemaildto, String getName) {
 
-	 int rowNumber = dao.insertOne(one_to_onemaildto,getName);
-
-	 boolean result = false;
-	 if(rowNumber > 0) {
-		 result = true;
-	 }
-	 return result;
-	}
-
-	public boolean insertOneReply(One_to_oneMailDTO one_to_onemaildto,String getName) {
-		int rowNumber = dao.insertOneReply(one_to_onemaildto,getName);
+		int rowNumber = dao.insertOne(one_to_onemaildto, getName);
 
 		boolean result = false;
-		if(rowNumber > 0) {
+		if (rowNumber > 0) {
+			result = true;
+		}
+		return result;
+	}
+
+	public boolean insertOneReply(One_to_oneMailDTO one_to_onemaildto, String getName) {
+		int rowNumber = dao.insertOneReply(one_to_onemaildto, getName);
+
+		boolean result = false;
+		if (rowNumber > 0) {
 			result = true;
 		}
 		return result;
@@ -65,6 +65,7 @@ public class One_to_oneMailService {
 	public One_to_oneMailDTO selectOneSendingDetail(int id) {
 		return dao.selectOneSendingDetail(id);
 	}
+
 	public int deleteOne(int id) {
 
 		return dao.deleteOne(id);
@@ -79,14 +80,17 @@ public class One_to_oneMailService {
 		return dao.selectManySending(getName);
 	}
 
-	public List<One_to_oneMailDTO> search(String user_name,String mail,Date registration_dateFrom,Date registration_dateTo,String getUser_id,String getUser_id2) {
+	public List<One_to_oneMailDTO> search(String user_name, String mail, Date registration_dateFrom,
+			Date registration_dateTo, String getUser_id, String getUser_id2) {
 
-		return dao.search(user_name,mail,registration_dateFrom,registration_dateTo,getUser_id,getUser_id2);
+		return dao.search(user_name, mail, registration_dateFrom, registration_dateTo, getUser_id, getUser_id2);
 	}
 
-	public List<One_to_oneMailDTO> searchSending(String user_name,String mail,Date registration_dateFrom,Date registration_dateTo,String getName) {
-		return dao.searchSending(user_name,mail,registration_dateFrom,registration_dateTo,getName);
+	public List<One_to_oneMailDTO> searchSending(String user_name, String mail, Date registration_dateFrom,
+			Date registration_dateTo, String getName) {
+		return dao.searchSending(user_name, mail, registration_dateFrom, registration_dateTo, getName);
 	}
+
 	public void one_to_oneMailCsvOut(String getName) {
 		dao.one_to_oneMailCsvOut(getName);
 	}
@@ -108,8 +112,5 @@ public class One_to_oneMailService {
 
 		return bytes;
 	}
-
-
-
 
 }

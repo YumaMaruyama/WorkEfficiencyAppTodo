@@ -21,10 +21,10 @@ public class Todo_itemsService {
 	@Autowired
 	Todo_itemsDao dao;
 
-
 	public int count() {
 		return dao.count();
 	}
+
 	//insert用メソッド
 	public boolean insert(Todo_itemsDTO todo_itemsdto) {
 
@@ -55,8 +55,6 @@ public class Todo_itemsService {
 
 	}
 
-
-
 	//work詳細用一件取得用メソッド
 	public Todo_itemsDTO selectOneX(int id) {
 		return dao.selectOneX(id);
@@ -69,11 +67,12 @@ public class Todo_itemsService {
 
 		boolean result = false;
 
-		if(rowNumber > 0) {
+		if (rowNumber > 0) {
 			result = true;
 		}
 		return result;
 	}
+
 	//一件更新用メソッド
 	public boolean updateOne(Todo_itemsDTO todo_itemsdto) {
 
@@ -140,18 +139,21 @@ public class Todo_itemsService {
 	}
 
 	//searchメソッド
-	public List<Todo_itemsDTO> search(String item_name,String user_name,Date registration_date,Date registration_dateA,Date expire_date,Date expire_dateA,Date finished_date,Date finished_dateA,String finished_dateM) throws DataAccessException {
-		//,String finished_dateM
+	public List<Todo_itemsDTO> search(String item_name, String user_name, Date registration_date,
+			Date registration_dateA, Date expire_date, Date expire_dateA, Date finished_date, Date finished_dateA,
+			String finished_dateM) throws DataAccessException {
+
 		System.out.println("Serviceクラスのsearchメソッド到達");
 
-		System.out.println("ServiceRe" + registration_date);
-		System.out.println("ServiceReA" + registration_dateA);
-		System.out.println("ServiceEx" + expire_date);
-		System.out.println("ServiceExA" + expire_dateA);
-		System.out.println("ServiceFi" + finished_date);
-		System.out.println("ServiceFiA" + finished_dateA);
-		System.out.println("ServiceFiM" + finished_dateM);
-		return dao.search(item_name,user_name,registration_date,registration_dateA,expire_date,expire_dateA,finished_date,finished_dateA,finished_dateM);
+		System.out.println("registration_dateFrom" + registration_date);
+		System.out.println("registration_dateTo" + registration_dateA);
+		System.out.println("expire_dateFrom" + expire_date);
+		System.out.println("expire_dateTo" + expire_dateA);
+		System.out.println("finished_dateFrom" + finished_date);
+		System.out.println("finished_dateTO" + finished_dateA);
+		System.out.println("finished_dateCheck" + finished_dateM);
+		return dao.search(item_name, user_name, registration_date, registration_dateA, expire_date, expire_dateA,
+				finished_date, finished_dateA, finished_dateM);
 
 	}
 }

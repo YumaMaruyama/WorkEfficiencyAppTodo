@@ -10,11 +10,8 @@ import org.apache.ibatis.annotations.Update;
 
 import com.example.demo.login.domain.model.UsersDTO;
 
-@Mapper//MyBatisでSQLを実行するクラスにはつける
+@Mapper //MyBatisでSQLを実行するクラスにはつける
 public interface UsersMapper {
-
-	//変数の指定↓　InsertやSelectなどのアノテーションをつける　その引数にSQL文をセットします　これがMyBatisの使い方
-
 
 	//登録用メソッド
 	@Insert("insert into users("
@@ -49,7 +46,6 @@ public interface UsersMapper {
 			+ " from users"
 			+ " where user_id = #{user_id}")
 	public UsersDTO selectOne(String user_id);
-
 
 	//全件検索用メソッド
 	@Select("select user_id AS user_id,"

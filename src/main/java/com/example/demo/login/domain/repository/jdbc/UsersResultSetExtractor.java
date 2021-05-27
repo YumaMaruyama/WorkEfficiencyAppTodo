@@ -10,19 +10,20 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.ResultSetExtractor;
 
 import com.example.demo.login.domain.model.UsersDTO;
+
 //ResultSetExtractorはしていることはRowMapperと似ている　ResultSetExtractor<List<T>>を実装
 //＜T＞の部分には任意の型を入れる（今回はUserDTO）
 //あとはextracData()メソッドをOverrideする　そのあとRowMapperでResultSetとオブジェクトのマッピングを行う
 public class UsersResultSetExtractor implements ResultSetExtractor<List<UsersDTO>> {
 
 	@Override
-	public List<UsersDTO> extractData(ResultSet rs) throws SQLException,DataAccessException {
+	public List<UsersDTO> extractData(ResultSet rs) throws SQLException, DataAccessException {
 
 		//Users格納用List
 		List<UsersDTO> usersList = new ArrayList<>();
 
 		//取得件数用のloop
-		while(rs.next()) {
+		while (rs.next()) {
 
 			//Listに追加するインスタンスを生成する
 			UsersDTO usersdto = new UsersDTO();
@@ -41,7 +42,7 @@ public class UsersResultSetExtractor implements ResultSetExtractor<List<UsersDTO
 		}
 
 		//一件もなかった場合は例外を渡す
-		if(usersList.size() == 0) {
+		if (usersList.size() == 0) {
 			throw new EmptyResultDataAccessException(1);
 		}
 		return usersList;

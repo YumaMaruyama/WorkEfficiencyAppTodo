@@ -17,7 +17,7 @@ import com.example.demo.login.domain.repository.PersonUsersNoticeDao;
 @Repository("PersonUsersNoticeDaoJdbcImpl")
 public class PersonUsersNoticeDaoJdbcImpl implements PersonUsersNoticeDao {
 
-	@Autowired //SpringにJdbcTemplateが入っており、Bean定義がされている　なのでこのアノテーションをつけるだけでよい　このクラスのメソッドを使ってSQLを実行
+	@Autowired 
 	JdbcTemplate jdbc;
 
 	@Autowired
@@ -241,8 +241,7 @@ public class PersonUsersNoticeDaoJdbcImpl implements PersonUsersNoticeDao {
 	@Override
 	public void personUsersNoticeCsvOut() throws DataAccessException {
 
-		System.out.println("personUsersNoticeCsvOutImpl到達");
-		//inquiryテーブルのデータを全件取得するSQL
+		System.out.println("personUsersNoticeCsvOutImpl到達");		//inquiryテーブルのデータを全件取得するSQL
 		String sql = "select * from personUsersNotice";
 		System.out.println("sql" + sql);
 		//ResultSetExceptionの生成
@@ -256,7 +255,7 @@ public class PersonUsersNoticeDaoJdbcImpl implements PersonUsersNoticeDao {
 	public void personUsersNoticeSendingCsvOut(String getName) throws DataAccessException {
 
 		System.out.println("personUsersNoticeSendingCsvOutImpl到達");
-		//inquiryテーブルのデータを全件取得するSQL
+
 		String sql = "select * from personUsersNotice where is_deleted = 0";
 		System.out.println("sql" + sql);
 		//ResultSetExceptionの生成

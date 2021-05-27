@@ -25,15 +25,14 @@ public class PersonUsersNoticeSendingRowCallbackHandler implements RowCallbackHa
 						+ "『連絡内容』 " + rs.getString("content") + ","
 						+ "『送信日』 " + sdf.format(rs.getTimestamp("registration_date"));
 
-
 				bw.write(str);
 				bw.newLine();
-			}while(rs.next());
+			} while (rs.next());
 
 			bw.flush();
 			bw.close();
 
-		}catch (Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 			throw new SQLException(e);
 		}

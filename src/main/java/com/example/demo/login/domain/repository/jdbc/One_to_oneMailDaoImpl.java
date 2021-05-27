@@ -201,7 +201,7 @@ public class One_to_oneMailDaoImpl implements One_to_oneMailDao {
 		List<One_to_oneMailDTO> list = new ArrayList<>();
 		for (Map<String, Object> map : getSearchList) {
 			One_to_oneMailDTO one_to_onemaildto = new One_to_oneMailDTO();
-			one_to_onemaildto.setId((int)map.get("Id"));
+			one_to_onemaildto.setId((int) map.get("Id"));
 			one_to_onemaildto.setUser_name((String) map.get("user_name"));
 			one_to_onemaildto.setMail((String) map.get("mail"));
 			one_to_onemaildto.setRegistration_date((Date) map.get("registration_date"));
@@ -279,7 +279,7 @@ public class One_to_oneMailDaoImpl implements One_to_oneMailDao {
 
 		One_to_oneMailRowCallbackHandler handler = new One_to_oneMailRowCallbackHandler();
 
-		jdbc.query(sql, handler,getName,getName);
+		jdbc.query(sql, handler, getName, getName);
 
 	}
 
@@ -289,7 +289,7 @@ public class One_to_oneMailDaoImpl implements One_to_oneMailDao {
 
 		One_to_oneMailSendingRowCallbackHandler handler = new One_to_oneMailSendingRowCallbackHandler();
 
-		jdbc.query(sql, handler,getName,getName);
+		jdbc.query(sql, handler, getName, getName);
 
 	}
 

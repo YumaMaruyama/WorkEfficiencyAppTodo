@@ -116,10 +116,10 @@ public class ClientDaoJdbcImpl implements ClientDao {
 			sql.append(" and registration_date BETWEEN ? AND ?");
 			list.add(registration_dateFrom);
 			list.add(registration_dateTo);
-		}else if((registration_dateFrom != null) && (registration_dateTo == null)) {
+		} else if ((registration_dateFrom != null) && (registration_dateTo == null)) {
 			sql.append(" and registration_date >= ?");
 			list.add(registration_dateFrom);
-		}else if((registration_dateFrom == null) && (registration_dateTo != null)) {
+		} else if ((registration_dateFrom == null) && (registration_dateTo != null)) {
 			sql.append(" and registration_date <= ?");
 			list.add(registration_dateTo);
 		}
@@ -164,8 +164,7 @@ public class ClientDaoJdbcImpl implements ClientDao {
 		String sql = "select * from client";
 		ClientRowCallbackHandler handler = new ClientRowCallbackHandler();
 
-		jdbc.query(sql,handler);
-
+		jdbc.query(sql, handler);
 
 	}
 }

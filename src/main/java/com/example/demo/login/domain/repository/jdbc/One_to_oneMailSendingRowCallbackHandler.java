@@ -27,15 +27,14 @@ public class One_to_oneMailSendingRowCallbackHandler implements RowCallbackHandl
 						+ "『メール内容』 " + rs.getString("mail") + ","
 						+ "『送信日』 " + sdf.format(rs.getTimestamp("registration_date"));
 
-
 				bw.write(str);
 				bw.newLine();
-			}while(rs.next());
+			} while (rs.next());
 
 			bw.flush();
 			bw.close();
 
-		}catch (Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 			throw new SQLException(e);
 		}

@@ -8,35 +8,33 @@ import java.sql.SQLException;
 
 import org.springframework.jdbc.core.RowCallbackHandler;
 
-public class TweetRowCallbackHandler implements RowCallbackHandler{
+public class TweetRowCallbackHandler implements RowCallbackHandler {
 
-		@Override
-		public void processRow(ResultSet rs) throws SQLException {
+	@Override
+	public void processRow(ResultSet rs) throws SQLException {
 
-			try {
-				File file = new File("tweet.csv");
-				FileWriter fw = new FileWriter(file.getAbsoluteFile());
-				BufferedWriter bw = new BufferedWriter(fw);
+		try {
+			File file = new File("tweet.csv");
+			FileWriter fw = new FileWriter(file.getAbsoluteFile());
+			BufferedWriter bw = new BufferedWriter(fw);
 
-				do {
-					String str =  "『ユーザー名』" + rs.getString("user_name") + ","
-							+  "『Tweet内容』" + rs.getString("contents") + ","
-							+  "『Tweet日』" + rs.getString("registration_date");
+			do {
+				String str = "『ユーザー名』" + rs.getString("user_name") + ","
+						+ "『Tweet内容』" + rs.getString("contents") + ","
+						+ "『Tweet日』" + rs.getString("registration_date");
 
-					bw.write(str);
-					bw.newLine();
-				}while(rs.next());
+				bw.write(str);
+				bw.newLine();
+			} while (rs.next());
 
-				bw.flush();
-				bw.close();
+			bw.flush();
+			bw.close();
 
-			}catch (Exception e) {
-				e.printStackTrace();
-				throw new SQLException(e);
-			}
-
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new SQLException(e);
 		}
-
 
 	}
 
+}

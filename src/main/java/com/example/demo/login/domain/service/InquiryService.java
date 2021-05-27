@@ -22,9 +22,9 @@ public class InquiryService {
 	InquiryDao dao;
 
 	//insert用メソッド
-	public boolean insert(InquiryDTO inquirydto,String user_idT) {
+	public boolean insert(InquiryDTO inquirydto, String user_idT) {
 
-		int rowNumber = dao.insertOne(inquirydto,user_idT);
+		int rowNumber = dao.insertOne(inquirydto, user_idT);
 
 		//判定用変数
 		boolean result = false;
@@ -84,16 +84,19 @@ public class InquiryService {
 
 	}
 
-	public List<InquiryDTO> search(String title,String content,Date registration_dateA,Date registration_dateZ,Date finished_dateA,Date finished_dateZ,String finished_dateT) throws DataAccessException {
+	public List<InquiryDTO> search(String title, String content, Date registration_dateA, Date registration_dateZ,
+			Date finished_dateA, Date finished_dateZ, String finished_dateT) throws DataAccessException {
 
-		return dao.search(title,content,registration_dateA,registration_dateZ,finished_dateA,finished_dateZ,finished_dateT);
+		return dao.search(title, content, registration_dateA, registration_dateZ, finished_dateA, finished_dateZ,
+				finished_dateT);
 	}
+
 	//一件完了ボタン
 	//ボタン切り替えのためにidとfinished_dateも受け取る
 	public boolean completedOne(int id, Date finished_date) {
 
 		//一件登録
-		int rowNumber = dao.completedOne(id,finished_date);
+		int rowNumber = dao.completedOne(id, finished_date);
 
 		boolean result = false;
 

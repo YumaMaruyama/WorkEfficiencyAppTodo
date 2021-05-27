@@ -45,7 +45,7 @@ public class AdminDaoJdbcImpl implements AdminDao {
 	@Override
 	public List<AdminDTO> selectMany() throws DataAccessException {
 		List<Map<String, Object>> getList = jdbc.queryForList("select * from admin");
-		//queryForMap 戻り値はMap<String,Object>型です
+
 		//結果返却用のList
 		List<AdminDTO> adminList = new ArrayList<>();
 		//取得したデータを結果返却用のListに格納
@@ -94,7 +94,7 @@ public class AdminDaoJdbcImpl implements AdminDao {
 	public void adminCsvOut() throws DataAccessException {
 
 		System.out.println("adminCsvOutImpl到達");
-		//inquiryテーブルのデータを全件取得するSQL
+
 		String sql = "select * from admin";
 		System.out.println("sql" + sql);
 		//ResultSetExceptionの生成
@@ -115,7 +115,7 @@ public class AdminDaoJdbcImpl implements AdminDao {
 
 		StringBuilder sql = new StringBuilder();
 		List<Object> list = new ArrayList<Object>();
-		//条件に合った所のｓｑｌ文を追加していく
+		//条件に合った所のsql文を追加していく
 		sql.append("select * from admin where is_deleted = 0");
 
 		if ((contentsA != null) && (!contentsA.isEmpty())) {

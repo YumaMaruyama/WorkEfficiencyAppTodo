@@ -11,15 +11,17 @@ public interface TweetDao {
 
 	public int count() throws DataAccessException;
 
-	public int insertOne(TweetDTO tweetdto)throws DataAccessException;
+	public int insertOne(TweetDTO tweetdto) throws DataAccessException;
 
-	public TweetDTO selectOne(String id)throws DataAccessException;
+	public TweetDTO selectOne(String id) throws DataAccessException;
 
 	public List<TweetDTO> selectMany() throws DataAccessException;
 
 	public int deleteOne(int id) throws DataAccessException;
 
-	public List<TweetDTO> search(String user_id,String contents,Date registration_dateA,Date registration_dateZ) throws DataAccessException;
+	public List<TweetDTO> search(String user_id, String contents, Date registration_dateA, Date registration_dateZ)
+			throws DataAccessException;
+
 	//Csvはvoid
 	public void tweetCsvOut() throws DataAccessException;
 }

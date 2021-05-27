@@ -101,12 +101,7 @@ public class UsersDaoJdbcImpl implements UsersDao {
 		 		sql.append(" and hireDate <= ?");
 		 		list.add(hireDateZZ);
 		 	}
-		 	//条件文OKは出るけど、リストが全て取れなくなる
-//		 	if(!maleFemaleSearch.isEmpty()) {
-//		 		sql.append(" and maleFemale like ?");
-//		 		list.add(maleFemaleSearch);
-//		 		System.out.println("条件文OK");
-//		 	}
+		 	
 		 	//Blankはnull,""," ",の三つをチェックしてくれる
 		 	if((maleFemaleSearch == 1) || (maleFemaleSearch == 0)) {
 		 		sql.append(" and maleFemale like ?");
@@ -399,10 +394,7 @@ public class UsersDaoJdbcImpl implements UsersDao {
 				,usersdto.isMaleFemale()
 				,usersdto.getUser_id());
 
-		//トランザクション確認のため、あえて例外をthrowにする
-//		if(rowNumber > 0) {
-//			throw new DataAccessException("トランザクションテスト") {};
-//		}
+	
 		return rowNumber;
 	}
 

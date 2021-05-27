@@ -21,7 +21,8 @@ public interface ClientDao {
 
 	public int count() throws DataAccessException;
 
-	public List<ClientDTO> search(String company,String address,String user_name,Date registration_dateFrom,Date registration_dateTo,String telephone,String mailaddress);
+	public List<ClientDTO> search(String company, String address, String user_name, Date registration_dateFrom,
+			Date registration_dateTo, String telephone, String mailaddress);
 
 	public void clientCsvOut();
 }

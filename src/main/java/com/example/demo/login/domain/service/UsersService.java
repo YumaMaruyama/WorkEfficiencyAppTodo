@@ -16,6 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.example.demo.login.domain.model.UsersDTO;
 import com.example.demo.login.domain.repository.UsersDao;
+
 //トランザクションを行うにはアノテーションをつける
 @Transactional
 @Service
@@ -44,8 +45,6 @@ public class UsersService {
 		return result;
 
 	}
-
-
 
 	public int check(String user_id) {
 		return dao.check(user_id);
@@ -86,10 +85,6 @@ public class UsersService {
 		return dao.selectOne(user_id);
 	}
 
-//	public UsersDTO selectOnename(String user_name) {
-//		return dao.selectOne(user_name);
-//	}
-
 	//一件更新用メソッド
 	public boolean updateOne(UsersDTO usersdto) {
 
@@ -123,7 +118,8 @@ public class UsersService {
 	}
 
 	//searchメソッド
-	public List<UsersDTO> search(String userId,String userName,Date birthdayA,Date birthdayZ,Date hireDateAA, Date hireDateZZ, int maleFemale,String admin) {
+	public List<UsersDTO> search(String userId, String userName, Date birthdayA, Date birthdayZ, Date hireDateAA,
+			Date hireDateZZ, int maleFemale, String admin) {
 		System.out.println("usersSearchService到達");
 		System.out.println("userId" + userId);
 		System.out.println("userName" + userName);
@@ -133,22 +129,23 @@ public class UsersService {
 		System.out.println("hireDateZZ" + hireDateZZ);
 		System.out.println(" maleFemaleSearch" + maleFemale);
 
-		return dao.search(userId, userName, birthdayA, birthdayZ, hireDateAA, hireDateZZ, maleFemale,admin);
+		return dao.search(userId, userName, birthdayA, birthdayZ, hireDateAA, hireDateZZ, maleFemale, admin);
 
 	}
 
-	public List<UsersDTO> searchPersonUsersNotice(String user_id,String user_name,String admin) {
+	public List<UsersDTO> searchPersonUsersNotice(String user_id, String user_name, String admin) {
 		System.out.println("usersSearchService到達");
 		System.out.println("user_id" + user_id);
 		System.out.println("user_name" + user_name);
 
-		return dao.searchPersonUsersNotice(user_id, user_name,admin);
+		return dao.searchPersonUsersNotice(user_id, user_name, admin);
 	}
 
-	public List<UsersDTO> searchOne_to_oneMailNotice(String user_id,String user_name,String admin,String getName) {
-		return dao.searchOne_to_oneMailNotice(user_id,user_name,admin,getName);
+	public List<UsersDTO> searchOne_to_oneMailNotice(String user_id, String user_name, String admin, String getName) {
+		return dao.searchOne_to_oneMailNotice(user_id, user_name, admin, getName);
 
 	}
+
 	//ユーザー一覧をCSV出力する
 	//ユーザー一覧をCSVに出力するメソッドはリポジトリークラス（UsersDaoJdbcImpl)
 	//のCSV出力メソッドを呼び出している

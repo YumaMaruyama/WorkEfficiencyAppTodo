@@ -15,9 +15,7 @@ public class Securitysecurity extends UsersDTO implements UserDetails {
 			this.usersdto = usersdto;
 		}
 
-//		public String getUser_id() {
-//			return usersdto.getUser_id();
-//		}
+/
 
 		//ログイン者（データベースのusersテーブル）のuser_name（丸山佑馬）をヘッダーに表示させるために作ったけど、SpringSecurityの設定でuser_nameがuser_idになってる
 		public String getUser_name() {

@@ -11,7 +11,7 @@ public interface AdminDao {
 
 	public int insertOne(AdminDTO adminDTO) throws DataAccessException;
 
-	public AdminDTO selectOne(int id,String contents,Date registration_date ) throws DataAccessException;
+	public AdminDTO selectOne(int id, String contents, Date registration_date) throws DataAccessException;
 
 	public List<AdminDTO> selectMany() throws DataAccessException;
 
@@ -21,7 +21,8 @@ public interface AdminDao {
 
 	public int count() throws DataAccessException;
 
-	public List<AdminDTO> search(String contentsA,Date registration_dateAA,Date registration_dateZZ) throws DataAccessException ;
+	public List<AdminDTO> search(String contentsA, Date registration_dateAA, Date registration_dateZZ)
+			throws DataAccessException;
 
 	public void adminCsvOut() throws DataAccessException;
 }

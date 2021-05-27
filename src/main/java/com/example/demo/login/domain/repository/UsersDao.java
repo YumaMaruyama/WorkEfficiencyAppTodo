@@ -40,12 +40,13 @@ public interface UsersDao {
 	public int deleteOne(String user_id) throws DataAccessException;
 
 	//Usersテーブルのデータからsearch
-	public List<UsersDTO> search(String userId,String userName,Date birthdayAA,Date birthdayZZ,Date hireDateAA, Date hireDateZZ, int maleFemaleSearch,String admin);
+	public List<UsersDTO> search(String userId, String userName, Date birthdayAA, Date birthdayZZ, Date hireDateAA,
+			Date hireDateZZ, int maleFemaleSearch, String admin);
 
 	//Usersテーブルのデータからsearch　personUsersNotice用
-	public List<UsersDTO> searchPersonUsersNotice(String user_id,String user_name,String admin);
+	public List<UsersDTO> searchPersonUsersNotice(String user_id, String user_name, String admin);
 
-	public List<UsersDTO> searchOne_to_oneMailNotice(String user_id,String user_name,String admin,String getName);
+	public List<UsersDTO> searchOne_to_oneMailNotice(String user_id, String user_name, String admin, String getName);
 
 	//SQL取得結果をサーバーにCSVで保存する
 	public void usersCsvOut(String user_id) throws DataAccessException;

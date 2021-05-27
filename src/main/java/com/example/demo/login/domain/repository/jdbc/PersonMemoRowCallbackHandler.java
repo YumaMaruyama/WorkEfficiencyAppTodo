@@ -21,18 +21,17 @@ public class PersonMemoRowCallbackHandler implements RowCallbackHandler {
 
 			do {
 				SimpleDateFormat sdf = new SimpleDateFormat("yyyy年MM月dd日 ah時mm分");
-				String str = "『メモ』 " +  rs.getString("memo") + ","
+				String str = "『メモ』 " + rs.getString("memo") + ","
 						+ "『作成日』 " + sdf.format(rs.getTimestamp("registration_date"));
-
 
 				bw.write(str);
 				bw.newLine();
-			}while(rs.next());
+			} while (rs.next());
 
 			bw.flush();
 			bw.close();
 
-		}catch (Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 			throw new SQLException(e);
 		}

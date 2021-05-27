@@ -13,9 +13,9 @@ public interface One_to_oneMailDao {
 
 	public int countSending(String getName) throws DataAccessException;
 
-	public int insertOne(One_to_oneMailDTO one_to_onemaildto,String getName) throws DataAccessException;
+	public int insertOne(One_to_oneMailDTO one_to_onemaildto, String getName) throws DataAccessException;
 
-	public int insertOneReply(One_to_oneMailDTO one_to_onemaildto,String getName) throws DataAccessException;
+	public int insertOneReply(One_to_oneMailDTO one_to_onemaildto, String getName) throws DataAccessException;
 
 	public One_to_oneMailDTO selectOneSendingDetail(int id) throws DataAccessException;
 
@@ -31,13 +31,14 @@ public interface One_to_oneMailDao {
 
 	public int deleteOneSending(int id) throws DataAccessException;
 
-	public List<One_to_oneMailDTO> search(String user_name,String mail,Date registration_dateFrom,Date registration_dateTo,String getUser_id,String getUser_id2);
+	public List<One_to_oneMailDTO> search(String user_name, String mail, Date registration_dateFrom,
+			Date registration_dateTo, String getUser_id, String getUser_id2);
 
-	public List<One_to_oneMailDTO> searchSending(String user_name,String mail,Date registration_dateFrom,Date registration_dateTo,String getName) throws DataAccessException;
+	public List<One_to_oneMailDTO> searchSending(String user_name, String mail, Date registration_dateFrom,
+			Date registration_dateTo, String getName) throws DataAccessException;
 
 	public void one_to_oneMailCsvOut(String getName);
 
 	public void one_to_oneMailSendingCsvOut(String getName);
 
 }
-

@@ -20,21 +20,20 @@ public class AdminService {
 	@Autowired
 	AdminDao dao;
 
-	public  boolean insertOne(AdminDTO admindto) {
+	public boolean insertOne(AdminDTO admindto) {
 		int rowNumber = dao.insertOne(admindto);
 
-		 boolean result = false;
+		boolean result = false;
 
-		if(rowNumber > 0) {
+		if (rowNumber > 0) {
 			result = true;
 		}
 		return result;
 
 	}
 
-
-	public AdminDTO selectOne(int id,String contents,Date registration_date) {
-		return dao.selectOne(id,contents,registration_date);
+	public AdminDTO selectOne(int id, String contents, Date registration_date) {
+		return dao.selectOne(id, contents, registration_date);
 	}
 
 	public List<AdminDTO> selectMany() {
@@ -46,25 +45,27 @@ public class AdminService {
 		int rowNumber = dao.updateOne(admindto);
 
 		boolean result = false;
-		if(rowNumber > 0) {
+		if (rowNumber > 0) {
 			result = true;
 		}
 		return result;
 	}
+
 	public boolean deleteOne(int id) {
 
 		int rowNumber = dao.deleteOne(id);
 
 		boolean result = false;
 
-		if(rowNumber > 0) {
+		if (rowNumber > 0) {
 			result = true;
 		}
 		return result;
 	}
-		public List<AdminDTO> search(String contentsA,Date registration_dateAA,Date registration_dateZZ) {
-			return dao.search(contentsA,registration_dateAA,registration_dateZZ);
-		}
+
+	public List<AdminDTO> search(String contentsA, Date registration_dateAA, Date registration_dateZZ) {
+		return dao.search(contentsA, registration_dateAA, registration_dateZZ);
+	}
 
 	public int count() {
 		return dao.count();
