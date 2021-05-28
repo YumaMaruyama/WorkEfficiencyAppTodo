@@ -1,14 +1,14 @@
 @charset "UTF-8";
 
-#help_tips_pop{
-display:inline-block;
-position:absolute;
-margin-top:15px;
-margin-left:5px;
-background:rgba(0,0,0,0.5);
-color:#FFF;
-margin-top:15px;
-text-align:center;
-border-radius:3px;
-padding:5px;
+#help_tips_pop {
+	display: inline-block;
+	position: absolute;
+	margin-top: 15px;
+	margin-left: 5px;
+	background: rgba(0, 0, 0, 0.5);
+	color: #FFF;
+	margin-top: 15px;
+	text-align: center;
+	border-radius: 3px;
+	padding: 5px;
 }

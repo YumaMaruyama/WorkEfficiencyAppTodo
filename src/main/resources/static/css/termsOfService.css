@@ -1,19 +1,19 @@
 @charset "UTF-8";
 
 .termsOfService thead {
-	display:block;
-	overflow-y:scroll;
+	display: block;
+	overflow-y: scroll;
 	/*tdがスクロールしなくても見える範囲の幅*/
 	height: 442px;
 }
 
 .termsOfServiceLogin thead {
-	display:block;
-	overflow-y:scroll;
+	display: block;
+	overflow-y: scroll;
 	/*tdがスクロールしなくても見える範囲の幅*/
 	height: 420px;
 }
 
 .termsOfServiceTableThColor {
-	background-color: #f7dfa7!important;
+	background-color: #f7dfa7 !important;
 }

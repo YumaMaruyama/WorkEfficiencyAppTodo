@@ -14,16 +14,17 @@
 				</div>
 				<form method="post" th:action="@{/adminNoticeDetail}"
 					th:object="${adminForm}">
-					<input type="hidden" name="id" value="${admin.id}"
-						th:field="*{id}">
+					<input type="hidden" name="id" value="${admin.id}" th:field="*{id}">
 					<table class="table table-bordered table-hover">
 						<tr>
-						<th class="danger active col-sm-1 text-center" style="padding:14px;">お知らせ内容</th>
-							<td class="col-sm-8" style="background-color:#f9efef">
-								<div class="form-group" th:classappend="${#fields.hasErrors('contents')}?'has-error'">
+							<th class="danger active col-sm-1 text-center"
+								style="padding: 14px;">お知らせ内容</th>
+							<td class="col-sm-8" style="background-color: #f9efef">
+								<div class="form-group"
+									th:classappend="${#fields.hasErrors('contents')}?'has-error'">
 
-									<input type="text" class="form-control" th:field="*{contents}" placeholder="190字以下で入力してください。" />
-									<span class="text-danger"
+									<input type="text" class="form-control" th:field="*{contents}"
+										placeholder="190字以下で入力してください。" /> <span class="text-danger"
 										th:if="${#fields.hasErrors('contents')}"
 										th:errors="*{contents}">contents error</span>
 								</div>
@@ -37,10 +38,10 @@
 
 					<!-- 更新ボタン -->
 					<button class="btn btn-primary btn-lg pull-right" type="submit"
-						name="update" style="font-size:20px;">Work内容更新</button>
+						name="update" style="font-size: 20px;">Work内容更新</button>
 					<!-- 削除ボタン -->
-					<button class="btn btn-danger btn-lg pull-left deleteButton" type="submit"
-						name="delete" style="font-size:20px;">Work内容削除</button>
+					<button class="btn btn-danger btn-lg pull-left deleteButton"
+						type="submit" name="delete" style="font-size: 20px;">Work内容削除</button>
 
 				</form>
 			</div>

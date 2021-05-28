@@ -4,21 +4,13 @@
 <head>
 <meta charset="UTF-8">
 
-<!-- Bootstrap（デザイン性の高い画面を簡単に作成可能※タグのclass属性にある値をセットするだけ）の設定 jQuery Bootstrapの読み込み必要がある-->
-<link th:href="@{/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css}"
-	rel="stylesheet"></link>
-<!--　↑cssファイル タイムリーフでファイル読み込み　 -->
-<script th:src="@{/webjars/jquery/1.11.1/jquery.min.js}"></script>
-<!--　↑jQueryのjsファイル タイムリーフでファイル読み込み　 -->
-<script th:src="@{/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js}"></script>
-<!--　↑Bootstrap のjsファイル（jQueryの後に読み込む） タイムリーフでファイル読み込み　 -->
 
 <title>adminPersonNotice</title>
 </head>
 <body>
 	<!-- コンテンツ部分 -->
 	<div th:fragment="workspaceLayout_contents">
-	<!-- jQuery フォームリセット -->
+		<!-- jQuery フォームリセット -->
 		<script>
 			$(function() {
 				// 入力値をリセット
@@ -34,7 +26,8 @@
 					<td class="col-sm-5">
 						<h1 class="text-center" style="background-color: #b0e0e659;">管理者からあなたへ</h1>
 					</td>
-					<td class="col-sm-12"><h3 th:text="'合計' + ${adminPersonNoticeHomeCount} + '件'"></h3></td>
+					<td class="col-sm-12"><h3
+							th:text="'合計' + ${adminPersonNoticeHomeCount} + '件'"></h3></td>
 					<td class="col-sm-2 btnPadding"><a class="cp_btn4"
 						th:href="@{'/personUsersNotice/csv'}">CSV出力</a></td>
 				</tr>
@@ -44,7 +37,7 @@
 		<form method="post" th:action="@{/adminPersonNotice}"
 			th:object="${adminPersonNoticeSearchForm}">
 			<table class="table table-borderd table-hover bg-success"
-				 style="background-color: #e0ffff;width:1120px">
+				style="background-color: #e0ffff; width: 1120px">
 				<tr class="workspaceTrThSearch">
 					<th class="info text-center font-weight-bold">おしらせ内容</th>
 					<th class="info text-center font-weight-bold">受信日～</th>
@@ -54,15 +47,22 @@
 				</tr>
 
 				<tr>
-					<td><input id="textField1" type="text" class="text-center form-control" name="content" th:field="*{content}" placeholder="150文字以下で検索可"><span class="text-danger" th:if="${#fields.hasErrors('content')}" th:errors="*{content}"></span></td>
-					<td> <input id="dateField1" type="date" class="text-center form-control"
-						name="registration_dateA" th:field="*{registration_dateA}"></td>
-						<td> <input id="dateField2" type="date" class="text-center form-control"
-						name="registration_dateZ" th:field="*{registration_dateZ}"></td>
-					<td class="text-center"><button class="btn btn-primary btnPadding2"
-							type="submit" name="search">キーワードで検索</button></td>
+					<td><input id="textField1" type="text"
+						class="text-center form-control" name="content"
+						th:field="*{content}" placeholder="150文字以下で検索可"><span
+						class="text-danger" th:if="${#fields.hasErrors('content')}"
+						th:errors="*{content}"></span></td>
+					<td><input id="dateField1" type="date"
+						class="text-center form-control" name="registration_dateA"
+						th:field="*{registration_dateA}"></td>
+					<td><input id="dateField2" type="date"
+						class="text-center form-control" name="registration_dateZ"
+						th:field="*{registration_dateZ}"></td>
+					<td class="text-center"><button
+							class="btn btn-primary btnPadding2" type="submit" name="search">キーワードで検索</button></td>
 					<td style="text-align: center;"><button
-							class="btn btn-success reset btnPadding2" id="resetButton" type="button">フォーム内初期化</button></td>
+							class="btn btn-success reset btnPadding2" id="resetButton"
+							type="button">フォーム内初期化</button></td>
 				</tr>
 
 
@@ -73,7 +73,8 @@
 
 
 		<table
-			class="table table-condensed table-bordered table-hover table-striped sticky_table adminPersonNotice fontSizeAdminPersonNotice" style="width:1120px">
+			class="table table-condensed table-bordered table-hover table-striped sticky_table adminPersonNotice fontSizeAdminPersonNotice"
+			style="width: 1120px">
 			<thead>
 				<tr>
 					<th
@@ -82,7 +83,7 @@
 						class="text-center warning col-sm-5 sticky-top adminPersonNoticeTh2 adminPersonNoticeTableThColor">受信日時</th>
 					<th
 						class="text-center warning col-sm-1 sticky-top adminPersonNoticeTh3 adminPersonNoticeTableThColor">管理</th>
-					<!-- sec:authorize="hasRole('ADMIN')" -->
+
 				</tr>
 			</thead>
 
@@ -92,7 +93,8 @@
 					th:text="${personusersnoticedto.content}"></td>
 				<td class="text-center adminPersonNoticeTd2"
 					th:text="${#dates.format(personusersnoticedto.registration_date, 'yyyy/MM/dd HH:mm')}"></td>
-				<td class="text-center adminPersonNoticeTd3 btnSizeAdminPersonNotice2"><a
+				<td
+					class="text-center adminPersonNoticeTd3 btnSizeAdminPersonNotice2"><a
 					class="btn btn-primary text-center btnSizeAdminPersonNotice"
 					th:href="@{'adminPersonNoticeDetail/' + ${personusersnoticedto.id}}">編集</a></td>
 			</tr>

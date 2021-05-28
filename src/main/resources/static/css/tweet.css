@@ -1,67 +1,74 @@
 @charset "UTF-8";
 
 .tweetInputa {
-
 	width: 800px !important;
 }
+
 .form-group {
-     margin-bottom: 1px;
+	margin-bottom: 1px;
 }
 
-/*.tweet thead{
-	display:block;
-}*/
 .tweet tbody {
-	display:block;
-	overflow-y:scroll;
+	display: block;
+	overflow-y: scroll;
 	/*heightがスクロールしなくても見える範囲の幅*/
 	height: 273px;
 }
+
 .tweetThA {
-	width:150px;
+	width: 150px;
 }
+
 .tweetThB {
-	width:700px;
+	width: 700px;
 }
+
 .tweetThC {
-	width:160px;
+	width: 160px;
 }
+
 .tweetThD {
-	width:90px;
+	width: 90px;
 }
 
 .tweetTdA {
-	width:150px;
-}
-.tweetTdB {
-	width:700px;
-}
-.tweetTdC {
-	width:160px;
-}
-.tweetTdD {
-	width:90px;
+	width: 150px;
 }
 
+.tweetTdB {
+	width: 700px;
+}
+
+.tweetTdC {
+	width: 160px;
+}
+
+.tweetTdD {
+	width: 90px;
+}
 
 .tweetTh1 {
-	width:960px;
+	width: 960px;
 }
+
 .tweetTh2 {
-	width:120px;
+	width: 120px;
 }
+
 .tweetTh3 {
-	width:120px;
+	width: 120px;
 }
 
 .tweetTd1 {
-	width:950px;
+	width: 950px;
 }
+
 .tweetTd2 {
-	width:120px;
+	width: 120px;
 }
+
 .tweetTd3 {
-	/*width:130px;*/
+
 }
 
 .tweetTableThColor {

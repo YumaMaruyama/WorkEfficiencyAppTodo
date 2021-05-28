@@ -30,19 +30,16 @@ a.cp_btn5:before {
 a.cp_btn5:hover:before {
 	left: 0;
 }
-/*.UsersTheadName thead {
-	display:block;
-}*/
+
 .usersList tbody {
 	display: block;
 	overflow-y: scroll;
-	/*tdがスクロールしなくても見える範囲の幅*/
+
 	height: 293px;
 }
 
 .usersListName1 {
-	/*table-layout: fixed;
-	  word-wrap: break-word;*/
+
 	width: 440px;
 }
 

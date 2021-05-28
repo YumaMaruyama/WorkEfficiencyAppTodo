@@ -5,77 +5,72 @@
 <head>
 <meta charset="UTF-8">
 
-<!-- Bootstrap（デザイン性の高い画面を簡単に作成可能※タグのclass属性にある値をセットするだけ）の設定 jQuery Bootstrapの読み込み必要がある-->
-<link th:href="@{/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css}"
-	rel="stylesheet"></link>
-<!--　↑cssファイル タイムリーフでファイル読み込み　 -->
-<script th:src="@{/webjars/jquery/1.11.1/jquery.min.js}"></script>
-<!--　↑jQueryのjsファイル タイムリーフでファイル読み込み　 -->
-<script th:src="@{/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js}"></script>
-<!--　↑Bootstrap のjsファイル（jQueryの後に読み込む） タイムリーフでファイル読み込み　 -->
 
 <title>guideLogin</title>
 </head>
 <body>
 
-		<!-- コンテンツ部分 -->
+	<!-- コンテンツ部分 -->
 	<div th:fragment="loginLayout_contents">
-		<div class="page-header col-sm-7" >
+		<div class="page-header col-sm-7">
 			<table>
-				<tr >
-				<br>
-					<td class="col-sm-11" style="font-size: 30px;
-    background-color: #ffc3c3;
-    font-family: serif;
-    padding: 10px 0px 5px 11px;">WorkEfficiencyApp-YMJOJO仕様ガイド</td>
+				<tr>
+					<br>
+					<td class="col-sm-11"
+						style="font-size: 30px; background-color: #ffc3c3; font-family: serif; padding: 10px 0px 5px 11px;">WorkEfficiencyApp-YMJOJO仕様ガイド</td>
 				</tr>
 			</table>
 		</div>
 
 		<div style="height: 120vh; width: 1080px;">
-		<table
-			class="table table-bordered table-hover table-striped guideLoginTable">
-			<br><br><br><br><br>
-			<thead>
-			<tr>
-				<th class="warning text-center col-sm-2 guideTh1 guideTableThColor">内容</th>
-				<th class="warning text-center guideTh2 guideTableThColor">ガイド</th>
+			<table
+				class="table table-bordered table-hover table-striped guideLoginTable">
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+				<thead>
+					<tr>
+						<th
+							class="warning text-center col-sm-2 guideTh1 guideTableThColor">内容</th>
+						<th class="warning text-center guideTh2 guideTableThColor">ガイド</th>
 
-			</tr>
-			</thead>
+					</tr>
+				</thead>
 
-			<tr>
-				<th class="guideTh1a" style="background-color: aliceblue;">ユーザー新規登録</th>
-				<td  class="guideTh2" style="background-color: aliceblue;">アプリを利用する為のユーザー登録を行えます。</td>
-			</tr>
+				<tr>
+					<th class="guideTh1a" style="background-color: aliceblue;">ユーザー新規登録</th>
+					<td class="guideTh2" style="background-color: aliceblue;">アプリを利用する為のユーザー登録を行えます。</td>
+				</tr>
 
-			<tr>
-				<th class="guideTh1a" style="background-color: #eee;">アプリ利用規約</th>
-				<td class="guideTh2a" style="background-color: #eee;">このアプリの利用規約が確認できます。</td>
-			</tr>
+				<tr>
+					<th class="guideTh1a" style="background-color: #eee;">アプリ利用規約</th>
+					<td class="guideTh2a" style="background-color: #eee;">このアプリの利用規約が確認できます。</td>
+				</tr>
 
-			<tr>
-				<th class="guideTh1a" style="background-color: aliceblue;">プライバシーポリシー</th>
-				<td  class="guideTh2a" style="background-color: aliceblue;">このアプリのプライバシーポリシーが確認できます。</td>
-			</tr>
+				<tr>
+					<th class="guideTh1a" style="background-color: aliceblue;">プライバシーポリシー</th>
+					<td class="guideTh2a" style="background-color: aliceblue;">このアプリのプライバシーポリシーが確認できます。</td>
+				</tr>
 
-			<tr>
-				<th class="guideTh1a" style="background-color: #eee;">SNS共有</th>
-				<td  class="guideTh2" style="background-color: #eee;">このアプリを様々なSNSの場で共有できます。デフォルトで固定文とこのアプリのURLが出るようになっています。</td>
-			</tr>
+				<tr>
+					<th class="guideTh1a" style="background-color: #eee;">SNS共有</th>
+					<td class="guideTh2" style="background-color: #eee;">このアプリを様々なSNSの場で共有できます。デフォルトで固定文とこのアプリのURLが出るようになっています。</td>
+				</tr>
 
-			<tr>
-				<th class="guideTh1a" style="background-color: aliceblue;">お問い合わせ</th>
-				<td  class="guideTh2" style="background-color: aliceblue;">アプリを運営する管理者に問い合わせすることができます。</td>
-			</tr>
+				<tr>
+					<th class="guideTh1a" style="background-color: aliceblue;">お問い合わせ</th>
+					<td class="guideTh2" style="background-color: aliceblue;">アプリを運営する管理者に問い合わせすることができます。</td>
+				</tr>
 
-			<tr>
-				<th class="guideTh1a" style="background-color: #eee;">アプリ詳細</th>
-				<td  class="guideTh2" style="background-color: #eee;">アプリの詳細を確認できます。</td>
-			</tr>
+				<tr>
+					<th class="guideTh1a" style="background-color: #eee;">アプリ詳細</th>
+					<td class="guideTh2" style="background-color: #eee;">アプリの詳細を確認できます。</td>
+				</tr>
 
 			</table>
-			</div>
-</div>
+		</div>
+	</div>
 </body>
 </html>

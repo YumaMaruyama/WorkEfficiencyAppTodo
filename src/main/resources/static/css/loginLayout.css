@@ -8,34 +8,35 @@ a.cp_btnLogin {
 	text-align: center;
 	text-decoration: none;
 	color: #545252;
-	border:1px solid #fff361e0;
+	border: 1px solid #fff361e0;
 	background: #51ec87;
-	/*overflow: hidden;*/
 	z-index: 1 !important;
-	/*!important 優先順位が最上位になる（bootstrapにも勝つ）*/
 	border-radius: 23px !important;
 }
 
 a.cp_btnLogin:after {
-	content:"";
+	content: "";
 	position: absolute;
 	top: 50%;
 	left: 50%;
 	height: 0;
 	width: 100%;
-	background : #fff;
+	background: #fff;
 	opacity: 0;
 	transform: translateX(-50%) translateY(-50%) rotate(40deg);
 	transition: 0.3s;
 	z-index: -1;
 }
+
 a.cp_btnLogin:hover {
 	color: #27d2b7;;
 }
+
 a.cp_btnLogin:hover:after {
 	height: 250%;
 	opacity: 1;
 }
+
 a.cp_btnLogin:active:after {
 	height: 350%;
 	opacity: 1;
@@ -43,9 +44,8 @@ a.cp_btnLogin:active:after {
 
 .sideberLogin {
 	position: fixed;
-    display: block;
-    top: 50px;
-    bottom: 0;
-    background-color: #d9fffc61;
-
+	display: block;
+	top: 50px;
+	bottom: 0;
+	background-color: #d9fffc61;
 }

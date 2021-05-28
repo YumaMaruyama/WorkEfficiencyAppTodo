@@ -1,201 +1,192 @@
 @charset "UTF-8";
 
-#icon{
- /* width: 50px;*/
-  height: 8px;
- /* background-color: #ddd;*/
-  border-radius: 12px;
-  position: relative;
- /* margin: 20px;*/
+#icon {
+	height: 8px;
+	border-radius: 12px;
+	position: relative;
 }
+
 #icon[data-num="0"]::before {
-  display: none;
+	display: none;
 }
-
-
 
 #icon::before {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: absolute;
-    content: attr(data-num);
-    min-width: 26px;
-    height: 20px;
-    box-sizing: border-box;
-    padding: 4px;
-    font-size: 13px;
-    font-weight: bold;
-    background-color: #ff4d7c ;
-    border: 1px solid #fff;
-    border-radius: 10px;
-    top: 7px;
-    right: -100px;
-    transform: translate(40%, -40%);
-    z-index: 1;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: absolute;
+	content: attr(data-num);
+	min-width: 26px;
+	height: 20px;
+	box-sizing: border-box;
+	padding: 4px;
+	font-size: 13px;
+	font-weight: bold;
+	background-color: #ff4d7c;
+	border: 1px solid #fff;
+	border-radius: 10px;
+	top: 7px;
+	right: -100px;
+	transform: translate(40%, -40%);
+	z-index: 1;
 }
 
 /*Tweet用アイコン*/
-#iconTweet{
- /* width: 50px;*/
-  height: 8px;
- /* background-color: #ddd;*/
-  border-radius: 12px;
-  position: relative;
- /* margin: 20px;*/
+#iconTweet {
+	height: 8px;
+	border-radius: 12px;
+	position: relative;
 }
+
 #iconTweet[data-num="0"]::before {
-  display: none;
+	display: none;
 }
+
 #iconTweet::before {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: absolute;
-    content: attr(data-num);
-    min-width: 26px;
-    height: 20px;
-    box-sizing: border-box;
-    padding: 4px;
-    font-size: 13px;
-    font-weight: bold;
-    background-color: #ff4d7c ;
-    border: 1px solid #fff;
-    border-radius: 10px;
-    top: 7px;
-    right: -131px;
-    transform: translate(40%, -40%);
-    z-index: 1;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: absolute;
+	content: attr(data-num);
+	min-width: 26px;
+	height: 20px;
+	box-sizing: border-box;
+	padding: 4px;
+	font-size: 13px;
+	font-weight: bold;
+	background-color: #ff4d7c;
+	border: 1px solid #fff;
+	border-radius: 10px;
+	top: 7px;
+	right: -131px;
+	transform: translate(40%, -40%);
+	z-index: 1;
 }
 
 /*adminNotice用アイコン*/
-#iconAdminNotice{
- /* width: 50px;*/
-  height: 8px;
- /* background-color: #ddd;*/
-  border-radius: 12px;
-  position: relative;
- /* margin: 20px;*/
+#iconAdminNotice {
+	height: 8px;
+	border-radius: 12px;
+	position: relative;
 }
+
 #iconAdminNotice[data-num="0"]::before {
-  display: none;
+	display: none;
 }
+
 #iconAdminNotice::before {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: absolute;
-    content: attr(data-num);
-    min-width: 26px;
-    height: 20px;
-    box-sizing: border-box;
-    padding: 4px;
-    font-size: 13px;
-    font-weight: bold;
-    background-color: #ff4d7c ;
-    border: 1px solid #fff;
-    border-radius: 10px;
-    top: 7px;
-    right: -146px;
-    transform: translate(40%, -40%);
-    z-index: 1;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: absolute;
+	content: attr(data-num);
+	min-width: 26px;
+	height: 20px;
+	box-sizing: border-box;
+	padding: 4px;
+	font-size: 13px;
+	font-weight: bold;
+	background-color: #ff4d7c;
+	border: 1px solid #fff;
+	border-radius: 10px;
+	top: 7px;
+	right: -146px;
+	transform: translate(40%, -40%);
+	z-index: 1;
 }
 
 /*admin用アイコン*/
-#iconAdmin{
- /* width: 50px;*/
-  height: 8px;
- /* background-color: #ddd;*/
-  border-radius: 12px;
-  position: relative;
- /* margin: 20px;*/
+#iconAdmin {
+	height: 8px;
+	border-radius: 12px;
+	position: relative;
 }
+
 #iconAdmin[data-num="0"]::before {
-  display: none;
+	display: none;
 }
+
 #iconAdmin::before {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: absolute;
-    content: attr(data-num);
-    min-width: 26px;
-    height: 20px;
-    box-sizing: border-box;
-    padding: 4px;
-    font-size: 13px;
-    font-weight: bold;
-    background-color: #ff4d7c ;
-    border: 1px solid #fff !important;
-    border-radius: 10px;
-    top: 7px;
-    right: -120px;
-    transform: translate(40%, -40%);
-    z-index: 1;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: absolute;
+	content: attr(data-num);
+	min-width: 26px;
+	height: 20px;
+	box-sizing: border-box;
+	padding: 4px;
+	font-size: 13px;
+	font-weight: bold;
+	background-color: #ff4d7c;
+	border: 1px solid #fff !important;
+	border-radius: 10px;
+	top: 7px;
+	right: -120px;
+	transform: translate(40%, -40%);
+	z-index: 1;
 }
 
 /*adminPersonNotice用アイコン*/
-#iconAdminPersonNotice{
- /* width: 50px;*/
-  height: 8px;
- /* background-color: #ddd;*/
-  border-radius: 12px;
-  position: relative;
- /* margin: 20px;*/
+#iconAdminPersonNotice {
+	height: 8px;
+	border-radius: 12px;
+	position: relative;
 }
+
 #iconAdminPersonNotice[data-num="0"]::before {
-  display: none;
+	display: none;
 }
+
 #iconAdminPersonNotice::before {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: absolute;
-    content: attr(data-num);
-    min-width: 26px;
-    height: 20px;
-    box-sizing: border-box;
-    padding: 4px;
-    font-size: 13px;
-    font-weight: bold;
-    background-color: #ff4d7c ;
-    border: 1px solid #fff;
-    border-radius: 10px;
-    top: 7px;
-    right: -143px;
-    transform: translate(40%, -40%);
-    z-index: 1;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: absolute;
+	content: attr(data-num);
+	min-width: 26px;
+	height: 20px;
+	box-sizing: border-box;
+	padding: 4px;
+	font-size: 13px;
+	font-weight: bold;
+	background-color: #ff4d7c;
+	border: 1px solid #fff;
+	border-radius: 10px;
+	top: 7px;
+	right: -143px;
+	transform: translate(40%, -40%);
+	z-index: 1;
 }
 
 /*one_to_oneMail用アイコン*/
-#iconOne_to_oneMail{
- /* width: 50px;*/
-  height: 8px;
- /* background-color: #ddd;*/
-  border-radius: 12px;
-  position: relative;
- /* margin: 20px;*/
+#iconOne_to_oneMail {
+	height: 8px;
+	border-radius: 12px;
+	position: relative;
 }
+
 #iconOne_to_oneMail[data-num="0"]::before {
-  display: none;
+	display: none;
 }
+
 #iconOne_to_oneMail::before {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: absolute;
-    content: attr(data-num);
-    min-width: 26px;
-    height: 20px;
-    box-sizing: border-box;
-    padding: 4px;
-    font-size: 13px;
-    font-weight: bold;
-    background-color: #ff4d7c ;
-    border: 1px solid #fff;
-    border-radius: 10px;
-    top: 7px;
-    right: -120px;
-    transform: translate(40%, -40%);
-    z-index: 1;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: absolute;
+	content: attr(data-num);
+	min-width: 26px;
+	height: 20px;
+	box-sizing: border-box;
+	padding: 4px;
+	font-size: 13px;
+	font-weight: bold;
+	background-color: #ff4d7c;
+	border: 1px solid #fff;
+	border-radius: 10px;
+	top: 7px;
+	right: -120px;
+	transform: translate(40%, -40%);
+	z-index: 1;
 }

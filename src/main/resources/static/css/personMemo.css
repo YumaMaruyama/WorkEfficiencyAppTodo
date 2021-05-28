@@ -3,12 +3,15 @@
 .persomMemoTh1 {
 	width: 750px;
 }
+
 .persomMemoTh2 {
 	width: 150px;
 }
+
 .persomMemoTh3 {
 	width: 100px;
 }
+
 .persomMemoTh4 {
 	width: 100px;
 }
@@ -16,19 +19,22 @@
 .persomMemoTd1 {
 	width: 750px;
 }
+
 .persomMemoTd2 {
 	width: 150px;
 }
+
 .persomMemoTd3 {
 	width: 100px;
 }
+
 .persomMemoTd4 {
 	width: 100px;
 }
 
 .personMemo tbody {
-	display:block;
-	overflow-y:scroll;
+	display: block;
+	overflow-y: scroll;
 	/*heightがスクロールしなくても見える範囲の幅*/
 	height: 298px;
 }
@@ -38,7 +44,7 @@
 }
 
 .personMemoAddtoTableThColor {
-	background-color:#f1ee90 !important;
+	background-color: #f1ee90 !important;
 }
 
 .btnSizePersonMemo {

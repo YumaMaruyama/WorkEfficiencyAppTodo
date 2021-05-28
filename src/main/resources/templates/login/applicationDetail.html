@@ -5,73 +5,72 @@
 <head>
 <meta charset="UTF-8">
 
-<!-- Bootstrap（デザイン性の高い画面を簡単に作成可能※タグのclass属性にある値をセットするだけ）の設定 jQuery Bootstrapの読み込み必要がある-->
-<link th:href="@{/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css}"
-	rel="stylesheet"></link>
-<!--　↑cssファイル タイムリーフでファイル読み込み　 -->
-<script th:src="@{/webjars/jquery/1.11.1/jquery.min.js}"></script>
-<!--　↑jQueryのjsファイル タイムリーフでファイル読み込み　 -->
-<script th:src="@{/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js}"></script>
-<!--　↑Bootstrap のjsファイル（jQueryの後に読み込む） タイムリーフでファイル読み込み　 -->
-
 <title>applicationDetail</title>
 </head>
 <body>
-		<!-- コンテンツ部分 -->
+	<!-- コンテンツ部分 -->
 	<div th:fragment="loginLayout_contents">
-		<div class="page-header col-sm-7" >
+		<div class="page-header col-sm-7">
 			<table>
-				<tr >
-				<br>
-					<td class="col-sm-11" style="font-size: 30px;
-    background-color: #bcffbb;
-    font-family: serif;
-    padding: 10px 0px 5px 11px;">アプリ詳細</td>
+				<tr>
+					<br>
+					<td class="col-sm-11"
+						style="font-size: 30px; background-color: #bcffbb; font-family: serif; padding: 10px 0px 5px 11px;">アプリ詳細</td>
 				</tr>
 			</table>
 		</div>
 
 		<div style="height: 120vh; width: 1080px;">
-		<br><br><br>
-		<table
-			class="table table-bordered table-hover table-striped applicationTable">
 			<br>
 			<br>
+			<br>
+			<table
+				class="table table-bordered table-hover table-striped applicationTable">
+				<br>
+				<br>
 
-			<thead>
-			<tr>
-				<th class="warning text-center col-sm-2 applicationTh1 applicatonDetailTh1a applicationTableThColor">タイトル</th>
-				<th class="warning text-center applicationTh2 applicatonDetailTd1a applicationTableThColor">詳細</th>
+				<thead>
+					<tr>
+						<th
+							class="warning text-center col-sm-2 applicationTh1 applicatonDetailTh1a applicationTableThColor">タイトル</th>
+						<th
+							class="warning text-center applicationTh2 applicatonDetailTd1a applicationTableThColor">詳細</th>
 
-			</tr>
-			</thead>
+					</tr>
+				</thead>
 
-			<tr>
-				<th class="applicatonDetailTh1a" style="background-color: aliceblue;">推奨OS</th>
-				<td  class="applicatonDetailTd1a" style="background-color: aliceblue;">Windowsで快適に使用できます</td>
-			</tr>
+				<tr>
+					<th class="applicatonDetailTh1a"
+						style="background-color: aliceblue;">推奨OS</th>
+					<td class="applicatonDetailTd1a"
+						style="background-color: aliceblue;">Windowsで快適に使用できます</td>
+				</tr>
 
-			<tr>
-				<th class="applicatonDetailTh1a" style="background-color: #eee;">推奨プラットフォーム</th>
-				<td  class="applicatonDetailTd1a" style="background-color: #eee;">GoogleChromeで快適に使用できます</td>
-			</tr>
+				<tr>
+					<th class="applicatonDetailTh1a" style="background-color: #eee;">推奨プラットフォーム</th>
+					<td class="applicatonDetailTd1a" style="background-color: #eee;">GoogleChromeで快適に使用できます</td>
+				</tr>
 
-			<tr>
-				<th class="applicatonDetailTh1a" style="background-color: aliceblue;">利用に伴う料金</th>
-				<td  class="applicatonDetailTd1a" style="background-color: aliceblue;">一律無料でお使いいただけます</td>
-			</tr>
+				<tr>
+					<th class="applicatonDetailTh1a"
+						style="background-color: aliceblue;">利用に伴う料金</th>
+					<td class="applicatonDetailTd1a"
+						style="background-color: aliceblue;">一律無料でお使いいただけます</td>
+				</tr>
 
-			<tr>
-				<th class="applicatonDetailTh1a" style="background-color: #eee;">version</th>
-				<td  class="applicatonDetailTd1a" style="background-color: #eee;">0.0</td>
-			</tr>
+				<tr>
+					<th class="applicatonDetailTh1a" style="background-color: #eee;">version</th>
+					<td class="applicatonDetailTd1a" style="background-color: #eee;">0.0</td>
+				</tr>
 
-			<tr>
-				<th class="applicatonDetailTh1a" style="background-color: aliceblue;">versionUpdateに伴う機能</th>
-				<td  class="applicatonDetailTd1a" style="background-color: aliceblue;">無し</td>
-			</tr>
+				<tr>
+					<th class="applicatonDetailTh1a"
+						style="background-color: aliceblue;">versionUpdateに伴う機能</th>
+					<td class="applicatonDetailTd1a"
+						style="background-color: aliceblue;">無し</td>
+				</tr>
 			</table>
-			</div>
-</div>
+		</div>
+	</div>
 </body>
 </html>

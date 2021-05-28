@@ -9,20 +9,17 @@
 }
 
 .applicationTableThColor {
-	background-color:  #6cf577 !important;
+	background-color: #6cf577 !important;
 }
 
 .applicationTh1 {
-	width:200px;
+	width: 200px;
 }
 
 .applicationTh2 {
-	width:880px;
+	width: 880px;
 }
 
 .applicationTable tbody {
-	display:block;
-	/*overflow-y:scroll;
-	/*heightがスクロールしなくても見える範囲の幅
-	height: 475px;*/
+	display: block;
 }

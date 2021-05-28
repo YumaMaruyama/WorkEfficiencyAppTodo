@@ -1,35 +1,32 @@
 @charset "UTF-8";
 
 .guideTable tbody {
-	display:block;
-	overflow-y:scroll;
+	display: block;
+	overflow-y: scroll;
 	/*heightがスクロールしなくても見える範囲の幅*/
 	height: 475px;
 }
 
 .guideLoginTable tbody {
-	display:block;
-	/*overflow-y:scroll;
-	/*heightがスクロールしなくても見える範囲の幅
-	height: 475px;*/
+	display: block;
 }
 
 .guideTh1 {
-	width:185px;
+	width: 185px;
 }
 
 .guideTh1a {
-	width:188px;
+	width: 188px;
 }
+
 .guideTh2 {
-	width:932px;
+	width: 932px;
 }
 
 .guideTh2a {
-	width:950px;
+	width: 950px;
 }
 
 .guideTableThColor {
-	background-color:  #ff6b71 !important;
+	background-color: #ff6b71 !important;
 }
-

@@ -1,42 +1,42 @@
 @charset "UTF-8";
 
 .one_to_oneMailSending {
-	display:block;
-	overflow-y:scroll;
+	display: block;
+	overflow-y: scroll;
 	/*heightがスクロールしなくても見える範囲の幅*/
 	height: 409px;
 }
 
 .one_to_oneMailSendingTh1 {
-	width:170px;
+	width: 170px;
 }
 
 .one_to_oneMailSendingTh2 {
-	width:660px;
+	width: 660px;
 }
 
 .one_to_oneMailSendingTh3 {
-	width:160px;
+	width: 160px;
 }
 
 .one_to_oneMailSendingTh4 {
-	width:110px;
+	width: 110px;
 }
 
 .one_to_oneMailSendingTd1 {
-	width:170px;
+	width: 170px;
 }
 
 .one_to_oneMailSendingTd2 {
-	width:660px;
+	width: 660px;
 }
 
 .one_to_oneMailSendingTd3 {
-	width:160px;
+	width: 160px;
 }
 
 .one_to_oneMailSendingTd4 {
-	width:110px;
+	width: 110px;
 }
 
 .one_to_oneMailSendingTableThColor {

@@ -6,15 +6,6 @@
 <meta charset="UTF-8">
 <title>管理者からのお知らせ</title>
 
-<!-- Bootstrap（デザイン性の高い画面を簡単に作成可能※タグのclass属性にある値をセットするだけ）の設定 jQuery Bootstrapの読み込み必要がある-->
-<link th:href="@{/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css}"
-	rel="stylesheet"></link>
-<!--　↑cssファイル タイムリーフでファイル読み込み　 -->
-<script th:src="@{/webjars/jquery/1.11.1/jquery.min.js}"></script>
-<!--　↑jQueryのjsファイル タイムリーフでファイル読み込み　 -->
-<script th:src="@{/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js}"></script>
-<!--　↑Bootstrap のjsファイル（jQueryの後に読み込む） タイムリーフでファイル読み込み　 -->
-
 </head>
 <body>
 
@@ -31,7 +22,8 @@
 		<div class="page-header">
 			<table>
 				<tr>
-					<td class="col-sm-6"><h1 class="text-center" style="background-color: #b0e0e659;">管理者から全ユーザーへ</h1></td>
+					<td class="col-sm-6"><h1 class="text-center"
+							style="background-color: #b0e0e659;">管理者から全ユーザーへ</h1></td>
 					<!-- 管理者お知らせの件数-->
 					<td class="col-sm-12"><h3
 							th:text="'合計:' + ${adminListHomeCount} + '件'"></h3></td>
@@ -53,7 +45,7 @@
 			<table
 				class="table table-borderd table-hover bg-success table-striped font-weight-bold adminTa
 			ble"
-				style="background-color: #e0ffff;width:1120px;">
+				style="background-color: #e0ffff; width: 1120px;">
 				<tr class="workspaceTrThSearch">
 					<th class="info text-center adminNoticeThWidthA">お知らせ内容</th>
 					<th class="info text-center adminNoticeThWidthB">投稿日～</th>
@@ -63,8 +55,10 @@
 				</tr>
 				<tr class="text-center">
 					<td align=center><input id="textField1" type="text"
-						class="form-control text-center adminNoticeTdWidthA" name="contents"
-						th:field="*{contents}" placeholder="190文字以下で検索可"><span class="text-danger" th:if="${#fields.hasErrors('contents')}" th:errors="*{contents}"></span></td>
+						class="form-control text-center adminNoticeTdWidthA"
+						name="contents" th:field="*{contents}" placeholder="190文字以下で検索可"><span
+						class="text-danger" th:if="${#fields.hasErrors('contents')}"
+						th:errors="*{contents}"></span></td>
 					<td align=center><input id="dateField1" type="date"
 						class="form-control adminNoticeTdWidthB" name="registration_dateA"
 						th:field="*{registration_dateA}"></td>
@@ -72,25 +66,26 @@
 						class="form-control adminNoticeTdWidthC" name="registration_dateZ"
 						th:field="*{registration_dateZ}"></td>
 					<td align=center><button
-							class="btn btn-info adminNoticeTdWidthD btnPadding2" type="submit"
-							name="search">キーワードで検索</button></td>
+							class="btn btn-info adminNoticeTdWidthD btnPadding2"
+							type="submit" name="search">キーワードで検索</button></td>
 					<td style="text-align: center;"><button
-							class="btn btn-success adminNoticeTdWidthE reset btnPadding2" id="resetButton" type="button">フォーム内初期化</button></td>
+							class="btn btn-success adminNoticeTdWidthE reset btnPadding2"
+							id="resetButton" type="button">フォーム内初期化</button></td>
 				</tr>
 
 			</table>
 		</form>
 		<div style="height: 100vh; width: 1120px;">
-			<div  sec:authorize="!hasRole('ADMIN')">
-			<table
-				class="table table-condensed table-bordered table-hover table-striped sticky_table adminNotice fontSize">
-				<thead>
-					<tr>
-						<th
-							class="text-center info col-sm-10 sticky-top adminNoticeThWidthAANoAdmin adminNoticeTabelThColor">お知らせ内容</th>
-						<th
-							class="text-center info col-sm-5 sticky-top adminNoticeThWidthBBNoAdmin adminNoticeTabelThColor">投稿日</th>
-				</thead>
+			<div sec:authorize="!hasRole('ADMIN')">
+				<table
+					class="table table-condensed table-bordered table-hover table-striped sticky_table adminNotice fontSize">
+					<thead>
+						<tr>
+							<th
+								class="text-center info col-sm-10 sticky-top adminNoticeThWidthAANoAdmin adminNoticeTabelThColor">お知らせ内容</th>
+							<th
+								class="text-center info col-sm-5 sticky-top adminNoticeThWidthBBNoAdmin adminNoticeTabelThColor">投稿日</th>
+					</thead>
 
 					<tr class="text-center" th:each="admindto:${adminList}">
 						<td class="text-center adminNoticeTdWidthAANoAdmin"
@@ -102,39 +97,40 @@
 
 					</tr>
 
-			</table>
+				</table>
 			</div>
 
-			<div  sec:authorize="hasRole('ADMIN')">
-			<table
-				class="table table-condensed table-bordered table-hover table-striped sticky_table adminNotice fontSize" style="width:1120px;">
-				<thead>
-					<tr>
-						<th
-							class="text-center warning col-sm-10 sticky-top adminNoticeThWidthAA adminNoticeTabelThColor">お知らせ内容</th>
-						<th
-							class="text-center warning col-sm-5 sticky-top adminNoticeThWidthBB adminNoticeTabelThColor">投稿日</th>
-						<th
-							class="text-center warning col-sm-1 sticky-top adminNoticeThWidthCC adminNoticeTabelThColor"
-							>管理</th><!-- sec:authorize="hasRole('ADMIN')" -->
-					</tr>
-				</thead>
-				<tbody>
-					<tr class="text-center" th:each="admindto:${adminList}">
-						<td class="text-center adminNoticeTdWidthAA"
-							th:text="${admindto.contents}"></td>
-						<td class="text-center adminNoticeTdWidthBB"
-							th:text="${#dates.format(admindto.registration_date, 'yyyy/MM/dd HH:mm')}"></td>
-						<td class="btnSizeAdminNotice2">
-							<!-- 動的URL --> <!-- 編集は管理者のみ --> <a
-							class="btn btn-primary text-centerv adminNoticeTdWidthCC btnSizeAdminNotice"
-							th:href="@{'adminNoticeDetail/' + ${admindto.id}}">編集</a>
-						</td>
+			<div sec:authorize="hasRole('ADMIN')">
+				<table
+					class="table table-condensed table-bordered table-hover table-striped sticky_table adminNotice fontSize"
+					style="width: 1120px;">
+					<thead>
+						<tr>
+							<th
+								class="text-center warning col-sm-10 sticky-top adminNoticeThWidthAA adminNoticeTabelThColor">お知らせ内容</th>
+							<th
+								class="text-center warning col-sm-5 sticky-top adminNoticeThWidthBB adminNoticeTabelThColor">投稿日</th>
+							<th
+								class="text-center warning col-sm-1 sticky-top adminNoticeThWidthCC adminNoticeTabelThColor">管理</th>
+							<!-- sec:authorize="hasRole('ADMIN')" -->
+						</tr>
+					</thead>
+					<tbody>
+						<tr class="text-center" th:each="admindto:${adminList}">
+							<td class="text-center adminNoticeTdWidthAA"
+								th:text="${admindto.contents}"></td>
+							<td class="text-center adminNoticeTdWidthBB"
+								th:text="${#dates.format(admindto.registration_date, 'yyyy/MM/dd HH:mm')}"></td>
+							<td class="btnSizeAdminNotice2">
+								<!-- 動的URL --> <!-- 編集は管理者のみ --> <a
+								class="btn btn-primary text-centerv adminNoticeTdWidthCC btnSizeAdminNotice"
+								th:href="@{'adminNoticeDetail/' + ${admindto.id}}">編集</a>
+							</td>
 
 
-					</tr>
-				</tbody>
-			</table>
+						</tr>
+					</tbody>
+				</table>
 			</div>
 
 

@@ -28,7 +28,6 @@
 	width: 80px;
 }
 
-
 .clientTableTdWidth1 {
 	width: 240px;
 }
@@ -58,18 +57,18 @@
 }
 
 .theadClient tbody {
-	display:block;
-	overflow-y:scroll;
+	display: block;
+	overflow-y: scroll;
 	/*heightがスクロールしなくても見える範囲の幅*/
 	height: 291px;
 }
 
 .clientTableThColor {
-	background-color:#f1ee90 !important;
+	background-color: #f1ee90 !important;
 }
 
 .clientAddtoTableThColor {
-	background-color:#f1ee90 !important;
+	background-color: #f1ee90 !important;
 }
 
 .btnSizeClient {
@@ -82,5 +81,5 @@
 }
 
 .fontSizeClient {
-	font-size:12px !important;
+	font-size: 12px !important;
 }

@@ -1,36 +1,38 @@
 @charset "UTF-8";
 
-
-
 .personUsersNoticeTh1 {
-	width:510px;
+	width: 510px;
 }
+
 .personUsersNoticeTh2 {
-	width:490px;
+	width: 490px;
 }
+
 .personUsersNoticeTh3 {
-	width:100px;
+	width: 100px;
 }
+
 .personUsersNoticeTd1 {
-	width:510px;
+	width: 510px;
 }
+
 .personUsersNoticeTd2 {
-	width:490px;
+	width: 490px;
 }
 
 .personUsersNoticeTd3 {
-	width:100px;
+	width: 100px;
 }
 
 .personUsersNotice tbody {
-	display:block;
-	overflow-y:scroll;
+	display: block;
+	overflow-y: scroll;
 	/*heightがスクロールしなくても見える範囲の幅*/
 	height: 379px;
 }
 
 .personUsersNoticeDetailTableThColor {
-	background-color:#afffb9 !important;
+	background-color: #afffb9 !important;
 }
 
 .one_to_oneMailNoticeTableThColor {

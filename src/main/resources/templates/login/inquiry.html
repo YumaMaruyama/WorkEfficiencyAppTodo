@@ -4,17 +4,7 @@
 <head>
 <meta charset="UTF-8">
 
-<!-- Bootstrap（デザイン性の高い画面を簡単に作成可能※タグのclass属性にある値をセットするだけ）の設定 jQuery Bootstrapの読み込み必要がある-->
-<link th:href="@{/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css}"
-	rel="stylesheet"></link>
-<!--　↑cssファイル タイムリーフでファイル読み込み　 -->
-<script th:src="@{/webjars/jquery/1.11.1/jquery.min.js}"></script>
-<!--　↑jQueryのjsファイル タイムリーフでファイル読み込み　 -->
-<script th:src="@{/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js}"></script>
-<!--　↑Bootstrap のjsファイル（jQueryの後に読み込む） タイムリーフでファイル読み込み　 -->
 
-<!-- CSSの読み込み -->
-<link th:href="@{/css/workspace.css}" rel="stylesheet"></link>
 
 <title>お問い合わせ</title>
 </head>
@@ -26,13 +16,10 @@
 				<h1 class="text-center" style="background-color: #ccdbf3ab;">お問い合わせ</h1>
 			</div>
 			<form method="post" th:action="@{inquiry}" th:object="${inquiryForm}">
-				<!--
-				<input type="hidden" class="form-control"
-							th:field="*{user_id}">
-			-->
+
 				<table class="table table-bordered table-hover">
 
-					<!-- title -->
+
 
 					<tr>
 
@@ -40,8 +27,7 @@
 							style="padding: 19px 0px;">問い合わせの返信</th>
 						<td><input type="checkbox" name="user_idT" value="true">
 							<input type="hidden" class="form-control" th:field="*{user_id}">返信を希望する
-							<br>
-						<span class="text-danger">※チェックを入れると管理者に問い合わせた人の情報が渡ります。</span></td>
+							<br> <span class="text-danger">※チェックを入れると管理者に問い合わせた人の情報が渡ります。</span></td>
 					<tr>
 					<tr>
 						<th class="active col-sm-2 text-center inquiryTableThColor"
@@ -58,7 +44,7 @@
 						</td>
 					</tr>
 
-					<!-- content -->
+
 					<tr>
 						<th class="active col-sm-2 text-center inquiryTableThColor"
 							style="padding: 19px 0px;">内容</th>
@@ -74,26 +60,13 @@
 							</div>
 						</td>
 					</tr>
-					<!--
-					<tr>
-						<th class="active col-sm-3 text-center">メールアドレス</th>
-						<td>
-							<div class="form-group"
-								th:classappend="${#fields.hasErrors('mail')}?'has-error'">
-								<input type="text" class="form-control" th:field="*{mail}"
-									placeholder="返信が欲しい方のみメールアドレスを入力してください" />
-								<!-- 個別エラー
-								<span class="text-danger" th:if="${#fields.hasErrors('mail')}"
-									th:errors="*{mail}">mail error</span>
-							</div>
-						</td>
-					</tr>
-					-->
+
 				</table>
-				<button class="btn btn-primary btn-lg center-block inquiryButton" type="submit">お問い合わせ内容送信</button>
+				<button class="btn btn-primary btn-lg center-block inquiryButton"
+					type="submit">お問い合わせ内容送信</button>
 				<!-- お問い合わせ完了メッセージ -->
-				<label class="text-info" th:text="${result}" style="font-size: 21px;
-    padding: 0px 0px 0px 43px;">問い合わせ結果表示</label>
+				<label class="text-info" th:text="${result}"
+					style="font-size: 21px; padding: 0px 0px 0px 43px;">問い合わせ結果表示</label>
 			</form>
 		</div>
 

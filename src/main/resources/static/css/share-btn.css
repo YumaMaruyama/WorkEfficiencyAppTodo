@@ -1,69 +1,75 @@
 @charset "UTF-8";
 
 .shareButton1 {
-color:#3d7ded;
-background-color:#dbf2f4;
-margin-left:22px;
-margin-right:22px;
+	color: #3d7ded;
+	background-color: #dbf2f4;
+	margin-left: 22px;
+	margin-right: 22px;
+}
 
-}
 .shareButton2 {
-color:#ffffff;
-background-color:#4bbee1;
-margin-left:22px;
-margin-right:22px;
+	color: #ffffff;
+	background-color: #4bbee1;
+	margin-left: 22px;
+	margin-right: 22px;
 }
+
 .shareButton3 {
-color:#ffd92b;
-background-color:#fe3a3a;
-margin-right:45px;
-margin-left:22px;
-margin-right:22px;
+	color: #ffd92b;
+	background-color: #fe3a3a;
+	margin-right: 45px;
+	margin-left: 22px;
+	margin-right: 22px;
 }
+
 .shareButton4 {
-color:#ffffff;
-background-color:#558ab7;
-margin-right:45px;
-margin-left:22px;
-margin-right:22px;
+	color: #ffffff;
+	background-color: #558ab7;
+	margin-right: 45px;
+	margin-left: 22px;
+	margin-right: 22px;
 }
+
 .shareButton5 {
-color:#ffffff;
-background-color:#bbb9e3;
-margin-left:22px;
-margin-right:22px;
+	color: #ffffff;
+	background-color: #bbb9e3;
+	margin-left: 22px;
+	margin-right: 22px;
 }
 
 .shareButton6 {
-color:#d50fec;
-background-color:#f3b9e6;
-margin-left:22px;
-margin-right:22px;
+	color: #d50fec;
+	background-color: #f3b9e6;
+	margin-left: 22px;
+	margin-right: 22px;
+}
 
-}
 .shareButton7 {
-color:#ffffff;
-background-color:#dce218;
-margin-left:22px;
-margin-right:22px;
+	color: #ffffff;
+	background-color: #dce218;
+	margin-left: 22px;
+	margin-right: 22px;
 }
+
 .shareButton8 {
-color:#ff8a37;
-background-color:#ffcf86;
-margin-right:45px;
-margin-left:22px;
-margin-right:22px;
+	color: #ff8a37;
+	background-color: #ffcf86;
+	margin-right: 45px;
+	margin-left: 22px;
+	margin-right: 22px;
 }
+
 .shareButton9 {
-color:#ff0707;
-background-color:#fff70f;
-margin-right:45px;
-margin-left:22px;
-margin-right:22px;
+	color: #ff0707;
+	background-color: #fff70f;
+	margin-right: 45px;
+	margin-left: 22px;
+	margin-right: 22px;
 }
+
 .shareButton10 {
-color:#615353;
-background-color:#bdb6b6;
-margin-left:22px;
-margin-right:22px;
+	color: #615353;
+	background-color: #bdb6b6;
+	margin-left: 22px;
+	margin-right: 22px;
 }
