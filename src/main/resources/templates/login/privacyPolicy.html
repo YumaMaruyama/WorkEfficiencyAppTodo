@@ -4,14 +4,7 @@
 	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
 <meta charset="UTF-8">
-<!-- Bootstrap（デザイン性の高い画面を簡単に作成可能※タグのclass属性にある値をセットするだけ）の設定 jQuery Bootstrapの読み込み必要がある-->
-<link th:href="@{/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css}"
-	rel="stylesheet"></link>
-<!--　↑cssファイル タイムリーフでファイル読み込み　 -->
-<script th:src="@{/webjars/jquery/1.11.1/jquery.min.js}"></script>
-<!--　↑jQueryのjsファイル タイムリーフでファイル読み込み　 -->
-<script th:src="@{/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js}"></script>
-<!--　↑Bootstrap のjsファイル（jQueryの後に読み込む） タイムリーフでファイル読み込み　 -->
+
 <title>プライバシーポリシー</title>
 </head>
 <body>
@@ -20,7 +13,8 @@
 		<div class="page-header">
 			<table>
 				<tr>
-					<td class="col-sm-2"><h1 class="text-center" style="background-color: #ffeafc;">プライバシーポリシー</h1></td>
+					<td class="col-sm-2"><h1 class="text-center"
+							style="background-color: #ffeafc;">プライバシーポリシー</h1></td>
 				</tr>
 				<tr>
 					<td class="col-sm-10"></td>
@@ -29,8 +23,8 @@
 		</div>
 
 		<table
-			class="table table-borderd table-hover table-striped privacyPolicy" style="width: 1120px;"
-			>
+			class="table table-borderd table-hover table-striped privacyPolicy"
+			style="width: 1120px;">
 			<thead>
 				<h4>丸山佑馬（以下，「作成者」といいます。）は，本ウェブサイト上で提供するサービス（以下,「本サービス」といいます。）における，ユーザーの個人情報の取扱いについて，以下のとおりプライバシーポリシー（以下，「本ポリシー」といいます。）を定めます。</h4>
 				<tr>
@@ -115,7 +109,7 @@
 				</tr>
 				<tr>
 					<td>本ポリシーの内容は，法令その他本ポリシーに別段の定めのある事項を除いて，ユーザーに通知することなく，変更することができるものとします。
-						作成者が別途定める場合を除いて，変更後のプライバシーポリシーは，本ウェブサイトに掲載したときから効力を生じるものとします。　以上</td>
+						作成者が別途定める場合を除いて，変更後のプライバシーポリシーは，本ウェブサイトに掲載したときから効力を生じるものとします。 以上</td>
 				</tr>
 
 

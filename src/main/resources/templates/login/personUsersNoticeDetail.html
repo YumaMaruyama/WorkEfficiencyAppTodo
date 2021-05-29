@@ -4,15 +4,6 @@
 <head>
 <meta charset="UTF-8">
 
-<!-- Bootstrap（デザイン性の高い画面を簡単に作成可能※タグのclass属性にある値をセットするだけ）の設定 jQuery Bootstrapの読み込み必要がある-->
-<link th:href="@{/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css}"
-	rel="stylesheet"></link>
-<!--　↑cssファイル タイムリーフでファイル読み込み　 -->
-<script th:src="@{/webjars/jquery/1.11.1/jquery.min.js}"></script>
-<!--　↑jQueryのjsファイル タイムリーフでファイル読み込み　 -->
-<script th:src="@{/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js}"></script>
-<!--　↑Bootstrap のjsファイル（jQueryの後に読み込む） タイムリーフでファイル読み込み　 -->
-
 <title>peersonUsersNoticeDetail</title>
 </head>
 <body>
@@ -23,7 +14,7 @@
 			<table>
 				<tr>
 					<td class="col-sm-5">
-						<h1 class="col-sm-6" style="background-color:#daffd5;">個人ユーザーへの連絡フォーム</h1>
+						<h1 class="col-sm-6" style="background-color: #daffd5;">個人ユーザーへの連絡フォーム</h1>
 					</td>
 				</tr>
 			</table>
@@ -31,32 +22,33 @@
 
 		<form method="post" th:action="@{/personUsersNoticeDetail}"
 			th:object="${personUsersNoticeInquiryForm}">
-			 <input type="hidden" id="hiddenUser_id"  value="${hiddenUser_id}">
+			<input type="hidden" id="hiddenUser_id" value="${hiddenUser_id}">
 			<table class="table table-borderd table-hover">
-			<!--
-				<tr>
-				<th class="active col-sm-1 text-center">ユーザーID</th>
-				 <td><input type="hidden" class="form-control" th:field="*{user_id}" value="${hiddenUser_id}">
-				</td>
-				</tr>
-				<tr>
-			-->
-			<input type="hidden" class="form-control" th:field="*{user_id}" value="${hiddenUser_id}">
-					<th class="active col-sm-1 text-center personUsersNoticeDetailTableThColor" style="padding: 14px" >連絡内容</th>
-					<td style="background-color:#ddfbca">
-					<div class="form-group" th:classappend="${#fields.hasErrors('content')}?' has-error'">
-						<input type="text" class="form-control" th:field="*{content}" placeholder="150文字以下で入力してください。">
-						<span class="text-danger" th:if="${#fields.hasErrors('content')}"
+
+				<input type="hidden" class="form-control" th:field="*{user_id}"
+					value="${hiddenUser_id}">
+				<th
+					class="active col-sm-1 text-center personUsersNoticeDetailTableThColor"
+					style="padding: 14px">連絡内容</th>
+				<td style="background-color: #ddfbca">
+					<div class="form-group"
+						th:classappend="${#fields.hasErrors('content')}?' has-error'">
+						<input type="text" class="form-control" th:field="*{content}"
+							placeholder="150文字以下で入力してください。"> <span
+							class="text-danger" th:if="${#fields.hasErrors('content')}"
 							th:errors="*{content}">content error</span>
 					</div>
-					</td>
+				</td>
 				</tr>
 			</table>
-			<button class="btn btn-primary btn-lg inquiryButton center-block"  type="submit" style="font-size:20px;">連絡送信</button>
-			<label style="font-size:23px; color: #f9295d; margin: 14px 0px 0px 508px;" class="text-info" th:text="${result}"></label>
+			<button class="btn btn-primary btn-lg inquiryButton center-block"
+				type="submit" style="font-size: 20px;">連絡送信</button>
+			<label
+				style="font-size: 23px; color: #f9295d; margin: 14px 0px 0px 508px;"
+				class="text-info" th:text="${result}"></label>
 		</form>
 
-	<script>
+		<script>
 			$('.inquiryButton').click(function() {
 				if (confirm('入力内容を本当に送信しますか？')) {
 					/* キャンセルの時の処理 */

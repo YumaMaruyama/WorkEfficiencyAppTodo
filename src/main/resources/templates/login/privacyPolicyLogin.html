@@ -4,37 +4,28 @@
 	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
 <meta charset="UTF-8">
-<!-- Bootstrap（デザイン性の高い画面を簡単に作成可能※タグのclass属性にある値をセットするだけ）の設定 jQuery Bootstrapの読み込み必要がある-->
-<link th:href="@{/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css}"
-	rel="stylesheet"></link>
-<!--　↑cssファイル タイムリーフでファイル読み込み　 -->
-<script th:src="@{/webjars/jquery/1.11.1/jquery.min.js}"></script>
-<!--　↑jQueryのjsファイル タイムリーフでファイル読み込み　 -->
-<script th:src="@{/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js}"></script>
-<!--　↑Bootstrap のjsファイル（jQueryの後に読み込む） タイムリーフでファイル読み込み　 -->
+
 <title>プライバシーポリシー</title>
 </head>
 <body>
 	<!-- th:fragment -->
 	<div th:fragment="loginLayout_contents">
-	<!-- コンテンツ部分 -->
-	<div class="page-header col-sm-12" >
+		<!-- コンテンツ部分 -->
+		<div class="page-header col-sm-12">
 			<table>
-				<tr >
-				<br>
-					<td class="col-sm-11" style="font-size: 30px;
-    background-color: #ffebfa;
-    font-family: serif;
-    padding: 10px 0px 5px 11px;">プライバシーポリシー</td>
+				<tr>
+					<br>
+					<td class="col-sm-11"
+						style="font-size: 30px; background-color: #ffebfa; font-family: serif; padding: 10px 0px 5px 11px;">プライバシーポリシー</td>
 				</tr>
 			</table>
 		</div>
-	<br>
-		<table
-			class="table table-borderd table-hover  privacyPolicyLogin"
-			style="width:1120px;">
+		<br>
+		<table class="table table-borderd table-hover  privacyPolicyLogin"
+			style="width: 1120px;">
 			<br>
-			<br><br>
+			<br>
+			<br>
 			<thead>
 				<h4>丸山佑馬（以下，「作成者」といいます。）は，本ウェブサイト上で提供するサービス（以下,「本サービス」といいます。）における，ユーザーの個人情報の取扱いについて，以下のとおりプライバシーポリシー（以下，「本ポリシー」といいます。）を定めます。</h4>
 				<tr>
@@ -55,7 +46,8 @@
 					<th class="warning" style="background-color: #ffdedb !important;">第3条（個人情報を収集・利用する目的）</th>
 				</tr>
 				<tr>
-					<td style="background-color: aliceblue;"> 作成者が個人情報を収集・利用する目的は，以下のとおりです。 作成者のサービスの提供・運営のため,
+					<td style="background-color: aliceblue;">
+						作成者が個人情報を収集・利用する目的は，以下のとおりです。 作成者のサービスの提供・運営のため,
 						メンテナンス，重要なお知らせなど必要に応じたご連絡のため
 						利用規約に違反したユーザーや，不正・不当な目的でサービスを利用しようとするユーザーの特定をし，ご利用をお断りするため
 						ユーザーにご自身の登録情報の閲覧や変更，削除,閲覧を行っていただくため 上記の利用目的に付随する目的</td>

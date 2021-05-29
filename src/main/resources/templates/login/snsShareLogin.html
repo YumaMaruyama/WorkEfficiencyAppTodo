@@ -4,36 +4,30 @@
 <head>
 <meta charset="UTF-8">
 
-<!-- Bootstrap（デザイン性の高い画面を簡単に作成可能※タグのclass属性にある値をセットするだけ）の設定 jQuery Bootstrapの読み込み必要がある-->
-<link th:href="@{/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css}"
-	rel="stylesheet"></link>
-<!--　↑cssファイル タイムリーフでファイル読み込み　 -->
-<script th:src="@{/webjars/jquery/1.11.1/jquery.min.js}"></script>
-<!--　↑jQueryのjsファイル タイムリーフでファイル読み込み　 -->
-<script th:src="@{/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js}"></script>
-<!--　↑Bootstrap のjsファイル（jQueryの後に読み込む） タイムリーフでファイル読み込み　 -->
+
 
 <title>snsShareLogin</title>
 </head>
 <body>
 	<div th:fragment="loginLayout_contents">
 
-		<div class="page-header col-sm-7" >
+		<div class="page-header col-sm-7">
 			<table>
-				<tr >
-				<br>
-					<td class="col-sm-11" style="font-size: 30px;
-    background-color: #f5dbff;
-    font-family: serif;
-    padding: 10px 0px 5px 11px;">SNS共有</td>
+				<tr>
+					<br>
+					<td class="col-sm-11"
+						style="font-size: 30px; background-color: #f5dbff; font-family: serif; padding: 10px 0px 5px 11px;">SNS共有</td>
 				</tr>
 			</table>
 		</div>
-		<br><br><br><br>
+		<br>
+		<br>
+		<br>
+		<br>
 		<table>
 
-		<br>
-		<br>
+			<br>
+			<br>
 			<tr>
 				<th class="text-center">Twitterに共有する</th>
 				<th class="text-center">facebookに共有する</th>
@@ -102,13 +96,13 @@
 						<i class="fa fa-share-square fa-5x"></i> Outlooc
 					</button></td>
 			</tr>
-			<!-- fa fa-share-square -->
+
 		</table>
-		<br>
-		<br>
+		<br> <br>
 
 		<div>
-			<span style="font-size: 20px;"  ><font  face="Arial"><p class="text-center fadeIn">たくさん共有して「YMJOJO」を広めよう！！（クリックで消えます）</p></font></span>
+			<span style="font-size: 20px;"><font face="Arial"><p
+						class="text-center fadeIn">たくさん共有して「YMJOJO」を広めよう！！（クリックで消えます）</p></font></span>
 		</div>
 
 
@@ -121,17 +115,15 @@
 		</script>
 
 		<script>
-		$(function() {
+			$(function() {
 
+				$('.fadeIn').click(function() {
 
-			  $('.fadeIn').click(function() {
+					// 素早くフェードアウトさせる
+					$('.fadeIn').fadeOut('fast');
 
-			    // 素早くフェードアウトさせる
-			    $('.fadeIn').fadeOut('fast');
-
-			  });
+				});
 			});
-
 		</script>
 
 		<script>

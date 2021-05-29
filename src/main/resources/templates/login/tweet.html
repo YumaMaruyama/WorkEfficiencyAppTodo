@@ -4,14 +4,7 @@
 	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
 <meta charset="UTF-8">
-<!-- Bootstrap（デザイン性の高い画面を簡単に作成可能※タグのclass属性にある値をセットするだけ）の設定 jQuery Bootstrapの読み込み必要がある-->
-<link th:href="@{/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css}"
-	rel="stylesheet"></link>
-<!--　↑cssファイル タイムリーフでファイル読み込み　 -->
-<script th:src="@{/webjars/jquery/1.11.1/jquery.min.js}"></script>
-<!--　↑jQueryのjsファイル タイムリーフでファイル読み込み　 -->
-<script th:src="@{/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js}"></script>
-<!--　↑Bootstrap のjsファイル（jQueryの後に読み込む） タイムリーフでファイル読み込み　 -->
+
 <title>Tweetで情報共有</title>
 </head>
 <body>
@@ -38,7 +31,7 @@
 			});
 		</script>
 		<div class="page-header">
-			<!-- h1タグと同じ列にボタンを付けるため、テーブルを作ってその中にtrをつけている -->
+
 			<table>
 				<tr>
 					<td class="col-sm-4"><h1 class="text-center" style="background-color: #b0e0e659;">Tweetで情報共有</h1></td>
@@ -102,7 +95,7 @@
 					<th class="danger active col-sm-2 text-center tweetTh2">ツイートボタン</th>
 					<th class="danger active col-sm-2 text-center tweetTh3">フォームリセット</th>
 				</tr>
-				<!-- 内容  readonly="readonly"をつければ入力変更できなくなる-->
+
 				<tr>
 					<td><input id="textField3" type="text"
 						class="form-control text-center tweetInputa col-sm-5 tweetTd1"
@@ -134,7 +127,7 @@
 
 					<td class="text-center tweetTdA" th:text="${tweetdto.user_id}"></td>
 					<td class="text-center tweetTdB" th:text="${tweetdto.contents}"></td>
-					<!-- 日付型フォーマット -->
+
 					<td class="text-center tweetTdC"
 						th:text="${#dates.format(tweetdto.registration_date, 'yyyy/MM/dd HH:mm:ss')}"></td>
 					<td class="text-center tweetTdD btnSizeTweet2" sec:authorize="hasRole('ADMIN')">

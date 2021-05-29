@@ -4,15 +4,6 @@
 <head>
 <meta charset="UTF-8">
 
-<!-- Bootstrap（デザイン性の高い画面を簡単に作成可能※タグのclass属性にある値をセットするだけ）の設定 jQuery Bootstrapの読み込み必要がある-->
-<link th:href="@{/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css}"
-	rel="stylesheet"></link>
-<!--　↑cssファイル タイムリーフでファイル読み込み　 -->
-<script th:src="@{/webjars/jquery/1.11.1/jquery.min.js}"></script>
-<!--　↑jQueryのjsファイル タイムリーフでファイル読み込み　 -->
-<script th:src="@{/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js}"></script>
-<!--　↑Bootstrap のjsファイル（jQueryの後に読み込む） タイムリーフでファイル読み込み　 -->
-
 <title>Insert title here</title>
 </head>
 <body>
@@ -22,9 +13,13 @@
 		<script>
 			$(function() {
 				// 入力値をリセット
-				$("#resetButton").click(function() {
-					$('#textField1,#textField2,#dateField1,#dateField2').val("");
-				});
+				$("#resetButton")
+						.click(
+								function() {
+									$(
+											'#textField1,#textField2,#dateField1,#dateField2')
+											.val("");
+								});
 			});
 		</script>
 		<div class="page-header">
@@ -61,9 +56,9 @@
 						th:errors="*{user_id}">user_id error</span></td>
 					<td><input id="textField2" type="text"
 						class="form-control text-center" name="content"
-						th:field="*{content}" placeholder="150文字以下で検索可"><span class="text-danger"
-						th:if="${#fields.hasErrors('content')}" th:errors="*{content}">content
-							error</span></td>
+						th:field="*{content}" placeholder="150文字以下で検索可"><span
+						class="text-danger" th:if="${#fields.hasErrors('content')}"
+						th:errors="*{content}">content error</span></td>
 					<td><input id="dateField1" type="date"
 						class="form-control text-center" name="registration_dateFrom"
 						th:field="*{registration_dateFrom}"></td>
@@ -108,7 +103,8 @@
 					<td
 						class="text-center personUsersNoticeSendingTd4 btnSizePersonUsersNoticeSending2">
 						<!-- 動的URL --> <a
-						class="btn btn-primary text-center btnSizePersonUsersNoticeSending" style="font-size:13px;"
+						class="btn btn-primary text-center btnSizePersonUsersNoticeSending"
+						style="font-size: 13px;"
 						th:href="@{'personUsersNoticeSendingDetail/' + ${personusersnoticedto.id}}">編集</a>
 					</td>
 			</table>

@@ -26,12 +26,13 @@
 
 
 
-							<!-- タイトル  readonly="readonly"をつければ入力変更できなくなる-->
-							<th class="danger active col-sm-1 text-center" style="padding:14px;">タイトル</th>
-							<td class="col-sm-11" style="background-color:#f9efef">
+
+							<th class="danger active col-sm-1 text-center"
+								style="padding: 14px;">タイトル</th>
+							<td class="col-sm-11" style="background-color: #f9efef">
 								<div class="form-group">
-									<input type="text" class="form-control" th:field="*{item_name}" placeholder="50文字以下で入力してください。"/>
-									<span class="text-danger"
+									<input type="text" class="form-control" th:field="*{item_name}"
+										placeholder="50文字以下で入力してください。" /> <span class="text-danger"
 										th:if="${#fields.hasErrors('item_name')}"
 										th:errors="*{item_name}">item_name error</span>
 								</div>
@@ -40,12 +41,12 @@
 						<tr>
 
 							<!-- 担当者 -->
-							<th class="danger active text-center" style="padding:14px;">担当者</th>
-							<td style="background-color:#f9efef">
+							<th class="danger active text-center" style="padding: 14px;">担当者</th>
+							<td style="background-color: #f9efef">
 								<div class="form-group"
 									th:classappend="${#fields.hasErrors('user_name')} ? 'has-error'">
-									<input type="text" class="form-control" th:field="*{user_name}" placeholder="25文字以下で入力してください。"/>
-									<span class="text-danger"
+									<input type="text" class="form-control" th:field="*{user_name}"
+										placeholder="25文字以下で入力してください。" /> <span class="text-danger"
 										th:if="${#fields.hasErrors('user_name')}"
 										th:errors="*{user_name}">user_name error</span>
 								</div>
@@ -54,8 +55,8 @@
 						<tr>
 
 							<!-- 登録日 -->
-							<th class="danger active text-center" style="padding:14px;">登録日</th>
-							<td style="background-color:#f9efef">
+							<th class="danger active text-center" style="padding: 14px;">登録日</th>
+							<td style="background-color: #f9efef">
 								<div class="form-group"
 									th:classappend="${#fields.hasErrors('registration_date')} ? 'has-error'">
 									<input type="text" class="form-control"
@@ -70,50 +71,37 @@
 						<tr>
 
 							<!-- 期限日 -->
-							<th class="danger active text-center" style="padding:14px;">期限日</th>
-							<td style="background-color:#f9efef">
+							<th class="danger active text-center" style="padding: 14px;">期限日</th>
+							<td style="background-color: #f9efef">
 								<div class="form-group">
 									<input type="text" class="form-control"
-										th:field="*{expire_date}" placeholder="YYYY-DD-MM hh:mm  例(2000-10-24 13:30)で入力してください。" /> <span
-										class="text-danger"
+										th:field="*{expire_date}"
+										placeholder="YYYY-DD-MM hh:mm  例(2000-10-24 13:30)で入力してください。" />
+									<span class="text-danger"
 										th:if="${#fields.hasErrors('expire_date')}"
 										th:errors="*{expire_date}">expire_date error</span>
 								</div>
 							</td>
 						</tr>
 						<tr>
-							<!--
-
-						<th class="active">完了日</th>
-						<td>
-							<div class="form-group"
-								th:classappend="${#fields.hasErrors('finished_date')}?'has-error'">
-								<input type="text" class="form-control"
-									th:field="*{finished_date}" placeholder="YYYY-DD-MM hh:mm"/> <span class="text-danger"
-									th:if="${#fields.hasErrors('finished_date')}"
-									th:errors="*{finished_date}">finished_date error</span>
-							</div>
-						</td>
-					</tr>
-					-->
 						<tr>
 					</table>
 					<!-- 更新ボタン -->
 					<button class="btn btn-primary btn-lg pull-right" type="submit"
-						name="update" style="font-size:22px;">Work内容更新</button>
+						name="update" style="font-size: 22px;">Work内容更新</button>
 					<!-- 削除ボタン -->
 					<button class="btn btn-danger btn-lg pull-left deleteButton"
-						type="submit" name="delete" style="font-size:22px;">Work内容削除</button>
+						type="submit" name="delete" style="font-size: 22px;">Work内容削除</button>
 					<!-- 完了ボタン -->
 					<div th:if="${workaddtoForm.finished_date == null}">
 						<button class="btn btn-success btn-lg center-block" type="submit"
-							name="completed" style="font-size:22px;">Work作業完了</button>
+							name="completed" style="font-size: 22px;">Work作業完了</button>
 					</div>
 					<div th:if="${workaddtoForm.finished_date != null}">
 						<button class="btn btn-success btn-lg center-block" type="submit"
-							name="completed" style="font-size:22px;">完了日を未完了にする</button>
+							name="completed" style="font-size: 22px;">完了日を未完了にする</button>
 					</div>
-					<!-- blockを使うときは一番最後に使う　一行丸ごと使うのでこれより下のボタンがずれる -->
+
 				</form>
 			</div>
 		</div>

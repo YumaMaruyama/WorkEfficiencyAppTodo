@@ -3,14 +3,6 @@
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
 <meta charset="UTF-8">
-<!-- Bootstrap（デザイン性の高い画面を簡単に作成可能※タグのclass属性にある値をセットするだけ）の設定 jQuery Bootstrapの読み込み必要がある-->
-<link th:href="@{/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css}"
-	rel="stylesheet"></link>
-<!--　↑cssファイル タイムリーフでファイル読み込み　 -->
-<script th:src="@{/webjars/jquery/1.11.1/jquery.min.js}"></script>
-<!--　↑jQueryのjsファイル タイムリーフでファイル読み込み　 -->
-<script th:src="@{/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js}"></script>
-<!--　↑Bootstrap のjsファイル（jQueryの後に読み込む） タイムリーフでファイル読み込み　 -->
 
 <title>Work登録</title>
 </head>
@@ -26,11 +18,14 @@
 				<table class="table table-bordered table-hover">
 					<!-- item_name(タイトル)入力エリア -->
 					<tr>
-						<th class="active col-sm-2 text-center workaddtoTableThColor" style="padding:14px;">タイトル</th>
-						<td style="background-color:#f1efb1">
+						<th class="active col-sm-2 text-center workaddtoTableThColor"
+							style="padding: 14px;">タイトル</th>
+						<td style="background-color: #f1efb1">
 							<div class="form-group"
-								th:classappend="${#fields.hasErrors('item_name')}?'has-error'" style="background-color:#f1ee90 !important;">
-								<input type="text" class="form-control" th:field="*{item_name}" placeholder="50文字以下で入力してください。"/>
+								th:classappend="${#fields.hasErrors('item_name')}?'has-error'"
+								style="background-color: #f1ee90 !important;">
+								<input type="text" class="form-control" th:field="*{item_name}"
+									placeholder="50文字以下で入力してください。" />
 								<!-- 個別エラーメッセージの表示 -->
 								<span class="text-danger"
 									th:if="${#fields.hasErrors('item_name')}"
@@ -41,11 +36,13 @@
 
 					<!-- user_name(担当者)入力エリア -->
 					<tr>
-						<th class="active text-center workaddtoTableThColor" style="padding:14px;">担当者</th>
-						<td style="background-color:#f1efb1">
+						<th class="active text-center workaddtoTableThColor"
+							style="padding: 14px;">担当者</th>
+						<td style="background-color: #f1efb1">
 							<div class="form-group"
 								th:classappend="${#fields.hasErrors('user_name')}?'has-error'">
-								<input type="text" class="form-control" th:field="*{user_name}" placeholder="25文字以下で入力してください。"/>
+								<input type="text" class="form-control" th:field="*{user_name}"
+									placeholder="25文字以下で入力してください。" />
 								<!-- 個別エラーメッセージの表示-->
 								<span class="text-danger"
 									th:if="${#fields.hasErrors('user_name')}"
@@ -55,12 +52,14 @@
 					</tr>
 					<!-- expire_date(期限日)入力エリア -->
 					<tr>
-						<th class="active text-center workaddtoTableThColor" style="padding:14px;">期限日</th>
-						<td style="background-color:#f1efb1">
+						<th class="active text-center workaddtoTableThColor"
+							style="padding: 14px;">期限日</th>
+						<td style="background-color: #f1efb1">
 							<div class="form-group"
 								th:classappend="${#fields.hasErrors('expire_date')}?'has-error'">
 								<input type="text" class="form-control"
-									th:field="*{expire_date}" placeholder="YYYY-DD-MM hh:mm  例(2000-10-24 13:30)で入力してください。" />
+									th:field="*{expire_date}"
+									placeholder="YYYY-DD-MM hh:mm  例(2000-10-24 13:30)で入力してください。" />
 								<!-- 個別エラーメッセージの表示-->
 								<span class="text-danger"
 									th:if="${#fields.hasErrors('expire_date')}"
@@ -69,10 +68,12 @@
 						</td>
 					</tr>
 					<tr>
-						<th class="active text-center workaddtoTableThColor" style="padding:14px;">詳細記載欄1<br><span class="text-danger">※未入力可能</span>
+						<th class="active text-center workaddtoTableThColor"
+							style="padding: 14px;">詳細記載欄1<br>
+						<span class="text-danger">※未入力可能</span>
 						</th>
 						<!-- 左3マス、右6マス開けるとちょうどいい -->
-						<td style="background-color:#f1efb1">
+						<td style="background-color: #f1efb1">
 							<div class="form-group"
 								th:classappend="${#fields.hasErrors('details')}?'has-error'">
 								<input type="text" class="form-control" th:field="*{details}"
@@ -88,10 +89,12 @@
 					</tr>
 
 					<tr>
-						<th class="active text-center workaddtoTableThColor" style="padding:14px;">詳細記載欄2<br><span class="text-danger">※未入力可能</span>
+						<th class="active text-center workaddtoTableThColor"
+							style="padding: 14px;">詳細記載欄2<br>
+						<span class="text-danger">※未入力可能</span>
 						</th>
 						<!-- 左3マス、右6マス開けるとちょうどいい -->
-						<td style="background-color:#f1efb1">
+						<td style="background-color: #f1efb1">
 							<div class="form-group"
 								th:classappend="${#fields.hasErrors('details2')}?'has-error'">
 								<input type="text" class="form-control" th:field="*{details2}"
@@ -107,10 +110,12 @@
 					</tr>
 
 					<tr>
-						<th class="active text-center workaddtoTableThColor" style="padding:14px;">詳細記載欄3<br><span class="text-danger">※未入力可能</span>
+						<th class="active text-center workaddtoTableThColor"
+							style="padding: 14px;">詳細記載欄3<br>
+						<span class="text-danger">※未入力可能</span>
 						</th>
 						<!-- 左3マス、右6マス開けるとちょうどいい -->
-						<td style="background-color:#f1efb1">
+						<td style="background-color: #f1efb1">
 							<div class="form-group"
 								th:classappend="${#fields.hasErrors('details3')}?'has-error'">
 								<input type="text" class="form-control" th:field="*{details3}"
@@ -127,14 +132,7 @@
 					<!-- finished_date(期限日) -->
 				</table>
 
-				<!-- エラーメッセージの一覧表示 -->
-				<!--
-			<ul>
-			<li th:each="error:${#fields.detailedErrors()}">
-			<span th:text="${error.message}">Error messsage</span>
-			</li>
-			</ul>
-			-->
+
 				<!-- Work登録完了ボタン -->
 				<button class="btn btn-primary btn-lg center-block"
 					style="width: 150px; padding: 13px; font-size: 21px;" type="submit">Work登録</button>
@@ -143,23 +141,5 @@
 		</div>
 	</div>
 
-
-
-
-	<!--  <table border="1">
-		<tr>
-			<th>項目名</th>
-			<th>担当者</th>
-			<th>登録日</th>
-			<th>期限日</th>
-			<th>完了日</th>
-			<th>操作</th>
-		</tr>
-
-		<c:forEach var="todo_Items" items="${todo_Items}">
-
-		</c:forEach>
-		</table>
-		</div>-->
 </body>
 </html>
