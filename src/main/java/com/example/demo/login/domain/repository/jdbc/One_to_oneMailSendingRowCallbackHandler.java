@@ -15,7 +15,7 @@ public class One_to_oneMailSendingRowCallbackHandler implements RowCallbackHandl
 	public void processRow(ResultSet rs) throws SQLException {
 
 		//秒までのフォーマット指定
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy年MM月dd日 hh時mm分ss秒");
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy年MM月dd日 ah時mm分ss秒");
 
 		try {
 			File file = new File("one_to_oneMailSending.csv");

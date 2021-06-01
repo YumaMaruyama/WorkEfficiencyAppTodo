@@ -20,7 +20,7 @@ public class PersonUsersNoticeRowCallbackHandler implements RowCallbackHandler {
 			BufferedWriter bw = new BufferedWriter(fw);
 
 			do {
-				SimpleDateFormat sdf = new SimpleDateFormat("yyyy年MM月dd日 hh時mm分");
+				SimpleDateFormat sdf = new SimpleDateFormat("yyyy年MM月dd日 ah時mm分");
 				String str = "『お知らせ内容』 " + rs.getString("content") + ","
 						+ "『投稿日』 " + sdf.format(rs.getTimestamp("registration_date"));
 

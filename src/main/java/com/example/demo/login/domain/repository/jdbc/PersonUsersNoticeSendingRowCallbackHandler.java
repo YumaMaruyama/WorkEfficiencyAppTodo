@@ -13,7 +13,7 @@ public class PersonUsersNoticeSendingRowCallbackHandler implements RowCallbackHa
 
 	@Override
 	public void processRow(ResultSet rs) throws SQLException {
-
+		
 		try {
 			File file = new File("personUsersNoticeSending.csv");
 			FileWriter fw = new FileWriter(file.getAbsoluteFile());

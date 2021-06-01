@@ -259,7 +259,7 @@ public class PersonUsersNoticeDaoJdbcImpl implements PersonUsersNoticeDao {
 		String sql = "select * from personUsersNotice where is_deleted = 0";
 		System.out.println("sql" + sql);
 		//ResultSetExceptionの生成
-		PersonUsersNoticeRowCallbackHandler handler = new PersonUsersNoticeRowCallbackHandler();
+		PersonUsersNoticeSendingRowCallbackHandler handler = new PersonUsersNoticeSendingRowCallbackHandler();
 
 		//SQL実行＆CSV出力
 		jdbc.query(sql, handler);

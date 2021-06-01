@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 
 import org.springframework.jdbc.core.RowCallbackHandler;
 
@@ -19,10 +20,10 @@ public class TweetRowCallbackHandler implements RowCallbackHandler {
 			BufferedWriter bw = new BufferedWriter(fw);
 
 			do {
+				SimpleDateFormat sdf = new SimpleDateFormat("yyyy年MM月dd日 ah時mm分ss秒");
 				String str = "『ユーザー名』" + rs.getString("user_name") + ","
 						+ "『Tweet内容』" + rs.getString("contents") + ","
-						+ "『Tweet日』" + rs.getString("registration_date");
-
+						+ "『Tweet日』" + sdf.format(rs.getTimestamp("registration_date"));
 				bw.write(str);
 				bw.newLine();
 			} while (rs.next());
