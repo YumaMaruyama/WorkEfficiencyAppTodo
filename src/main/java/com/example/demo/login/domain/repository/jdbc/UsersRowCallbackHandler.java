@@ -33,9 +33,10 @@ public class UsersRowCallbackHandler implements RowCallbackHandler {
 				String str = "『ユーザーID』 " + rs.getString("user_id") + ","
 						+ "『ユーザー名』 " + rs.getString("user_name") + ","
 						+ "『誕生日』 " + sdf.format(rs.getTimestamp("birthday")) + ","
+						+ (rs.getInt("MaleFemale")) + ","
 						+ "『会社入社日』 " + sdf.format(rs.getTimestamp("hireDate"));
-				//性別も追加するかも	+ "『』 " + rs.getDate("");
-
+			
+				
 				//ファイルへ書込と改行
 				bw.write(str);
 				bw.newLine();

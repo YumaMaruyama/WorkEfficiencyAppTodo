@@ -256,7 +256,7 @@ public class PersonUsersNoticeDaoJdbcImpl implements PersonUsersNoticeDao {
 
 		System.out.println("personUsersNoticeSendingCsvOutImpl到達");
 
-		String sql = "select * from personUsersNotice where is_deleted = 0";
+		String sql = "select personUsersNotice.content,personUsersNotice.registration_date,users.user_name from personUsersNotice join users on personUsersNotice.user_id = users.user_id where personUsersNotice.is_deleted = 0";
 		System.out.println("sql" + sql);
 		//ResultSetExceptionの生成
 		PersonUsersNoticeSendingRowCallbackHandler handler = new PersonUsersNoticeSendingRowCallbackHandler();
