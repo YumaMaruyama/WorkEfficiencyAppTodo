@@ -65,9 +65,9 @@ public class TweetDaoJdbcImpl implements TweetDao {
 	@Override
 	public List<TweetDTO> selectMany() throws DataAccessException {
 
-		//queryForMapは１レコードだけで、上位互換にqueryForMapをリストにした全部持ってこれるqueryForListがある。ManyするときはForListを使う。１レコードだけの時も
-		//ForMapではなくてForList使ってもいい。<Map<String,Object>> 変数名の先頭にList<>をつけるとMapのListという意味になり、複数表持ってこれて、
-		//jdbcの中にのjdbc.queryForListを使えばできる。String（Key）にカラム名("id"や"contents")がはいって、Objectにはカラムそれぞれに型が入ってくる。②に行く
+		//queryForMapは１レコードだけで、上位互換にqueryForMapをリストにした全部持ってこれるqueryForListがある。複数selectorするときなどはqueryForListを使う。
+		//<Map<String,Object>> 変数名の先頭にList<>をつけるとMapのListという意味になり、複数表持ってこれて、
+		//jdbcの中のjdbc.queryForListを使えばできる。String（Key）にカラム名("id"や"contents")がはいって、Objectにはカラムそれぞれに型が入ってくる。②に行く
 		List<Map<String, Object>> getList = jdbc.queryForList(
 				"select tweet.id,tweet.contents ,tweet.registration_date ,user_id2,users.user_name from tweet JOIN users ON tweet.user_id = users.user_id order by registration_date desc");
 		//複数件のselectをする場合はqueryForListメソッドを使う　戻り値の方にはList<Map<String,Object>>を指定　
@@ -78,8 +78,7 @@ public class TweetDaoJdbcImpl implements TweetDao {
 		for (Map<String, Object> map : getList) {
 
 			TweetDTO tweetdto = new TweetDTO();
-			//②	List<Map<String, Object>> getListの中身を変換する。TweenDTOのインスタンス生成し、その変数に入れていく。そのあとTweenDTOをまとめるList<TweenDTO>
-			//もインスタンスしているのでその変数にtweendtoの中身を入れてtweetListでまとめている。そうするとhtmlなどで表示させるときもとても楽になって全体的に管理で便利。
+			//②	List<Map<String, Object>> getListの中身を変換する。TweenDTOのインスタンス生成し、その変数に入れていく。そのあとTweenDTOをまとめるList<TweenDTO>もインスタンスしているのでその変数にtweendtoの中身を入れてtweetListでまとめている。そうするとhtmlなどで表示させるときもとても楽になって全体的に管理で便利。
 			tweetdto.setId((int) map.get("id"));
 			tweetdto.setContents((String) map.get("contents"));
 			tweetdto.setRegistration_date((Date) map.get("registration_date"));

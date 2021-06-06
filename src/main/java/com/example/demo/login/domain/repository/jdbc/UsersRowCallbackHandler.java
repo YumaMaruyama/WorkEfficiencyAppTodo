@@ -14,7 +14,6 @@ import org.springframework.jdbc.core.RowCallbackHandler;
 //ResultSetExceptionではResultSetのnext()メソッドを使わなければレコードの値を取得できなかった
 //だが、RowCallbackHandlerの場合はすでに一回next()メソッドが実行された状態になっているため、while文ではなく
 //do while文でループを行っている
-//sample.csvはプロジェクトフォルダの直下に作られる
 public class UsersRowCallbackHandler implements RowCallbackHandler {
 
 	@Override

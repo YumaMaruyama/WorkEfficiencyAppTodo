@@ -377,17 +377,14 @@ public class UsersDaoJdbcImpl implements UsersDao {
 	public int updateOne(UsersDTO usersdto) throws DataAccessException {
 
 		System.out.println("usersDaoImplUpdate到達");
-	//	String password = passwordEncoder.encode(usersdto.getPassword());
-		//一件更新 whereをuser_idにしてるのでそれ以外の変更が可能　user_idを作り直すには再度新規ユーザー登録をしてもらう
+		
 		int rowNumber = jdbc.update("update Users"
 				+ " set"
-			//	+ " password = ?,"
 				+ " user_name = ?,"
 				+ " birthday = ?,"
 				+ " hireDate = ?,"
 				+ " MaleFemale = ?"
 				+ " where user_id = ?"
-				//,password
 				,usersdto.getUser_name()
 				,usersdto.getBirthday()
 				,usersdto.getHireDate()

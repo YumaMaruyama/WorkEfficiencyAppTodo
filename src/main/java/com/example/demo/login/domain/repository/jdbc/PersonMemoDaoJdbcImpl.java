@@ -13,7 +13,7 @@ import org.springframework.stereotype.Repository;
 import com.example.demo.login.domain.model.PersonMemoDTO;
 import com.example.demo.login.domain.repository.PersonMemoDao;
 
-//Bean名をセット　そうすることで、@Autowiredする際、どのクラスを使うか指定できる
+//Bean名をセット そうすることで@Autowiredする際、どのクラスを使うか指定できる
 @Repository("PersonMemoDaoJdbcImpl")
 public class PersonMemoDaoJdbcImpl implements PersonMemoDao {
 
