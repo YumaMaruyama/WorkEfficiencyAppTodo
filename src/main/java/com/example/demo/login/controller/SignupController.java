@@ -32,16 +32,16 @@ public class SignupController {
 	//ユーザー登録画面のGETコントローラー
 	@GetMapping("/signup")
 	public String getSignUp(@ModelAttribute SignupForm form, Model model) {
-		model.addAttribute("contents", "login/signup::loginLayout_contents");
+		
 		//ModelAttributeをつけると、自動でModelクラスに登録（addAttribute）してくれる
-		//model.addAttribute("loginForm",form);
+		model.addAttribute("contents", "login/signup::loginLayout_contents");
 		//ラジオボタンの初期化メソッドの呼び出し
 		radioMaleFemale = initRadioMaleFemale();
 
 		//ラジオボタン用のMapをModelに登録
 		model.addAttribute("radioMaleFemale", radioMaleFemale);
 
-		//signup.htmlに飛ぶ
+		
 		return "/login/loginLayout";
 	}
 
@@ -52,7 +52,6 @@ public class SignupController {
 	public String postSignUp(@ModelAttribute @Validated(GroupOrder.class) SignupForm form, BindingResult bindingResult,
 			Model model) {
 		//データバインドを受け取るにはBindingResultクラスを追加する　このクラスのhasError()メソッドで、データバインドに失敗してるかが分かる
-		//データバインド失敗の場合
 		//入力チェックに引っかかった場合、ユーザー登録画面に戻る
 		if (bindingResult.hasErrors()) {
 
@@ -60,7 +59,7 @@ public class SignupController {
 			return getSignUp(form, model);
 		}
 
-		//formの中身をコンソールに出して確認します
+		//formの中身をコンソールに出して確認
 		System.out.println(form);
 
 		int rowNumber = usersService.check(form.getUser_id());

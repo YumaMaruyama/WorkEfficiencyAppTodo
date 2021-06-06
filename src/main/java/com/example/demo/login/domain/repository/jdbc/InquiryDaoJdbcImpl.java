@@ -36,26 +36,24 @@ public class InquiryDaoJdbcImpl implements InquiryDao {
 				+ " title,"
 				+ " content,"
 				+ " mail,"
-				+ " user_id,"
-				+ " registration_date)"
-				+ " values(?,?,?,?,?,?)", inquirydto.getId(), inquirydto.getTitle(), inquirydto.getContent(),
-				inquirydto.getMail(), user_id, inquirydto.getRegistration_date());
+				+ " user_id)"
+				+ " values(?,?,?,?,?)", inquirydto.getId(), inquirydto.getTitle(), inquirydto.getContent(),
+				inquirydto.getMail(), user_id);
 
 		return rowNumber;
 	}
 
 	//inquiryテーブルのデータを一件登録
 	@Override
-	public int insertOneLogin(InquiryDTO inquirydto) throws DataAccessException {
+	public int insertOneLogin(InquiryDTO inquirydto,String user_id) throws DataAccessException {
 
 		//insert
 		int rowNumber = jdbc.update("insert into inquiry(id,"
 				+ " title,"
 				+ " content,"
-				+ " user_id,"
-				+ " registration_date)"
-				+ " values(?,?,?,?,?)", inquirydto.getId(), inquirydto.getTitle(), inquirydto.getContent(),
-				inquirydto.getMail(), inquirydto.getRegistration_date());
+				+ " user_id)"
+				+ " values(?,?,?,?)", inquirydto.getId(), inquirydto.getTitle(), inquirydto.getContent(),
+				user_id);
 
 		return rowNumber;
 	}

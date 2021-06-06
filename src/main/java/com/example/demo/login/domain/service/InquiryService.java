@@ -35,9 +35,9 @@ public class InquiryService {
 		return result;
 	}
 
-	public boolean insertLogin(InquiryDTO inquirydto) {
+	public boolean insertLogin(InquiryDTO inquirydto,String user_idT) {
 
-		int rowNumber = dao.insertOneLogin(inquirydto);
+		int rowNumber = dao.insertOneLogin(inquirydto,user_idT);
 
 		//判定用変数
 		boolean result = false;

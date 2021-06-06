@@ -15,7 +15,7 @@ public class LoginController {
 	@GetMapping("/login")
 	public String getLogin(Model model) {
 		model.addAttribute("contents", "login/login::loginLayout_contents");
-		//loginのHTMLに飛んでいく
+		//loginLayoutに飛んでいく
 		return "login/loginLayout";
 	}
 
@@ -24,7 +24,7 @@ public class LoginController {
 	public String postLogin(@AuthenticationPrincipal UsersDaoJdbcImpl usersdtoimpl, Model model) {
 		System.out.println("Postログイン到達");
 
-		//workspaceのhtmlに飛んでいく
+		//workspaceに飛んでいく
 		return "redirect:/workspace";
 	}
 

@@ -15,7 +15,7 @@ public interface InquiryDao {
 	//inquiryテーブルのデータを一件登録
 	public int insertOne(InquiryDTO inquirydto, String user_id) throws DataAccessException;
 
-	public int insertOneLogin(InquiryDTO inquirydto) throws DataAccessException;
+	public int insertOneLogin(InquiryDTO inquirydto,String user_idT) throws DataAccessException;
 
 	//inquiryテーブルのデータを一件取得
 	public InquiryDTO selectOne(String id) throws DataAccessException;
