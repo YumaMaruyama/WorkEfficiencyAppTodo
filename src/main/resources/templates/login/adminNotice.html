@@ -27,9 +27,6 @@
 					<!-- 管理者お知らせの件数-->
 					<td class="col-sm-12"><h3
 							th:text="'合計:' + ${adminListHomeCount} + '件'"></h3></td>
-					<!-- 完了　削除の結果表示
-		<td><label class="text-info" th:text="${result}">結果表示</label></td>
-
 					<!-- CSV出力用のリンク -->
 					<td class="col-sm-2 btnPadding"><a class="cp_btn4"
 						th:href="@{'/adminNotice/csv'}">CSV出力</a></td>
@@ -37,8 +34,6 @@
 			</table>
 		</div>
 
-
-		<!--searchTable  -->
 
 		<form method="post" th:action="@{/adminNoticeSearch}"
 			th:object="${adminNoticeSearchForm}">
@@ -112,7 +107,6 @@
 								class="text-center warning col-sm-5 sticky-top adminNoticeThWidthBB adminNoticeTabelThColor">投稿日</th>
 							<th
 								class="text-center warning col-sm-1 sticky-top adminNoticeThWidthCC adminNoticeTabelThColor">管理</th>
-							<!-- sec:authorize="hasRole('ADMIN')" -->
 						</tr>
 					</thead>
 					<tbody>

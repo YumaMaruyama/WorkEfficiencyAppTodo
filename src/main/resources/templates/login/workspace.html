@@ -3,22 +3,6 @@
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
 <meta charset="UTF-8">
-
-<!-- Bootstrap（デザイン性の高い画面を簡単に作成可能※タグのclass属性にある値をセットするだけ）の設定 jQuery Bootstrapの読み込み必要がある-->
-<link th:href="@{/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css}"
-	rel="stylesheet"></link>
-<!--　↑cssファイル タイムリーフでファイル読み込み　
-<script th:src="@{/webjars/jquery/3.5.1/jquery.min.js}"></script>-->
-
-<!--　↑jQueryのjsファイル タイムリーフでファイル読み込み　 -->
-<script th:src="@{/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js}"></script>
-<!--　↑Bootstrap のjsファイル（jQueryの後に読み込む） タイムリーフでファイル読み込み　 -->
-
-
-
-
-<!-- CSSの読み込み -->
-<link th:href="@{/css/workspace.css}" rel="stylesheet"></link>
 <title>workspace</title>
 </head>
 <body>
@@ -35,7 +19,7 @@
 			});
 		</script>
 		<div class="page-header">
-			<!-- h1タグと同じ列にボタンを付けるため、テーブルを作ってその中にtrをつけている -->
+
 			<table>
 				<tr>
 					<td class="col-sm-4"><h1 class="text-center" style="background-color: #b0e0e659;">Workリスト</h1></td>
@@ -111,7 +95,7 @@
 						placeholder="完了日用範囲(終わり)" name="finished_dateZ"
 						th:field="*{finished_dateZ}"></td>
 					<td class="mikannryou" style="text-align: center;">
-						<!--  input type="hidden" name="finished_dateM" value="false"--> <input
+					<input
 						type="checkbox" name="finished_dateM" value="true">完了日を未完了に絞る
 					</td>
 

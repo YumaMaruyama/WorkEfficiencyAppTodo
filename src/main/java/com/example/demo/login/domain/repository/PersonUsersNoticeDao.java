@@ -34,5 +34,5 @@ public interface PersonUsersNoticeDao {
 	public void personUsersNoticeCsvOut() throws DataAccessException;
 
 	public void personUsersNoticeSendingCsvOut(String getName) throws DataAccessException;
-	//public void adminPersonNoticeCsvOut() throws DataAccessException;
+	
 }

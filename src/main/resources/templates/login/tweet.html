@@ -134,7 +134,6 @@
 						<!-- 動的URL --> <a class="btn btn-primary text-center btnSizeTweet"
 						style="width: 80px" th:href="@{'/tweetDetail/' + ${tweetdto.id}}">編集</a>
 					</td>
-					<!-- user_idではjoinを使っていて、ほかのデータベースのカラムが入ってるため、データベースのuser_idをとってこれない。なのでuser_id2を作ってデータベースのuser_idを渡した -->
 					<td class="text-center tweetTdD btnSizeTweet2"
 						th:if="${#authorization.expression('!hasRole(''ADMIN'')')} and ${tweetdto.user_id2} == ${#authentication.principal.username}">
 						<a class="btn btn-primary text-center btnSizeTweet" style="width: 80px"

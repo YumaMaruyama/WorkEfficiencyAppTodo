@@ -32,7 +32,7 @@ public class PersonUsersNoticeService {
 		return dao.countSending();
 	}
 
-	//insertメソッド　personUsersNotice用
+	
 	public boolean insertOne(PersonUsersNoticeDTO personusersnoticedto) {
 		int rowNumber = dao.insertOne(personusersnoticedto);
 

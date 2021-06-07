@@ -66,7 +66,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		//ログイン不要ページの設定
 		//静的リソースを除外 wevjars.cssなどの静的リソースにはだれでもアクセスできるようにする
 		//そのため下記の通りに書くとセキュリティ設定を適用しないようにできる
-		//**を二つつけると正規表現でいずれかのファイルとなる　下記のファイルだと/webjars配下と/css配下のファイルに対しては、セキュリティの対象外となります
+		//**を二つつけると正規表現でいずれかのファイルとなる　下記のファイルだと/webjars配下と/css配下のファイルに対しては、セキュリティの対象外となる
 		http
 		.authorizeRequests()
 		//上記使用すると直リンク禁止先の条件を追加してくれる　メソッドチェーンとは.()で
@@ -140,7 +140,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		.dataSource(dataSource)
 		.usersByUsernameQuery(USER_SQL)
 		.authoritiesByUsernameQuery(ROLE_SQL)
-		//PasswordEncoderを実装したクラスは、BcrypPasswordEncoder以外にもいくつかある、暗号化のアルゴリズムによっていくつかのクラスがあります
+		//PasswordEncoderを実装したクラスは、BcrypPasswordEncoder以外にもいくつかある、暗号化のアルゴリズムによっていくつかのクラスがある
 		.passwordEncoder(passwordEncoder());
 
 	}

@@ -32,5 +32,5 @@ public interface Todo_itemsDao {
 	public List<Todo_itemsDTO> search(String item_name, String user_name, Date registration_date,
 			Date registration_dateA, Date expire_date, Date expire_dateA, Date finished_date, Date finished_dateA,
 			String finished_dateM) throws DataAccessException;
-	//,String finished_dateM
+
 }

@@ -14,8 +14,8 @@ public class WebConfig {
 
 		ReloadableResourceBundleMessageSource bean = new ReloadableResourceBundleMessageSource();
 
-		//メッセージのプロパティファイル名（デフォルト）を指定します
-		//下記ではmessages.properticeファイルがセットされます
+		//メッセージのプロパティファイル名（デフォルト）を指定
+		//下記ではmessages.properticeファイルがセット
 		bean.setBasename("classpath:messages");
 		bean.setDefaultEncoding("UTF-8");
 

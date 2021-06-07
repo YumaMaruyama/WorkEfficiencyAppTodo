@@ -24,7 +24,6 @@ public class UsersService {
 
 	//@Autowiredと一緒に@Qualifierを使用すると、どのBeanを使用するか指定できる
 	//UsersDaoのインターフェース作ったが、それを継承したクラスが一つだけであれば、Springが自動でBeanを探してくれる
-	//今回はInpl Inpl2と二つあるため、つける
 	@Autowired
 	@Qualifier("UsersDaoJdbcImpl")
 	UsersDao dao;
@@ -35,11 +34,10 @@ public class UsersService {
 		//insert実行　usersdtoに入ったデータを代入
 		int rowNumber = dao.insertOne(usersdto);
 
-		//もし入ってなかったとき用に使うやつ
 		boolean result = false;
 
 		if (rowNumber > 0) {
-			//insert成功したらtrueを入れる
+
 			result = true;
 		}
 		return result;

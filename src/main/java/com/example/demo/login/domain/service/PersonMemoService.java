@@ -23,7 +23,7 @@ public class PersonMemoService {
 		return dao.count();
 	}
 
-	//「boolean」 のresultと合わせる
+	
 	public boolean insert(PersonMemoDTO personmemodto) {
 
 		int rowNumber = dao.insert(personmemodto);

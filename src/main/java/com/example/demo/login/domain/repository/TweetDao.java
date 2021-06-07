@@ -22,6 +22,6 @@ public interface TweetDao {
 	public List<TweetDTO> search(String user_id, String contents, Date registration_dateA, Date registration_dateZ)
 			throws DataAccessException;
 
-	//Csvはvoid
+
 	public void tweetCsvOut() throws DataAccessException;
 }
