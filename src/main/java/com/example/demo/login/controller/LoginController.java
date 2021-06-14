@@ -1,12 +1,9 @@
 package com.example.demo.login.controller;
 
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-
-import com.example.demo.login.domain.repository.jdbc.UsersDaoJdbcImpl;
 
 @Controller
 public class LoginController {
@@ -21,7 +18,7 @@ public class LoginController {
 
 	//ログイン画面のPOST
 	@PostMapping("/login")
-	public String postLogin(@AuthenticationPrincipal UsersDaoJdbcImpl usersdtoimpl, Model model) {
+	public String postLogin( Model model) {
 		System.out.println("Postログイン到達");
 
 		//workspaceに飛んでいく
