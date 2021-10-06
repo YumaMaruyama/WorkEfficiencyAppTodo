@@ -35,10 +35,9 @@ public class TweetDaoJdbcImpl implements TweetDao {
 
 		int rowNumber = jdbc.update("insert into tweet(id,"
 				+ " contents,"
-				+ " registration_date,"
 				+ " user_id,"
 				+ " user_id2)"
-				+ " values(?,?,?,?,?)", tweetdto.getId(), tweetdto.getContents(), tweetdto.getRegistration_date(),
+				+ " values(?,?,?,?)", tweetdto.getId(), tweetdto.getContents(),
 				tweetdto.getUser_id(), tweetdto.getUser_id2());
 
 		return rowNumber;
