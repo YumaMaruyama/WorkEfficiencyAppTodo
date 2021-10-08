@@ -209,7 +209,7 @@ a.cp_btn12:hover:before {
 	display: block;
 	overflow-y: scroll;
 	/*heightがスクロールしなくても見える範囲の幅*/
-	height: 379px;
+	height: 293px;
 }
 
 .adminHeader1 {

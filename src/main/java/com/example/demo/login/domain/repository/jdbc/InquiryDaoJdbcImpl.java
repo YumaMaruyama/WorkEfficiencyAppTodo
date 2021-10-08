@@ -53,7 +53,7 @@ public class InquiryDaoJdbcImpl implements InquiryDao {
 				+ " content,"
 				+ " user_id)"
 				+ " values(?,?,?,?)", inquirydto.getId(), inquirydto.getTitle(), inquirydto.getContent(),
-				user_id);
+				inquirydto.getMail());
 
 		return rowNumber;
 	}
