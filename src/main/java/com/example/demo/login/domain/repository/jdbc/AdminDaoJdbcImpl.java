@@ -22,9 +22,8 @@ public class AdminDaoJdbcImpl implements AdminDao {
 	@Override
 	public int insertOne(AdminDTO admindto) throws DataAccessException {
 		int rowNumber = jdbc.update("insert into admin (id,"
-				+ " contents,"
-				+ " registration_date)"
-				+ " values(?,?,?)", admindto.getId(), admindto.getContents(), admindto.getRegistration_date());
+				+ " contents)"
+				+ " values(?,?)", admindto.getId(), admindto.getContents());
 
 		return rowNumber;
 

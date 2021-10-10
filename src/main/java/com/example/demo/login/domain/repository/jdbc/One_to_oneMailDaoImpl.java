@@ -39,10 +39,8 @@ public class One_to_oneMailDaoImpl implements One_to_oneMailDao {
 
 		int rowNumber = jdbc.update("insert into one_to_oneMail (user_id,"
 				+ " mail,"
-				+ " sender,"
-				+ " registration_date)"
-				+ " values(?,?,?,?)", one_to_onemaildto.getUser_id(), one_to_onemaildto.getMail(), getName,
-				one_to_onemaildto.getRegistration_date());
+				+ " sender)"
+				+ " values(?,?,?)", one_to_onemaildto.getUser_id(), one_to_onemaildto.getMail(), getName);
 
 		return rowNumber;
 	}

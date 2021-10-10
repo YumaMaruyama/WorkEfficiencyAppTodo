@@ -30,10 +30,9 @@ public class ClientDaoJdbcImpl implements ClientDao {
 				+ " mailaddress,"
 				+ " address,"
 				+ " telephone,"
-				+ " registration_date,"
 				+ " company)"
-				+ " value(?,?,?,?,?,?,?)", clientdto.getId(), clientdto.getUser_name(), clientdto.getMailaddress(),
-				clientdto.getAddress(), clientdto.getTelephone(), clientdto.getRegistration_date(),
+				+ " value(?,?,?,?,?,?)", clientdto.getId(), clientdto.getUser_name(), clientdto.getMailaddress(),
+				clientdto.getAddress(), clientdto.getTelephone(),
 				clientdto.getCompany());
 
 		return rowNumber;

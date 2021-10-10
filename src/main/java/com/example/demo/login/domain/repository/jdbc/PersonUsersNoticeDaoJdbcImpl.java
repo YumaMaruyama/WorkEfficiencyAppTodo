@@ -41,10 +41,8 @@ public class PersonUsersNoticeDaoJdbcImpl implements PersonUsersNoticeDao {
 	public int insertOne(PersonUsersNoticeDTO personUsersNoticedto) {
 
 		int rowNumber = jdbc.update("insert into personusersnotice(content,"
-				+ " user_id,"
-				+ " registration_date)"
-				+ " values(?,?,?)", personUsersNoticedto.getContent(), personUsersNoticedto.getUser_id(),
-				personUsersNoticedto.getRegistration_date());
+				+ " user_id)"
+				+ " values(?,?)", personUsersNoticedto.getContent(), personUsersNoticedto.getUser_id());
 
 		return rowNumber;
 

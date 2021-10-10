@@ -20,7 +20,7 @@ public class InquiryForm {
 
 	private String title;
 @NotBlank(groups = ValidGroup1.class)
-@Length(min=1,max=110,groups = ValidGroup2.class)
+@Length(min=1,max=100,groups = ValidGroup2.class)
 	private String content;
 @DateTimeFormat(pattern = "yyyy-MM-dd")//ユーザーが入力したデータと同じformatにする。type="date"ではhh:mmなどは追加できない
 	private Date registration_date;
