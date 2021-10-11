@@ -1,15 +1,9 @@
 package com.example.demo;
 
-
-
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-
-//JUnitを使用する際はコードの記述量を少なくし、可読性を上げるため、staticインポートをよく使う　
-//こうすることでAssert.assertEqualsだけでなく、assertEqualsだけでメソッドをよびだすことができる
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -18,6 +12,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.example.demo.login.domain.repository.UsersDao;
+
 
 @ExtendWith(SpringExtension.class)//テストを何で実行するか指定できる　SpringRunnerはSpring用のJUnitを使えるクラス
 @SpringBootTest//SpringBootを起動してからテストを始めてくれる
@@ -45,5 +40,4 @@ public class UsersDaoTest {
 	//カウントメソッドの結果が３件であることをテスト
 		assertEquals(dao.count(),3);
 	}
-
 }

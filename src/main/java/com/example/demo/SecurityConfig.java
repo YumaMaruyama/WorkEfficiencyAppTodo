@@ -34,22 +34,22 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	private DataSource dataSource;
 
 	//ユーザーIDとパスワードを取得するSQL文
-	private static final String USER_SQL = "SELECT"
+	private static final String USER_SQL = "select"
 			+ " user_id,"
 			+ " password,"
 			+ " true"
-			+ " FROM"
-			+ " Users"
-			+ " WHERE"
+			+ " from"
+			+ " users"
+			+ " where"
 			+ " user_id = ?";
 
 	//ユーザーのロールを取得するSQL文
-	private static final String ROLE_SQL = "SELECT"
+	private static final String ROLE_SQL = "select"
 			+ " user_id,"
 			+ " role"
-			+ " FROM"
-			+ " Users"
-			+ " WHERE"
+			+ " from"
+			+ " users"
+			+ " where"
 			+ " user_id = ?";
 
 
