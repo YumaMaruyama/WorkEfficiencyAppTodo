@@ -1,2 +1,0 @@
-/*テスト用データ(ADMIN権限者)*/
-insert into Users(user_id,password,user_name,birthday,age,MaleFemale,role)values('maruko@maruko','$2a$10$DripUxotfgQg1NTiQQAvweonioFe3sshikjsIXraxFXiau9pNPvcG','丸山君','2000/10/24',20,true,'ROLE_ADMIN');
