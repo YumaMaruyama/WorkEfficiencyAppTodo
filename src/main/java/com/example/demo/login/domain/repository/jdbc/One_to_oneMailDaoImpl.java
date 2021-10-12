@@ -28,7 +28,7 @@ public class One_to_oneMailDaoImpl implements One_to_oneMailDao {
 
 	public int countSending(String getName) throws DataAccessException {
 		int count = jdbc.queryForObject(
-				"select count(*)from one_to_oneMail where is_deleted = 0 and user_id != ? and sender = ?",
+				"select count(*)from one_to_onemail where is_deleted = 0 and user_id != ? and sender = ?",
 				Integer.class, getName, getName);
 
 		return count;
@@ -37,7 +37,7 @@ public class One_to_oneMailDaoImpl implements One_to_oneMailDao {
 	@Override
 	public int insertOne(One_to_oneMailDTO one_to_onemaildto, String getName) throws DataAccessException {
 
-		int rowNumber = jdbc.update("insert into one_to_oneMail (user_id,"
+		int rowNumber = jdbc.update("insert into one_to_onemail (user_id,"
 				+ " mail,"
 				+ " sender)"
 				+ " values(?,?,?)", one_to_onemaildto.getUser_id(), one_to_onemaildto.getMail(), getName);
@@ -47,7 +47,7 @@ public class One_to_oneMailDaoImpl implements One_to_oneMailDao {
 
 	public int insertOneReply(One_to_oneMailDTO one_to_onemaildto, String getName) throws DataAccessException {
 
-		int rowNumber = jdbc.update("insert into one_to_oneMail (user_id,"
+		int rowNumber = jdbc.update("insert into one_to_onemail (user_id,"
 				+ " mail,"
 				+ " sender,"
 				+ " registration_date)"
@@ -59,7 +59,7 @@ public class One_to_oneMailDaoImpl implements One_to_oneMailDao {
 
 	public One_to_oneMailDTO selectOneSendingDetail(int id) throws DataAccessException {
 		Map<String, Object> map = jdbc.queryForMap(
-				"select one_to_oneMail.id,one_to_onemail.mail,one_to_onemail.registration_date,one_to_onemail.user_name,users.user_name as un from one_to_onemail join users on one_to_onemail.user_id = users.user_id where one_to_onemail.id = ?",
+				"select one_to_onemail.id,one_to_onemail.mail,one_to_onemail.registration_date,one_to_onemail.user_name,users.user_name as un from one_to_onemail join users on one_to_onemail.user_id = users.user_id where one_to_onemail.id = ?",
 				id);
 		One_to_oneMailDTO one_to_onemaildto = new One_to_oneMailDTO();
 		one_to_onemaildto.setId((int) map.get("id"));
@@ -68,7 +68,7 @@ public class One_to_oneMailDaoImpl implements One_to_oneMailDao {
 		one_to_onemaildto.setRegistration_date((Date) map.get("registration_date"));
 		one_to_onemaildto.setUser_name((String) map.get("un"));
 
-		System.out.println("one_to_onemaildto.getUser_name()  " + one_to_onemaildto.getUser_name());
+		System.out.println("one_to_onemaildto.getuser_name()  " + one_to_onemaildto.getUser_name());
 		return one_to_onemaildto;
 	}
 
@@ -140,13 +140,13 @@ public class One_to_oneMailDaoImpl implements One_to_oneMailDao {
 	}
 
 	public int deleteOne(int id) {
-		int rowNumber = jdbc.update("delete from one_to_oneMail where id = ?", id);
+		int rowNumber = jdbc.update("delete from one_to_onemail where id = ?", id);
 		System.out.println("rowNumberの中身" + rowNumber);
 		return rowNumber;
 	}
 
 	public int deleteOneSending(int id) {
-		int rowNumber = jdbc.update("update one_to_oneMail set is_deleted = 1 where id = ?", id);
+		int rowNumber = jdbc.update("update one_to_onemail set is_deleted = 1 where id = ?", id);
 
 		return rowNumber;
 	}
