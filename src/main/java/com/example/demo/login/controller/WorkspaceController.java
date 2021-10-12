@@ -571,8 +571,6 @@ public class WorkspaceController {
 			return getOne_to_oneMailReply(form, model, sender, Id);
 		}
 
-		System.out.println("form.getSender" + form.getSender());
-		System.out.println("form,getMail" + form.getMail());
 
 		One_to_oneMailDTO one_to_onemaildto = new One_to_oneMailDTO();
 		one_to_onemaildto.setSender(form.getSender());
@@ -583,13 +581,7 @@ public class WorkspaceController {
 		System.out.println("auth.getName" + auth.getName());
 
 		String getName = auth.getName();
-		boolean result = one_to_oneMailService.insertOneReply(one_to_onemaildto, getName);
-
-		if (result == true) {
-			System.out.println("insert成功");
-		} else {
-			System.out.println("insert失敗");
-		}
+		one_to_oneMailService.insertOneReply(one_to_onemaildto, getName);
 
 		model.addAttribute("result", "返信完了");
 		String getSender = String.valueOf(form.getSender());
@@ -731,9 +723,6 @@ public class WorkspaceController {
 			return getOne_to_oneMailNoticeDetail(form, model, getUser_id);
 		}
 
-		System.out.println("form.getUser_id" + form.getUser_id());
-		System.out.println("form.getMail" + form.getMail());
-
 		One_to_oneMailDTO one_to_onemaildto = new One_to_oneMailDTO();
 
 		one_to_onemaildto.setUser_id(form.getUser_id());
@@ -746,8 +735,6 @@ public class WorkspaceController {
 		String getName = auth.getName();
 
 		boolean result = one_to_oneMailService.insertOne(one_to_onemaildto, getName);
-
-		System.out.println("result" + result);
 
 		model.addAttribute("result", "送信完了");
 
@@ -849,8 +836,6 @@ public class WorkspaceController {
 		System.out.println("one_to_oneMailSendingDetail到達");
 		One_to_oneMailDTO one_to_onemaildto = one_to_oneMailService.selectOneSendingDetail(id);
 
-		System.out.println("one_to_onemaildto  " + one_to_onemaildto);
-		System.out.println(one_to_onemaildto.getUser_name());
 		model.addAttribute("getUser_name", one_to_onemaildto.getUser_name());
 		model.addAttribute("getMail", one_to_onemaildto.getMail());
 		model.addAttribute("getRegistration_date", one_to_onemaildto.getRegistration_date());
@@ -904,8 +889,6 @@ public class WorkspaceController {
 
 		System.out.println("tweetList" + tweetList);
 
-		//model.addAttributeは毎回保存しなおしているので変更が必要な画面などにはgetやPostでおいておくとページが切り替わって時に最新のデータをもって表示される
-		//Sessionのほうは、保存されたらそれっきり変わらないので、画面の内容が切り替わるところでは使わずにmodel.addAttributeを使う
 		model.addAttribute("tweetList", tweetList);
 
 		int count2 = todo_itemsService.count();
@@ -974,22 +957,10 @@ public class WorkspaceController {
 		tweetdto.setUser_id(auth.getName());
 		;
 		tweetdto.setUser_id2(auth.getName());
-		boolean result = tweetService.insertOne(tweetdto);
-
-		if (result == true) {
-			System.out.println("insert成功");
-		} else {
-			System.out.println("insert失敗");
-		}
+		tweetService.insertOne(tweetdto);
 
 		List<TweetDTO> tweetList = tweetService.selectMany();
 
-		System.out.println("tweetList" + tweetList);
-		if (!tweetList.isEmpty()) {
-			System.out.println("select成功");
-		} else {
-			System.out.println("select失敗");
-		}
 		model.addAttribute("tweetList", tweetList);
 
 		int count = tweetService.count();
@@ -1017,6 +988,7 @@ public class WorkspaceController {
 		model.addAttribute("one_to_oneMailCount", one_to_onemailList.size());
 		int rowNumber = personUsersNoticeService.count(getName);
 		model.addAttribute("adminPersonNoticeCount", rowNumber);
+		
 		return getTweet(form, tweetSearchForm, model);
 
 	}
@@ -1032,16 +1004,10 @@ public class WorkspaceController {
 			model.addAttribute("form", form);
 			getTweet(form, form1, model);
 		}
-		System.out.println("postTweetSearch到達");
-		System.out.println(form1.getUser_id());
-		System.out.println(form1.getContents());
-		System.out.println(form1.getRegistration_dateA());
-		System.out.println(form1.getRegistration_dateZ());
 
 		List<TweetDTO> tweetList = tweetService.search(form1.getUser_id(), form1.getContents(),
 				form1.getRegistration_dateA(), form1.getRegistration_dateZ());
 
-		System.out.println("tweetList" + tweetList);
 
 		model.addAttribute("tweetList", tweetList);
 
@@ -1125,13 +1091,7 @@ public class WorkspaceController {
 		model.addAttribute("contents", "login/tweet::workspaceLayout_contents");
 		//formからとってきたIDをもとに編集ボタンを押した列の削除を行う
 		System.out.println("form.getId()" + form.getId());
-		int tweetList = tweetService.deleteOne(form.getId());
-
-		if (tweetList > 0) {
-			System.out.println("削除成功");
-		} else {
-			System.out.println("削除失敗");
-		}
+		tweetService.deleteOne(form.getId());
 
 		TweetSearchForm tweetSearchForm = new TweetSearchForm();
 		model.addAttribute("tweetSearchForm", tweetSearchForm);
@@ -1176,13 +1136,9 @@ public class WorkspaceController {
 		admindto.setId((int) form.getId());
 		admindto.setContents((String) form.getContents());
 		admindto.setRegistration_date((Date) form.getRegistration_date());
-		boolean result = adminService.insertOne(admindto);
+		adminService.insertOne(admindto);
 
-		if (result == true) {
-			System.out.println("insert成功");
-		} else {
-			System.out.println("insert失敗");
-		}
+		
 
 		redirectattributes.addFlashAttribute("result", "送信完了");
 
@@ -1279,17 +1235,13 @@ public class WorkspaceController {
 			model.addAttribute("form1", form);
 			return getAdminNotice(form1, form, model);
 		}
-		System.out.println("adminNoticeSearchSearch到達");
-
-		System.out.println("contents" + form.getContents());
-		System.out.println("registration_dateFrom" + form.getRegistration_dateA());
-		System.out.println("registration_dateTo" + form.getRegistration_dateZ());
+		
 
 		model.addAttribute("contents", "login/adminNotice::workspaceLayout_contents");
 
 		List<AdminDTO> adminList = adminService.search(form.getContents(), form.getRegistration_dateA(),
 				form.getRegistration_dateZ());
-		//,todo_itemsListBM
+		
 		System.out.println("adminList" + adminList);
 
 		model.addAttribute("adminList", adminList);
@@ -1328,14 +1280,8 @@ public class WorkspaceController {
 			@ModelAttribute AdminForm form, Model model) {
 
 		System.out.println("adminNoticeDetailDelete");
-		boolean rowNumber = adminService.deleteOne(form.getId());
-		System.out.println("rowNumber" + rowNumber);
-
-		if (rowNumber == true) {
-			System.out.println("削除成功");
-		} else {
-			System.out.println("削除失敗");
-		}
+		adminService.deleteOne(form.getId());
+		
 		//postメソッドに@ModelAttribute AdminNoticeSearchForm adminNoticeSearchFormを記述しない代わりに、自分でインスタンス作成
 		AdminNoticeSearchForm adminNoticeSearchForm = new AdminNoticeSearchForm();
 		model.addAttribute("adminNoticeSearchForm", adminNoticeSearchForm);
@@ -1362,14 +1308,7 @@ public class WorkspaceController {
 		admindto.setRegistration_date(form.getRegistration_date());
 		System.out.println("admindto" + admindto);
 
-		boolean rowNumber = adminService.updateOne(admindto);
-		System.out.println("rowNumber" + rowNumber);
-
-		if (rowNumber == true) {
-			System.out.println("更新成功");
-		} else {
-			System.out.println("更新失敗");
-		}
+		adminService.updateOne(admindto);
 
 		AdminNoticeSearchForm adminNoticeSearchForm = new AdminNoticeSearchForm();
 		model.addAttribute("adminNoticeSearchForm", adminNoticeSearchForm);
@@ -1430,14 +1369,9 @@ public class WorkspaceController {
 		todo_itemsdto.setDetails3(form.getDetails3());
 
 		//work登録処理
-		boolean result = todo_itemsService.insert(todo_itemsdto);
+		todo_itemsService.insert(todo_itemsdto);
 
-		//work登録画面の判定
-		if (result == true) {
-			System.out.println("insert成功");
-		} else {
-			System.out.println("insert失敗");
-		}
+		
 
 		return "redirect:/workspace";
 
@@ -1581,13 +1515,7 @@ public class WorkspaceController {
 		}
 		System.out.println("usersSearchController到達");
 
-		System.out.println("userId" + form.getUser_id()); //ユーザーID
-		System.out.println("userName" + form.getUserName());//ユーザー名
-		System.out.println("birthdayFrom" + form.getBirthdayA());//誕生日(始まり)
-		System.out.println("birthdayTo" + form.getBirthdayZ());//誕生日(終わり)
-		System.out.println("hireDateFrom" + form.getHireDateAA());//年齢～
-		System.out.println("hireDateTo" + form.getHireDateZZ());//～年齢
-		System.out.println("maleFemale" + form.getMaleFemale());//性別
+		
 
 		int maleFemale = 2;
 		//==ではなくてequalsを使う
@@ -1654,11 +1582,9 @@ public class WorkspaceController {
 	public String getUsersListDetail(@ModelAttribute UsersSearchForm form, @ModelAttribute SignupUpdateForm form1,
 			@ModelAttribute SignupForm form2, Model model,//@PathVariableをつけると渡されてきたURLの値を引数の変数にいれる
 			@PathVariable("id") String user_id) {
-	
 		//http://localhost:8080/usersdtoDetail/maruyama@yuuuma.co.jpでリクエストが来たらmaruyama@yuuma.co.jpがuser_idという変数に入れられる
-		//ユーザーID確認（デバック）
-		System.out.println("user_id = " + user_id);
 
+		
 		model.addAttribute("contents", "login/usersListDetail::usersdto_contents");
 
 		//性別ステータス用ラジオボタンの初期化
@@ -1726,7 +1652,6 @@ public class WorkspaceController {
 			String s = String.valueOf(form.getUser_id());
 			return getUsersListDetail(form, form1, form2, model, s);
 		}
-		System.out.println("更新ボタンの処理");
 
 		//UsersDTOインスタンス作成
 		UsersDTO usersdto = new UsersDTO();
@@ -1740,13 +1665,9 @@ public class WorkspaceController {
 
 		try {
 			//更新実行
-			boolean result = usersService.updateOne(usersdto);
+			usersService.updateOne(usersdto);
 
-			if (result == true) {
-				System.out.println("更新成功");
-			} else {
-				System.out.println("更新失敗");
-			}
+			
 
 		} catch (DataAccessException e) {
 			System.out.println("DataAccessException発生");
@@ -1770,13 +1691,9 @@ public class WorkspaceController {
 			@ModelAttribute SignupForm form2, Model model) {
 		System.out.println("削除用ボタンの処理");
 
-		boolean result = usersService.deleteOne(form1.getUser_id());
+		usersService.deleteOne(form1.getUser_id());
 
-		if (result == true) {
-			System.out.println("削除成功");
-		} else {
-			System.out.println("削除失敗");
-		}
+		
 
 		UsersSearchForm usersSearchForm = new UsersSearchForm();
 
@@ -1872,13 +1789,9 @@ public class WorkspaceController {
 
 		System.out.println("todo_itemsdto" + todo_itemsdto);
 
-		boolean result = todo_itemsService.updateOnex(todo_itemsdto);
+		todo_itemsService.updateOnex(todo_itemsdto);
 
-		if (result == true) {
-			System.out.println("update成功");
-		} else {
-			System.out.println("update失敗");
-		}
+		
 
 		//formを使いまわしにしているのでgetWorkspaceの引数のformのインスタンスを新たに作る
 		WorkspaceSearchForm form1 = new WorkspaceSearchForm();
@@ -1910,7 +1823,6 @@ public class WorkspaceController {
 			form.setExpire_date(todo_itemsdto.getExpire_date());
 			form.setFinished_date(todo_itemsdto.getFinished_date());
 
-			System.out.println("form" + form);
 			
 			model.addAttribute("WorkaddtoForm", form);
 		}
@@ -1961,18 +1873,12 @@ public class WorkspaceController {
 		todo_itemsdto.setRegistration_date(form.getRegistration_date());
 		todo_itemsdto.setExpire_date(form.getExpire_date());
 
-		System.out.println("todo_itemsdtoxxx" + todo_itemsdto);
+		
 
 		//更新実行
-		boolean result = todo_itemsService.updateOne(todo_itemsdto);
+		todo_itemsService.updateOne(todo_itemsdto);
 
-		if (result == true) {
-			System.out.println("更新成功");
-
-		} else {
-			System.out.println("更新失敗");
-
-		}
+	
 
 		//formを使いまわす内容になったのでgetWorkspaceの引数のformのインスタンスを作る
 		WorkspaceSearchForm form1 = new WorkspaceSearchForm();
@@ -1986,13 +1892,7 @@ public class WorkspaceController {
 
 		System.out.println("削除ボタンの処理");
 
-		boolean result = todo_itemsService.deleteOne(form.getId());
-
-		if (result == true) {
-			System.out.println("削除成功");
-		} else {
-			System.out.println("削除失敗");
-		}
+		todo_itemsService.deleteOne(form.getId());
 
 		WorkspaceSearchForm form1 = new WorkspaceSearchForm();
 
@@ -2016,25 +1916,11 @@ public class WorkspaceController {
 
 		//完了日がセットされていなかったらnullにする
 		if (todo_itemsList.getFinished_date() != null) {
-
-			//idと、未完了にしたいのでnullを渡している
-			boolean isCompletedTodo_items = todo_itemsService.completedOne(form.getId(), null);
-			
-			if (isCompletedTodo_items == true) {
-				System.out.println("未完了に変更完了");
-			} else {
-				System.out.println("処理失敗");
-			}
+		
+			todo_itemsService.completedOne(form.getId(), null);				
 		} else {
-			System.out.println("else到着");
-
 			Date dateObj = new Date();
-			//idと、dateObjを渡している
-			boolean isCompletedTodo_items2 = todo_itemsService.completedOne(form.getId(), dateObj);
-			
-			if (isCompletedTodo_items2 == true) {
-				System.out.println("完了日設定完了");
-			}
+			todo_itemsService.completedOne(form.getId(), dateObj);
 		}
 		WorkspaceSearchForm form1 = new WorkspaceSearchForm();
 
@@ -2051,7 +1937,6 @@ public class WorkspaceController {
 		model.addAttribute("contents", "login/inquiry::workspaceLayout_contents");
 
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-
 		System.out.println("auth" + auth);
 		System.out.println("auth.getName" + auth.getName());
 
@@ -2071,9 +1956,6 @@ public class WorkspaceController {
 		model.addAttribute("inquiryListCount", countAdmin);
 
 		Authentication auth2 = SecurityContextHolder.getContext().getAuthentication();
-
-		System.out.println("auth" + auth2);
-		System.out.println("auth.getName" + auth2.getName());
 
 		String getName = auth2.getName();
 
@@ -2109,17 +1991,9 @@ public class WorkspaceController {
 		inquirydto.setId(form.getId());
 		inquirydto.setTitle(form.getTitle());
 		inquirydto.setContent(form.getContent());
-		//inquirydto.setRegistration_date(form.getRegistration_date());
 		inquirydto.setMail(form.getMail());
-
-		boolean result = inquiryService.insert(inquirydto, user_idT);
-
-		//ユーザー登録処理
-		if (result == true) {
-			System.out.println("insert成功");
-		} else {
-			System.out.println("insert失敗");
-		}
+		
+		inquiryService.insert(inquirydto, user_idT);
 
 		redirectAttributes.addFlashAttribute("result", "ご意見ありがとうございます");
 
@@ -2137,7 +2011,6 @@ public class WorkspaceController {
 			BindingResult bindingResult, RedirectAttributes redirectAttribute) {
 
 		if (bindingResult.hasErrors()) {
-
 			return getInquiryLogin(form, model);
 		}
 
@@ -2153,16 +2026,10 @@ public class WorkspaceController {
 		inquirydto.setId(form.getId());
 		inquirydto.setTitle(form.getTitle());
 		inquirydto.setContent(form.getContent());
-		//inquirydto.setRegistration_date(form.getRegistration_date());
+		
 		inquirydto.setMail(form.getMail());
 
-		boolean result = inquiryService.insertLogin(inquirydto,user_idT);
-
-		if (result == true) {
-			System.out.println("insert成功");
-		} else {
-			System.out.println("insert失敗");
-		}
+		inquiryService.insertLogin(inquirydto,user_idT);
 
 		redirectAttribute.addFlashAttribute("result", "ご意見ありがとうございます。");
 
@@ -2233,7 +2100,6 @@ public class WorkspaceController {
 			form.setRegistration_date(inquiryList.getRegistration_date());
 			form.setFinished_date(inquiryList.getFinished_date());
 
-			System.out.println("form" + form);
 			//Modelに登録
 			model.addAttribute("inquiryform", form);
 
@@ -2269,15 +2135,7 @@ public class WorkspaceController {
 			model.addAttribute("form", form);
 			return getAdmin(form, form1, model);
 		}
-		System.out.println("adminSearch到達");
-
-		System.out.println(form1.getTitle());
-		System.out.println(form1.getContent());
-		System.out.println(form1.getRegistration_dateA());
-		System.out.println(form1.getRegistration_dateZ());
-		System.out.println(form1.getFinished_dateA());
-		System.out.println(form1.getFinished_dateZ());
-		System.out.println(form1.getFinished_dateT());
+	
 
 		model.addAttribute("contents", "login/admin::workspaceLayout_contents");
 
@@ -2322,28 +2180,14 @@ public class WorkspaceController {
 		System.out.println("inquiryList" + inquiryList);
 
 		//完了日がセットされていたらnullにする
-		if (inquiryList.getFinished_date() != null) {
-			System.out.println("if文到達");
+		if (inquiryList.getFinished_date() != null) {		
 
 			//データベースの完了切替更新メソッド ServiceのほうでdaoにアクセスしてSQL文を実行してから変わったレコード数でtrueかfalseかを決めている
 			//idと、未完了にしたいのでnullを渡している
-			boolean isCompletedInquiry = inquiryService.completedOne(form.getId(), null);
-			if (isCompletedInquiry == true) {
-				System.out.println("未完了に設定変更");
-			} else {
-				System.out.println("処理失敗");
-			}
-			//データオブジェクトを作ってnullだったら現在の日付（完了日）を入れる
+			inquiryService.completedOne(form.getId(), null);	
 		} else {
 			Date dateObj = new Date();
-			//idと、dateObjを渡している
-			boolean isCompletedInquiry2 = inquiryService.completedOne(form.getId(), dateObj);
-		
-			if (isCompletedInquiry2 == true) {
-				System.out.println("完了日設定完了");
-			} else {
-				System.out.println("処理失敗");
-			}
+			inquiryService.completedOne(form.getId(), dateObj);
 		}
 
 		InquirySearchForm inquirySearchForm = new InquirySearchForm();
@@ -2354,16 +2198,10 @@ public class WorkspaceController {
 	@PostMapping(value = "/adminDetail", params = "delete")
 	public String getAdminDetailDelete(@ModelAttribute InquiryForm form, Model model) {
 
-		System.out.println("削除ボタンの処理");
+		
+		inquiryService.deleteOne(form.getId());
 
-		boolean result = inquiryService.deleteOne(form.getId());
-
-		System.out.println("controlresult  " + result);
-		if (result == true) {
-			System.out.println("削除成功");
-		} else {
-			System.out.println("削除失敗");
-		}
+		
 
 		InquirySearchForm inquirySearchForm = new InquirySearchForm();
 		model.addAttribute("inquirySearchForm", inquirySearchForm);
@@ -2445,7 +2283,6 @@ public class WorkspaceController {
 		model.addAttribute("adminListCount", countAdminNotice);
 
 		Authentication auth2 = SecurityContextHolder.getContext().getAuthentication();
-
 		System.out.println("auth" + auth2);
 		System.out.println("auth.getName" + auth2.getName());
 
@@ -2463,13 +2300,8 @@ public class WorkspaceController {
 	@PostMapping(value = "/adminPersonNoticeDetail", params = "delete")
 	public String postAdminPersonNoticeDetail(@ModelAttribute AdminPersonNoticeDetailForm form, Model model) {
 
-		int rowNumber = personUsersNoticeService.deleteOne(form.getId());
+		personUsersNoticeService.deleteOne(form.getId());
 
-		if (rowNumber > 0) {
-			System.out.println("削除成功");
-		} else {
-			System.out.println("削除失敗");
-		}
 
 		AdminPersonNoticeSearchForm adminpersonnoticesearchform = new AdminPersonNoticeSearchForm();
 		model.addAttribute("adminPersonNoticeSearchForm", adminpersonnoticesearchform);
@@ -2487,14 +2319,9 @@ public class WorkspaceController {
 			model.addAttribute("form1", form1);
 			return getAdminPersonNotice(form, form1, model);
 		}
-		System.out.println("form.getContent" + form.getContent());
-		System.out.println("form.getRegistration_DateFrom" + form.getRegistration_dateA());
-		System.out.println("form.getRegistration_DateTo" + form.getRegistration_dateZ());
 
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-
 		System.out.println("auth.getName" + auth.getName());
-
 		String getName = auth.getName();
 
 		List<PersonUsersNoticeDTO> personUsersNoticeList = personUsersNoticeService.search(form.getContent(),
@@ -2542,7 +2369,6 @@ public class WorkspaceController {
 		model.addAttribute("usersList", usersList);
 
 		Authentication auth2 = SecurityContextHolder.getContext().getAuthentication();
-
 		System.out.println("auth" + auth2);
 		System.out.println("auth.getName" + auth2.getName());
 
@@ -2583,8 +2409,7 @@ public class WorkspaceController {
 			return getPersonUsersNotice(form, model);
 		}
 
-		System.out.println("user_id" + form.getUser_id());
-		System.out.println("user_name" + form.getUser_name());
+		
 
 		String admin = "ROLE_ADMIN";
 		List<UsersDTO> usersList = usersService.searchPersonUsersNotice(form.getUser_id(), form.getUser_name(), admin);
@@ -2608,8 +2433,6 @@ public class WorkspaceController {
 
 		Authentication auth2 = SecurityContextHolder.getContext().getAuthentication();
 
-		System.out.println("auth" + auth2);
-		System.out.println("auth.getName" + auth2.getName());
 
 		String getName = auth2.getName();
 
@@ -2717,12 +2540,8 @@ public class WorkspaceController {
 			PersonUsersNoticeSendingSearchForm form2, Model model) {
 		model.addAttribute("contents", "login/personUsersNoticeSendingDetail::workspaceLayout_contents");
 
-		int rowNumber = personUsersNoticeService.deleteOneSendingDetail(form.getId());
-		if (rowNumber > 0) {
-			System.out.println("削除成功");
-		} else {
-			System.out.println("削除失敗");
-		}
+		personUsersNoticeService.deleteOneSendingDetail(form.getId());
+		
 		PersonUsersNoticeSendingForm personusersnoticesendingform = new PersonUsersNoticeSendingForm();
 		model.addAttribute("personusersnoticesendingform", personusersnoticesendingform);
 		return getPersonUsersNoticeSending(personusersnoticesendingform, form2, model);
@@ -2763,21 +2582,12 @@ public class WorkspaceController {
 			return getPersonUsersnoticeDetail(form, model, getUser_id);
 		}
 
-		System.out.println("personUsersNoticeDetail到達");
-		System.out.println("getUser_id" + form.getUser_id());
+		
 		PersonUsersNoticeDTO personusersnoticedto = new PersonUsersNoticeDTO();
 		personusersnoticedto.setUser_id((String) form.getUser_id());
 		personusersnoticedto.setContent((String) form.getContent());
 
-		boolean rowNumber = personUsersNoticeService.insertOne(personusersnoticedto);
-
-		System.out.println("rowNumber" + rowNumber);
-
-		if (rowNumber == true) {
-			System.out.println("insert成功");
-		} else {
-			System.out.println("insert失敗");
-		}
+		personUsersNoticeService.insertOne(personusersnoticedto);
 
 		model.addAttribute("result", "送信完了");
 
@@ -2799,8 +2609,6 @@ public class WorkspaceController {
 
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 
-		System.out.println("auth" + auth);
-		System.out.println("auth.getName" + auth.getName());
 
 		String getName = auth.getName();
 
@@ -2864,7 +2672,6 @@ public class WorkspaceController {
 		model.addAttribute("inquiryListCount", countAdmin);
 
 		Authentication auth2 = SecurityContextHolder.getContext().getAuthentication();
-
 		System.out.println("auth" + auth2);
 		System.out.println("auth.getName" + auth2.getName());
 
@@ -2899,14 +2706,9 @@ public class WorkspaceController {
 		personmemodto.setMemo(form.getMemo());
 		personmemodto.setUser_id(auth.getName());
 
-		boolean result = personMemoService.insert(personmemodto);
+		personMemoService.insert(personmemodto);
 
-		System.out.println("result" + result);
-		if (result == true) {
-			System.out.println("insert成功");
-		} else {
-			System.out.println("insert失敗");
-		}
+		
 		return "redirect:/personMemo";
 
 	}
@@ -2941,7 +2743,6 @@ public class WorkspaceController {
 		model.addAttribute("inquiryListCount", countAdmin);
 
 		Authentication auth2 = SecurityContextHolder.getContext().getAuthentication();
-
 		System.out.println("auth" + auth2);
 		System.out.println("auth.getName" + auth2.getName());
 
@@ -2961,13 +2762,7 @@ public class WorkspaceController {
 
 		model.addAttribute("contents", "login/personMemoDetail::workspaceLayout_contents");
 
-		int rowNumber = personMemoService.deleteOne(form.getId());
-
-		if (rowNumber > 0) {
-			System.out.println("deleteOne成功");
-		} else {
-			System.out.println("deleteOne失敗");
-		}
+		personMemoService.deleteOne(form.getId());
 
 		PersonMemoSearchForm personmemosearchform = new PersonMemoSearchForm();
 		//model.addAttributeの第一引数の名前をhtmlが探す
@@ -2986,24 +2781,12 @@ public class WorkspaceController {
 
 		if (personmemoList.getFinished_date() != null) {
 
-			boolean result = personMemoService.completed(form.getId(), null);
-
-			if (result == true) {
-				System.out.println("未完了にするボタン成功");
-			} else {
-				System.out.println("未完了にするボタン失敗");
-			}
+			personMemoService.completed(form.getId(), null);
 
 		} else {
 
 			Date dateObj = new Date();
-			boolean result = personMemoService.completed(form.getId(), dateObj);
-
-			if (result == true) {
-				System.out.println("完了にするボタン成功");
-			} else {
-				System.out.println("完了にするボタン失敗");
-			}
+			personMemoService.completed(form.getId(), dateObj);
 		}
 
 		PersonMemoSearchForm personmemosearchform = new PersonMemoSearchForm();
@@ -3014,6 +2797,7 @@ public class WorkspaceController {
 	@PostMapping(value = "/personMemoDetail", params = "update")
 	public String postPersonmemoDetailUpdate(@ModelAttribute @Validated(GroupOrder.class) PersonMemoForm form,
 			BindingResult bindingResult, Model model) {
+		
 		if (bindingResult.hasErrors()) {
 			int getId = form.getId();
 			return getPersonMemoDetail(form, model, getId);
@@ -3050,24 +2834,13 @@ public class WorkspaceController {
 			return getPersonMemo(personmemoform, form, model);
 		}
 
-		System.out.println(form.getMemo());
-		System.out.println(form.getRegistration_dateA());
-		System.out.println(form.getRegistration_dateZ());
-		System.out.println(form.getFinished_dateA());
-		System.out.println(form.getFinished_dateZ());
-		System.out.println(form.getFinished_dateT());
-
 		String Finished_dateT = null;
-
 		if ("true".equals(form.getFinished_dateT())) {
 			String date = form.getFinished_dateT();
-
 			Finished_dateT = date;
-
 		}
 
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-
 		System.out.println("auth" + auth);
 		System.out.println("auth.getName" + auth.getName());
 
@@ -3123,7 +2896,6 @@ public class WorkspaceController {
 		model.addAttribute("inquiryListCount", countAdmin);
 
 		Authentication auth2 = SecurityContextHolder.getContext().getAuthentication();
-
 		System.out.println("auth" + auth2);
 		System.out.println("auth.getName" + auth2.getName());
 
@@ -3153,7 +2925,6 @@ public class WorkspaceController {
 		model.addAttribute("clientList", clientList);
 
 		Authentication auth2 = SecurityContextHolder.getContext().getAuthentication();
-
 		System.out.println("auth" + auth2);
 		System.out.println("auth.getName" + auth2.getName());
 
@@ -3189,7 +2960,6 @@ public class WorkspaceController {
 		model.addAttribute("contents", "login/clientAddto::workspaceLayout_contents");
 
 		Authentication auth2 = SecurityContextHolder.getContext().getAuthentication();
-
 		System.out.println("auth" + auth2);
 		System.out.println("auth.getName" + auth2.getName());
 
@@ -3238,13 +3008,7 @@ public class WorkspaceController {
 		clientdto.setRegistration_date(form.getRegistration_date());
 		clientdto.setCompany(form.getCompany());
 
-		int rowNumber = clientService.insertOne(clientdto);
-
-		if (rowNumber > 0) {
-			System.out.println("insert成功");
-		} else {
-			System.out.println("insert失敗");
-		}
+		clientService.insertOne(clientdto);
 
 		ClientDetailForm clientdetailform = new ClientDetailForm();
 		model.addAttribute("clientdetailform", clientdetailform);
@@ -3325,7 +3089,6 @@ public class WorkspaceController {
 		model.addAttribute("clientListCount", clientList.size());
 
 		Authentication auth2 = SecurityContextHolder.getContext().getAuthentication();
-
 		System.out.println("auth" + auth2);
 		System.out.println("auth.getName" + auth2.getName());
 
@@ -3355,12 +3118,8 @@ public class WorkspaceController {
 	@PostMapping(value = "/clientDetail", params = "delete")
 	public String postClientDetail(@ModelAttribute ClientDeleteForm form, Model model) {
 		model.addAttribute("contents", "login/client::workspaceLayout_contents");
-		int rowNumber = clientService.deleteOne(form.getId());
-		if (rowNumber > 0) {
-			System.out.println("delete成功");
-		} else {
-			System.out.println("delete失敗");
-		}
+		clientService.deleteOne(form.getId());
+		
 
 		ClientSearchForm clientsearchform = new ClientSearchForm();
 		model.addAttribute("clientSearchForm", clientsearchform);
@@ -3387,13 +3146,7 @@ public class WorkspaceController {
 		clientdto.setTelephone(form.getTelephone());
 		clientdto.setMailaddress(form.getMailaddress());
 
-		int rowNumber = clientService.updateOne(clientdto);
-
-		if (rowNumber > 0) {
-			System.out.println("update成功");
-		} else {
-			System.out.println("update失敗");
-		}
+		clientService.updateOne(clientdto);
 
 		ClientDeleteForm clientdeleteform = new ClientDeleteForm();
 		model.addAttribute("clientdeleteform", clientdeleteform);
