@@ -31,7 +31,7 @@ public class UsersDaoJdbcImpl implements UsersDao {
 
 		//Objectの取得
 		//全件取得してカウント
-		int count = jdbc.queryForObject("SELECT COUNT(*) FROM Users", Integer.class);
+		int count = jdbc.queryForObject("select count(*) from users", Integer.class);
 		//カウントの結果やカラムを一つだけ取得してくるような場合はqueryForObjectメソッドを使う
 		//1引数にSQL文　2引数に戻り値のオブジェクトのclassを指定する
 		return count;
@@ -80,7 +80,7 @@ public class UsersDaoJdbcImpl implements UsersDao {
 		 		list.add("%" + userName + "%");
 		 	}
 		 	if((birthdayAA != null) && (birthdayZZ != null)) {
-		 		sql.append(" and birthday BETWEEN ? AND ?");
+		 		sql.append(" and birthday between ? and ?");
 		 		list.add(birthdayAA);
 		 		list.add(birthdayZZ);
 		 	}else if ((birthdayAA != null) && (birthdayZZ == null)){
@@ -91,7 +91,7 @@ public class UsersDaoJdbcImpl implements UsersDao {
 		 		list.add(birthdayZZ);
 		 	}
 		 	if((hireDateAA != null) && (hireDateZZ != null)) {
-		 		sql.append(" and hireDate BETWEEN ? AND ?");
+		 		sql.append(" and hireDate between ? and ?");
 		 		list.add(hireDateAA);
 		 		list.add(hireDateZZ);
 		 	}else if ((hireDateAA != null) && (hireDateZZ == null)){
@@ -108,7 +108,7 @@ public class UsersDaoJdbcImpl implements UsersDao {
 		 		list.add(maleFemaleSearch);
 		 	}
 
-		 	sql.append(" ORDER BY hireDate asc");
+		 	sql.append(" order by hireDate asc");
 		 	System.out.println("sql" + sql);
 			System.out.println("list" + list);
 			Object[] addList = list.toArray(new Object[list.size()]);
@@ -230,12 +230,12 @@ public class UsersDaoJdbcImpl implements UsersDao {
 		//一件だけ登録
 
 		System.out.println(password);
-		String sql = "insert into Users(user_id,"
+		String sql = "insert into users(user_id,"
 				+ " password,"
 				+ " user_name,"
 				+ " birthday,"
 				+ " hireDate,"
-				+ " MaleFemale,"
+				+ " malefemale,"
 				+ " role)"
 				+ " values(?,?,?,?,?,?,?)";
 
@@ -257,7 +257,7 @@ public class UsersDaoJdbcImpl implements UsersDao {
 	public UsersDTO selectTwo(String id) throws DataAccessException {
 		System.out.println("selectTwo到達");
 		System.out.println("id  " + id);
-		Map<String, Object> map = jdbc.queryForMap("select * from Users where user_id = ?",id);
+		Map<String, Object> map = jdbc.queryForMap("select * from users where user_id = ?",id);
 
 		UsersDTO usersdtoTwo = new UsersDTO();
 
@@ -285,7 +285,7 @@ public class UsersDaoJdbcImpl implements UsersDao {
 			usersdto.setUser_name((String)map.get("user_name"));
 			usersdto.setBirthday((Date)map.get("birthday"));
 			usersdto.setHireDate((Date)map.get("hireDate"));
-			usersdto.setMaleFemale((Boolean)map.get("MaleFemale"));
+			usersdto.setMaleFemale((Boolean)map.get("malefemale"));
 			usersdto.setRole((String)map.get("role"));
 
 			return usersdto;
@@ -298,7 +298,7 @@ public class UsersDaoJdbcImpl implements UsersDao {
 
 		//複数件のselect
 		//Usersテーブルのデータを全件取得
-		List<Map<String,Object>> getList = jdbc.queryForList("SELECT * FROM Users where role != ? ORDER BY hireDate ASC",admin);
+		List<Map<String,Object>> getList = jdbc.queryForList("select * from users where role != ? order by hiredate asc",admin);
 		//複数件のselectをする場合はqueryForListメソッドを使う　戻り値の方にはList<Map<String,Object>>を指定　
 		//Listが行　Mapが列　を表している　Mapのgetメソッドを使って、テーブルのカラム名を指定できる
 
@@ -317,7 +317,7 @@ public class UsersDaoJdbcImpl implements UsersDao {
 			usersdto.setUser_name((String)map.get("user_name"));
 			usersdto.setBirthday((Date)map.get("birthday"));
 			usersdto.setHireDate((Date)map.get("hireDate"));
-			usersdto.setMaleFemale((Boolean)map.get("MaleFemale"));
+			usersdto.setMaleFemale((Boolean)map.get("malefemale"));
 			usersdto.setRole((String)map.get("role"));
 
 			//結果返却用のListに追加
@@ -354,7 +354,7 @@ public class UsersDaoJdbcImpl implements UsersDao {
 	}
 
 	public List<UsersDTO> selectManyOne_to_oneMail(String getName) {
-		List<Map<String,Object>>getUsersList = jdbc.queryForList("select * from users where role = 'ROLE_GENERAL' and user_id != ?",getName);
+		List<Map<String,Object>>getUsersList = jdbc.queryForList("select * from users where role = 'role_general' and user_id != ?",getName);
 
 		List<UsersDTO> usersList = new ArrayList<>();
 
@@ -400,7 +400,7 @@ public class UsersDaoJdbcImpl implements UsersDao {
 	public int deleteOne(String user_id) throws DataAccessException {
 
 		//一件更新
-		int rowNumber = jdbc.update("delete from Users where user_id = ?",user_id);
+		int rowNumber = jdbc.update("delete from users where user_id = ?",user_id);
 
 		return rowNumber;
 	}
@@ -411,7 +411,7 @@ public class UsersDaoJdbcImpl implements UsersDao {
 	public void usersCsvOut(String user_id) throws DataAccessException {
 
 			//Usersテーブルのデータを全件取得するSQL文
-			String sql = "select * from Users where user_id != ?";
+			String sql = "select * from users where user_id != ?";
 
 			//ResultSetExtractorの生成
 			UsersRowCallbackHandler handler = new UsersRowCallbackHandler();

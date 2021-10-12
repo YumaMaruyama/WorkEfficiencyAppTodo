@@ -50,7 +50,7 @@ public class PersonUsersNoticeDaoJdbcImpl implements PersonUsersNoticeDao {
 
 	public PersonUsersNoticeDTO selectOneSendingDetail(int id) {
 		Map<String, Object> map = jdbc.queryForMap(
-				"select personusersnotice.id,personusersnotice.user_id,personusersnotice.content,personusersnotice.registration_date,users.user_name from personusersnotice JOIN users ON personusersnotice.user_id = users.user_id where personusersnotice.id = ?",
+				"select personusersnotice.id,personusersnotice.user_id,personusersnotice.content,personusersnotice.registration_date,users.user_name from personusersnotice join users on personusersnotice.user_id = users.user_id where personusersnotice.id = ?",
 				id);
 		PersonUsersNoticeDTO personusersnoticedto = new PersonUsersNoticeDTO();
 		personusersnoticedto.setId((int) map.get("id"));
@@ -63,7 +63,7 @@ public class PersonUsersNoticeDaoJdbcImpl implements PersonUsersNoticeDao {
 
 	public List<PersonUsersNoticeDTO> selectMany() {
 		List<Map<String, Object>> personusersnoticeList = jdbc.queryForList(
-				"select personusersnotice.id,personusersnotice.content,personusersnotice.registration_date,personusersnotice.user_id,users.user_name from personusersnotice JOIN users ON personusersnotice.user_id = users.user_id where personusersnotice.is_deleted = 0");
+				"select personusersnotice.id,personusersnotice.content,personusersnotice.registration_date,personusersnotice.user_id,users.user_name from personusersnotice join users on personusersnotice.user_id = users.user_id where personusersnotice.is_deleted = 0");
 		List<PersonUsersNoticeDTO> list = new ArrayList<>();
 		for (Map<String, Object> map : personusersnoticeList) {
 			PersonUsersNoticeDTO personusersnoticedto = new PersonUsersNoticeDTO();
@@ -181,7 +181,7 @@ public class PersonUsersNoticeDaoJdbcImpl implements PersonUsersNoticeDao {
 		StringBuilder sql = new StringBuilder();
 		List<Object> list = new ArrayList<>();
 
-		sql.append("select personusersnotice.id,personusersnotice.content,personusersnotice.registration_date,personusersnotice.user_id,users.user_name from personusersnotice JOIN users ON personusersnotice.user_id = users.user_id where personusersnotice.is_deleted = 0");
+		sql.append("select personusersnotice.id,personusersnotice.content,personusersnotice.registration_date,personusersnotice.user_id,users.user_name from personusersnotice join users on personusersnotice.user_id = users.user_id where personusersnotice.is_deleted = 0");
 
 		if((user_id != null) && (!user_id.isEmpty())) {
 			sql.append(" and users.user_name like ?");
@@ -240,7 +240,7 @@ public class PersonUsersNoticeDaoJdbcImpl implements PersonUsersNoticeDao {
 	public void personUsersNoticeCsvOut() throws DataAccessException {
 
 		System.out.println("personUsersNoticeCsvOutImpl到達");		//inquiryテーブルのデータを全件取得するSQL
-		String sql = "select * from personUsersNotice";
+		String sql = "select * from personUsersnotice";
 		System.out.println("sql" + sql);
 		//ResultSetExceptionの生成
 		PersonUsersNoticeRowCallbackHandler handler = new PersonUsersNoticeRowCallbackHandler();
@@ -254,7 +254,7 @@ public class PersonUsersNoticeDaoJdbcImpl implements PersonUsersNoticeDao {
 
 		System.out.println("personUsersNoticeSendingCsvOutImpl到達");
 
-		String sql = "select personUsersNotice.content,personUsersNotice.registration_date,users.user_name from personUsersNotice join users on personUsersNotice.user_id = users.user_id where personUsersNotice.is_deleted = 0";
+		String sql = "select personusersnotice.content,personusersnotice.registration_date,users.user_name from personusersnotice join users on personusersnotice.user_id = users.user_id where personusersnotice.is_deleted = 0";
 		System.out.println("sql" + sql);
 		//ResultSetExceptionの生成
 		PersonUsersNoticeSendingRowCallbackHandler handler = new PersonUsersNoticeSendingRowCallbackHandler();

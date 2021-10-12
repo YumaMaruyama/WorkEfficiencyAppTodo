@@ -24,7 +24,7 @@ public class TweetDaoJdbcImpl implements TweetDao {
 
 		//Objectの取得
 		//全件取得してカウント
-		int count = jdbc.queryForObject("SELECT COUNT(*) FROM tweet", Integer.class);
+		int count = jdbc.queryForObject("select count(*) from tweet", Integer.class);
 		//カウントの結果やカラムを一つだけ取得してくるような場合はqueryForObjectメソッドを使う
 		//1引数にSQL文　2引数に戻り値のオブジェクトのclassを指定する
 		return count;
@@ -46,7 +46,7 @@ public class TweetDaoJdbcImpl implements TweetDao {
 	@Override
 	public TweetDTO selectOne(String id) throws DataAccessException {
 		Map<String, Object> map = jdbc.queryForMap(
-				"select tweet.id,tweet.user_id,tweet.contents,tweet.registration_date,users.user_name from tweet JOIN users ON tweet.user_id = users.user_id where tweet.id = ?",
+				"select tweet.id,tweet.user_id,tweet.contents,tweet.registration_date,users.user_name from tweet join users on tweet.user_id = users.user_id where tweet.id = ?",
 				id);
 
 		TweetDTO tweetdto = new TweetDTO();
@@ -68,7 +68,7 @@ public class TweetDaoJdbcImpl implements TweetDao {
 		//<Map<String,Object>> 変数名の先頭にList<>をつけるとMapのListという意味になり、複数表持ってこれて、
 		//jdbcの中のjdbc.queryForListを使えばできる。String（Key）にカラム名("id"や"contents")がはいって、Objectにはカラムそれぞれに型が入ってくる。②に行く
 		List<Map<String, Object>> getList = jdbc.queryForList(
-				"select tweet.id,tweet.contents ,tweet.registration_date ,user_id2,users.user_name from tweet JOIN users ON tweet.user_id = users.user_id order by registration_date desc");
+				"select tweet.id,tweet.contents ,tweet.registration_date ,user_id2,users.user_name from tweet join users on tweet.user_id = users.user_id order by registration_date desc");
 		//複数件のselectをする場合はqueryForListメソッドを使う　戻り値の方にはList<Map<String,Object>>を指定　
 		//Listが行　Mapが列　を表している　Mapのgetメソッドを使って、テーブルのカラム名を指定できる
 
@@ -112,7 +112,7 @@ public class TweetDaoJdbcImpl implements TweetDao {
 
 		StringBuilder sql = new StringBuilder();
 		sql.append(
-				"select tweet.id,tweet.contents,tweet.registration_date,tweet.user_id2,users.user_name from tweet JOIN users ON tweet.user_id = users.user_id where tweet.is_deleted = 0");
+				"select tweet.id,tweet.contents,tweet.registration_date,tweet.user_id2,users.user_name from tweet join users on tweet.user_id = users.user_id where tweet.is_deleted = 0");
 		List<Object> list = new ArrayList<>();
 
 		if ((user_id != null) && (!user_id.isEmpty())) {
@@ -124,7 +124,7 @@ public class TweetDaoJdbcImpl implements TweetDao {
 			list.add("%" + contents + "%");
 		}
 		if ((registration_dateA != null) && (registration_dateZ != null)) {
-			sql.append(" and registration_date BETWEEN ? and ?");
+			sql.append(" and registration_date between ? and ?");
 			list.add(registration_dateA);
 			list.add(registration_dateZ);
 		} else if ((registration_dateA == null) && (registration_dateZ != null)) {
@@ -166,7 +166,7 @@ public class TweetDaoJdbcImpl implements TweetDao {
 
 	public void tweetCsvOut() {
 		//全部データベースからselectしてくる
-		String sql = "select tweet.id,tweet.user_id,tweet.contents,tweet.registration_date,users.user_name from tweet JOIN users ON tweet.user_id = users.user_id order by registration_date desc";
+		String sql = "select tweet.id,tweet.user_id,tweet.contents,tweet.registration_date,users.user_name from tweet join users on tweet.user_id = users.user_id order by registration_date desc";
 		//TweetRowCallbackHandlerインスタンス生成
 		TweetRowCallbackHandler handler = new TweetRowCallbackHandler();
 		//RowMapperインターフェースを実装した結果をListで受け取るにはquery
