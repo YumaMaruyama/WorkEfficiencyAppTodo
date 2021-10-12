@@ -63,7 +63,7 @@ public class PersonMemoDaoJdbcImpl implements PersonMemoDao {
 		System.out.println("PersonMemoDaoJdbcImpl到達");
 
 		List<Map<String, Object>> getList = jdbc
-				.queryForList("select * from personmemo where user_id = ? ORDER BY registration_date ASC", getName);
+				.queryForList("select * from personmemo where user_id = ? order by registration_date asc", getName);
 
 		System.out.println("getList" + getList);
 		List<PersonMemoDTO> personMemoList = new ArrayList<>();
@@ -132,7 +132,7 @@ public class PersonMemoDaoJdbcImpl implements PersonMemoDao {
 		}
 
 		if ((registration_dateA != null) && (registration_dateZ != null)) {
-			sql.append(" and personmemo.registration_date BETWEEN ? AND ?");
+			sql.append(" and personmemo.registration_date between ? and ?");
 			list.add(registration_dateA);
 			list.add(registration_dateZ);
 		} else if ((registration_dateA != null) && (registration_dateZ == null)) {
@@ -144,7 +144,7 @@ public class PersonMemoDaoJdbcImpl implements PersonMemoDao {
 		}
 
 		if ((finished_dateA != null) && (finished_dateZ != null)) {
-			sql.append(" and personmemo.finished_date BETWEEN ? AND ?");
+			sql.append(" and personmemo.finished_date between ? and ?");
 			list.add(finished_dateA);
 			list.add(finished_dateZ);
 		} else if ((finished_dateA != null) && (finished_dateZ == null)) {
@@ -160,7 +160,7 @@ public class PersonMemoDaoJdbcImpl implements PersonMemoDao {
 
 		}
 
-		sql.append(" ORDER BY registration_date ASC");
+		sql.append(" order by registration_date asc");
 
 		System.out.println("sql" + sql);
 		System.out.println("list" + list);

@@ -122,7 +122,7 @@ public class AdminDaoJdbcImpl implements AdminDao {
 			list.add("%" + contentsA + "%");
 		}
 		if ((registration_dateAA != null) && (registration_dateZZ != null)) {
-			sql.append(" and registration_date BETWEEN ? AND ?");
+			sql.append(" and registration_date between ? and ?");
 			list.add(registration_dateAA);
 			list.add(registration_dateZZ);
 		} else if ((registration_dateAA != null) && (registration_dateZZ == null)) {

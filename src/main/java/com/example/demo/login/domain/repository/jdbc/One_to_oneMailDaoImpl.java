@@ -59,14 +59,14 @@ public class One_to_oneMailDaoImpl implements One_to_oneMailDao {
 
 	public One_to_oneMailDTO selectOneSendingDetail(int id) throws DataAccessException {
 		Map<String, Object> map = jdbc.queryForMap(
-				"select one_to_oneMail.id,one_to_oneMail.mail,one_to_oneMail.registration_date,one_to_oneMail.user_name,users.user_name as UN from one_to_oneMail JOIN users ON one_to_oneMail.user_id = users.user_id where one_to_oneMail.id = ?",
+				"select one_to_oneMail.id,one_to_onemail.mail,one_to_onemail.registration_date,one_to_onemail.user_name,users.user_name as un from one_to_onemail join users on one_to_onemail.user_id = users.user_id where one_to_onemail.id = ?",
 				id);
 		One_to_oneMailDTO one_to_onemaildto = new One_to_oneMailDTO();
 		one_to_onemaildto.setId((int) map.get("id"));
 
 		one_to_onemaildto.setMail((String) map.get("mail"));
 		one_to_onemaildto.setRegistration_date((Date) map.get("registration_date"));
-		one_to_onemaildto.setUser_name((String) map.get("UN"));
+		one_to_onemaildto.setUser_name((String) map.get("un"));
 
 		System.out.println("one_to_onemaildto.getUser_name()  " + one_to_onemaildto.getUser_name());
 		return one_to_onemaildto;
@@ -74,7 +74,7 @@ public class One_to_oneMailDaoImpl implements One_to_oneMailDao {
 
 	public List<One_to_oneMailDTO> selectMany(String getName) throws DataAccessException {
 		List<Map<String, Object>> getOne_to_onemailList = jdbc.queryForList(
-				"select one_to_onemail.id, one_to_onemail.mail, one_to_onemail.sender, one_to_onemail.registration_date, users.user_name from one_to_onemail JOIN users ON one_to_onemail.sender = users.user_id where one_to_onemail.user_id = ? ORDER BY registration_date desc",
+				"select one_to_onemail.id, one_to_onemail.mail, one_to_onemail.sender, one_to_onemail.registration_date, users.user_name from one_to_onemail join users on one_to_onemail.sender = users.user_id where one_to_onemail.user_id = ? order by registration_date desc",
 				getName);
 
 		List<One_to_oneMailDTO> one_to_onemailList = new ArrayList<>();
@@ -94,20 +94,20 @@ public class One_to_oneMailDaoImpl implements One_to_oneMailDao {
 
 	public One_to_oneMailDTO selectOneReply(int id) {
 		Map<String, Object> map = jdbc.queryForMap(
-				"select one_to_onemail.id,one_to_onemail.mail,one_to_onemail.user_name,one_to_onemail.registration_date,users.user_name as UN from one_to_oneMail JOIN users ON one_to_onemail.sender = users.user_id where one_to_onemail.id = ?",
+				"select one_to_onemail.id,one_to_onemail.mail,one_to_onemail.user_name,one_to_onemail.registration_date,users.user_name as un from one_to_onemail join users on one_to_onemail.sender = users.user_id where one_to_onemail.id = ?",
 				id);
 
 		One_to_oneMailDTO one_to_onemaildto = new One_to_oneMailDTO();
 		one_to_onemaildto.setMail((String) map.get("mail"));
 		one_to_onemaildto.setRegistration_date((Date) map.get("registration_date"));
-		one_to_onemaildto.setUser_name((String) map.get("UN"));
+		one_to_onemaildto.setUser_name((String) map.get("un"));
 
 		return one_to_onemaildto;
 	}
 
 	public List<One_to_oneMailDTO> selectManySending(String getName) {
 		List<Map<String, Object>> one_to_oneMailList = jdbc.queryForList(
-				"select one_to_oneMail.id,one_to_oneMail.mail,one_to_oneMail.registration_date,one_to_oneMail.sender,one_to_oneMail.user_id, users.user_name from one_to_oneMail JOIN users ON one_to_oneMail.user_id = users.user_id where one_to_oneMail.is_deleted = 0 and sender = ? ORDER BY registration_date desc",
+				"select one_to_onemail.id,one_to_onemail.mail,one_to_onemail.registration_date,one_to_onemail.sender,one_to_onemail.user_id, users.user_name from one_to_onemail join users on one_to_onemail.user_id = users.user_id where one_to_onemail.is_deleted = 0 and sender = ? order by registration_date desc",
 				getName);
 		List<One_to_oneMailDTO> list = new ArrayList<>();
 		for (Map<String, Object> map : one_to_oneMailList) {
@@ -127,7 +127,7 @@ public class One_to_oneMailDaoImpl implements One_to_oneMailDao {
 
 	public One_to_oneMailDTO selectOne(String id) {
 		Map<String, Object> map = jdbc.queryForMap(
-				"select one_to_oneMail.id,one_to_oneMail.mail,one_to_oneMail.registration_date,users.user_name from one_to_oneMail JOIN users ON one_to_onemail.sender = users.user_id where one_to_oneMail.id = ?",
+				"select one_to_onemail.id,one_to_onemail.mail,one_to_onemail.registration_date,users.user_name from one_to_onemail join users on one_to_onemail.sender = users.user_id where one_to_onemail.id = ?",
 				id);
 
 		One_to_oneMailDTO one_to_onmailedto = new One_to_oneMailDTO();
@@ -159,7 +159,7 @@ public class One_to_oneMailDaoImpl implements One_to_oneMailDao {
 		List<Object> getList = new ArrayList<>();
 
 		getSql.append(
-				"select one_to_onemail.id,one_to_onemail.mail,one_to_onemail.sender,one_to_onemail.registration_date,users.user_name from one_to_onemail JOIN users ON one_to_onemail.sender = users.user_id where one_to_onemail.sender != ? and one_to_onemail.user_id = ?");
+				"select one_to_onemail.id,one_to_onemail.mail,one_to_onemail.sender,one_to_onemail.registration_date,users.user_name from one_to_onemail join users on one_to_onemail.sender = users.user_id where one_to_onemail.sender != ? and one_to_onemail.user_id = ?");
 		getList.add(getUser_id);
 		getList.add(getUser_id2);
 
@@ -173,7 +173,7 @@ public class One_to_oneMailDaoImpl implements One_to_oneMailDao {
 		}
 
 		if ((registration_dateFrom != null) && (registration_dateTo != null)) {
-			getSql.append(" and one_to_onemail.registration_date BETWEEN ? and ?");
+			getSql.append(" and one_to_onemail.registration_date between ? and ?");
 			getList.add(registration_dateFrom);
 			getList.add(registration_dateTo);
 		}
@@ -186,7 +186,7 @@ public class One_to_oneMailDaoImpl implements One_to_oneMailDao {
 			getList.add(registration_dateTo);
 		}
 
-		getSql.append(" ORDER BY registration_date desc");
+		getSql.append(" order by registration_date desc");
 		System.out.println("getSql" + getSql);
 		System.out.println("getList" + getList);
 		String setSql = getSql.toString();
@@ -219,7 +219,7 @@ public class One_to_oneMailDaoImpl implements One_to_oneMailDao {
 		List<Object> list = new ArrayList<>();
 
 		sql.append(
-				"select one_to_oneMail.id,one_to_oneMail.mail,one_to_oneMail.registration_date,users.user_name from one_to_oneMail JOIN users ON one_to_oneMail.user_id = users.user_id where one_to_oneMail.is_deleted = 0 and one_to_oneMail.user_id != ? and one_to_onemail.sender = ?");
+				"select one_to_onemail.id,one_to_onemail.mail,one_to_onemail.registration_date,users.user_name from one_to_onemail join users on one_to_onemail.user_id = users.user_id where one_to_onemail.is_deleted = 0 and one_to_onemail.user_id != ? and one_to_onemail.sender = ?");
 		list.add(getName);
 		list.add(getName);
 		if ((user_name != null) && (!user_name.isEmpty())) {
@@ -228,25 +228,25 @@ public class One_to_oneMailDaoImpl implements One_to_oneMailDao {
 		}
 
 		if ((mail != null) && (!mail.isEmpty())) {
-			sql.append(" and one_to_oneMail.mail like ?");
+			sql.append(" and one_to_onemail.mail like ?");
 			list.add("%" + mail + "%");
 		}
 
 		if ((registration_dateFrom != null) && (registration_dateTo != null)) {
-			sql.append(" and one_to_oneMail.registration_date BETWEEN ? AND ?");
+			sql.append(" and one_to_onemail.registration_date between ? and ?");
 			list.add(registration_dateFrom);
 			list.add(registration_dateTo);
 		}
 		if ((registration_dateFrom != null) && (registration_dateTo == null)) {
-			sql.append(" and one_to_oneMail.registration_date > ?");
+			sql.append(" and one_to_onemail.registration_date > ?");
 			list.add(registration_dateFrom);
 		}
 		if ((registration_dateFrom == null) && (registration_dateTo != null)) {
-			sql.append(" and one_to_oneMail.registration_date < ?");
+			sql.append(" and one_to_onemail.registration_date < ?");
 			list.add(registration_dateTo);
 		}
 
-		sql.append(" ORDER BY registration_date desc");
+		sql.append(" order by registration_date desc");
 
 		System.out.println("sql  " + sql);
 		System.out.println("list  " + list);
@@ -273,7 +273,7 @@ public class One_to_oneMailDaoImpl implements One_to_oneMailDao {
 
 	public void one_to_oneMailCsvOut(String getName) throws DataAccessException {
 
-		String sql = "select one_to_oneMail.id,one_to_oneMail.mail,one_to_oneMail.user_id,one_to_oneMail.registration_date,users.user_name from one_to_oneMail JOIN users ON one_to_oneMail.sender = users.user_id where one_to_oneMail.user_id = ? and sender != ? order by registration_date asc";
+		String sql = "select one_to_onemail.id,one_to_onemail.mail,one_to_onemail.user_id,one_to_onemail.registration_date,users.user_name from one_to_onemail join users on one_to_onemail.sender = users.user_id where one_to_onemail.user_id = ? and sender != ? order by registration_date asc";
 
 		One_to_oneMailRowCallbackHandler handler = new One_to_oneMailRowCallbackHandler();
 
@@ -283,7 +283,7 @@ public class One_to_oneMailDaoImpl implements One_to_oneMailDao {
 
 	public void one_to_oneMailSendingCsvOut(String getName) throws DataAccessException {
 
-		String sql = "select one_to_oneMail.id,one_to_oneMail.mail,one_to_oneMail.user_id,one_to_oneMail.registration_date,users.user_name from one_to_oneMail JOIN users ON one_to_oneMail.user_id = users.user_id where one_to_oneMail.user_id != ? and sender = ? and one_to_oneMail.is_deleted = 0 order by registration_date asc";
+		String sql = "select one_to_onemail.id,one_to_onemail.mail,one_to_onemail.user_id,one_to_onemail.registration_date,users.user_name from one_to_onemail join users on one_to_onemail.user_id = users.user_id where one_to_onemail.user_id != ? and sender = ? and one_to_onemail.is_deleted = 0 order by registration_date asc";
 
 		One_to_oneMailSendingRowCallbackHandler handler = new One_to_oneMailSendingRowCallbackHandler();
 

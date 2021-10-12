@@ -23,7 +23,7 @@ public class Todo_itemsDaoJdbcImpl implements Todo_itemsDao {
 	@Override
 	public int count() throws DataAccessException {
 
-		int count = jdbc.queryForObject("select count(*) from Todo_items", Integer.class);
+		int count = jdbc.queryForObject("select count(*) from todo_items", Integer.class);
 
 		return count;
 	}
@@ -54,7 +54,7 @@ public class Todo_itemsDaoJdbcImpl implements Todo_itemsDao {
 	public Todo_itemsDTO selectOne(String id) throws DataAccessException {
 
 		//一件取得
-		Map<String, Object> map = jdbc.queryForMap("select * from Todo_items"
+		Map<String, Object> map = jdbc.queryForMap("select * from todo_items"
 				+ " where id = ?", id);
 		//queryForMap 戻り値はMap<String,Object>型です
 		//結果返却用の変数
@@ -73,7 +73,7 @@ public class Todo_itemsDaoJdbcImpl implements Todo_itemsDao {
 	@Override
 	public Todo_itemsDTO selectOneX(int id) throws DataAccessException {
 
-		Map<String,Object> map = jdbc.queryForMap("select * from Todo_items" + " where id =?", id);
+		Map<String,Object> map = jdbc.queryForMap("select * from todo_items" + " where id =?", id);
 
 		Todo_itemsDTO todo_itemsdto = new Todo_itemsDTO();
 
@@ -91,7 +91,7 @@ public class Todo_itemsDaoJdbcImpl implements Todo_itemsDao {
 
 		//複数行のselect
 		//Todo_itemsテーブルのデータを全件取得
-		List<Map<String, Object>> getList = jdbc.queryForList("select * from Todo_items ORDER BY expire_date ASC");
+		List<Map<String, Object>> getList = jdbc.queryForList("select * from todo_items order by expire_date asc");
 		//複数件のselectをする場合はqueryForListメソッドを使う　戻り値の方にはList<Map<String,Object>>を指定　
 		//Listが行　Mapが列　を表している　Mapのgetメソッドを使って、テーブルのカラム名を指定できる
 
@@ -178,7 +178,7 @@ public class Todo_itemsDaoJdbcImpl implements Todo_itemsDao {
 	@Override
 	public void todo_itemsCsvOut() throws DataAccessException {
 
-		String sql = "select * from Todo_items";
+		String sql = "select * from todo_items";
 
 		Todo_itemsRowCallbackHandler handler = new Todo_itemsRowCallbackHandler();
 
@@ -224,7 +224,7 @@ public class Todo_itemsDaoJdbcImpl implements Todo_itemsDao {
 		
 	
 		if((registration_date != null) && (registration_dateA != null)) {
-			sql.append(" and todo_items.registration_date BETWEEN ? AND ?");
+			sql.append(" and todo_items.registration_date between ? and ?");
 			list.add(registration_date);
 			list.add(registration_dateA);
 		}else if((registration_date != null) && (registration_dateA == null)) {
@@ -236,7 +236,7 @@ public class Todo_itemsDaoJdbcImpl implements Todo_itemsDao {
 		}
 
 		if((expire_date != null) && (expire_dateA != null)) {
-			sql.append(" and todo_items.expire_date BETWEEN ? AND ?");
+			sql.append(" and todo_items.expire_date between ? and ?");
 			list.add(expire_date);
 			list.add(expire_dateA);
 		}else if((expire_date != null) && (expire_dateA == null)) {
@@ -248,7 +248,7 @@ public class Todo_itemsDaoJdbcImpl implements Todo_itemsDao {
 		}
 		
 		if((finished_date != null) && (finished_dateA != null)) {
-			sql.append(" and todo_items.finished_date BETWEEN ? AND ?");
+			sql.append(" and todo_items.finished_date between ? and ?");
 			list.add(finished_date);
 			list.add(finished_dateA);
 		}else if((finished_date != null) && (finished_dateA == null)) {
@@ -263,7 +263,7 @@ public class Todo_itemsDaoJdbcImpl implements Todo_itemsDao {
 			sql.append(" and todo_items.finished_date is null");
 		}
 
-		sql.append(" ORDER BY expire_date ASC");
+		sql.append(" order by expire_date asc");
 
 		System.out.println("sql" + sql);
 		System.out.println("list" + list);
