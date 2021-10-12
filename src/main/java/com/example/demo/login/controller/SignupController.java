@@ -42,7 +42,7 @@ public class SignupController {
 		model.addAttribute("radioMaleFemale", radioMaleFemale);
 
 		
-		return "/login/loginLayout";
+		return "login/loginLayout";
 	}
 
 	//ユーザー登録画面のPOSTコントローラー

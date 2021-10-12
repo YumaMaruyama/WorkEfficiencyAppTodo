@@ -349,7 +349,7 @@ public class WorkspaceController {
 		int rowNumber = personUsersNoticeService.count(getName);
 		model.addAttribute("adminPersonNoticeCount", rowNumber);
 
-		return "/login/workspaceLayout";
+		return "login/workspaceLayout";
 	}
 
 	@GetMapping("/one_to_oneMail")
@@ -382,7 +382,7 @@ public class WorkspaceController {
 		int rowNumber = personUsersNoticeService.count(getName);
 		model.addAttribute("adminPersonNoticeCount", rowNumber);
 
-		return "/login/workspaceLayout";
+		return "login/workspaceLayout";
 	}
 
 	@PostMapping("/one_to_oneMail")
@@ -392,7 +392,7 @@ public class WorkspaceController {
 		System.out.println("postOne_to_oneMail到達");
 		model.addAttribute("one_to_onemailList", one_to_onemailList);
 
-		return "/login/workspaceLayout";
+		return "login/workspaceLayout";
 
 	}
 
@@ -627,7 +627,7 @@ public class WorkspaceController {
 		int rowNumber = personUsersNoticeService.count(getName);
 		model.addAttribute("adminPersonNoticeCount", rowNumber);
 
-		return "/login/workspaceLayout";
+		return "login/workspaceLayout";
 	}
 
 	@PostMapping("/one_to_oneMailNotice")
@@ -645,7 +645,7 @@ public class WorkspaceController {
 		model.addAttribute("adminListCount", countAdminNotice);
 
 		model.addAttribute("usersList", usersList);
-		return "/login/workspaceLayout";
+		return "login/workspaceLayout";
 	}
 
 	@PostMapping(value = "/one_to_oneMailNotice", params = "search")
@@ -716,7 +716,7 @@ public class WorkspaceController {
 		int rowNumber = personUsersNoticeService.count(getName);
 		model.addAttribute("adminPersonNoticeCount", rowNumber);
 
-		return "/login/workspaceLayout";
+		return "login/workspaceLayout";
 	}
 
 	@PostMapping("/one_to_oneMailNoticeDetail")
@@ -931,7 +931,7 @@ public class WorkspaceController {
 		int rowNumber = personUsersNoticeService.count(getName);
 		model.addAttribute("adminPersonNoticeCount", rowNumber);
 
-		return "/login/workspaceLayout";
+		return "login/workspaceLayout";
 
 	}
 
@@ -944,7 +944,7 @@ public class WorkspaceController {
 		model.addAttribute("tweetList", tweetList);
 
 		model.addAttribute("tweetCount", tweetList.size());
-		return "/login/workspaceLayout";
+		return "login/workspaceLayout";
 	}
 
 	//tweetしたときpostでinsert
@@ -1116,7 +1116,7 @@ public class WorkspaceController {
 		int rowNumber = personUsersNoticeService.count(getName);
 		model.addAttribute("adminPersonNoticeCount", rowNumber);
 
-		return "/login/workspaceLayout";
+		return "login/workspaceLayout";
 	}
 
 	@PostMapping(value = "/tweetDetail", params = "delete")
