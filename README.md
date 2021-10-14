@@ -6,28 +6,17 @@
 ユーザー登録を行うと利用できるようになります。
 * アプリURL： http://133.167.92.108:8084/login
 
-## [主な使用技術]
-##### 「プログラミング」
+## [使用技術]
 * Java8
 * HTML5
 * CSS3
 * spring boot 2.4.2
-* thymeleaf 3.0.12
-* bootstrap 3.3.7-1
-* jQuery 3.5.1
-##### 「作成環境」
-* Eclipse 4.20.0
-* MySql 8.0.25
-* GitHub 2.27.0
-##### 「機能」
-* tomcat 9.0.41
-* apache 4.0.0
-* springsecurity5
-* lombok 1.18.16
-* Devtools 2.4.2
-* JDBC 5.3.3
-* web 5.3.3
-* font-awesome 4.7.0
+* thymeleaf 3.0.4
+* bootstrap 4.2.1
+
+## [動作環境]
+* MariaDB 10.3.28
+* apache 2.4.37
 
 
 ## [設計書類]
