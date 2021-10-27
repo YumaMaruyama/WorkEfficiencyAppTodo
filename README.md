@@ -22,10 +22,6 @@
 ## [設計書類]
  
  
-### 1.[DB設計書(MySql)]  
-* #### DB設計書(Excel): https://github.com/YumaMaruyama/SpringBoot_Todo/files/6643903/spring_todo.DB.xlsx
- 
- 
  
  ## [アプリ説明] ##
   
