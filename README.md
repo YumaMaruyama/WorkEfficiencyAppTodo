@@ -17,6 +17,12 @@
 ## [動作環境]
 * MariaDB 10.3.28
 * apache 2.4.37 
+
+## [設計書類]
+
+DB設計書(Excel):[spring_todo DB詳細.xlsx](https://github.com/YumaMaruyama/WorkEfficiencyAppTodo/files/7424722/spring_todo.DB.xlsx)
+
+
  
  ## [アプリ説明] ##
   
