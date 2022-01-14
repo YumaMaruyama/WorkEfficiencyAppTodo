@@ -1,5 +1,6 @@
 # WorkEfficiencyAppTodo 
-![iOS NEw](https://user-images.githubusercontent.com/83486993/149529620-3f631894-6524-4f8b-a371-5c2c294d0f88.png)
+![new](https://user-images.githubusercontent.com/83486993/149530455-f3d6a997-8d94-49bb-bfb1-eadb9052a288.png)
+
 
 
 ## [アプリ概要]
