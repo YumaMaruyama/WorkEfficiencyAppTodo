@@ -1,4 +1,6 @@
-# WorkEfficiencyAppTodo
+# WorkEfficiencyAppTodo 
+![iOS NEw](https://user-images.githubusercontent.com/83486993/149529620-3f631894-6524-4f8b-a371-5c2c294d0f88.png)
+
 
 ## [アプリ概要]
 社内のメンバーとのメール、オープンチャットスペースやタスク管理機能により仕事の効率を上げるアプリです。  
